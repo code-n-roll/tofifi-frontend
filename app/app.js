@@ -39,6 +39,7 @@ import configureStore from './store';
 import { translationMessages } from './i18n';
 
 // Import CSS reset and Global Styles
+import './styles';
 import './global-styles';
 
 // Import root routes
