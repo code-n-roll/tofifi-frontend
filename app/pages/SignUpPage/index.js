@@ -1,13 +1,20 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
+import SignUpForm from 'components/forms/SignUpForm';
+import { Link } from 'react-router';
+import styles from './styles';
 
-export default class SignUpPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+class SignUpPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-      <h1>
-        <FormattedMessage {...messages.header} />
-      </h1>
+      <div>
+        <h1 style={{ textAlign: 'center' }}> Sign Up </h1>
+        <div style={styles.formContainer}>
+          <SignUpForm />
+        </div>
+        <Link to='sign_in'>Go to sign in</Link>
+      </div>
     );
   }
 }
+
+export default SignUpPage;

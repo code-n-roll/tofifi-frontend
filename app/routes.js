@@ -43,12 +43,14 @@ export default function createRoutes(store) {
       getComponent(nextState, cb) {
         const importModules = Promise.all([
           import('pages/SignInPage'),
+          import('pages/SignInPage/sagas'),
         ]);
 
         const renderRoute = loadModule(cb);
 
-        importModules.then(([component]) => {
+        importModules.then(([component, sagas]) => {
           renderRoute(component);
+          injectSagas(sagas.default);
         });
 
         importModules.catch(errorLoading);
@@ -61,12 +63,14 @@ export default function createRoutes(store) {
       getComponent(nextState, cb) {
         const importModules = Promise.all([
           import('pages/SignUpPage'),
+          import('pages/SignUpPage/sagas'),
         ]);
 
         const renderRoute = loadModule(cb);
 
-        importModules.then(([component]) => {
+        importModules.then(([component, sagas]) => {
           renderRoute(component);
+          injectSagas(sagas.default);
         });
 
         importModules.catch(errorLoading);
