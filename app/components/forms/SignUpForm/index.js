@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form/immutable';
 import InputControl from 'components/controls/InputControl';
+import { required, email } from 'components/forms/validations';
 import { signUp } from './actions';
 
 class SignUpForm extends Component {
@@ -20,6 +21,7 @@ class SignUpForm extends Component {
             type="text"
             placeholder="Email"
             component={InputControl}
+            validate={[required, email]}
           />
         </div>
         <div>
@@ -28,6 +30,7 @@ class SignUpForm extends Component {
             type="text"
             placeholder="Username"
             component={InputControl}
+            validate={[required]}
           />
         </div>
         <div>
@@ -36,6 +39,7 @@ class SignUpForm extends Component {
             type="password"
             placeholder="Password"
             component={InputControl}
+            validate={[required]}
           />
         </div>
         <button
