@@ -18,3 +18,5 @@ import * as PATHS from './paths';
 // this is an example to made API call with auth
 // just a POST request
 // export const verifyOtpApi = (data) => post(PATHS.OTP_VERIFICATION_PATH, true, data);
+export const signUpApi = (data) => post(PATHS.SIGN_UP_PATH, false, data);
+export const signInApi = (data) => post(PATHS.SIGN_IN_PATH, false, data);

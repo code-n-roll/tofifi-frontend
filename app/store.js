@@ -6,6 +6,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
 import { persistStore, autoRehydrate } from 'redux-persist-immutable';
+import reduxReset from 'redux-reset';
 
 import createSagaMiddleware from 'redux-saga';
 
@@ -25,6 +26,7 @@ export default function configureStore(initialState = {}, history) {
 
   const enhancers = [
     applyMiddleware(...middlewares),
+    reduxReset(),
     autoRehydrate(),
   ];
 
