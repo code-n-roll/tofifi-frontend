@@ -7,7 +7,6 @@ import { signIn } from './actions';
 class SignInForm extends Component {
   render() {
     const { props } = this;
-    console.log(props);
 
     return (
       <form onSubmit={props.handleSubmit(signIn)}>

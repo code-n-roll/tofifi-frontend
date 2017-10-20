@@ -7,13 +7,26 @@ const InputControl = (field) => {
     label,
     type,
     placeholder,
-    meta: { error, touched },
+    errorStyles,
+    meta: { touched },
   } = field;
+
+  let error = field.meta.error;
 
   const hasError = touched && error;
 
+  let style = { paddingBottom: '30px' };
+  if (hasError && errorStyles) {
+    style = Object.assign({}, style, errorStyles);
+  }
+
+  // Check for immutable error objects
+  if (error && typeof error.toJS === 'function') {
+    error = error.toJS();
+  }
+
   return (
-    <div className="mdl-textfield" style={{ paddingBottom: '30px' }}>
+    <div className="mdl-textfield" style={style}>
       <input className="mdl-textfield__input" type={type} {...input} />
       {!input.value &&
         <label className="mdl-textfield__label" htmlFor={input.name}>{placeholder}</label>
