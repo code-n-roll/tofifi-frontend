@@ -5,21 +5,31 @@ import { required, email } from 'components/forms/validations';
 import { signIn } from './actions';
 
 class SignInForm extends Component {
+
+  constructor(args) {
+    super(args);
+
+    this.handleEmailValueChange = this.handleEmailValueChange.bind(this);
+  }
+
+  handleEmailValueChange() {
+    this.props.clearSubmitErrors();
+  }
+
   render() {
     const { props } = this;
 
     return (
-      <form onSubmit={props.handleSubmit(signIn)}>
-        <div>
+      <form onSubmit={props.handleSubmit(signIn)} autoComplete="off">
+        <div style={{ paddingBottom: '30px' }}>
           <Field
             name="email"
-            type="text"
+            type="email"
             placeholder="Email"
+            onValueChange={this.handleEmailValueChange}
             component={InputControl}
             validate={[required, email]}
           />
-        </div>
-        <div>
           <Field
             name="password"
             type="password"
@@ -29,9 +39,10 @@ class SignInForm extends Component {
           />
         </div>
         <button
-          className="mdl-button mdl-js-button mdl-button--raised"
+          className="mdl-button mdl-js-button mdl-button--raised bg-green text-white"
           disabled={props.submitting || props.invalid}
           type="submit"
+          style={{ width: '100%' }}
         >
           Sign in
         </button>

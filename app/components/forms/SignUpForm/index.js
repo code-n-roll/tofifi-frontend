@@ -15,24 +15,26 @@ class SignUpForm extends Component {
 
     return (
       <form onSubmit={props.handleSubmit(signUp)}>
-        <div>
-          <Field
-            name="email"
-            type="text"
-            placeholder="Email"
-            component={InputControl}
-            validate={[required, email]}
-          />
-        </div>
-        <div>
-          <Field
-            name="password"
-            type="password"
-            placeholder="Password"
-            component={InputControl}
-            validate={[required, password]}
-            errorStyles={{ paddingBottom: '70px' }}
-          />
+        <div style={{ paddingBottom: '50px' }}>
+          <div>
+            <Field
+              name="email"
+              type="text"
+              placeholder="Email"
+              component={InputControl}
+              validate={[required, email]}
+            />
+          </div>
+          <div>
+            <Field
+              name="password"
+              type="password"
+              placeholder="Password"
+              component={InputControl}
+              validate={[required, password]}
+              errorStyles={{ paddingBottom: '70px' }}
+            />
+          </div>
         </div>
         <button
           className="mdl-button mdl-js-button mdl-button--raised"

@@ -1,10 +1,11 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
-import { SubmissionError } from 'redux-form';
+import { SubmissionError } from 'redux-form/immutable';
 import { signIn } from 'components/forms/SignInForm/actions';
 import { setUserData } from 'containers/App/actions';
 import { signInApi } from 'utils/api/requests';
 import { saveAuthToken } from 'utils/helpers/auth';
 import { browserHistory } from 'react-router';
+import messages from 'components/forms/messages';
 
 function* handleSignIn(action) {
   const formData = action.payload.toJS();
@@ -23,14 +24,11 @@ function* handleSignIn(action) {
     yield put(signIn.success());
     browserHistory.push('/');
   } catch (error) {
-    yield put(signIn.success());
-    // const formError = new SubmissionError({
-    //   login: 'User with this login is not found',
-    //   _error: 'Login failed, please check your credentials and try again',
-    // });
+    const formError = new SubmissionError({
+      password: messages.wrongCredentials,
+    });
 
-    // yield put(signIn.failure(formError));
-    console.error(error);
+    yield put(signIn.failure(formError));
   }
 }
 

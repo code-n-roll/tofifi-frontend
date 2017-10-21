@@ -18,4 +18,8 @@ export default defineMessages({
     id: 'app.components.forms.emailExists',
     defaultMessage: 'User with such email is aleady registered',
   },
+  wrongCredentials: {
+    id: 'app.components.forms.wrongCredentials',
+    defaultMessage: 'Wrong credentials. Try again.',
+  },
 });
