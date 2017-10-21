@@ -11,15 +11,15 @@ class SignInPage extends Component {
       <MainLayout>
         <OnScreenHeightSection>
           <div className="mdl-typography--text-center" style={{ position: 'relative', zIndex: 2 }}>
-            <h1 className="logo-font text-green"> WisePay </h1>
-            <h3 className="text-green">the best way to share payments</h3>
+            <h1 className="logo-font text-white"> WisePay </h1>
+            <h3 className="logo-sub-font text-white">the best way to share payments</h3>
             <div style={styles.formContainer}>
               <SignInForm />
             </div>
             <h4 className="text-white"> OR </h4>
 
             <button
-              className="mdl-button mdl-js-button mdl-button--raised big-btn bg-green text-white"
+              className="mdl-button mdl-js-button mdl-button--raised big-btn bg-blue text-white"
               onClick={() => this.props.router.push('sign_up')}
             >
               Go To Sign up

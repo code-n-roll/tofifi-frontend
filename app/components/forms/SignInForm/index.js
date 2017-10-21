@@ -21,7 +21,7 @@ class SignInForm extends Component {
 
     return (
       <form onSubmit={props.handleSubmit(signIn)} autoComplete="off">
-        <div style={{ paddingBottom: '30px' }}>
+        <div style={{ paddingBottom: '10px' }}>
           <Field
             name="email"
             type="email"
@@ -39,10 +39,9 @@ class SignInForm extends Component {
           />
         </div>
         <button
-          className="mdl-button mdl-js-button mdl-button--raised bg-green text-white"
+          className="mdl-button mdl-js-button mdl-button--raised bg-blue text-white big-btn big-btn-margin"
           disabled={props.submitting || props.invalid}
           type="submit"
-          style={{ width: '100%' }}
         >
           Sign in
         </button>

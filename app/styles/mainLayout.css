@@ -45,8 +45,16 @@ a img{
   background-color: #6ab344;
 }
 
+.bg-blue {
+  background-color: #0058ad;
+}
+
 .big-btn {
   min-width: 300px;
+}
+
+.big-btn-margin {
+  margin: 10px 0;
 }
 
 .layout-search-box .mdl-textfield__input {
@@ -85,7 +93,7 @@ a img{
 
 .layout-header {
   overflow: visible;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0);
 }
 
   .layout-header .material-icons {
@@ -98,7 +106,7 @@ a img{
   }
 
   .layout-header .mdl-navigation__link {
-    color: #757575;
+    color: white;
     font-weight: 700;
     font-size: 14px;
   }
@@ -167,8 +175,12 @@ a img{
 .logo-font {
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   line-height: 1;
-  color: #767777;
   font-weight: 500;
+}
+
+.logo-sub-font {
+  margin-top: -10px;
+  margin-bottom: 30px;
 }
 
 .layout-slogan {
