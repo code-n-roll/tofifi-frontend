@@ -10,9 +10,6 @@ class SignInPage extends Component {
     return (
       <MainLayout>
         <OnScreenHeightSection>
-          <div style={styles.imageContainer}>
-            <div style={styles.imageOpacity} />
-          </div>
           <div className="mdl-typography--text-center" style={{ position: 'relative', zIndex: 2 }}>
             <h1 className="logo-font text-green"> WisePay </h1>
             <h3 className="text-green">the best way to share payments</h3>

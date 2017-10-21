@@ -8,10 +8,6 @@ class Header extends Component {
     return (
       <div className="layout-header mdl-layout__header mdl-layout__header--waterfall" style={{ minHeight: `${headerHeight}px` }}>
         <div className="mdl-layout__header-row" style={{ height: `${headerHeight}px` }}>
-          <span className="layout-title mdl-layout-title">
-            <Link to="/" style={styles.title}> WisePay </Link>
-          </span>
-
           <div className="layout-header-spacer mdl-layout-spacer"></div>
 
           <div className="layout-navigation-container">
