@@ -7,7 +7,6 @@ import styles from './styles';
 
 class SignInPage extends Component {
   render() {
-    console.log(this.props);
     return (
       <MainLayout>
         <OnScreenHeightSection>

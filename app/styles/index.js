@@ -1,2 +1,2 @@
 import './material.min.css';
-import './template.css';
+import './mainLayout.css';
