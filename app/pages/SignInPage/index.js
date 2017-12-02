@@ -1,13 +1,38 @@
-import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import MainLayout from 'components/MainLayout';
+import SignInForm from 'components/forms/SignInForm';
+import OnScreenHeightSection from 'components/MainLayout/sections/OnScreenHeightSection';
+import styles from './styles';
 
-export default class SignInPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+class SignInPage extends Component {
   render() {
     return (
-      <h1>
-        <FormattedMessage {...messages.header} />
-      </h1>
+      <MainLayout>
+        <OnScreenHeightSection>
+          <div className="mdl-typography--text-center" style={{ position: 'relative', zIndex: 2 }}>
+            <h1 className="logo-font text-white"> WisePay </h1>
+            <h3 className="logo-sub-font text-white">the best way to share payments</h3>
+            <div style={styles.formContainer}>
+              <SignInForm />
+            </div>
+            <h4 className="text-white"> OR </h4>
+
+            <button
+              className="mdl-button mdl-js-button mdl-button--raised big-btn bg-blue text-white"
+              onClick={() => this.props.router.push('sign_up')}
+            >
+              Go To Sign up
+            </button>
+          </div>
+        </OnScreenHeightSection>
+      </MainLayout>
     );
   }
 }
+
+SignInPage.propTypes = {
+  router: PropTypes.any,
+};
+
+export default SignInPage;
