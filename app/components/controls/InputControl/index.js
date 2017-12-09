@@ -40,6 +40,8 @@ class InputControl extends Component {
       error = error.toJS();
     }
 
+    style = Object.assign({}, style, this.props.style);
+
     return (
       <div className="mdl-textfield" style={style}>
         <input className="mdl-textfield__input" type={type} {...input} onChange={this.handleValueChange} />
@@ -64,6 +66,7 @@ InputControl.propTypes = {
   type: PropTypes.string,
   errorStyles: PropTypes.object,
   onValueChange: PropTypes.func,
+  style: PropTypes.object,
 };
 
 export default InputControl;

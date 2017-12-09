@@ -137,3 +137,13 @@
   top: 50%;
   transform: translateY(-50%);
 }
+
+.create-purchase-participants-container {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
+.create-purchase_participant {
+  display: inline-block;
+  width: 30%;
+}

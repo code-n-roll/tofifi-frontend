@@ -5,8 +5,8 @@ import _ from 'lodash';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectUsers, makeSelectGroups, makeSelectGroupUsers } from 'pages/common/selectors';
 import { getGroupUsersRequest } from 'pages/common/actions';
-import UsersList from 'components/Purchases/CreatePurchase/UsersList';
-import GroupsList from 'components/Purchases/CreatePurchase/GroupsList';
+import UsersList from 'components/Purchases/CreatePurchase/Step1/UsersList';
+import GroupsList from 'components/Purchases/CreatePurchase/Step1/GroupsList';
 import ListFilter from 'components/ListFilter';
 
 class CreatePurchaseStep1 extends Component {
@@ -44,12 +44,12 @@ class CreatePurchaseStep1 extends Component {
     }
   }
 
-  handleUserStatusChange(userId, isSelected) {
+  handleUserStatusChange(modifiedUser, isSelected) {
     const selectedUsers = _.clone(this.state.selectedUsers);
     if (isSelected) {
-      selectedUsers.push({ id: userId });
+      selectedUsers.push(modifiedUser);
     } else {
-      _.remove(selectedUsers, (user) => user.id === userId);
+      _.remove(selectedUsers, (user) => user.id === modifiedUser.id);
     }
 
     this.setState({ selectedUsers, selectedGroup: null });
@@ -92,6 +92,14 @@ class CreatePurchaseStep1 extends Component {
             }}
           />
         </div>
+
+        <button
+          className="mdl-button mdl-js-button mdl-button--raised bg-green text-white"
+          style={{ position: 'absolute', bottom: 20, right: 20 }}
+          onClick={() => this.props.goToNextStep(this.state.selectedUsers)}
+        >
+          Next step
+        </button>
       </div>
     );
   }
@@ -102,6 +110,7 @@ CreatePurchaseStep1.propTypes = {
   groups: PropTypes.array,
   groupUsers: PropTypes.groupUsers,
   getGroupUsersRequest: PropTypes.func,
+  goToNextStep: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({

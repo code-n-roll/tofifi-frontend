@@ -5,7 +5,7 @@ import UserItem from '../UserItem';
 const UsersList = (props) => (
   <div>
     {props.users.map((user) => (
-      <UserItem {...user} onStatusChange={() => props.onUserStatusChange(user.id, !user.selected)} />
+      <UserItem {...user} onStatusChange={() => props.onUserStatusChange(user, !user.selected)} />
     ))}
   </div>
 );
