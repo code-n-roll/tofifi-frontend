@@ -73,6 +73,28 @@ a {
   font-weight: bold;
 }
 
+.list-filter-input {
+  padding-left: 20px;
+  height: 50px;
+}
+
+input[type=checkbox] {
+  display: none;
+}
+
+input[type=checkbox] + label {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #dcdcdc;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-block;
+}
+
+input[type=checkbox]:checked + label {
+  background-color: #6ab344;
+}
+
 .layout-search-box .mdl-textfield__input {
   color: rgba(0, 0, 0, 0.87);
 }
@@ -145,7 +167,7 @@ a {
         -ms-flex-pack: end;
             justify-content: flex-end;
     width: 800px;
-    maxHeight: 60px;
+    max-height: 60px;
   }
 
   .layout-search-box.is-focused + .layout-navigation-container {

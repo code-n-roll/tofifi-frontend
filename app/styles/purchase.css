@@ -63,3 +63,77 @@
   bottom: 50px;
   left: 130px;
 }
+
+.create-purchase_groups {
+  background-color: #fff;
+  width: 60%;
+  height: 500px;
+  margin-top: 20px;
+  margin-left: 20px;
+  border: 2px solid #dcdcdc;
+  position: relative;
+  float: left;
+}
+
+.create-purchase_group-item {
+  width: 100px;
+  display: inline-block;
+  margin: 10px;
+  position: relative;
+  cursor: pointer;
+}
+
+.create-purchase_group-item__check {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #6ab344;
+  font-size: 40px;
+  line-height: 100px;
+}
+
+.create-purchase_groups-users-list {
+  overflow-y: scroll;
+  height: 445px;
+}
+
+
+.create-purchase_group-item__name {
+  font-size: 20px;
+}
+
+.create-purchase_users {
+  background-color: #fff;
+  width: 35%;
+  height: 500px;
+  margin-top: 20px;
+  margin-right: 20px;
+  border: 2px solid #dcdcdc;
+  position: relative;
+  float: right;
+}
+
+.create-purchase_user-item {
+  position: relative;
+  padding: 10px;
+  border-top: 1px solid #dcdcdc;
+  text-align: left;
+  padding-right: 30px;
+}
+
+.create-purchase_user-item:first-child {
+  border-top: 0px;
+}
+
+.create-purchase_group-item__name {
+  font-size: 20px;
+}
+
+.create-purchase_user-item__checkbox {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}

@@ -4,4 +4,4 @@ export const PAGE_STATES = {
   createPurchase: 'createPurchase',
 };
 
-export const SET_PAGE_STATE = 'DashboardPage/purchases/SET_PAGE_STATE';
+export const SET_PAGE_STATE = 'DashboardPage/pageState/SET_PAGE_STATE';

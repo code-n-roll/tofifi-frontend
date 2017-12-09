@@ -9,3 +9,9 @@ export const SIGN_IN_PATH = 'sign_in';
 
 // purchases
 export const PURCHASES_PATH = 'users/me/purchases';
+
+// users
+export const USERS_PATH = '/users';
+
+// groups
+export const GROUPS_PATH = '/groups';

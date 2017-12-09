@@ -12,6 +12,7 @@ import DashboardWelcome from 'components/DashboardWelcome';
 import LoggedLayout from 'components/layouts/LoggedLayout';
 import GraySection from 'components/sections/GraySection';
 import OnScreenHeightSection from 'components/sections/OnScreenHeightSection';
+import { getUsersRequest, getGroupsRequest } from 'pages/common/actions';
 
 import {
   setCurrentPurchase,
@@ -35,6 +36,8 @@ class DashboardPage extends Component {
 
   componentWillMount() {
     this.handleQueryChange(this.props.location.query);
+    this.props.getUsersRequest();
+    this.props.getGroupsRequest();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -89,6 +92,8 @@ DashboardPage.propTypes = {
   logOutRequest: PropTypes.func,
   setCurrentPurchase: PropTypes.func,
   setPageState: PropTypes.func,
+  getUsersRequest: PropTypes.func,
+  getGroupsRequest: PropTypes.func,
   pageState: PropTypes.string,
   location: PropTypes.object,
 };
@@ -102,6 +107,8 @@ const mapDispatchToProps = {
   logOutRequest,
   setCurrentPurchase,
   setPageState,
+  getUsersRequest,
+  getGroupsRequest,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);

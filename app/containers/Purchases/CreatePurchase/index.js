@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import CreatePurchaseStep1 from './CreatePurchaseStep1';
 
 class CreatePurchase extends Component {
   render() {
     return (
       <div>
-        Create purchase
+        Create new purchase
+        <CreatePurchaseStep1 />
       </div>
     );
   }

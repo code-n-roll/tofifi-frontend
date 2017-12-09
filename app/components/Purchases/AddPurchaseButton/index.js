@@ -8,7 +8,7 @@ const AddPurchaseButton = () => (
     <button
       className="mdl-button mdl-js-button mdl-button--raised bg-green text-white add-purchase-btn"
     >
-        <FaPlus />
+      <FaPlus />
     </button>
   </Link>
 );
