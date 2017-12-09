@@ -11,8 +11,8 @@ function* handleSignIn(action) {
   const formData = action.payload.toJS();
 
   try {
-    const response = yield call(signInApi, formData);
-    const token = response.data.access_token;
+    // const response = yield call(signInApi, formData);
+    // const token = response.data.access_token;
 
     const user = {
       // email: response.data.email,
