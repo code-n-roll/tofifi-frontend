@@ -24,12 +24,16 @@ export default function createRoutes(store) {
       onEnter: requireAuth,
       getComponent(nextState, cb) {
         const importModules = Promise.all([
+          import('pages/DashboardPage/reducers'),
+          import('pages/DashboardPage/sagas'),
           import('pages/DashboardPage'),
         ]);
 
         const renderRoute = loadModule(cb);
 
-        importModules.then(([component]) => {
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('dashboard', reducer.default);
+          injectSagas(sagas.default);
           renderRoute(component);
         });
 

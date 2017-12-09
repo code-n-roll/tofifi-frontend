@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import MainLayout from 'components/MainLayout';
+import UnloggedLayout from 'components/layouts/UnloggedLayout';
 import SignInForm from 'components/forms/SignInForm';
-import OnScreenHeightSection from 'components/MainLayout/sections/OnScreenHeightSection';
+import OnScreenHeightSection from 'components/sections/OnScreenHeightSection';
 import styles from './styles';
 
 class SignInPage extends Component {
   render() {
     return (
-      <MainLayout>
+      <UnloggedLayout>
         <OnScreenHeightSection>
           <div className="mdl-typography--text-center" style={{ position: 'relative', zIndex: 2 }}>
             <h1 className="logo-font text-white"> WisePay </h1>
@@ -26,7 +26,7 @@ class SignInPage extends Component {
             </button>
           </div>
         </OnScreenHeightSection>
-      </MainLayout>
+      </UnloggedLayout>
     );
   }
 }

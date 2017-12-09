@@ -1,6 +1,10 @@
 import { browserHistory } from 'react-router';
 
 export const handleError = (error: any) => {
+  if (!error) {
+    return error;
+  }
+
   switch (error.status) {
     case 401:
       browserHistory.replace('/sign_in');

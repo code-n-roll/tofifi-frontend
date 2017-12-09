@@ -49,12 +49,28 @@ a img{
   background-color: #0058ad;
 }
 
+.button-as-block {
+  display: block;
+  border: 0;
+  cursor: pointer;
+}
+
 .big-btn {
   min-width: 300px;
 }
 
 .big-btn-margin {
   margin: 10px 0;
+}
+
+a {
+  color: inherit;
+}
+
+.logo {
+  font-size: 20px;
+  color: #7cb342;
+  font-weight: bold;
 }
 
 .layout-search-box .mdl-textfield__input {
@@ -147,7 +163,7 @@ a img{
   }
 
     .layout-navigation .mdl-navigation__link:hover {
-      border-bottom: 4px solid #8bc34a;
+      border-bottom: 4px solid #fff;
     }
 
   .layout-search-box {
