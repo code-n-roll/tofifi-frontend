@@ -45,7 +45,7 @@ class CreatePurchaseStep1 extends Component {
   }
 
   handleUserStatusChange(modifiedUser, isSelected) {
-    const selectedUsers = _.clone(this.state.selectedUsers);
+    const selectedUsers = _.clone(this.state.selectedUsers) || [];
     if (isSelected) {
       selectedUsers.push(modifiedUser);
     } else {

@@ -16,10 +16,9 @@ class PurchaseParticipant extends Component {
           <span>{props.username}</span>
         </div>
         <Field
-          name={`${props.id}.sum`}
+          name={`users.${props.id}.sum`}
           placeholder="Sum"
           component={InputControl}
-          onValueChange={this.handleEmailValueChange}
           validate={[required]}
           style={{ width: 150 }}
         />

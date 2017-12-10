@@ -67,7 +67,7 @@
 .create-purchase_groups {
   background-color: #fff;
   width: 60%;
-  height: 500px;
+  height: 400px;
   margin-top: 20px;
   margin-left: 20px;
   border: 2px solid #dcdcdc;
@@ -96,7 +96,7 @@
 
 .create-purchase_groups-users-list {
   overflow-y: scroll;
-  height: 445px;
+  height: 345px;
 }
 
 
@@ -107,7 +107,7 @@
 .create-purchase_users {
   background-color: #fff;
   width: 35%;
-  height: 500px;
+  height: 400px;
   margin-top: 20px;
   margin-right: 20px;
   border: 2px solid #dcdcdc;
@@ -140,7 +140,12 @@
 
 .create-purchase-participants-container {
   max-height: 400px;
+  width: 60%;
+  margin: auto;
   overflow-y: scroll;
+  background-color: #fff;
+  border: 2px solid #dcdcdc;
+  padding: 20px;
 }
 
 .create-purchase_participant {

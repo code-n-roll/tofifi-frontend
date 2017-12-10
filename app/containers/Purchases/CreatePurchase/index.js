@@ -25,7 +25,7 @@ class CreatePurchase extends Component {
   render() {
     return (
       <div>
-        Create new purchase
+        <h3>Create new purchase</h3>
         {
           this.state.step === 1 && (
             <CreatePurchaseStep1 goToNextStep={this.handleGoToNextStep} />
