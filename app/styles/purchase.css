@@ -18,6 +18,7 @@
 .purchase-viewer {
   margin-left: 300px;
   height: 100%;
+  border-right: 1px solid #d3d3d3;
 }
 
 .purchase-info-centered {
@@ -31,7 +32,6 @@
   background-color: #fff;
   height: 100%;
   margin: auto;
-  border-right: 1px solid #d3d3d3;
   position: relative;
   text-align: center;
 }
@@ -77,7 +77,6 @@
   background-color: #fff;
   width: 45%;
   height: 100%;
-  border-right: 1px solid #d3d3d3;
   position: relative;
   float: left;
   text-align: center;
@@ -163,16 +162,38 @@
 }
 
 .create-purchase-participants-container {
-  width: 60%;
-  margin: auto;
-  overflow-y: scroll;
+  height: calc(100% - (48px + 160px));
   background-color: #fff;
   text-align: center;
+  overflow-y: scroll;
 }
 
 .create-purchase_participant {
   display: inline-block;
   width: 30%;
+}
+
+.create-purchase-tabs {
+  margin-bottom: 10px;
+}
+
+.create-purchase-buttons-container {
+  position: absolute;
+  bottom: 40px;
+  right: 50px;
+}
+
+.create-purchase-total-sum-container {
+  margin-left: 100px;
+  margin-top: 15px;
+}
+
+.create-purchase-total-sum_text {
+  font-size: 18px;
+}
+
+.create-purchase-total-sum_input {
+  width: 150px;
 }
 
 .owner-purchase-info-container {

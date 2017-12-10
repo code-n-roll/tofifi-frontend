@@ -64,25 +64,23 @@ class DashboardPage extends Component {
   render() {
     return (
       <LoggedLayout onLogOut={this.handleLogOut}>
-        <GraySection>
-          <OnScreenHeightSection>
-            <PurchasesSideBar />
-            <div className="purchase-viewer">
-              {
-                this.props.pageState === PAGE_STATES.purchaseInfo &&
-                <PurchaseInfo />
-              }
-              {
-                this.props.pageState === PAGE_STATES.createPurchase &&
-                <CreatePurchase />
-              }
-              {
-                this.props.pageState === PAGE_STATES.welcome &&
-                <DashboardWelcome />
-              }
-            </div>
-          </OnScreenHeightSection>
-        </GraySection>
+        <OnScreenHeightSection>
+          <PurchasesSideBar />
+          <div className="purchase-viewer">
+            {
+              this.props.pageState === PAGE_STATES.purchaseInfo &&
+              <PurchaseInfo />
+            }
+            {
+              this.props.pageState === PAGE_STATES.createPurchase &&
+              <CreatePurchase />
+            }
+            {
+              this.props.pageState === PAGE_STATES.welcome &&
+              <DashboardWelcome />
+            }
+          </div>
+        </OnScreenHeightSection>
       </LoggedLayout>
     );
   }
