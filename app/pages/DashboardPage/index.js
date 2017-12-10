@@ -67,7 +67,7 @@ class DashboardPage extends Component {
         <GraySection>
           <OnScreenHeightSection>
             <PurchasesSideBar />
-            <div style={{ marginLeft: 200 }}>
+            <div className="purchase-viewer">
               {
                 this.props.pageState === PAGE_STATES.purchaseInfo &&
                 <PurchaseInfo />
