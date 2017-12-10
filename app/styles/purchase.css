@@ -24,6 +24,7 @@
   border-radius: 10px;
   border: 2px solid #dcdcdc;
   position: relative;
+  text-align: center;
 }
 
 .purchase-info_credit-card-container {
@@ -73,6 +74,7 @@
   border: 2px solid #dcdcdc;
   position: relative;
   float: left;
+  text-align: center;
 }
 
 .create-purchase_group-item {
@@ -92,6 +94,7 @@
   color: #6ab344;
   font-size: 40px;
   line-height: 100px;
+  text-align: center;
 }
 
 .create-purchase_groups-users-list {
@@ -146,9 +149,60 @@
   background-color: #fff;
   border: 2px solid #dcdcdc;
   padding: 20px;
+  text-align: center;
 }
 
 .create-purchase_participant {
   display: inline-block;
   width: 30%;
+}
+
+.owner-purchase-info-container {
+  margin: 0;
+}
+
+.purchase-info_participant-container {
+  border: 1px solid #dcdcdc;
+  display: inline-block;
+  width: 200px;
+  height: 150px;
+  position: relative;
+  margin: 20px 0 0 20px;
+  background-color: #fff;
+}
+
+.purchase-info_participant {
+  position: absolute;
+  left: 20px;
+  bottom: 30px;
+}
+
+.purchase-info_participant__status {
+  font-size: 20px;
+  color: #fff;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  background-color: #dcdcdc;
+}
+
+.purchase-info_participant__status-paid {
+  background-color: #6ab344;
+}
+
+.purchase-info_participant__sum {
+  font-size: 30px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.purchase-info_participant__username {
+  font-size: 20px;
+  text-align: left;
+  margin-bottom: 10px;
 }

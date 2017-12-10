@@ -1,30 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { makeSelectCurrentPurchase } from 'pages/DashboardPage/selectors';
 import PropTypes from 'prop-types';
-import FaCreditCard from 'react-icons/lib/fa/credit-card';
-import creditCardImage from './credit-card.png';
-class PurchaseInfo extends Component {
-  constructor(props) {
-    super(props);
+import OwnerPurchaseInfo from 'components/Purchases/PurchaseInfo/OwnerPurchaseInfo';
+import NotOwnerPurchaseInfo from 'components/Purchases/PurchaseInfo/NotOwnerPurchaseInfo';
 
-  }
+const PurchaseInfo = (props) => (
+  props.purchase.isMy ? (
+    <OwnerPurchaseInfo {...props.purchase} />
+  ) :
+  (
+    <NotOwnerPurchaseInfo {...props.purchase} />
+  )
+);
 
-  render() {
-    return (
-      <div className="purchase-info-container">
-        <div className="purchase-info_credit-card-container">
-          <img src={creditCardImage} />
-          <span className="purchase-info_credit-card__owner">Anton Dacik</span>
-        </div>
-        <div className="purchase-info_amount">
-          Amount: 100$
-        </div>
-        <div className="purchase-info_buttons">
-          <button className="mdl-button mdl-js-button mdl-button--raised" style={{ marginRight: 40 }}> DECLINE </button>
-          <button className="mdl-button mdl-js-button mdl-button--raised bg-green text-white"> PAY </button>
-        </div>
-      </div>
-    );
-  }
-}
+const mapStateToProps = createStructuredSelector({
+  purchase: makeSelectCurrentPurchase(),
+});
 
-export default PurchaseInfo;
+PurchaseInfo.propTypes = {
+  purchase: PropTypes.object,
+};
+
+export default connect(mapStateToProps)(PurchaseInfo);
