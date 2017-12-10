@@ -6,6 +6,7 @@ const sideBarStyles = {
   float: 'left',
   minWidth: 200,
   borderRight: '1px solid #d3d3d3',
+  borderLeft: '1px solid #d3d3d3',
   height: '100%',
   overflowY: 'scroll',
 };

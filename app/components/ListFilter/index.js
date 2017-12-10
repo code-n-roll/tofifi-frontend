@@ -19,7 +19,7 @@ class ListFilter extends Component {
       items;
 
     return (
-      <div>
+      <div className="fill-parent">
         <TextFilter
           onFilter={({ target: { value: filter } }) => this.setState({ filter })}
           placeholder={inputPlaceholder || 'Filter'}

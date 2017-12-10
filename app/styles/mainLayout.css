@@ -68,6 +68,11 @@ a {
   color: inherit;
 }
 
+.centered-content {
+  margin: 0 auto;
+  width: 1010px;
+}
+
 .logo {
   font-size: 20px;
   color: #7cb342;
