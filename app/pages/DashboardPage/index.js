@@ -5,9 +5,8 @@ import PropTypes from 'prop-types';
 
 import { makeSelectCurrentUser } from 'containers/App/selectors';
 import { logOutRequest } from 'containers/App/actions';
-import PurchasesSideBar from 'containers/Purchases/PurchasesSideBar';
+import SideBar from 'containers/Purchases/SideBar';
 import PurchaseInfo from 'containers/Purchases/PurchaseInfo';
-import CreatePurchase from 'containers/Purchases/CreatePurchase';
 import DashboardWelcome from 'components/DashboardWelcome';
 import LoggedLayout from 'components/layouts/LoggedLayout';
 import GraySection from 'components/sections/GraySection';
@@ -64,25 +63,19 @@ class DashboardPage extends Component {
   render() {
     return (
       <LoggedLayout onLogOut={this.handleLogOut}>
-        <GraySection>
-          <OnScreenHeightSection>
-            <PurchasesSideBar />
-            <div className="purchase-viewer">
-              {
-                this.props.pageState === PAGE_STATES.purchaseInfo &&
-                <PurchaseInfo />
-              }
-              {
-                this.props.pageState === PAGE_STATES.createPurchase &&
-                <CreatePurchase />
-              }
-              {
-                this.props.pageState === PAGE_STATES.welcome &&
-                <DashboardWelcome />
-              }
-            </div>
-          </OnScreenHeightSection>
-        </GraySection>
+        <OnScreenHeightSection style={{ height: 'calc(100vh - 70px)', borderBottom: '1px solid #dcdcdc' }}>
+          <SideBar />
+          <div className="purchase-viewer">
+            {
+              this.props.pageState === PAGE_STATES.purchaseInfo &&
+              <PurchaseInfo />
+            }
+            {
+              this.props.pageState === PAGE_STATES.welcome &&
+              <DashboardWelcome />
+            }
+          </div>
+        </OnScreenHeightSection>
       </LoggedLayout>
     );
   }

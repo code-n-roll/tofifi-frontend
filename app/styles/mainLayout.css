@@ -17,6 +17,7 @@
 body {
   margin: 0;
   overflow-y: hidden;
+  background-color: #f3f3f3;
 }
 
 /* Disable ugly boxes around images in IE10 */
@@ -73,20 +74,39 @@ a {
   width: 1010px;
 }
 
+.plus-button {
+  text-decoration: none;
+}
+
 .logo {
   font-size: 20px;
   color: #7cb342;
   font-weight: bold;
 }
 
+.list-filter-container {
+  position: relative;
+}
+
 .list-filter-input {
   padding-left: 20px;
   height: 50px;
+  padding-right: 50px;
+}
+
+.list-filter-items-container {
+  overflow-y: scroll;
+  height: calc(100% - 50px);
 }
 
 .input-label {
   margin-right: 10px;
 }
+
+.fill-parent {
+  height: 100%;
+}
+
 
 input[type=checkbox] {
   display: none;

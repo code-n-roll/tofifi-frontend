@@ -11,25 +11,50 @@ import {
   makeSelectCurrentPurchase,
 } from 'pages/DashboardPage/selectors';
 import PurchaseItem from 'components/Purchases/PurchaseItem';
+import ListFilter from 'components/ListFilter';
+import PlusButton from 'components/PlusButton';
 
 class PurchasesList extends Component {
+  constructor(props) {
+    super(props);
+    this.renderPurchasesList = this.renderPurchasesList.bind(this);
+  }
+
   componentWillMount() {
     this.props.getPurchasesRequest();
+  }
+
+  renderPurchasesList(props) {
+    return (
+      props.items.map((purchase) => (
+        <Link to={`?purchase=${purchase.id}`}>
+          <PurchaseItem
+            {...purchase}
+            active={_.get(props.currentPurchase, 'id') === purchase.id}
+          />
+        </Link>
+      ))
+    );
   }
 
   render() {
     const { purchasesList, currentPurchase } = this.props;
 
     return (
-      <div>
-        {purchasesList.map((purchase) => (
-          <Link to={`?purchase=${purchase.id}`}>
-            <PurchaseItem
-              {...purchase}
-              active={_.get(currentPurchase, 'id') === purchase.id}
-            />
-          </Link>
-        ))}
+      <div className="fill-parent purchases-list">
+        <ListFilter
+          renderList={this.renderPurchasesList}
+          items={purchasesList}
+          filterProp="name"
+          itemsPropName="items"
+          inputPlaceholder="Enter purchase name"
+          listProps={{
+            currentPurchase,
+          }}
+        />
+        <div className="go-to-create-purchase-btn">
+          <PlusButton goToRoute="?createPurchase=true" />
+        </div>
       </div>
     );
   }

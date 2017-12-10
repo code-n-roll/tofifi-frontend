@@ -20,6 +20,7 @@ class CreatePurchaseStep1 extends Component {
     this.state = {
       selectedGroup: null,
       selectedUsers: null,
+      step: 1,
     };
   }
 
@@ -34,14 +35,8 @@ class CreatePurchaseStep1 extends Component {
   }
 
   handleGroupItemClick(group) {
-    if (this.state.selectedGroup === group.id) {
-      this.setState({ selectedGroup: null, selectedUsers: null });
-    } else {
-      this.setState({ selectedGroup: group.id });
-      if (this.props.groupUsers.groupId !== group.id) {
-        this.props.getGroupUsersRequest(group.id);
-      }
-    }
+    this.props.getGroupUsersRequest(group.id);
+    this.setState({ selectedGroup: group.id, step: 2 });
   }
 
   handleUserStatusChange(modifiedUser, isSelected) {
@@ -65,42 +60,45 @@ class CreatePurchaseStep1 extends Component {
   render() {
     return (
       <div className="fill-parent">
-        <div className="create-purchase_groups">
-          <ListFilter
-            renderList={GroupsList}
-            items={this.props.groups}
-            filterProp="name"
-            itemsPropName="groups"
-            inputPlaceholder="Enter team name"
-            listContainerClassName="create-purchase_groups-list"
-            listProps={{
-              onGroupItemClick: this.handleGroupItemClick,
-              selectedGroup: this.state.selectedGroup,
-            }}
-          />
-        </div>
-        <div className="create-purchase_users">
-          <ListFilter
-            renderList={UsersList}
-            items={this.processUsers(this.props.users)}
-            filterProp="username"
-            itemsPropName="users"
-            inputPlaceholder="Enter user name"
-            listContainerClassName="create-purchase_users-list"
-            listProps={{
-              onUserStatusChange: this.handleUserStatusChange,
-            }}
-          />
-          <div className="create-purchase-button-container">
-            <button
-              className="mdl-button mdl-js-button mdl-button--raised bg-green text-white"
-              style={{ position: 'absolute', bottom: 20, right: 20 }}
-              onClick={() => this.props.goToNextStep(this.state.selectedUsers)}
-            >
-              Next step
-            </button>
+        { this.state.step === 1 && (
+          <div className="create-purchase_groups">
+            <ListFilter
+              renderList={GroupsList}
+              items={this.props.groups}
+              filterProp="name"
+              itemsPropName="groups"
+              inputPlaceholder="Enter team name"
+              listContainerClassName="create-purchase_groups-list"
+              listProps={{
+                onGroupItemClick: this.handleGroupItemClick,
+                selectedGroup: this.state.selectedGroup,
+              }}
+            />
           </div>
-        </div>
+        )}
+        { this.state.step === 2 && (
+          <div className="create-purchase_users">
+            <ListFilter
+              renderList={UsersList}
+              items={this.processUsers(this.props.users)}
+              filterProp="username"
+              itemsPropName="users"
+              inputPlaceholder="Enter user name"
+              listContainerClassName="create-purchase_users-list"
+              listProps={{
+                onUserStatusChange: this.handleUserStatusChange,
+              }}
+            />
+            <div className="create-purchase_next-step">
+              <button
+                className="mdl-button mdl-js-button mdl-button--raised bg-green text-white"
+                onClick={() => this.props.goToNextStep(this.state.selectedUsers)}
+              >
+                Create purchase
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
