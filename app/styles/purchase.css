@@ -16,7 +16,7 @@
 }
 
 .purchase-viewer {
-  margin-left: 200px;
+  margin-left: 300px;
   height: 100%;
 }
 
@@ -70,7 +70,7 @@
   line-height: 50px;
   min-width: 0;
   bottom: 50px;
-  left: 130px;
+  left: 200px;
 }
 
 .create-purchase_groups {
@@ -163,13 +163,10 @@
 }
 
 .create-purchase-participants-container {
-  max-height: 400px;
   width: 60%;
   margin: auto;
   overflow-y: scroll;
   background-color: #fff;
-  border: 2px solid #dcdcdc;
-  padding: 20px;
   text-align: center;
 }
 
