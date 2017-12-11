@@ -63,12 +63,16 @@ class DashboardPage extends Component {
   render() {
     return (
       <LoggedLayout onLogOut={this.handleLogOut}>
-        <OnScreenHeightSection style={{ height: 'calc(100vh - 70px)', borderBottom: '1px solid #dcdcdc' }}>
-          <SideBar />
+        <OnScreenHeightSection>
+          <PurchasesSideBar />
           <div className="purchase-viewer">
             {
               this.props.pageState === PAGE_STATES.purchaseInfo &&
               <PurchaseInfo />
+            }
+            {
+              this.props.pageState === PAGE_STATES.createPurchase &&
+              <CreatePurchase />
             }
             {
               this.props.pageState === PAGE_STATES.welcome &&

@@ -57,52 +57,32 @@ class PurchaseForm extends Component {
     const { props } = this;
 
     return (
-      <form onSubmit={props.handleSubmit(createPurchase)}>
-        <div style={{ float: 'left', maxWidth: 300, padding: 20 }}>
-          <div style={{ paddingBottom: '10px' }}>
-            <span className="input-label">Name</span>
-            <Field
-              name="name"
-              component={InputControl}
-              style={{ width: 150 }}
-              validate={[required]}
-            />
-          </div>
-          <div style={{ paddingBottom: '10px' }}>
-            <span className="input-label">Amount</span>
-            <Field
-              name="totalSum"
-              component={InputControl}
-              style={{ width: 150 }}
-              onValueChange={(e) => this.handleTotalSumChange(e.target.value)}
-              validate={[required]}
-            />
-          </div>
-          <div>
-            <span>Split total sum equally</span>
-            <Checkbox
-              id="create-purchase-equally-split"
-              checked={this.state.equallySplit}
-              onChange={() => !this.state.equallySplit && this.handleChangeSplitType()}
-            />
-          </div>
-          <div>
-            <span>Select price for users</span>
-            <Checkbox
-              checked={!this.state.equallySplit}
-              id="create-purchase-custom-split"
-              onChange={() => this.state.equallySplit && this.handleChangeSplitType()}
-            />
+      <form className="fill-parent" onSubmit={props.handleSubmit(createPurchase)}>
+        <div className="create-purchase-tabs mdl-tabs mdl-js-tabs  mdl-js-ripple-effect">
+          <div className="mdl-tabs__tab-bar">
+            <a href="#starks-panel" className="mdl-tabs__tab is-active">Custom price</a>
+            <a href="#lannisters-panel" className="mdl-tabs__tab">Chooser</a>
+            <a href="#targaryens-panel" className="mdl-tabs__tab">Market</a>
           </div>
         </div>
+
         <FieldArray name={'users'} component={this.renderParticipantsList} />
-        <button
-          className="mdl-button mdl-js-button mdl-button--raised bg-green text-white big-btn big-btn-margin"
-          disabled={props.submitting || props.invalid}
-          type="submit"
-        >
-          Create purchase
-        </button>
+        <div className="create-purchase-total-sum-container">
+          <span className="create-purchase-total-sum_text input-label">Amount: </span>
+          <Field
+            name="totalSum"
+            style={{ width: 150 }}
+            component={InputControl}
+            onValueChange={(e) => this.handleTotalSumChange(e.target.value)}
+            validate={[required]}
+          />
+        </div>
+        <div className="create-purchase-buttons-container">
+          <button className="mdl-button mdl-js-button mdl-button--raised" style={{ marginRight: 40 }}> Decline </button>
+          <button className="mdl-button mdl-js-button mdl-button--raised bg-green text-white"
+                  disabled={props.submitting || props.invalid}
+                  type="submit"> Сreate </button>
+        </div>
       </form>
     );
   }
