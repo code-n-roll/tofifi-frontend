@@ -76,6 +76,7 @@ a {
 
 .plus-button {
   text-decoration: none;
+  border: 0;
 }
 
 .logo {

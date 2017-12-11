@@ -98,11 +98,18 @@ class CreatePurchaseStep1 extends Component {
             />
             <div className="create-purchase_next-step">
               <button
+                className="mdl-button mdl-js-button mdl-button--raised bg-gray"
+                onClick={this.props.onCancelClick}
+              >
+                Cancel
+              </button>
+
+              <button
                 className="mdl-button mdl-js-button mdl-button--raised bg-green text-white"
                 disabled={(!this.state.selectedUsers || this.state.selectedUsers.length === 0)}
                 onClick={this.handleCreatePurchaseButtonClick}
               >
-                Create purchase
+                Next
               </button>
             </div>
           </div>
@@ -117,7 +124,7 @@ CreatePurchaseStep1.propTypes = {
   groups: PropTypes.array,
   groupUsers: PropTypes.groupUsers,
   getGroupUsersRequest: PropTypes.func,
-  goToNextStep: PropTypes.func,
+  onCancelClick: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({

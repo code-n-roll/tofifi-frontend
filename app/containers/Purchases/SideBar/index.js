@@ -17,16 +17,22 @@ class SideBar extends Component {
   constructor(props) {
     super(props);
 
+    this.handleCreatePurchaseCancelClick = this.handleCreatePurchaseCancelClick.bind(this);
+
     this.state = {
       createPurchase: false,
     };
+  }
+
+  handleCreatePurchaseCancelClick() {
+    this.setState({ createPurchase: false });
   }
 
   render() {
     return (
       <div style={sideBarStyles}>
         {this.state.createPurchase ?
-          <CreatePurchaseStep1 /> :
+          <CreatePurchaseStep1 onCancelClick={this.handleCreatePurchaseCancelClick} /> :
           <PurhcasesList onPlusClick={() => this.setState({ createPurchase: true })} />
         }
       </div>

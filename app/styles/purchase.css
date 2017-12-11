@@ -135,12 +135,18 @@
   left: 0;
   right: 0;
   border-top: 1px solid #dcdcdc;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .create-purchase_next-step > button{
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.create-purchase_next-step > button:last-child {
+  margin-right: 0;
 }
 
 .create-purchase_user-item {
