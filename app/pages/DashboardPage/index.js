@@ -7,6 +7,7 @@ import { makeSelectCurrentUser } from 'containers/App/selectors';
 import { logOutRequest } from 'containers/App/actions';
 import SideBar from 'containers/Purchases/SideBar';
 import PurchaseInfo from 'containers/Purchases/PurchaseInfo';
+import CreatePurchaseStep2 from 'containers/Purchases/CreatePurchase/CreatePurchaseStep2';
 import DashboardWelcome from 'components/DashboardWelcome';
 import LoggedLayout from 'components/layouts/LoggedLayout';
 import GraySection from 'components/sections/GraySection';
@@ -61,6 +62,11 @@ class DashboardPage extends Component {
   }
 
   render() {
+    let participantsIds = [];
+    if (this.props.pageState === PAGE_STATES.createPurchase) {
+      participantsIds = getPageStateFromQuery(this.props.location.query).data;
+    }
+
     return (
       <LoggedLayout onLogOut={this.handleLogOut}>
         <OnScreenHeightSection style={{ height: 'calc(100vh - 70px)', borderBottom: '1px solid #dcdcdc' }}>
@@ -73,6 +79,10 @@ class DashboardPage extends Component {
             {
               this.props.pageState === PAGE_STATES.welcome &&
               <DashboardWelcome />
+            }
+            {
+              this.props.pageState === PAGE_STATES.createPurchase &&
+              <CreatePurchaseStep2 participantsIds={participantsIds} />
             }
           </div>
         </OnScreenHeightSection>

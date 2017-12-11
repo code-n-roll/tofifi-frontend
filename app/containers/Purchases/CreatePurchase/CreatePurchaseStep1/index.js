@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { browserHistory } from 'react-router';
 import _ from 'lodash';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectUsers, makeSelectGroups, makeSelectGroupUsers } from 'pages/common/selectors';
@@ -15,6 +16,7 @@ class CreatePurchaseStep1 extends Component {
 
     this.handleGroupItemClick = this.handleGroupItemClick.bind(this);
     this.handleUserStatusChange = this.handleUserStatusChange.bind(this);
+    this.handleCreatePurchaseButtonClick = this.handleCreatePurchaseButtonClick.bind(this);
     this.processUsers = this.processUsers.bind(this);
 
     this.state = {
@@ -48,6 +50,11 @@ class CreatePurchaseStep1 extends Component {
     }
 
     this.setState({ selectedUsers, selectedGroup: null });
+  }
+
+  handleCreatePurchaseButtonClick() {
+    const selectedUsersIds = this.state.selectedUsers.map((u) => u.id);
+    browserHistory.push(`?createPurchase=${selectedUsersIds.join(',')}`);
   }
 
   processUsers(users) {
@@ -92,7 +99,8 @@ class CreatePurchaseStep1 extends Component {
             <div className="create-purchase_next-step">
               <button
                 className="mdl-button mdl-js-button mdl-button--raised bg-green text-white"
-                onClick={() => this.props.goToNextStep(this.state.selectedUsers)}
+                disabled={(!this.state.selectedUsers || this.state.selectedUsers.length === 0)}
+                onClick={this.handleCreatePurchaseButtonClick}
               >
                 Create purchase
               </button>

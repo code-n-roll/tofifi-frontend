@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 import PurhcasesList from 'containers/Purchases/PurchasesList';
-import { makeSelectPageState } from 'pages/DashboardPage/selectors';
-import CreatePurchase from 'containers/Purchases/CreatePurchase';
+import CreatePurchaseStep1 from 'containers/Purchases/CreatePurchase/CreatePurchaseStep1';
 import { PAGE_STATES } from 'pages/DashboardPage/constants';
 
 
@@ -17,23 +14,24 @@ const sideBarStyles = {
 };
 
 class SideBar extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      createPurchase: false,
+    };
+  }
+
   render() {
     return (
       <div style={sideBarStyles}>
-        { this.props.pageState !== PAGE_STATES.createPurchase && (
-          <PurhcasesList />
-        )}
-        {
-          this.props.pageState === PAGE_STATES.createPurchase && (
-          <CreatePurchase />
-        )}
+        {this.state.createPurchase ?
+          <CreatePurchaseStep1 /> :
+          <PurhcasesList onPlusClick={() => this.setState({ createPurchase: true })} />
+        }
       </div>
     );
   }
 }
 
-const mapStateToProps = createStructuredSelector({
-  pageState: makeSelectPageState(),
-});
-
-export default connect(mapStateToProps)(SideBar);
+export default SideBar;

@@ -4,15 +4,15 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
 const PlusButton = (props) => (
-  <Link to={props.goToRoute} className="plus-button">
+  <button onClick={props.onClick} className="plus-button">
     <span >
       +
     </span>
-  </Link>
+  </button>
 );
 
 PlusButton.propTypes = {
-  goToRoute: PropTypes.string,
+  onClick: PropTypes.onClick,
 };
 
 export default PlusButton;

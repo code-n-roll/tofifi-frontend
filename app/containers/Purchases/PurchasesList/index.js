@@ -38,7 +38,7 @@ class PurchasesList extends Component {
   }
 
   render() {
-    const { purchasesList, currentPurchase } = this.props;
+    const { purchasesList, currentPurchase, onPlusClick } = this.props;
 
     return (
       <div className="fill-parent purchases-list">
@@ -53,7 +53,7 @@ class PurchasesList extends Component {
           }}
         />
         <div className="go-to-create-purchase-btn">
-          <PlusButton goToRoute="?createPurchase=true" />
+          <PlusButton onClick={onPlusClick} />
         </div>
       </div>
     );
@@ -63,6 +63,7 @@ class PurchasesList extends Component {
 PurchasesList.propTypes = {
   purchasesList: PropTypes.array,
   getPurchasesRequest: PropTypes.func,
+  onPlusClick: PropTypes.func,
   currentPurchase: PropTypes.object,
 };
 
