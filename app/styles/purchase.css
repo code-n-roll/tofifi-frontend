@@ -170,18 +170,18 @@
 
 .create-purchase-participants-container {
   height: calc(100% - (48px + 160px));
-  background-color: #fff;
   text-align: center;
   overflow-y: scroll;
+  padding-top: 20px;
+}
+
+.create-purchase-form {
+  background-color: #fff;
 }
 
 .create-purchase_participant {
   display: inline-block;
   width: 30%;
-}
-
-.create-purchase-tabs {
-  margin-bottom: 10px;
 }
 
 .create-purchase-buttons-container {

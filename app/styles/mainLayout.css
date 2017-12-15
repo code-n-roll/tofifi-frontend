@@ -602,3 +602,8 @@ input[type=checkbox]:checked + label {
     display: none;
   }
 }
+
+.mdl-tabs__tab.is-active {
+  border-bottom: 3px solid rgba(0,0,0,.54);
+  font-weight: bold;
+}

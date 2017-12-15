@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import InputControl from 'components/controls/InputControl';
 import { required } from 'components/forms/validations';
-import Checkbox from 'components/Checkbox';
 import PurchaseParticipantsList from './PurchaseParticipantsList';
 import { createPurchase } from './actions';
 
@@ -38,7 +37,7 @@ class PurchaseForm extends Component {
     if (equallySplitted || this.state.equallySplit) {
       const totalSum = Number.parseFloat(value);
       const participantValue = _.isFinite(totalSum) ?
-        Math.floor(((totalSum / this.props.participants.length) * 1000) + 1) / 1000 :
+        Math.floor(((totalSum / this.props.participants.length) * 1000)) / 1000 :
         '';
 
       this.props.participants.forEach((participant) => {
@@ -57,15 +56,7 @@ class PurchaseForm extends Component {
     const { props } = this;
 
     return (
-      <form className="fill-parent" onSubmit={props.handleSubmit(createPurchase)}>
-        <div className="create-purchase-tabs mdl-tabs mdl-js-tabs  mdl-js-ripple-effect">
-          <div className="mdl-tabs__tab-bar">
-            <a href="#starks-panel" className="mdl-tabs__tab is-active">Custom price</a>
-            <a href="#lannisters-panel" className="mdl-tabs__tab">Chooser</a>
-            <a href="#targaryens-panel" className="mdl-tabs__tab">Market</a>
-          </div>
-        </div>
-
+      <form className="fill-parent create-purchase-form" onSubmit={props.handleSubmit(createPurchase)}>
         <FieldArray name={'users'} component={this.renderParticipantsList} />
         <div className="create-purchase-total-sum-container">
           <span className="create-purchase-total-sum_text input-label">Amount: </span>
@@ -75,13 +66,25 @@ class PurchaseForm extends Component {
             component={InputControl}
             onValueChange={(e) => this.handleTotalSumChange(e.target.value)}
             validate={[required]}
+            inputStyle={{ textAlign: 'center' }}
+            placeholderStyle={{ textAlign: 'center' }}
           />
         </div>
         <div className="create-purchase-buttons-container">
-          <button className="mdl-button mdl-js-button mdl-button--raised" style={{ marginRight: 40 }}> Decline </button>
-          <button className="mdl-button mdl-js-button mdl-button--raised bg-green text-white"
-                  disabled={props.submitting || props.invalid}
-                  type="submit"> Сreate </button>
+          <button
+            className="mdl-button mdl-js-button mdl-button--raised"
+            onClick={this.props.onCancelClick}
+            style={{ marginRight: 40 }}
+          >
+            Decline
+          </button>
+          <button
+            className="mdl-button mdl-js-button mdl-button--raised bg-green text-white"
+            disabled={props.submitting || props.invalid}
+            type="submit"
+          >
+            Сreate
+          </button>
         </div>
       </form>
     );
@@ -92,6 +95,7 @@ PurchaseForm.propTypes = {
   participants: PropTypes.array,
   totalSum: PropTypes.string,
   dispatch: PropTypes.func,
+  onCancelClick: PropTypes.func,
 };
 
 const selector = formValueSelector(FORM_NAME);

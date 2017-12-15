@@ -6,6 +6,7 @@ import _ from 'lodash';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectUsers, makeSelectGroups, makeSelectGroupUsers } from 'pages/common/selectors';
 import { getGroupUsersRequest } from 'pages/common/actions';
+import { setPendingPurchase } from 'pages/DashboardPage/actions';
 import UsersList from 'components/Purchases/CreatePurchase/Step1/UsersList';
 import GroupsList from 'components/Purchases/CreatePurchase/Step1/GroupsList';
 import ListFilter from 'components/ListFilter';
@@ -55,6 +56,8 @@ class CreatePurchaseStep1 extends Component {
   handleCreatePurchaseButtonClick() {
     const selectedUsersIds = this.state.selectedUsers.map((u) => u.id);
     browserHistory.push(`?createPurchase=${selectedUsersIds.join(',')}`);
+    this.props.setPendingPurchase({ name: 'Pending report', isMy: true, id: 100500, isPending: true });
+    this.props.onCancelClick();
   }
 
   processUsers(users) {
@@ -125,6 +128,8 @@ CreatePurchaseStep1.propTypes = {
   groupUsers: PropTypes.groupUsers,
   getGroupUsersRequest: PropTypes.func,
   onCancelClick: PropTypes.func,
+  onCreatePurchaseButtonClick: PropTypes.func,
+  setPendingPurchase: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -135,6 +140,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = {
   getGroupUsersRequest,
+  setPendingPurchase,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreatePurchaseStep1);

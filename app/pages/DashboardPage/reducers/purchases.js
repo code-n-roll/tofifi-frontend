@@ -2,11 +2,13 @@ import { fromJS, List } from 'immutable';
 import {
   SET_PURCHASES_DATA,
   SET_CURRENT_PURCHASE,
+  SET_PENDING_PURCHASE,
 } from '../constants';
 
 const initialState = fromJS({
   purchases: [],
   currentPurchase: null,
+  pendingPurchase: null,
 });
 
 function purchasesReducer(state = initialState, action) {
@@ -17,6 +19,9 @@ function purchasesReducer(state = initialState, action) {
     case SET_CURRENT_PURCHASE:
       return state
         .set('currentPurchase', action.data);
+    case SET_PENDING_PURCHASE:
+      return state
+        .set('pendingPurchase', action.data);
     default:
       return state;
   }
