@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { browserHistory } from 'react-router';
 import _ from 'lodash';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectUsers, makeSelectGroups, makeSelectGroupUsers } from 'pages/common/selectors';
@@ -8,6 +9,7 @@ import { getGroupUsersRequest } from 'pages/common/actions';
 import UsersList from 'components/Purchases/CreatePurchase/Step1/UsersList';
 import GroupsList from 'components/Purchases/CreatePurchase/Step1/GroupsList';
 import ListFilter from 'components/ListFilter';
+import purchaseImage from './images/purchase.png';
 
 class CreatePurchaseStep1 extends Component {
   constructor(props) {
@@ -15,18 +17,22 @@ class CreatePurchaseStep1 extends Component {
 
     this.handleGroupItemClick = this.handleGroupItemClick.bind(this);
     this.handleUserStatusChange = this.handleUserStatusChange.bind(this);
+    this.handleCreatePurchaseButtonClick = this.handleCreatePurchaseButtonClick.bind(this);
     this.processUsers = this.processUsers.bind(this);
+    this.handlePurchaseNameInputChange = this.handlePurchaseNameInputChange.bind(this);
 
     this.state = {
       selectedGroup: null,
       selectedUsers: null,
+      step: 1,
+      purchaseName: '',
     };
   }
 
   componentDidUpdate() {
     const groupUsers = this.props.groupUsers;
 
-    if (groupUsers.groupId === this.state.selectedGroup && groupUsers.users !== this.state.selectedUsers) {
+    if (this.state.selectedGroup && groupUsers.groupId === this.state.selectedGroup && groupUsers.users !== this.state.selectedUsers) {
       this.setState({
         selectedUsers: groupUsers.users,
       });
@@ -34,14 +40,8 @@ class CreatePurchaseStep1 extends Component {
   }
 
   handleGroupItemClick(group) {
-    if (this.state.selectedGroup === group.id) {
-      this.setState({ selectedGroup: null, selectedUsers: null });
-    } else {
-      this.setState({ selectedGroup: group.id });
-      if (this.props.groupUsers.groupId !== group.id) {
-        this.props.getGroupUsersRequest(group.id);
-      }
-    }
+    this.props.getGroupUsersRequest(group.id);
+    this.setState({ selectedGroup: group.id, step: 2 });
   }
 
   handleUserStatusChange(modifiedUser, isSelected) {
@@ -55,6 +55,16 @@ class CreatePurchaseStep1 extends Component {
     this.setState({ selectedUsers, selectedGroup: null });
   }
 
+  handleCreatePurchaseButtonClick() {
+    const selectedUsersIds = this.state.selectedUsers.map((u) => u.id);
+    browserHistory.push(`?createPurchase=${selectedUsersIds.join(',')}&name=${this.state.purchaseName}`);
+    this.props.onCancelClick();
+  }
+
+  handlePurchaseNameInputChange(e) {
+    this.setState({ purchaseName: e.target.value });
+  }
+
   processUsers(users) {
     return users.map((user) => ({
       ...user,
@@ -65,42 +75,84 @@ class CreatePurchaseStep1 extends Component {
   render() {
     return (
       <div className="fill-parent">
-        <div className="create-purchase_groups">
-          <ListFilter
-            renderList={GroupsList}
-            items={this.props.groups}
-            filterProp="name"
-            itemsPropName="groups"
-            inputPlaceholder="Enter team name"
-            listContainerClassName="create-purchase_groups-list"
-            listProps={{
-              onGroupItemClick: this.handleGroupItemClick,
-              selectedGroup: this.state.selectedGroup,
-            }}
-          />
-        </div>
-        <div className="create-purchase_users">
-          <ListFilter
-            renderList={UsersList}
-            items={this.processUsers(this.props.users)}
-            filterProp="username"
-            itemsPropName="users"
-            inputPlaceholder="Enter user name"
-            listContainerClassName="create-purchase_users-list"
-            listProps={{
-              onUserStatusChange: this.handleUserStatusChange,
-            }}
-          />
-          <div className="create-purchase-button-container">
-            <button
-              className="mdl-button mdl-js-button mdl-button--raised bg-green text-white"
-              style={{ position: 'absolute', bottom: 20, right: 20 }}
-              onClick={() => this.props.goToNextStep(this.state.selectedUsers)}
-            >
-              Next step
-            </button>
+        { this.state.step === 1 && (
+          <div className="create-purchase_groups">
+            <ListFilter
+              renderList={GroupsList}
+              items={this.props.groups}
+              filterProp="name"
+              itemsPropName="groups"
+              inputPlaceholder="Enter team name"
+              listContainerClassName="create-purchase_groups-list"
+              listProps={{
+                onGroupItemClick: this.handleGroupItemClick,
+                selectedGroup: this.state.selectedGroup,
+              }}
+            />
+            <div className="create-purchase_next-step">
+              <button
+                className="mdl-button mdl-js-button mdl-button--raised bg-gray"
+                onClick={this.props.onCancelClick}
+              >
+                Cancel
+              </button>
+
+              <button
+                className="mdl-button mdl-js-button mdl-button--raised bg-green text-white"
+                onClick={() => this.setState({ step: 2 })}
+              >
+                Skip
+              </button>
+            </div>
           </div>
-        </div>
+        )}
+        { this.state.step === 2 && (
+          <div className="create-purchase_users">
+            <div className="create-purchase__name" style={{ position: 'relative', height: 70 }}>
+              <img src={purchaseImage} style={{ width: 50, height: 50, position: 'absolute', left: 10, top: 10 }} />
+              <div className="mdl-textfield" style={{ width: 170, marginLeft: 80, float: 'left' }}>
+                <input
+                  name="purchase-name"
+                  onChange={this.handlePurchaseNameInputChange}
+                  className="mdl-textfield__input"
+                />
+                {this.state.purchaseName === '' &&
+                  <label
+                    className="mdl-textfield__label"
+                    htmlFor="purchase-name"
+                  >Enter purchase name</label>
+                }
+              </div>
+            </div>
+            <ListFilter
+              renderList={UsersList}
+              items={this.processUsers(this.props.users)}
+              filterProp="username"
+              itemsPropName="users"
+              inputPlaceholder="Enter user name"
+              listContainerClassName="create-purchase_users-list"
+              listProps={{
+                onUserStatusChange: this.handleUserStatusChange,
+              }}
+            />
+            <div className="create-purchase_next-step">
+              <button
+                className="mdl-button mdl-js-button mdl-button--raised bg-gray"
+                onClick={this.props.onCancelClick}
+              >
+                Cancel
+              </button>
+
+              <button
+                className="mdl-button mdl-js-button mdl-button--raised bg-green text-white"
+                disabled={(!this.state.selectedUsers || this.state.selectedUsers.length === 0 || this.state.purchaseName === '')}
+                onClick={this.handleCreatePurchaseButtonClick}
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     );
   }
@@ -111,7 +163,8 @@ CreatePurchaseStep1.propTypes = {
   groups: PropTypes.array,
   groupUsers: PropTypes.groupUsers,
   getGroupUsersRequest: PropTypes.func,
-  goToNextStep: PropTypes.func,
+  onCancelClick: PropTypes.func,
+  onCreatePurchaseButtonClick: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({

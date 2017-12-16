@@ -24,6 +24,8 @@ class InputControl extends Component {
       placeholder,
       errorStyles,
       meta: { touched },
+      inputStyle,
+      placeholderStyle,
     } = this.props;
 
     let error = this.props.meta.error;
@@ -44,9 +46,9 @@ class InputControl extends Component {
 
     return (
       <div className="mdl-textfield" style={style}>
-        <input className="mdl-textfield__input" type={type} {...input} onChange={this.handleValueChange} />
-        {!input.value &&
-          <label className="mdl-textfield__label" htmlFor={input.name}>{placeholder}</label>
+        <input className="mdl-textfield__input" style={inputStyle} type={type} {...input} onChange={this.handleValueChange} />
+        {input.value === '' &&
+          <label className="mdl-textfield__label" style={placeholderStyle} htmlFor={input.name}>{placeholder}</label>
         }
         {hasError &&
           <span className="mdl-textfield__error" style={{ visibility: 'visible' }}>
@@ -67,6 +69,8 @@ InputControl.propTypes = {
   errorStyles: PropTypes.object,
   onValueChange: PropTypes.func,
   style: PropTypes.object,
+  inputStyle: PropTypes.object,
+  placeholderStyle: PropTypes.object,
 };
 
 export default InputControl;

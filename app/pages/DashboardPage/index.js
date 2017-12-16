@@ -5,18 +5,19 @@ import PropTypes from 'prop-types';
 
 import { makeSelectCurrentUser } from 'containers/App/selectors';
 import { logOutRequest } from 'containers/App/actions';
-import PurchasesSideBar from 'containers/Purchases/PurchasesSideBar';
+import SideBar from 'containers/Purchases/SideBar';
 import PurchaseInfo from 'containers/Purchases/PurchaseInfo';
-import CreatePurchase from 'containers/Purchases/CreatePurchase';
+import CreatePurchaseStep2 from 'containers/Purchases/CreatePurchase/CreatePurchaseStep2';
 import DashboardWelcome from 'components/DashboardWelcome';
 import LoggedLayout from 'components/layouts/LoggedLayout';
-import GraySection from 'components/sections/GraySection';
+
 import OnScreenHeightSection from 'components/sections/OnScreenHeightSection';
 import { getUsersRequest, getGroupsRequest } from 'pages/common/actions';
 
 import {
   setCurrentPurchase,
   setPageState,
+  setPendingPurchase,
 } from './actions';
 
 import { makeSelectPageState } from './selectors';
@@ -62,27 +63,32 @@ class DashboardPage extends Component {
   }
 
   render() {
+    let participantsIds = [];
+    if (this.props.pageState === PAGE_STATES.createPurchase && this.props.location.query.createPurchase) {
+      const queryData = getPageStateFromQuery(this.props.location.query).data;
+      participantsIds = queryData.participants;
+      this.props.setPendingPurchase({ name: queryData.name });
+    }
+
     return (
       <LoggedLayout onLogOut={this.handleLogOut}>
-        <GraySection>
-          <OnScreenHeightSection>
-            <PurchasesSideBar />
-            <div className="purchase-viewer">
-              {
-                this.props.pageState === PAGE_STATES.purchaseInfo &&
-                <PurchaseInfo />
-              }
-              {
-                this.props.pageState === PAGE_STATES.createPurchase &&
-                <CreatePurchase />
-              }
-              {
-                this.props.pageState === PAGE_STATES.welcome &&
-                <DashboardWelcome />
-              }
-            </div>
-          </OnScreenHeightSection>
-        </GraySection>
+        <OnScreenHeightSection style={{ height: 'calc(100vh - 70px)', borderBottom: '1px solid #dcdcdc' }}>
+          <SideBar />
+          <div className="purchase-viewer">
+            {
+              this.props.pageState === PAGE_STATES.purchaseInfo &&
+              <PurchaseInfo />
+            }
+            {
+              this.props.pageState === PAGE_STATES.welcome &&
+              <DashboardWelcome />
+            }
+            {
+              this.props.pageState === PAGE_STATES.createPurchase &&
+              <CreatePurchaseStep2 participantsIds={participantsIds} />
+            }
+          </div>
+        </OnScreenHeightSection>
       </LoggedLayout>
     );
   }
@@ -96,6 +102,7 @@ DashboardPage.propTypes = {
   getGroupsRequest: PropTypes.func,
   pageState: PropTypes.string,
   location: PropTypes.object,
+  setPendingPurchase: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -109,6 +116,7 @@ const mapDispatchToProps = {
   setPageState,
   getUsersRequest,
   getGroupsRequest,
+  setPendingPurchase,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);

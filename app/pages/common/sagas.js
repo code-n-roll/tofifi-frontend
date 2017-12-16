@@ -6,20 +6,17 @@ import {
 import { GET_USERS_REQUEST, GET_GROUPS_REQUEST, GET_GROUP_USERS_REQUEST } from './constants';
 import { setUsersData, setGroupsData, setGroupUsersData } from './actions';
 
-import usersData from './usersData';
-import groupsData from './groupsData';
 import groupUsersData from './groupUsersData';
 
 function* getUsersData() {
-  // const response = yield call(getPurchasesApi);
-
-  yield put(setUsersData(usersData));
+  const response = yield call(getUsersApi);
+  yield put(setUsersData(response.data));
 }
 
 function* getGroupsData() {
   // const response = yield call(getGroupsApi);
 
-  yield put(setGroupsData(groupsData));
+  yield put(setGroupsData([]));
 }
 
 function* getGroupUsersData(action) {

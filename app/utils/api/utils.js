@@ -6,10 +6,10 @@ export const axiosInstance = (needAuth = false) => {
   const authToken = needAuth ? localStorage.getItem('auth_token') : null;
 
   return axios.create({
-    baseURL: `${SERVER_URL}/api/`,
+    baseURL: `${SERVER_URL}/`,
     timeout: 15000,
     headers: {
-      Authorization: `${authToken}`,
+      Authorization: `Bearer ${authToken}`,
     },
   });
 };

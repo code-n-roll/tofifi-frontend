@@ -19,7 +19,13 @@ const makeSelectCurrentPurchase = () => createSelector(
   }
 );
 
+const makeSelectPendingPurchase = () => createSelector(
+  selectPurchases,
+  (purchasesState) => purchasesState.get('pendingPurchase')
+);
+
 export {
   makeSelectPurchasesList,
   makeSelectCurrentPurchase,
+  makeSelectPendingPurchase,
 };

@@ -7,7 +7,7 @@ import OwnerPurchaseInfo from 'components/Purchases/PurchaseInfo/OwnerPurchaseIn
 import NotOwnerPurchaseInfo from 'components/Purchases/PurchaseInfo/NotOwnerPurchaseInfo';
 
 const PurchaseInfo = (props) => (
-  props.purchase.isMy ? (
+  props.purchase.isOwner ? (
     <OwnerPurchaseInfo {...props.purchase} />
   ) :
   (

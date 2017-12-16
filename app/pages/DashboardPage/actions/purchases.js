@@ -2,6 +2,7 @@ import {
   GET_PURCHASES_REQUEST,
   SET_PURCHASES_DATA,
   SET_CURRENT_PURCHASE,
+  SET_PENDING_PURCHASE,
 } from '../constants';
 
 export function getPurchasesRequest() {
@@ -20,6 +21,13 @@ export function setPurchasesData(data) {
 export function setCurrentPurchase(data) {
   return {
     type: SET_CURRENT_PURCHASE,
+    data,
+  };
+}
+
+export function setPendingPurchase(data) {
+  return {
+    type: SET_PENDING_PURCHASE,
     data,
   };
 }
