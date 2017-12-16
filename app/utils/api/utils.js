@@ -4,8 +4,9 @@ import { handleError } from './handleError';
 export const axiosInstance = (needAuth = false) => {
   const SERVER_URL = process.env.BASE_URL;
   const authToken = needAuth ? localStorage.getItem('auth_token') : null;
+
   return axios.create({
-    baseURL: `${SERVER_URL}/api/v1`,
+    baseURL: `${SERVER_URL}/api/`,
     timeout: 15000,
     headers: {
       Authorization: `${authToken}`,

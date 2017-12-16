@@ -5,10 +5,15 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
+import { persistStore, autoRehydrate } from 'redux-persist-immutable';
+import reduxReset from 'redux-reset';
+
 import createSagaMiddleware from 'redux-saga';
+
 import createReducer from './reducers';
 
 const sagaMiddleware = createSagaMiddleware();
+
 
 export default function configureStore(initialState = {}, history) {
   // Create the store with two middlewares
@@ -21,6 +26,8 @@ export default function configureStore(initialState = {}, history) {
 
   const enhancers = [
     applyMiddleware(...middlewares),
+    reduxReset(),
+    autoRehydrate(),
   ];
 
   // If Redux DevTools Extension is installed use it, otherwise use Redux compose
@@ -55,5 +62,14 @@ export default function configureStore(initialState = {}, history) {
     });
   }
 
-  return store;
+  return new Promise((resolve, reject) => {
+    try {
+      persistStore(
+        store,
+        { whitelist: ['global'] },
+        () => resolve(store));
+    } catch (e) {
+      reject(e);
+    }
+  });
 }

@@ -1,0 +1,229 @@
+.purchase-item {
+  padding: 10px;
+  background-color: #fff;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+.purchase-item:hover {
+  font-weight: bold;
+  border-bottom: 2px solid #6ab344;
+}
+
+.purchase-item_selected {
+  font-weight: bold;
+  background-color: #6ab344;
+}
+
+.purchase-viewer {
+  margin-left: 200px;
+  height: 100%;
+}
+
+.purchase-info-centered {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.purchase-info-container {
+  background-color: #fff;
+  height: 100%;
+  margin: auto;
+  border-right: 1px solid #d3d3d3;
+  position: relative;
+  text-align: center;
+}
+
+.purchase-info_credit-card-container {
+  position: relative;
+  display: inline-block;
+}
+
+.purchase-info_credit-card__owner {
+  display: block;
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  color: #fff;
+}
+
+.purchase-info_amount {
+  margin-top: 40px;
+  font-size: 20px;
+}
+
+.purchase-info_buttons {
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+}
+
+.add-purchase-btn {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  padding: 0;
+  font-size: 24px;
+  line-height: 50px;
+  min-width: 0;
+  bottom: 50px;
+  left: 130px;
+}
+
+.create-purchase_groups {
+  background-color: #fff;
+  width: 45%;
+  height: 100%;
+  border-right: 1px solid #d3d3d3;
+  position: relative;
+  float: left;
+  text-align: center;
+}
+
+.create-purchase_group-item {
+  width: 100px;
+  display: inline-block;
+  margin: 10px;
+  position: relative;
+  cursor: pointer;
+}
+
+.create-purchase_group-item__check {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #6ab344;
+  font-size: 40px;
+  line-height: 100px;
+  text-align: center;
+}
+
+.fill-parent {
+  height: 100%;
+}
+
+.create-purchase_groups-list {
+  overflow-y: scroll;
+  height: calc(100% - 50px);
+}
+
+
+.create-purchase_group-item__name {
+  font-size: 20px;
+}
+
+.create-purchase_users {
+  background-color: #fff;
+  width: 55%;
+  height: 100%;
+  border-right: 1px solid #d3d3d3;
+  position: relative;
+  float: right;
+}
+
+.create-purchase-button-container {
+  position: absolute;
+  width: 100%;
+  height: 76px;
+  bottom: 0;
+  border-top: 1px solid #d3d3d3;
+}
+
+.create-purchase_users-list {
+  overflow-y: scroll;
+  height: calc(100% - (50px + 76px));
+}
+
+.create-purchase_user-item {
+  position: relative;
+  padding: 10px;
+  border-top: 1px solid #dcdcdc;
+  text-align: left;
+  padding-right: 30px;
+}
+
+.create-purchase_user-item:first-child {
+  border-top: 0px;
+}
+
+.create-purchase_group-item__name {
+  font-size: 20px;
+}
+
+.create-purchase_user-item__checkbox {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.create-purchase-participants-container {
+  max-height: 400px;
+  width: 60%;
+  margin: auto;
+  overflow-y: scroll;
+  background-color: #fff;
+  border: 2px solid #dcdcdc;
+  padding: 20px;
+  text-align: center;
+}
+
+.create-purchase_participant {
+  display: inline-block;
+  width: 30%;
+}
+
+.owner-purchase-info-container {
+  margin: 0;
+}
+
+.purchase-info_participant-container {
+  border: 1px solid #dcdcdc;
+  display: inline-block;
+  width: 200px;
+  height: 150px;
+  position: relative;
+  margin: 20px 0 0 20px;
+  background-color: #fff;
+}
+
+.purchase-info_participant {
+  position: absolute;
+  left: 20px;
+  bottom: 30px;
+}
+
+.purchase-info_participant__status {
+  font-size: 20px;
+  color: #fff;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  background-color: #dcdcdc;
+}
+
+.purchase-info_participant__status-paid {
+  background-color: #6ab344;
+}
+
+.purchase-info_participant__sum {
+  font-size: 30px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.purchase-info_participant__username {
+  font-size: 20px;
+  text-align: left;
+  margin-bottom: 10px;
+}
