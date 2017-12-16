@@ -28,6 +28,7 @@ class PurchasesList extends Component {
 
   getPurchasesList() {
     const { pendingPurchase, purchasesList } = this.props;
+    console.log(pendingPurchase);
     if (pendingPurchase) {
       return [pendingPurchase, ...purchasesList];
     }

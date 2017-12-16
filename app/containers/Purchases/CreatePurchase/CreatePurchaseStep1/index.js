@@ -6,10 +6,10 @@ import _ from 'lodash';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectUsers, makeSelectGroups, makeSelectGroupUsers } from 'pages/common/selectors';
 import { getGroupUsersRequest } from 'pages/common/actions';
-import { setPendingPurchase } from 'pages/DashboardPage/actions';
 import UsersList from 'components/Purchases/CreatePurchase/Step1/UsersList';
 import GroupsList from 'components/Purchases/CreatePurchase/Step1/GroupsList';
 import ListFilter from 'components/ListFilter';
+import purchaseImage from './images/purchase.png';
 
 class CreatePurchaseStep1 extends Component {
   constructor(props) {
@@ -19,18 +19,20 @@ class CreatePurchaseStep1 extends Component {
     this.handleUserStatusChange = this.handleUserStatusChange.bind(this);
     this.handleCreatePurchaseButtonClick = this.handleCreatePurchaseButtonClick.bind(this);
     this.processUsers = this.processUsers.bind(this);
+    this.handlePurchaseNameInputChange = this.handlePurchaseNameInputChange.bind(this);
 
     this.state = {
       selectedGroup: null,
       selectedUsers: null,
       step: 1,
+      purchaseName: '',
     };
   }
 
   componentDidUpdate() {
     const groupUsers = this.props.groupUsers;
 
-    if (groupUsers.groupId === this.state.selectedGroup && groupUsers.users !== this.state.selectedUsers) {
+    if (this.state.selectedGroup && groupUsers.groupId === this.state.selectedGroup && groupUsers.users !== this.state.selectedUsers) {
       this.setState({
         selectedUsers: groupUsers.users,
       });
@@ -55,9 +57,12 @@ class CreatePurchaseStep1 extends Component {
 
   handleCreatePurchaseButtonClick() {
     const selectedUsersIds = this.state.selectedUsers.map((u) => u.id);
-    browserHistory.push(`?createPurchase=${selectedUsersIds.join(',')}`);
-    this.props.setPendingPurchase({ name: 'Pending report', isMy: true, id: 100500, isPending: true });
+    browserHistory.push(`?createPurchase=${selectedUsersIds.join(',')}&name=${this.state.purchaseName}`);
     this.props.onCancelClick();
+  }
+
+  handlePurchaseNameInputChange(e) {
+    this.setState({ purchaseName: e.target.value });
   }
 
   processUsers(users) {
@@ -84,10 +89,41 @@ class CreatePurchaseStep1 extends Component {
                 selectedGroup: this.state.selectedGroup,
               }}
             />
+            <div className="create-purchase_next-step">
+              <button
+                className="mdl-button mdl-js-button mdl-button--raised bg-gray"
+                onClick={this.props.onCancelClick}
+              >
+                Cancel
+              </button>
+
+              <button
+                className="mdl-button mdl-js-button mdl-button--raised bg-green text-white"
+                onClick={() => this.setState({ step: 2 })}
+              >
+                Skip
+              </button>
+            </div>
           </div>
         )}
         { this.state.step === 2 && (
           <div className="create-purchase_users">
+            <div className="create-purchase__name" style={{ position: 'relative', height: 70 }}>
+              <img src={purchaseImage} style={{ width: 50, height: 50, position: 'absolute', left: 10, top: 10 }} />
+              <div className="mdl-textfield" style={{ width: 170, marginLeft: 80, float: 'left' }}>
+                <input
+                  name="purchase-name"
+                  onChange={this.handlePurchaseNameInputChange}
+                  className="mdl-textfield__input"
+                />
+                {this.state.purchaseName === '' &&
+                  <label
+                    className="mdl-textfield__label"
+                    htmlFor="purchase-name"
+                  >Enter purchase name</label>
+                }
+              </div>
+            </div>
             <ListFilter
               renderList={UsersList}
               items={this.processUsers(this.props.users)}
@@ -109,7 +145,7 @@ class CreatePurchaseStep1 extends Component {
 
               <button
                 className="mdl-button mdl-js-button mdl-button--raised bg-green text-white"
-                disabled={(!this.state.selectedUsers || this.state.selectedUsers.length === 0)}
+                disabled={(!this.state.selectedUsers || this.state.selectedUsers.length === 0 || this.state.purchaseName === '')}
                 onClick={this.handleCreatePurchaseButtonClick}
               >
                 Next
@@ -129,7 +165,6 @@ CreatePurchaseStep1.propTypes = {
   getGroupUsersRequest: PropTypes.func,
   onCancelClick: PropTypes.func,
   onCreatePurchaseButtonClick: PropTypes.func,
-  setPendingPurchase: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -140,7 +175,6 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = {
   getGroupUsersRequest,
-  setPendingPurchase,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreatePurchaseStep1);

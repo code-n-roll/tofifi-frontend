@@ -10,13 +10,14 @@ import PurchaseInfo from 'containers/Purchases/PurchaseInfo';
 import CreatePurchaseStep2 from 'containers/Purchases/CreatePurchase/CreatePurchaseStep2';
 import DashboardWelcome from 'components/DashboardWelcome';
 import LoggedLayout from 'components/layouts/LoggedLayout';
-import GraySection from 'components/sections/GraySection';
+
 import OnScreenHeightSection from 'components/sections/OnScreenHeightSection';
 import { getUsersRequest, getGroupsRequest } from 'pages/common/actions';
 
 import {
   setCurrentPurchase,
   setPageState,
+  setPendingPurchase,
 } from './actions';
 
 import { makeSelectPageState } from './selectors';
@@ -63,8 +64,10 @@ class DashboardPage extends Component {
 
   render() {
     let participantsIds = [];
-    if (this.props.pageState === PAGE_STATES.createPurchase) {
-      participantsIds = getPageStateFromQuery(this.props.location.query).data;
+    if (this.props.pageState === PAGE_STATES.createPurchase && this.props.location.query.createPurchase) {
+      const queryData = getPageStateFromQuery(this.props.location.query).data;
+      participantsIds = queryData.participants;
+      this.props.setPendingPurchase({ name: queryData.name });
     }
 
     return (
@@ -99,6 +102,7 @@ DashboardPage.propTypes = {
   getGroupsRequest: PropTypes.func,
   pageState: PropTypes.string,
   location: PropTypes.object,
+  setPendingPurchase: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -112,6 +116,7 @@ const mapDispatchToProps = {
   setPageState,
   getUsersRequest,
   getGroupsRequest,
+  setPendingPurchase,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);

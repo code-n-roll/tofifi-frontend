@@ -8,7 +8,7 @@ export const SIGN_UP_PATH = 'account/register';
 export const SIGN_IN_PATH = 'sign_in';
 
 // purchases
-export const PURCHASES_PATH = 'users/me/purchases';
+export const PURCHASES_PATH = '/purchases';
 
 // users
 export const USERS_PATH = '/users';

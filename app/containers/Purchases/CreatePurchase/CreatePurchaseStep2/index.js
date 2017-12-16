@@ -72,6 +72,7 @@ CreatePurchaseStep2.propTypes = {
   users: PropTypes.array,
   participantsIds: PropTypes.array,
   setPendingPurchase: PropTypes.func,
+  purchaseName: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({

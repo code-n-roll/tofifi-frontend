@@ -100,7 +100,7 @@
 
 .create-purchase_groups-list {
   overflow-y: scroll;
-  height: calc(100% - 50px);
+  height: calc(100% - 110px);
 }
 
 
@@ -125,7 +125,7 @@
 }
 
 .create-purchase_users-list {
-  height: calc(100% - (50px + 60px));
+  height: calc(100% - (50px + 60px + 70px));
 }
 
 .create-purchase_next-step {
