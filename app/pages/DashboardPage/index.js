@@ -18,6 +18,7 @@ import {
   setCurrentPurchase,
   setPageState,
   setPendingPurchase,
+  setPendingPurchaseParticipants,
 } from './actions';
 
 import { makeSelectPageState } from './selectors';
@@ -56,6 +57,12 @@ class DashboardPage extends Component {
     } else {
       this.props.setCurrentPurchase(null);
     }
+
+    if (pageState.state === PAGE_STATES.createPurchase) {
+      const queryData = pageState.data;
+      this.props.setPendingPurchaseParticipants(queryData.participants);
+      this.props.setPendingPurchase({ name: queryData.name });
+    }
   }
 
   handleLogOut() {
@@ -63,13 +70,6 @@ class DashboardPage extends Component {
   }
 
   render() {
-    let participantsIds = [];
-    if (this.props.pageState === PAGE_STATES.createPurchase && this.props.location.query.createPurchase) {
-      const queryData = getPageStateFromQuery(this.props.location.query).data;
-      participantsIds = queryData.participants;
-      this.props.setPendingPurchase({ name: queryData.name });
-    }
-
     return (
       <LoggedLayout onLogOut={this.handleLogOut}>
         <OnScreenHeightSection style={{ height: 'calc(100vh - 70px)', borderBottom: '1px solid #dcdcdc' }}>
@@ -85,7 +85,7 @@ class DashboardPage extends Component {
             }
             {
               this.props.pageState === PAGE_STATES.createPurchase &&
-              <CreatePurchaseStep2 participantsIds={participantsIds} />
+              <CreatePurchaseStep2 />
             }
           </div>
         </OnScreenHeightSection>
@@ -103,6 +103,7 @@ DashboardPage.propTypes = {
   pageState: PropTypes.string,
   location: PropTypes.object,
   setPendingPurchase: PropTypes.func,
+  setPendingPurchaseParticipants: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -117,6 +118,7 @@ const mapDispatchToProps = {
   getUsersRequest,
   getGroupsRequest,
   setPendingPurchase,
+  setPendingPurchaseParticipants,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);

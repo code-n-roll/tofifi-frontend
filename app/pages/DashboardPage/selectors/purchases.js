@@ -24,8 +24,14 @@ const makeSelectPendingPurchase = () => createSelector(
   (purchasesState) => purchasesState.get('pendingPurchase')
 );
 
+const makeSelectPendingPurchaseParticipants = () => createSelector(
+  selectPurchases,
+  (purchasesState) => purchasesState.get('pendingPurchaseParticipants') || []
+);
+
 export {
   makeSelectPurchasesList,
   makeSelectCurrentPurchase,
   makeSelectPendingPurchase,
+  makeSelectPendingPurchaseParticipants,
 };

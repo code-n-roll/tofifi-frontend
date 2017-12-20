@@ -5,7 +5,8 @@ import { createStructuredSelector } from 'reselect';
 import { browserHistory } from 'react-router';
 import _ from 'lodash';
 import { makeSelectUsers } from 'pages/common/selectors';
-import { setPendingPurchase } from 'pages/DashboardPage/actions';
+import { setPendingPurchase, setPendingPurchaseParticipants } from 'pages/DashboardPage/actions';
+import { makeSelectPendingPurchaseParticipants } from 'pages/DashboardPage/selectors';
 import PurchaseForm from 'components/forms/PurchaseForm';
 import classNames from 'classnames';
 
@@ -23,8 +24,8 @@ class CreatePurchaseStep2 extends Component {
   }
 
   getUsersFromIds() {
-    const participantsIds = new Set(this.props.participantsIds);
-    return _.filter(this.props.users, (user) => participantsIds.has(user.id))
+    const participantsIds = new Set(this.props.pendingParticipants);
+    return _.filter(this.props.users, (user) => participantsIds.has(user.id));
   }
 
   handleTabClick(tabIndex) {
@@ -33,6 +34,7 @@ class CreatePurchaseStep2 extends Component {
 
   handleCancelClick() {
     this.props.setPendingPurchase(null);
+    this.props.setPendingPurchaseParticipants(null);
     browserHistory.push('/');
   }
 
@@ -70,17 +72,19 @@ class CreatePurchaseStep2 extends Component {
 
 CreatePurchaseStep2.propTypes = {
   users: PropTypes.array,
-  participantsIds: PropTypes.array,
   setPendingPurchase: PropTypes.func,
-  purchaseName: PropTypes.string,
+  pendingParticipants: PropTypes.array,
+  setPendingPurchaseParticipants: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   users: makeSelectUsers(),
+  pendingParticipants: makeSelectPendingPurchaseParticipants(),
 });
 
 const mapDispatchToProps = {
   setPendingPurchase,
+  setPendingPurchaseParticipants,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreatePurchaseStep2);

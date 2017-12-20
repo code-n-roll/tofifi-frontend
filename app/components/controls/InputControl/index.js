@@ -26,6 +26,7 @@ class InputControl extends Component {
       meta: { touched },
       inputStyle,
       placeholderStyle,
+      tooltipIfEmpty,
     } = this.props;
 
     let error = this.props.meta.error;
@@ -53,6 +54,12 @@ class InputControl extends Component {
         {hasError &&
           <span className="mdl-textfield__error" style={{ visibility: 'visible' }}>
             <FormattedMessage {...error} />
+          </span>
+        }
+        {
+          input.value === '' && tooltipIfEmpty &&
+          <span className="mdl-textfield__error" style={{ visibility: 'visible' }}>
+            {tooltipIfEmpty}
           </span>
         }
       </div>

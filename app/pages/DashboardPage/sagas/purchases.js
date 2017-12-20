@@ -5,7 +5,7 @@ import { browserHistory } from 'react-router';
 import { processPurchaseFormDataApi } from './helpers';
 import { setPurchasesData, setPendingPurchase } from '../actions';
 import { GET_PURCHASES_REQUEST } from '../constants';
-import { makeSelectPendingPurchase, makeSelectPurchasesList } from '../selectors';
+import { makeSelectPendingPurchase, makeSelectPurchasesList, makeSelectPendingPurchaseParticipants } from '../selectors';
 
 function* getPurchasesData() {
   const response = yield call(getPurchasesApi);
@@ -15,7 +15,15 @@ function* getPurchasesData() {
 
 function* createPurchase(action) {
   const formData = action.payload.toJS();
+
+  const pendingPurchaseParticipants = yield select(makeSelectPendingPurchaseParticipants());
   const pendingPurchase = yield select(makeSelectPendingPurchase());
+  pendingPurchaseParticipants.forEach((pId) => {
+    if (!formData.users[pId]) {
+      formData.users[pId] = { sum: null };
+    }
+  });
+
   const purchaseData = processPurchaseFormDataApi(formData);
   purchaseData.name = pendingPurchase.name;
   const response = yield call(createPurchaseApi, purchaseData);
