@@ -81,6 +81,15 @@ export default function createRoutes(store) {
       },
     },
     {
+      path: '/profile',
+      name: 'profile',
+      getComponent(nextState, cb) {
+        import('pages/ProfilePage')
+          .then(loadModule(cb))
+          .catch(errorLoading);
+      },
+    },
+    {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {

@@ -4,8 +4,8 @@
 // also a good idea to separate paths logically
 
 // auth
-export const SIGN_UP_PATH = 'account/register';
-export const SIGN_IN_PATH = 'sign_in';
+export const SIGN_UP_PATH = '/register';
+export const SIGN_IN_PATH = '/sign_in';
 
 // purchases
 export const PURCHASES_PATH = '/purchases';
