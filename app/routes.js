@@ -81,10 +81,10 @@ export default function createRoutes(store) {
       },
     },
     {
-      path: '/profile',
-      name: 'profile',
+      path: '/settings',
+      name: 'settings',
       getComponent(nextState, cb) {
-        import('pages/ProfilePage')
+        import('pages/SettingsPage')
           .then(loadModule(cb))
           .catch(errorLoading);
       },

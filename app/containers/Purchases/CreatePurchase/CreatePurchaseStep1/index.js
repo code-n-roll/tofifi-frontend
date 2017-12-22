@@ -161,7 +161,7 @@ class CreatePurchaseStep1 extends Component {
 CreatePurchaseStep1.propTypes = {
   users: PropTypes.array,
   groups: PropTypes.array,
-  groupUsers: PropTypes.groupUsers,
+  groupUsers: PropTypes.array,
   getGroupUsersRequest: PropTypes.func,
   onCancelClick: PropTypes.func,
   onCreatePurchaseButtonClick: PropTypes.func,

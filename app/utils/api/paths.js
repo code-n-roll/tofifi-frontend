@@ -12,6 +12,7 @@ export const PURCHASES_PATH = '/purchases';
 
 // users
 export const USERS_PATH = '/users';
+export const CURRENT_USER_PATH = '/users/me';
 
 // groups
 export const GROUPS_PATH = '/groups';
