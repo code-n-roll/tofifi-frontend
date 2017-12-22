@@ -3,12 +3,14 @@ import {
   SET_PURCHASES_DATA,
   SET_CURRENT_PURCHASE,
   SET_PENDING_PURCHASE,
+  SET_PENDING_PURCHASE_PARTICIPANTS,
 } from '../constants';
 
 const initialState = fromJS({
   purchases: [],
   currentPurchase: null,
   pendingPurchase: null,
+  pendingPurchaseParticipants: null,
 });
 
 function purchasesReducer(state = initialState, action) {
@@ -22,6 +24,9 @@ function purchasesReducer(state = initialState, action) {
     case SET_PENDING_PURCHASE:
       return state
         .set('pendingPurchase', action.data);
+    case SET_PENDING_PURCHASE_PARTICIPANTS:
+      return state
+        .set('pendingPurchaseParticipants', action.data);
     default:
       return state;
   }

@@ -77,6 +77,8 @@ a {
 .plus-button {
   text-decoration: none;
   border: 0;
+  outline:none;
+  cursor: pointer;
 }
 
 .logo {

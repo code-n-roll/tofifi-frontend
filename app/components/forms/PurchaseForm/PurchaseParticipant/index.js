@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Field } from 'redux-form/immutable';
 import InputControl from 'components/controls/InputControl';
 import { required } from 'components/forms/validations';
+import { onlyDecimal } from 'components/forms/normalizers';
 
 const avatarStyle = {
   display: 'block',
@@ -22,12 +23,14 @@ class PurchaseParticipant extends Component {
         </div>
         <Field
           name={`users.${props.id}.sum`}
+          tooltipIfEmpty="User will enter the amount himself"
           placeholder="Sum"
           component={InputControl}
-          validate={[required]}
           style={{ width: 150 }}
           inputStyle={{ textAlign: 'center' }}
           placeholderStyle={{ textAlign: 'center' }}
+          onValueChange={(e) => props.onSumChange(e.target.value)}
+          normalize={onlyDecimal}
         />
       </div>
     );
@@ -36,6 +39,7 @@ class PurchaseParticipant extends Component {
 
 PurchaseParticipant.propTypes = {
   email: PropTypes.string,
+  onSumChange: PropTypes.func,
 };
 
 export default PurchaseParticipant;
