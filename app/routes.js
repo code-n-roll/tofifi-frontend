@@ -84,9 +84,19 @@ export default function createRoutes(store) {
       path: '/settings',
       name: 'settings',
       getComponent(nextState, cb) {
-        import('pages/SettingsPage')
-          .then(loadModule(cb))
-          .catch(errorLoading);
+        const importModules = Promise.all([
+          import('pages/SettingsPage/reducers'),
+          import('pages/SettingsPage/sagas'),
+          import('pages/SettingsPage'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('settings', reducer.default);
+          injectSagas(sagas.default);
+          renderRoute(component);
+        });
       },
     },
     {

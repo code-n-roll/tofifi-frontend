@@ -29,7 +29,7 @@ export const createPurchaseApi = (data) => post(PATHS.PURCHASES_PATH, true, data
 
 // users
 export const getUsersApi = () => get(PATHS.USERS_PATH, true);
-export const getCurrentUser = () => get(PATHS.CURRENT_USER_PATH, true);
+export const getCurrentUserApi = () => get(PATHS.CURRENT_USER_PATH, true);
 
 // groups
 export const getGroupsApi = () => get(PATHS.GROUPS_PATH, true);
