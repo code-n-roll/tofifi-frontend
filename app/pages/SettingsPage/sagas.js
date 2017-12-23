@@ -1,11 +1,13 @@
 import { put, call, select } from 'redux-saga/effects';
 import { takeEvery } from 'redux-saga/effects';
+import { SubmissionError } from 'redux-form/immutable';
 
-import { getCurrentUserApi } from 'utils/api/requests';
+import { getCurrentUserApi, updateProfileApi } from 'utils/api/requests';
 import { fetchCurrentUser } from './actions';
 import { updateProfile } from 'components/forms/ProfileForm/actions';
 import { FETCH_CURRENT_USER_REQUEST } from './constants';
 import { setCurrentUser } from './actions';
+import messages from 'components/forms/messages';
 
 function* handleGetCurrentUser() {
   const response = yield call(getCurrentUserApi);
@@ -13,8 +15,25 @@ function* handleGetCurrentUser() {
   yield put(setCurrentUser(response.data));
 }
 
-function* handleUpdateProfile() {
-  console.log('update');
+function* handleUpdateProfile(action) {
+  const formData = action.payload.toJS();
+
+  try {
+    const response = yield call(updateProfileApi, formData);
+    yield put(setCurrentUser(response.data));
+    yield put(updateProfile.success());
+  } catch (e) {
+    console.log(`error`);
+    console.log(e);
+
+    const formError = new SubmissionError({
+      _error: e.data.message
+    });
+
+    yield put(updateProfile.failure(formError));
+  }
+
+  console.log(formData);
 }
 
 function* settingsSaga() {

@@ -1,0 +1,11 @@
+.payments-wrapper {
+  display: flex;
+  justify-content: center;
+
+  padding: 20px;
+}
+
+.payments-form {
+  min-width: 300px;
+  max-width: 500px;
+}

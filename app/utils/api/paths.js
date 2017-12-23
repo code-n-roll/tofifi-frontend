@@ -14,5 +14,8 @@ export const PURCHASES_PATH = '/purchases';
 export const USERS_PATH = '/users';
 export const CURRENT_USER_PATH = '/users/me';
 
+// profile
+export const UPDATE_PROFILE_PATH = '/account/updateProfile';
+
 // groups
 export const GROUPS_PATH = '/groups';

@@ -6611,6 +6611,10 @@ react-icons@^2.2.7:
   dependencies:
     react-icon-base "2.1.0"
 
+react-image-resizer@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/react-image-resizer/-/react-image-resizer-1.2.0.tgz#feb2aec32222e7a15b3dec2274b331d9077c36f5"
+
 react-intl@2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/react-intl/-/react-intl-2.3.0.tgz#e1df6af5667fdf01cbe4aab20e137251e2ae5142"

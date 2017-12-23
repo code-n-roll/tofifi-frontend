@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import LoggedLayout from 'components/layouts/LoggedLayout';
 import OnScreenHeightSection from 'components/sections/OnScreenHeightSection';
 import SettingsComponent from 'components/Settings';
 import { fetchCurrentUser } from './actions';
+import { selectUserProfile } from './selectors';
 
 class SettingsPage extends Component {
   componentWillMount() {
@@ -16,7 +18,7 @@ class SettingsPage extends Component {
     return (
       <LoggedLayout>
         <OnScreenHeightSection>
-          <SettingsComponent />
+          <SettingsComponent userProfile={this.props.userProfile}/>
         </OnScreenHeightSection>
       </LoggedLayout>
     );
@@ -24,11 +26,12 @@ class SettingsPage extends Component {
 }
 
 SettingsComponent.propTypes = {
-  fetchCurrentUser: PropTypes.func
+  fetchCurrentUser: PropTypes.func,
+  userProfile: PropTypes.object
 };
 
 const mapStateToProps = (state) => ({
-  userProfile: state.userProfile
+  userProfile: selectUserProfile(state)
 });
 
 const mapDispatchToProps = {

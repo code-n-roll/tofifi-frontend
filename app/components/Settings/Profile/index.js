@@ -1,14 +1,29 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import ProfileForm from 'components/forms/ProfileForm';
 import './styles.css';
 
-export default class ProfileComponent extends Component {
+class ProfileComponent extends Component {
   render() {
+    const { userProfile } = this.props;
+
+    const formInitialData = userProfile !== null ? {
+      username: userProfile.username,
+      email: userProfile.email,
+      newPassword: ''
+    } : null;
+
     return (
       <div className="profile-form-wrapper">
-        <ProfileForm />
+        <ProfileForm initialValues={formInitialData}/>
       </div>
     );
   }
 }
+
+ProfileComponent.propTypes = {
+  userProfile: PropTypes.object
+};
+
+export default ProfileComponent;
