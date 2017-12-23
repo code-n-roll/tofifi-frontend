@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import BankCardForm from 'components/forms/BankCardForm';
 
 class AddCardComponent extends Component {
   state = {  }
@@ -8,8 +9,7 @@ class AddCardComponent extends Component {
 
     return (
       <div>
-        <button onClick={onCancel}>Cancel</button>
-        <button onClick={onSave}>Save</button>
+        <BankCardForm onCancel={onCancel} onSave={onSave}/>
       </div>
     );
   }

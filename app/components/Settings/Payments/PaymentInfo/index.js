@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import AddedPaymentMethod from './AddedPaymentMethod';
+import './styles.css';
 
 class PaymentInfo extends Component {
   state = {  }
@@ -12,11 +13,13 @@ class PaymentInfo extends Component {
       ? 'Change payment method'
       : 'Add payment method';
     return (
-      <div>
+      <div className="payment-methods-info">
         {
           cardDigits
           ? <AddedPaymentMethod cardDigits={cardDigits}/>
-          : <span>No payment methods</span>
+          : <div className="payment-methods-info_no-cards">
+              No payment methods
+            </div>
         }
         <div>
           <button className="mdl-button mdl-js-button mdl-button--raised bg-blue text-white"

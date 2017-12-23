@@ -2,12 +2,13 @@ import { put, call, select } from 'redux-saga/effects';
 import { takeEvery } from 'redux-saga/effects';
 import { SubmissionError } from 'redux-form/immutable';
 
-import { getCurrentUserApi, updateProfileApi } from 'utils/api/requests';
-import { fetchCurrentUser } from './actions';
+import { getCurrentUserApi, updateProfileApi, addBankCardApi } from 'utils/api/requests';
 import { updateProfile } from 'components/forms/ProfileForm/actions';
-import { FETCH_CURRENT_USER_REQUEST } from './constants';
-import { setCurrentUser } from './actions';
+import { addBankCard } from 'components/forms/BankCardForm/actions';
+import { FETCH_CURRENT_USER_REQUEST } from '../constants';
+import { setCurrentUser, fetchCurrentUser } from '../actions';
 import messages from 'components/forms/messages';
+import { formatAddBankCardData } from './helpers';
 
 function* handleGetCurrentUser() {
   const response = yield call(getCurrentUserApi);
@@ -23,9 +24,7 @@ function* handleUpdateProfile(action) {
     yield put(setCurrentUser(response.data));
     yield put(updateProfile.success());
   } catch (e) {
-    console.log(`error`);
-    console.log(e);
-
+    // TODO make sensible errors
     const formError = new SubmissionError({
       _error: e.data.message
     });
@@ -36,9 +35,28 @@ function* handleUpdateProfile(action) {
   console.log(formData);
 }
 
+function* handleAddBankCard(action) {
+  const formData = action.payload.toJS();
+  const reqData = formatAddBankCardData(formData);
+  console.log(reqData);
+
+  try {
+    const response = addBankCardApi(reqData);
+    yield put(addBankCard.success());
+  } catch (e) {
+    // TODO make sensible errors
+    const formError = new SubmissionError({
+      _error: e.data.message
+    });
+
+    yield put(addBankCard.failure(formError));
+  }
+}
+
 function* settingsSaga() {
   yield takeEvery(FETCH_CURRENT_USER_REQUEST, handleGetCurrentUser);
   yield takeEvery(updateProfile.REQUEST, handleUpdateProfile);
+  yield takeEvery(addBankCard.REQUEST, handleAddBankCard);
 }
 
 export default [
