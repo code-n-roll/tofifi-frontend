@@ -5,7 +5,7 @@ import Content from './Content';
 
 const LoggedLayout = (props) => (
   <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <Header onLogOut={props.onLogOut} />
+    <Header onLogOut={props.onLogOut} onGroupLinkClick={props.onGroupLinkClick} />
     <Content>
       {props.children}
     </Content>
@@ -15,6 +15,7 @@ const LoggedLayout = (props) => (
 LoggedLayout.propTypes = {
   children: PropTypes.any,
   onLogOut: PropTypes.func,
+  onGroupLinkClick: PropTypes.func,
 };
 
 export default LoggedLayout;

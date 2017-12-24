@@ -58,6 +58,13 @@ class Header extends Component {
 
           <div className="layout-navigation-container">
             <nav className="layout-navigation mdl-navigation">
+              <button
+                className="button-as-block"
+                style={{ fontWeight: 700, color: '#000', marginRight: 20 }}
+                onClick={this.props.onGroupLinkClick}
+              >
+                  Groups
+              </button>
               <DropdownMenu {...menuOptions}>
                 <li>
                   <Link to="/settings">
@@ -82,6 +89,7 @@ class Header extends Component {
 
 Header.propTypes = {
   onLogOut: PropTypes.func,
+  onGroupLinkClick: PropTypes.func,
 };
 
 export default Header;

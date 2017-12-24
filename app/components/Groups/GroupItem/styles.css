@@ -1,0 +1,11 @@
+.group-item {
+  padding: 10px 5px;
+  position: relative;
+  cursor: pointer;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.group-item__name {
+  font-size: 14px;
+  margin-left: 10px;
+}

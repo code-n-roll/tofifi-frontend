@@ -55,6 +55,7 @@ a img{
   display: block;
   border: 0;
   cursor: pointer;
+  outline:none;
 }
 
 .big-btn {

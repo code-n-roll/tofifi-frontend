@@ -13,7 +13,7 @@ import DashboardWelcome from 'components/DashboardWelcome';
 import LoggedLayout from 'components/layouts/LoggedLayout';
 
 import OnScreenHeightSection from 'components/sections/OnScreenHeightSection';
-import { getUsersRequest, getGroupsRequest } from 'pages/common/actions';
+import { getUsersRequest, getGroupsRequest, setGroupModalState } from 'pages/common/actions';
 
 import {
   setCurrentPurchase,
@@ -35,6 +35,7 @@ class DashboardPage extends Component {
 
     this.handleLogOut = this.handleLogOut.bind(this);
     this.handleQueryChange = this.handleQueryChange.bind(this);
+    this.handleGroupLinkClick = this.handleGroupLinkClick.bind(this);
   }
 
   componentWillMount() {
@@ -47,6 +48,10 @@ class DashboardPage extends Component {
     if (nextProps.location.query !== this.props.location.query) {
       this.handleQueryChange(nextProps.location.query);
     }
+  }
+
+  handleGroupLinkClick() {
+    this.props.setGroupModalState(true);
   }
 
   handleQueryChange(query) {
@@ -72,7 +77,7 @@ class DashboardPage extends Component {
 
   render() {
     return (
-      <LoggedLayout onLogOut={this.handleLogOut}>
+      <LoggedLayout onLogOut={this.handleLogOut} onGroupLinkClick={this.handleGroupLinkClick} >
         <OnScreenHeightSection style={{ height: 'calc(100vh - 70px)', borderBottom: '1px solid #dcdcdc' }}>
           <SideBar />
           <div className="purchase-viewer">
@@ -89,8 +94,8 @@ class DashboardPage extends Component {
               <CreatePurchaseStep2 />
             }
           </div>
-        <GroupsModal />
         </OnScreenHeightSection>
+        <GroupsModal />
       </LoggedLayout>
     );
   }
@@ -106,6 +111,7 @@ DashboardPage.propTypes = {
   location: PropTypes.object,
   setPendingPurchase: PropTypes.func,
   setPendingPurchaseParticipants: PropTypes.func,
+  setGroupModalState: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -121,6 +127,7 @@ const mapDispatchToProps = {
   getGroupsRequest,
   setPendingPurchase,
   setPendingPurchaseParticipants,
+  setGroupModalState,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);

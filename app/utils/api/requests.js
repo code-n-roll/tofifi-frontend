@@ -32,8 +32,9 @@ export const getUsersApi = () => get(PATHS.USERS_PATH, true);
 export const getCurrentUserApi = () => get(PATHS.CURRENT_USER_PATH, true);
 
 // profile
-export const updateProfileApi = (data) => post(PATHS.UPDATE_PROFILE_PATH, true, data)
-export const addBankCardApi = (data) => post(PATHS.ADD_BANK_CARD, true, data)
+export const updateProfileApi = (data) => post(PATHS.UPDATE_PROFILE_PATH, true, data);
+export const addBankCardApi = (data) => post(PATHS.ADD_BANK_CARD, true, data);
 
 // groups
 export const getGroupsApi = () => get(PATHS.GROUPS_PATH, true);
+export const createGroupApi = (data) => post(PATHS.GROUPS_PATH, true, data);
