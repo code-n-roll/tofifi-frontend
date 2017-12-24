@@ -27,6 +27,8 @@ class InputControl extends Component {
       inputStyle,
       placeholderStyle,
       tooltipIfEmpty,
+      className,
+      inputProps
     } = this.props;
 
     let error = this.props.meta.error;
@@ -46,8 +48,8 @@ class InputControl extends Component {
     style = Object.assign({}, style, this.props.style);
 
     return (
-      <div className="mdl-textfield" style={style}>
-        <input className="mdl-textfield__input" style={inputStyle} type={type} {...input} onChange={this.handleValueChange} />
+      <div className={`mdl-textfield ${className}`} style={style}>
+        <input className="mdl-textfield__input" style={inputStyle} type={type} {...input} {...inputProps} onChange={this.handleValueChange} />
         {input.value === '' &&
           <label className="mdl-textfield__label" style={placeholderStyle} htmlFor={input.name}>{placeholder}</label>
         }

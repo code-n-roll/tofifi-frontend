@@ -39,7 +39,7 @@ class PurchasesList extends Component {
   renderPurchasesList(props) {
     return (
       props.items.map((purchase) => (
-        <Link to={`?purchase=${purchase.id}`}>
+        <Link to={`?purchase=${purchase.id}`} key={purchase.id}>
           <PurchaseItem
             {...purchase}
             active={_.get(props.currentPurchase, 'id') === purchase.id || purchase.isPending}

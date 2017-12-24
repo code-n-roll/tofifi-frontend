@@ -1,7 +1,5 @@
 import React from 'react';
-import FaPlus from 'react-icons/lib/fa/plus';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router';
 
 const PlusButton = (props) => (
   <button onClick={props.onClick} className="plus-button">
@@ -12,7 +10,7 @@ const PlusButton = (props) => (
 );
 
 PlusButton.propTypes = {
-  onClick: PropTypes.onClick,
+  onClick: PropTypes.func,
 };
 
 export default PlusButton;

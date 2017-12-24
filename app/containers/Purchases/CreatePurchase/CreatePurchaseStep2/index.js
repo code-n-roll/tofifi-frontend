@@ -48,7 +48,7 @@ class CreatePurchaseStep2 extends Component {
               className={classNames('mdl-tabs__tab', { 'is-active': this.state.activeTab === 1 })}
               onClick={() => this.handleTabClick(1)}
             >
-              Custom price
+              Custom purchase
             </a>
             <a
               href="#targaryens-panel"

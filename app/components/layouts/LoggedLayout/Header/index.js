@@ -37,7 +37,6 @@ class Header extends Component {
     );
   }
 
-
   render() {
     const { onLogOut } = this.props;
 
@@ -61,10 +60,10 @@ class Header extends Component {
             <nav className="layout-navigation mdl-navigation">
               <DropdownMenu {...menuOptions}>
                 <li>
-                  <button className="button-as-block">
-                    <span style={{ paddingRight: 10 }}>Settings</span>
-                    <FaCog />
-                  </button>
+                  <Link to="/settings">
+                      <span style={{ paddingRight: 10 }}>Settings</span>
+                      <FaCog />
+                  </Link>
                 </li>
                 <li>
                   <button className="button-as-block" onClick={() => { this.toggleMenu(); onLogOut(); }}>

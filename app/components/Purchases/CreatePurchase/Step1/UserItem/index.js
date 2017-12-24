@@ -3,9 +3,19 @@ import PropTypes from 'prop-types';
 import Avatar from 'react-avatar';
 import Checkbox from 'components/Checkbox';
 
-const UserItem = (props) => (
-  <div className="create-purchase_user-item">
-    <Avatar email={props.email} size={30} round style={{ marginRight: 10 }}/>
+import './styles.css';
+
+const UserItem = (props) => {
+  let avatar;
+
+  if (!props.avatarUrl) {
+    avatar = <Avatar name={props.username} size={50} round className="avatar" />;
+  } else {
+    avatar = <img src={props.avatarUrl} alt="Avatar" className="avatar" />;
+  }
+
+  return (<div className="create-purchase_user-item">
+    {avatar}
     <span className="create-purchase_user-item__username">{props.username}</span>
     <div className="create-purchase_user-item__checkbox">
       <Checkbox
@@ -14,12 +24,12 @@ const UserItem = (props) => (
         onChange={props.onStatusChange}
       />
     </div>
-  </div>
-);
+  </div>);
+};
 
 UserItem.propTypes = {
   username: PropTypes.string,
-  email: PropTypes.string,
+  avatarUrl: PropTypes.string,
   id: PropTypes.number,
   selected: PropTypes.bool,
   onStatusChange: PropTypes.func,

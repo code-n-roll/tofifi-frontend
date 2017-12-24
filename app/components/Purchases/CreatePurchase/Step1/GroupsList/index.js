@@ -5,7 +5,11 @@ import GroupItem from '../GroupItem';
 const GroupsList = (props) => (
   <div>
     {props.groups.map((group) => (
-      <GroupItem {...group} onClick={props.onGroupItemClick} selected={props.selectedGroup === group.id} />
+      <GroupItem {...group}
+        onClick={props.onGroupItemClick}
+        selected={props.selectedGroup === group.id}
+        key={group.id}
+      />
     ))}
   </div>
 );
