@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { makeSelectCurrentUser } from 'containers/App/selectors';
 import { logOutRequest } from 'containers/App/actions';
 import SideBar from 'containers/Purchases/SideBar';
+import GroupsModal from 'containers/GroupsModal';
 import PurchaseInfo from 'containers/Purchases/PurchaseInfo';
 import CreatePurchaseStep2 from 'containers/Purchases/CreatePurchase/CreatePurchaseStep2';
 import DashboardWelcome from 'components/DashboardWelcome';
@@ -88,6 +89,7 @@ class DashboardPage extends Component {
               <CreatePurchaseStep2 />
             }
           </div>
+        <GroupsModal />
         </OnScreenHeightSection>
       </LoggedLayout>
     );

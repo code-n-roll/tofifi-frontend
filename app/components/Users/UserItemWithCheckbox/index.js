@@ -5,21 +5,21 @@ import Checkbox from 'components/Checkbox';
 
 import './styles.css';
 
-const UserItem = (props) => {
+const UserItemWithCheckbox = (props) => {
   let avatar;
 
   if (!props.avatarUrl) {
-    avatar = <Avatar name={props.username} size={50} round className="avatar" />;
+    avatar = <Avatar name={props.username} size={50} round className="user-item-avatar" />;
   } else {
-    avatar = <img src={props.avatarUrl} alt="Avatar" className="avatar" />;
+    avatar = <img src={props.avatarUrl} alt="Avatar" className="user-item-avatar" />;
   }
 
-  return (<div className="create-purchase_user-item">
+  return (<div className="user-item">
     {avatar}
-    <span className="create-purchase_user-item__username">{props.username}</span>
-    <div className="create-purchase_user-item__checkbox">
+    <span className="user-item__username">{props.username}</span>
+    <div className="user-item__checkbox">
       <Checkbox
-        id={`create-purchase-user-${props.id}`}
+        id={`user-${props.id}`}
         checked={props.selected}
         onChange={props.onStatusChange}
       />
@@ -27,7 +27,7 @@ const UserItem = (props) => {
   </div>);
 };
 
-UserItem.propTypes = {
+UserItemWithCheckbox.propTypes = {
   username: PropTypes.string,
   avatarUrl: PropTypes.string,
   id: PropTypes.number,
@@ -35,4 +35,4 @@ UserItem.propTypes = {
   onStatusChange: PropTypes.func,
 };
 
-export default UserItem;
+export default UserItemWithCheckbox;

@@ -4,6 +4,7 @@ import {
   SET_USERS_DATA,
   SET_GROUPS_DATA,
   SET_GROUP_USERS_DATA,
+  SET_GROUP_MODAL_STATE,
 } from './constants';
 
 const initialState = fromJS({
@@ -14,6 +15,7 @@ const initialState = fromJS({
     groupId: null,
     users: [],
   },
+  groupModalOpened: false,
 });
 
 function commonReducer(state = initialState, action) {
@@ -31,6 +33,9 @@ function commonReducer(state = initialState, action) {
       return state
         .setIn(['groupUsers', 'groupId'], action.data.groupId)
         .setIn(['groupUsers', 'users'], List(action.data.users));
+    case SET_GROUP_MODAL_STATE:
+      return state
+        .set('groupModalOpened', action.data);
     default:
       return state;
   }
