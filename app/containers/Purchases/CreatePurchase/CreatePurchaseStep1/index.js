@@ -7,7 +7,7 @@ import { createStructuredSelector } from 'reselect';
 import { makeSelectUsers, makeSelectGroups, makeSelectGroupUsers } from 'pages/common/selectors';
 import { getGroupUsersRequest } from 'pages/common/actions';
 import SelectUsersList from 'components/Users/SelectUsersList';
-import GroupsList from 'components/Purchases/CreatePurchase/Step1/GroupsList';
+import GroupsList from 'components/Groups/GroupsList';
 import ListFilter from 'components/ListFilter';
 import purchaseImage from './images/purchase.png';
 
@@ -107,7 +107,7 @@ class CreatePurchaseStep1 extends Component {
           </div>
         )}
         { this.state.step === 2 && (
-          <div className="create-purchase_users">
+          <div className="users">
             <div className="create-purchase__name" style={{ position: 'relative', height: 70 }}>
               <img src={purchaseImage} style={{ width: 50, height: 50, position: 'absolute', left: 10, top: 10 }} />
               <div className="mdl-textfield" style={{ width: 170, marginLeft: 80, float: 'left' }}>

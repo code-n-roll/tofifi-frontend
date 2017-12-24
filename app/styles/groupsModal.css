@@ -21,3 +21,13 @@
 .groupsModalHeader_close:hover {
   color: #fff;
 }
+
+.create-group-users-list {
+  height: calc(100% - 180px);
+}
+
+.create-group-button {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}

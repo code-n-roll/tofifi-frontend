@@ -19,4 +19,4 @@ export const UPDATE_PROFILE_PATH = '/account/updateProfile';
 export const ADD_BANK_CARD = '/account/addCard';
 
 // groups
-export const GROUPS_PATH = '/groups';
+export const GROUPS_PATH = '/teams';
