@@ -6,7 +6,7 @@ import _ from 'lodash';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectUsers, makeSelectGroups, makeSelectGroupUsers } from 'pages/common/selectors';
 import { getGroupUsersRequest } from 'pages/common/actions';
-import UsersList from 'components/Purchases/CreatePurchase/Step1/UsersList';
+import SelectUsersList from 'components/Users/SelectUsersList';
 import GroupsList from 'components/Purchases/CreatePurchase/Step1/GroupsList';
 import ListFilter from 'components/ListFilter';
 import purchaseImage from './images/purchase.png';
@@ -125,7 +125,7 @@ class CreatePurchaseStep1 extends Component {
               </div>
             </div>
             <ListFilter
-              renderList={UsersList}
+              renderList={SelectUsersList}
               items={this.processUsers(this.props.users)}
               filterProp="username"
               itemsPropName="users"

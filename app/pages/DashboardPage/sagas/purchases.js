@@ -3,7 +3,7 @@ import { getPurchasesApi, createPurchaseApi } from 'utils/api/requests';
 import { createPurchase as createPurchaseAction } from 'components/forms/PurchaseForm/actions';
 import { browserHistory } from 'react-router';
 import { processPurchaseFormDataApi } from './helpers';
-import { setPurchasesData, setPendingPurchase } from '../actions';
+import { setPurchasesData, setPendingPurchase, setPendingPurchaseParticipants } from '../actions';
 import { GET_PURCHASES_REQUEST } from '../constants';
 import { makeSelectPendingPurchase, makeSelectPurchasesList, makeSelectPendingPurchaseParticipants } from '../selectors';
 
@@ -27,15 +27,13 @@ function* createPurchase(action) {
   const purchaseData = processPurchaseFormDataApi(formData);
   purchaseData.name = pendingPurchase.name;
   const response = yield call(createPurchaseApi, purchaseData);
-  purchaseData.id = response.data.id;
-  purchaseData.isOwner = true;
-  yield put(createPurchaseAction.success());
   const purchasesList = yield select(makeSelectPurchasesList());
-
-  purchasesList.unshift(purchaseData);
+  purchasesList.unshift(response.data);
   yield put(setPurchasesData(purchasesList));
-  browserHistory.push(`/?purchase=${purchaseData.id}`);
+  yield put(createPurchaseAction.success());
+  browserHistory.push(`/?purchase=${response.data.id}`);
   yield put(setPendingPurchase(null));
+  yield put(setPendingPurchaseParticipants(null));
 }
 
 export default {
