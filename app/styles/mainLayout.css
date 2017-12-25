@@ -82,6 +82,10 @@ a {
   cursor: pointer;
 }
 
+.pos-rel {
+  position: relative;
+}
+
 .logo {
   font-size: 20px;
   color: #7cb342;

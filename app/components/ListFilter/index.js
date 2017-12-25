@@ -25,7 +25,7 @@ class ListFilter extends Component {
           placeholder={inputPlaceholder || 'Filter'}
           className="mdl-textfield__input list-filter-input"
         />
-        <div className={"list-filter-items-container " + this.props.listContainerClassName}>
+        <div className={'list-filter-items-container ' + listContainerClassName}>
           {this.props.renderList({ [itemsPropName]: filteredItems, ...listProps })}
         </div>
       </div>

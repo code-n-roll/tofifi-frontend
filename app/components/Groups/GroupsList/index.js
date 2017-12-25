@@ -9,6 +9,8 @@ const GroupsList = (props) => (
         onClick={props.onGroupItemClick}
         selected={props.selectedGroup === group.id}
         key={group.id}
+        withMenu={props.withMenu}
+        onEditClick={() => props.onEditClick(group)}
       />
     ))}
   </div>
@@ -17,6 +19,8 @@ const GroupsList = (props) => (
 GroupsList.propTypes = {
   groups: PropTypes.array,
   selectedGroup: PropTypes.number,
+  withMenu: PropTypes.bool,
+  onEditClick: PropTypes.func,
 };
 
 export default GroupsList;

@@ -8,7 +8,7 @@ import { makeSelectGroupModalState } from 'pages/common/selectors';
 import { setGroupModalState } from 'pages/common/actions';
 import GroupsModalHeader from 'components/Groups/GroupsModalHeader';
 import ModalGroupsList from './ModalGroupsList';
-import ModalAddGroup from './ModalAddGroup';
+import ModalAddEditGroup from './ModalAddEditGroup';
 
 const MODAL_STATES = {
   groupsList: 'groupsList',
@@ -22,7 +22,9 @@ class GroupsModal extends Component {
 
     this.handlePlusClick = this.handlePlusClick.bind(this);
     this.handleCloseClick = this.handleCloseClick.bind(this);
-    this.handleCreateClick = this.handleCreateClick.bind(this);
+    this.handleSubmitClick = this.handleSubmitClick.bind(this);
+    this.handleEditClick = this.handleEditClick.bind(this);
+    this.handleBackClick = this.handleBackClick.bind(this);
 
     this.state = {
       modalState: MODAL_STATES.groupsList,
@@ -38,7 +40,18 @@ class GroupsModal extends Component {
     this.props.setGroupModalState(false);
   }
 
-  handleCreateClick() {
+  handleSubmitClick() {
+    this.setState({ modalState: MODAL_STATES.groupsList });
+  }
+
+  handleEditClick(group) {
+    this.setState({
+      modalState: MODAL_STATES.editGroup,
+      groupForEditing: group,
+    });
+  }
+
+  handleBackClick() {
     this.setState({ modalState: MODAL_STATES.groupsList });
   }
 
@@ -63,10 +76,21 @@ class GroupsModal extends Component {
         <GroupsModalHeader title="Groups" onCloseClick={this.handleCloseClick} />
 
         { this.state.modalState === MODAL_STATES.groupsList &&
-          <ModalGroupsList onPlusClick={this.handlePlusClick} />
+          <ModalGroupsList onPlusClick={this.handlePlusClick} onEditClick={this.handleEditClick} />
         }
         { this.state.modalState === MODAL_STATES.addGroup &&
-          <ModalAddGroup onCreateClick={this.handleCreateClick} />
+          <ModalAddEditGroup
+            onSubmitClick={this.handleSubmitClick}
+            onBackClick={this.handleBackClick}
+          />
+        }
+        { this.state.modalState === MODAL_STATES.editGroup &&
+          <ModalAddEditGroup
+            group={this.state.groupForEditing}
+            isEditMode
+            onSubmitClick={this.handleSubmitClick}
+            onBackClick={this.handleBackClick}
+          />
         }
       </Modal>
     );

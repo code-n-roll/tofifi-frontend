@@ -3,7 +3,7 @@
 // don't forget to add `Api` postfix
 // also a good idea to separate them logically =)
 
-import { get, post, put, del } from './utils';
+import { get, post, put, del, patch } from './utils';
 import * as PATHS from './paths';
 
 // TO BE DELETED
@@ -38,3 +38,4 @@ export const addBankCardApi = (data) => post(PATHS.ADD_BANK_CARD, true, data);
 // groups
 export const getGroupsApi = () => get(PATHS.GROUPS_PATH, true);
 export const createGroupApi = (data) => post(PATHS.GROUPS_PATH, true, data);
+export const updateGroupApi = (id, data) => patch(`${PATHS.GROUPS_PATH}/${id}`, true, data);
