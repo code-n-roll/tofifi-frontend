@@ -60,9 +60,11 @@ class GroupItem extends Component {
             {props.users.length > 5 && <span className="group-item-avatars-dots">...</span>}
           </div>
         </div>
-        <div className="group-item-menu-toggler" onClick={this.toggleMenu}>
-          <FaWrench />
-        </div>
+        {props.withMenu && props.isOwner && (
+          <div className="group-item-menu-toggler" onClick={this.toggleMenu}>
+            <FaWrench />
+          </div>
+        )}
         {props.withMenu && props.isOwner && (
           <div className="group-item-menu">
             <DropdownMenu {...menuOptions}>
