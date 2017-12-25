@@ -3,7 +3,6 @@ import PurhcasesList from 'containers/Purchases/PurchasesList';
 import CreatePurchaseStep1 from 'containers/Purchases/CreatePurchase/CreatePurchaseStep1';
 import { PAGE_STATES } from 'pages/DashboardPage/constants';
 
-
 const sideBarStyles = {
   float: 'left',
   width: 300,

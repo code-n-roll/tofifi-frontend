@@ -26,6 +26,8 @@ export const signInApi = (data) => post(PATHS.SIGN_IN_PATH, false, data);
 // purchases
 export const getPurchasesApi = () => get(PATHS.PURCHASES_PATH, true);
 export const createPurchaseApi = (data) => post(PATHS.PURCHASES_PATH, true, data);
+export const payPurchaseApi = (id, data) => post(`${PATHS.PURCHASES_PATH}/${id}/pay`, true, data);
+export const declinePurchaseApi = (id) => post(`${PATHS.PURCHASES_PATH}/${id}/decline`, true);
 
 // users
 export const getUsersApi = () => get(PATHS.USERS_PATH, true);
