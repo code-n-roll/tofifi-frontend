@@ -13,13 +13,8 @@ function* handleSignUp(action) {
 
   try {
     const response = yield call(signUpApi, formData);
-
-    const user = {
-      email: response.data.email,
-    };
-
-    yield put(setUserData(user));
     saveAuthToken(response.data.access_token);
+    yield put(setUserData(response.data.user));
     yield put(signUp.success());
     browserHistory.push('/');
   } catch (error) {

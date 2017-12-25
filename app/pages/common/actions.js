@@ -6,12 +6,10 @@ import {
   GET_GROUPS_REQUEST,
   SET_GROUPS_DATA,
 
-  GET_GROUP_USERS_REQUEST,
-  SET_GROUP_USERS_DATA,
-
   SET_GROUP_MODAL_STATE,
 
   CREATE_GROUP_REQUEST,
+  UPDATE_GROUP_REQUEST,
 } from './constants';
 
 export function setLoaderStatus(data) {
@@ -47,23 +45,6 @@ export function setGroupsData(data) {
   };
 }
 
-export function getGroupUsersRequest(groupId) {
-  return {
-    type: GET_GROUP_USERS_REQUEST,
-    groupId,
-  };
-}
-
-export function setGroupUsersData(groupId, users) {
-  return {
-    type: SET_GROUP_USERS_DATA,
-    data: {
-      groupId,
-      users,
-    },
-  };
-}
-
 export function setGroupModalState(data) {
   return {
     type: SET_GROUP_MODAL_STATE,
@@ -74,6 +55,13 @@ export function setGroupModalState(data) {
 export function createGroupRequest(data) {
   return {
     type: CREATE_GROUP_REQUEST,
+    data,
+  };
+}
+
+export function updateGroupRequest(data) {
+  return {
+    type: UPDATE_GROUP_REQUEST,
     data,
   };
 }

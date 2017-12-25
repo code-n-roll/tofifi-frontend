@@ -7,12 +7,17 @@ import OwnerPurchaseInfo from 'components/Purchases/PurchaseInfo/OwnerPurchaseIn
 import NotOwnerPurchaseInfo from 'components/Purchases/PurchaseInfo/NotOwnerPurchaseInfo';
 
 const PurchaseInfo = (props) => (
-  props.purchase.isOwner ? (
-    <OwnerPurchaseInfo {...props.purchase} />
-  ) :
   (
-    <NotOwnerPurchaseInfo {...props.purchase} />
-  )
+    props.purchase &&
+    (
+      props.purchase.isOwner ? (
+        <OwnerPurchaseInfo {...props.purchase} />
+      ) :
+      (
+        <NotOwnerPurchaseInfo {...props.purchase} />
+      )
+    )
+  ) || null
 );
 
 const mapStateToProps = createStructuredSelector({

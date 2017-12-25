@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Avatar from 'react-avatar';
 import Checkbox from 'components/Checkbox';
+import ellipsisText from 'helpers/ellipsisText';
 
 import './styles.css';
 
@@ -16,7 +17,7 @@ const UserItemWithCheckbox = (props) => {
 
   return (<div className="user-item">
     {avatar}
-    <span className="user-item__username">{props.username}</span>
+    <span className="user-item__username">{ellipsisText(props.username, 20)}</span>
     <div className="user-item__checkbox">
       <Checkbox
         id={`user-${props.id}`}

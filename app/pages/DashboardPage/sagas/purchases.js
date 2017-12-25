@@ -2,6 +2,7 @@ import { put, call, select } from 'redux-saga/effects';
 import { getPurchasesApi, createPurchaseApi } from 'utils/api/requests';
 import { createPurchase as createPurchaseAction } from 'components/forms/PurchaseForm/actions';
 import { browserHistory } from 'react-router';
+import { makeSelectCurrentUser } from 'containers/App/selectors';
 import { processPurchaseFormDataApi } from './helpers';
 import { setPurchasesData, setPendingPurchase, setPendingPurchaseParticipants } from '../actions';
 import { GET_PURCHASES_REQUEST } from '../constants';
@@ -18,11 +19,17 @@ function* createPurchase(action) {
 
   const pendingPurchaseParticipants = yield select(makeSelectPendingPurchaseParticipants());
   const pendingPurchase = yield select(makeSelectPendingPurchase());
+  const currentUser = yield select(makeSelectCurrentUser());
+
   pendingPurchaseParticipants.forEach((pId) => {
     if (!formData.users[pId]) {
       formData.users[pId] = { sum: null };
     }
   });
+
+  if (formData.users[currentUser.id]) {
+    delete formData.users[currentUser.id];
+  }
 
   const purchaseData = processPurchaseFormDataApi(formData);
   purchaseData.name = pendingPurchase.name;

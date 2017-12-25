@@ -22,6 +22,10 @@
   color: #fff;
 }
 
+.groups-modal-list {
+  height: calc(100% - 100px);
+}
+
 .create-group-users-list {
   height: calc(100% - 180px);
 }
