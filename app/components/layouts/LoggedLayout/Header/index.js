@@ -37,7 +37,6 @@ class Header extends Component {
     );
   }
 
-
   render() {
     const { onLogOut } = this.props;
 
@@ -59,12 +58,19 @@ class Header extends Component {
 
           <div className="layout-navigation-container">
             <nav className="layout-navigation mdl-navigation">
+              <button
+                className="button-as-block"
+                style={{ fontWeight: 700, color: '#000', marginRight: 20 }}
+                onClick={this.props.onGroupLinkClick}
+              >
+                  Groups
+              </button>
               <DropdownMenu {...menuOptions}>
                 <li>
-                  <button className="button-as-block">
-                    <span style={{ paddingRight: 10 }}>Settings</span>
-                    <FaCog />
-                  </button>
+                  <Link to="/settings">
+                      <span style={{ paddingRight: 10 }}>Settings</span>
+                      <FaCog />
+                  </Link>
                 </li>
                 <li>
                   <button className="button-as-block" onClick={() => { this.toggleMenu(); onLogOut(); }}>
@@ -83,6 +89,7 @@ class Header extends Component {
 
 Header.propTypes = {
   onLogOut: PropTypes.func,
+  onGroupLinkClick: PropTypes.func,
 };
 
 export default Header;

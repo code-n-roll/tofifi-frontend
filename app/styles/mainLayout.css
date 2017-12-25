@@ -55,6 +55,7 @@ a img{
   display: block;
   border: 0;
   cursor: pointer;
+  outline:none;
 }
 
 .big-btn {
@@ -76,6 +77,9 @@ a {
 
 .plus-button {
   text-decoration: none;
+  border: 0;
+  outline:none;
+  cursor: pointer;
 }
 
 .logo {
@@ -600,4 +604,13 @@ input[type=checkbox]:checked + label {
   .layout-footer .mdl-mega-footer--bottom-section {
     display: none;
   }
+}
+
+.mdl-tabs__tab.is-active {
+  border-bottom: 3px solid rgba(0,0,0,.54);
+  font-weight: bold;
+}
+
+textarea:focus, input:focus{
+  outline: none;
 }

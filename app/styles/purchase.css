@@ -100,7 +100,7 @@
 
 .create-purchase_groups-list {
   overflow-y: scroll;
-  height: calc(100% - 50px);
+  height: calc(100% - 110px);
 }
 
 
@@ -109,7 +109,7 @@
   margin-left: 10px;
 }
 
-.create-purchase_users {
+.users {
   background-color: #fff;
   height: 100%;
   border-right: 1px solid #d3d3d3;
@@ -125,7 +125,7 @@
 }
 
 .create-purchase_users-list {
-  height: calc(100% - (50px + 60px));
+  height: calc(100% - (50px + 60px + 70px));
 }
 
 .create-purchase_next-step {
@@ -135,47 +135,35 @@
   left: 0;
   right: 0;
   border-top: 1px solid #dcdcdc;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .create-purchase_next-step > button{
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
+  display: inline-block;
+  margin-right: 10px;
 }
 
-.create-purchase_user-item {
-  position: relative;
-  padding: 10px;
-  border-top: 1px solid #dcdcdc;
-  text-align: left;
-  padding-right: 30px;
-}
-
-.create-purchase_user-item:first-child {
-  border-top: 0px;
-}
-
-.create-purchase_user-item__checkbox {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+.create-purchase_next-step > button:last-child {
+  margin-right: 0;
 }
 
 .create-purchase-participants-container {
   height: calc(100% - (48px + 160px));
-  background-color: #fff;
   text-align: center;
   overflow-y: scroll;
+  padding-top: 20px;
+}
+
+.create-purchase-form {
+  background-color: #fff;
 }
 
 .create-purchase_participant {
   display: inline-block;
   width: 30%;
-}
-
-.create-purchase-tabs {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .create-purchase-buttons-container {
@@ -213,7 +201,8 @@
 
 .purchase-info_participant {
   position: absolute;
-  left: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: 30px;
 }
 
@@ -236,13 +225,21 @@
 }
 
 .purchase-info_participant__sum {
-  font-size: 30px;
+  font-size: 25px;
   margin-bottom: 20px;
+  text-overflow: ellipsis;
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
   text-align: center;
 }
 
 .purchase-info_participant__username {
-  font-size: 20px;
-  text-align: left;
+  font-size: 14px;
+  text-align: center;
   margin-bottom: 10px;
+  text-overflow: ellipsis;
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
 }

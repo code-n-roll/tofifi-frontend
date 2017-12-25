@@ -28,10 +28,16 @@ const makeSelectGroupUsers = () => createSelector(
   }
 );
 
+const makeSelectGroupModalState = () => createSelector(
+  selectCommon,
+  (commonState) => commonState.get('groupModalOpened')
+);
+
 
 export {
   makeSelectLoaderStatus,
   makeSelectUsers,
   makeSelectGroups,
   makeSelectGroupUsers,
+  makeSelectGroupModalState,
 };
