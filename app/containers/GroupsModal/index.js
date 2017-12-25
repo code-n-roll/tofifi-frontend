@@ -24,6 +24,7 @@ class GroupsModal extends Component {
     this.handleCloseClick = this.handleCloseClick.bind(this);
     this.handleSubmitClick = this.handleSubmitClick.bind(this);
     this.handleEditClick = this.handleEditClick.bind(this);
+    this.handleBackClick = this.handleBackClick.bind(this);
 
     this.state = {
       modalState: MODAL_STATES.groupsList,
@@ -50,6 +51,10 @@ class GroupsModal extends Component {
     });
   }
 
+  handleBackClick() {
+    this.setState({ modalState: MODAL_STATES.groupsList });
+  }
+
   render() {
     const style = {
       content: {
@@ -74,10 +79,18 @@ class GroupsModal extends Component {
           <ModalGroupsList onPlusClick={this.handlePlusClick} onEditClick={this.handleEditClick} />
         }
         { this.state.modalState === MODAL_STATES.addGroup &&
-          <ModalAddEditGroup onSubmitClick={this.handleSubmitClick} />
+          <ModalAddEditGroup
+            onSubmitClick={this.handleSubmitClick}
+            onBackClick={this.handleBackClick}
+          />
         }
         { this.state.modalState === MODAL_STATES.editGroup &&
-          <ModalAddEditGroup group={this.state.groupForEditing} isEditMode onSubmitClick={this.handleSubmitClick} />
+          <ModalAddEditGroup
+            group={this.state.groupForEditing}
+            isEditMode
+            onSubmitClick={this.handleSubmitClick}
+            onBackClick={this.handleBackClick}
+          />
         }
       </Modal>
     );

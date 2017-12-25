@@ -107,10 +107,16 @@ class ModalAddEditGroup extends Component {
         />
         <button
           className="mdl-button mdl-js-button mdl-button--raised bg-blue text-white create-group-button "
-          disabled={(!this.state.selectedUsers || this.state.groupName === '')}
+          disabled={(!this.state.selectedUsers || this.state.groupName.trim() === '')}
           onClick={this.handleSubmitButtonClick}
         >
           {this.props.isEditMode ? 'Save changes' : 'Create'}
+        </button>
+        <button
+          className="mdl-button mdl-js-button mdl-button--raised bg-gray create-group-back-button"
+          onClick={this.props.onBackClick}
+        >
+          Back
         </button>
       </div>
     );
@@ -122,6 +128,7 @@ ModalAddEditGroup.propTypes = {
   onSubmitClick: PropTypes.func,
   createGroupRequest: PropTypes.func,
   updateGroupRequest: PropTypes.func,
+  onBackClick: PropTypes.func,
   isEditMode: PropTypes.bool,
   group: PropTypes.object,
 };
