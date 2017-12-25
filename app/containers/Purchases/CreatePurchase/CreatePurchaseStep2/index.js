@@ -8,6 +8,7 @@ import { makeSelectUsers } from 'pages/common/selectors';
 import { setPendingPurchase, setPendingPurchaseParticipants } from 'pages/DashboardPage/actions';
 import { makeSelectPendingPurchaseParticipants } from 'pages/DashboardPage/selectors';
 import PurchaseForm from 'components/forms/PurchaseForm';
+import StoresTab from './StoresTab';
 import classNames from 'classnames';
 
 
@@ -60,10 +61,12 @@ class CreatePurchaseStep2 extends Component {
           </div>
         </div>
         {this.state.activeTab === 1 && (
-          <PurchaseForm
-            participants={this.getUsersFromIds()}
+          <PurchaseForm participants={this.getUsersFromIds()}
             onCancelClick={this.handleCancelClick}
           />
+        )}
+        {this.state.activeTab === 2 && (
+          <StoresTab onCancelClick={this.handleCancelClick} />
         )}
       </div>
     );

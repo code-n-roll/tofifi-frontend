@@ -20,3 +20,7 @@ export const ADD_BANK_CARD = '/account/addCard';
 
 // groups
 export const GROUPS_PATH = '/teams';
+
+// stores
+export const STORES_PATH = '/stores';
+export const STORE_ORDERS_PATH = '/orders';

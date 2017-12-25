@@ -5,7 +5,11 @@ import { browserHistory } from 'react-router';
 import { processPurchaseFormDataApi } from './helpers';
 import { setPurchasesData, setPendingPurchase, setPendingPurchaseParticipants } from '../actions';
 import { GET_PURCHASES_REQUEST } from '../constants';
-import { makeSelectPendingPurchase, makeSelectPurchasesList, makeSelectPendingPurchaseParticipants } from '../selectors';
+import {
+  makeSelectPendingPurchase,
+  makeSelectPurchasesList,
+  makeSelectPendingPurchaseParticipants
+} from '../selectors';
 
 function* getPurchasesData() {
   const response = yield call(getPurchasesApi);

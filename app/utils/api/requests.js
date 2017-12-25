@@ -38,3 +38,7 @@ export const addBankCardApi = (data) => post(PATHS.ADD_BANK_CARD, true, data);
 // groups
 export const getGroupsApi = () => get(PATHS.GROUPS_PATH, true);
 export const createGroupApi = (data) => post(PATHS.GROUPS_PATH, true, data);
+
+// stores
+export const getStoresApi = () => get(PATHS.STORES_PATH, true);
+export const createStoreOrderApi = (data) => post(PATHS.STORE_ORDERS_PATH, true, data);
