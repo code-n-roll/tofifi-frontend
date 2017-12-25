@@ -20,7 +20,7 @@ const UserItemWithCheckbox = (props) => {
     <span className="user-item__username">{ellipsisText(props.username, 20)}</span>
     <div className="user-item__checkbox">
       <Checkbox
-        id={`user-${props.id}`}
+        id={`${props.keyPrefix}-user-${props.id}`}
         checked={props.selected}
         onChange={props.onStatusChange}
       />
@@ -34,6 +34,7 @@ UserItemWithCheckbox.propTypes = {
   id: PropTypes.number,
   selected: PropTypes.bool,
   onStatusChange: PropTypes.func,
+  keyPrefix: PropTypes.string,
 };
 
 export default UserItemWithCheckbox;

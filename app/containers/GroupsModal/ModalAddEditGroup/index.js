@@ -99,8 +99,10 @@ class ModalAddEditGroup extends Component {
           itemsPropName="users"
           inputPlaceholder="Enter user name"
           listContainerClassName="users-list create-group-users-list"
+          listItemsPrefix="create-edit-group"
           listProps={{
             onUserStatusChange: this.handleUserStatusChange,
+            listItemsPrefix: 'create-edit-group',
           }}
         />
         <button
