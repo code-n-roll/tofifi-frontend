@@ -22,5 +22,8 @@ export const ADD_BANK_CARD = '/account/addCard';
 export const GROUPS_PATH = '/teams';
 
 // stores
-export const STORES_PATH = '/stores';
+export const STORES_PATH = '/orders/stores';
+export const STORE_CATEGORIES_PATH = '/orders/categories';
+export const STORE_ITEMS_PATH = '/orders/items';
+
 export const STORE_ORDERS_PATH = '/orders';

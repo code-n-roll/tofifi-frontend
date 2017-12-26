@@ -6,6 +6,7 @@ const PurchaseParticipantsList = (props) => (
   <div className="create-purchase-participants-container">
     {props.participants.map((participant) => (
       <PurchaseParticipant
+        key={participant.id}
         {...participant}
         onSumChange={(value) => props.onAnyParticipantValueChange(participant.id, value)}
       />

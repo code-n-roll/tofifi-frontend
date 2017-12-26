@@ -5,3 +5,6 @@ const selectStores = (state) =>
 
 export const selectStoresList = (state) =>
   selectStores(state).get('stores');
+
+export const selectStoreContent = (state) =>
+  selectStores(state).get('storeContent');

@@ -3,7 +3,8 @@ import { fromJS, List } from 'immutable';
 import {
   FETCH_STORES_SUCCESS,
   FETCH_CATEGORIES_SUCCESS,
-  FETCH_ITEMS_SUCCESS
+  FETCH_ITEMS_SUCCESS,
+  FETCH_STORE_CONTENT_SUCCESS,
 } from '../constants';
 
 const initialState = fromJS({
@@ -12,11 +13,14 @@ const initialState = fromJS({
   items: [],
 });
 
-export default function storesReducer(state=initialState, action) {
+export default function storesReducer(state = initialState, action) {
   switch (action.type) {
     case FETCH_STORES_SUCCESS:
       return state
         .set('stores', new List(action.data));
+    case FETCH_STORE_CONTENT_SUCCESS:
+      return state
+        .set('storeContent', action.data);
     case FETCH_CATEGORIES_SUCCESS:
       return state
         .set('categories', new List(action.data));

@@ -1,41 +1,62 @@
-import {
-  FETCH_STORES_REQUEST,
-  FETCH_STORES_SUCCESS,
-  FETCH_CATEGORIES_REQUEST,
-  FETCH_CATEGORIES_SUCCESS,
-  FETCH_ITEMS_REQUEST,
-  FETCH_ITEMS_SUCCESS,
-  CREATE_STORE_ORDER_REQUEST
-} from '../constants';
+import * as ActionTypes from '../constants';
 
 export const fetchStoresRequest = () => ({
-  type: FETCH_STORES_REQUEST
+  type: ActionTypes.FETCH_STORES_REQUEST,
 });
 
 export const fetchStoresSuccess = (data) => ({
-  type: FETCH_STORES_SUCCESS,
-  data
+  type: ActionTypes.FETCH_STORES_SUCCESS,
+  data,
+});
+
+export const fetchStoreContentRequest = (storeId) => ({
+  type: ActionTypes.FETCH_STORE_CONTENT_REQUEST,
+  storeId,
+});
+
+export const fetchStoreContentSuccess = (data) => ({
+  type: ActionTypes.FETCH_STORE_CONTENT_SUCCESS,
+  data,
 });
 
 export const fetchCategoriesRequest = () => ({
-  type: FETCH_CATEGORIES_REQUEST
+  type: ActionTypes.FETCH_CATEGORIES_REQUEST,
 });
 
 export const fetchCategoriesSuccess = (data) => ({
-  type: FETCH_CATEGORIES_SUCCESS,
-  data
+  type: ActionTypes.FETCH_CATEGORIES_SUCCESS,
+  data,
 });
 
 export const fetchItemsRequest = () => ({
-  type: FETCH_ITEMS_REQUEST
+  type: ActionTypes.FETCH_ITEMS_REQUEST,
 });
 
 export const fetchItemsSuccess = (data) => ({
-  type: FETCH_ITEMS_SUCCESS,
-  data
+  type: ActionTypes.FETCH_ITEMS_SUCCESS,
+  data,
 });
 
-export const createStoreOrderRequest = (data) => ({
-  type: CREATE_STORE_ORDER_REQUEST,
-  data
+export const createStoreOrderRequest = (storeId) => ({
+  type: ActionTypes.CREATE_STORE_ORDER_REQUEST,
+  storeId,
+});
+
+export const updateStoreOrderRequest = () => ({
+  type: ActionTypes.UPDATE_STORE_ORDER_REQUEST,
+});
+
+export const updateStoreOrderSuccess = (orderId, data) => ({
+  type: ActionTypes.UPDATE_STORE_ORDER_SUCCESS,
+  orderId,
+  data,
+});
+
+export const submitStoreOrderRequest = () => ({
+  type: ActionTypes.SUBMIT_STORE_ORDER_REQUEST,
+});
+
+export const submitStoreOrderSuccess = (orderId) => ({
+  type: ActionTypes.SUBMIT_STORE_ORDER_SUCCESS,
+  orderId,
 });

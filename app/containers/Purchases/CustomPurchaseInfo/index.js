@@ -4,13 +4,16 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import { makeSelectCurrentPurchase } from 'pages/DashboardPage/selectors';
-import CustomPurchaseInfo from 'containers/Purchases/CustomPurchaseInfo';
-import StoreOrderInfo from 'containers/Orders/StoreOrderInfo';
+import OwnerPurchaseInfo from 'components/Purchases/PurchaseInfo/OwnerPurchaseInfo';
+import NotOwnerPurchaseInfo from 'components/Purchases/PurchaseInfo/NotOwnerPurchaseInfo';
 
 const PurchaseInfo = (props) => (
-  props.purchase.type === 1
-    ? <StoreOrderInfo purchase={props.purchase} />
-    : <CustomPurchaseInfo purchase={props.purchase} />
+  props.purchase.isOwner ? (
+    <OwnerPurchaseInfo {...props.purchase} />
+  ) :
+  (
+    <NotOwnerPurchaseInfo {...props.purchase} />
+  )
 );
 
 const mapStateToProps = createStructuredSelector({
