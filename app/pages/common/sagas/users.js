@@ -7,9 +7,10 @@ import {
   addBankCardApi,
   removeBankCardApi,
 } from 'utils/api/requests';
+import { setUserData } from 'containers/App/actions';
 import { updateProfile as updateProfileAction } from 'components/forms/ProfileForm/actions';
 import { addBankCard as addBankCardAction } from 'components/forms/BankCardForm/actions';
-import { setUsersData, setCurrentUserProfile } from '../actions';
+import { setUsersData, setCurrentUserProfile, getGroupsRequest } from '../actions';
 import { formatAddBankCardData } from './helpers';
 
 
@@ -25,12 +26,16 @@ export function* getCurrentUser() {
 }
 
 export function* updateProfile(action) {
-  console.log(action.payload.toJS());
   const formData = action.payload.toJS();
 
   try {
     const response = yield call(updateProfileApi, formData);
     yield put(setCurrentUserProfile(response.data));
+    yield put(setUserData(response.data));
+
+    // FIXME: dirty hack to update in groups participants
+    yield put(getGroupsRequest());
+
     yield put(updateProfileAction.success());
   } catch (e) {
     // TODO make sensible errors

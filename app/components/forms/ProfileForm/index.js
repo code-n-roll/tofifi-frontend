@@ -13,13 +13,15 @@ class ProfileForm extends Component {
   constructor(props) {
     super(props);
 
+    this.handleNewPasswordChange = this.handleNewPasswordChange.bind(this);
+
     this.state = {
       changePassword: false,
     };
   }
 
   handleNewPasswordChange(e, value) {
-    const changePassword = !!value;
+    const changePassword = !!e.target.value;
     this.setState({ changePassword });
   }
 
@@ -62,7 +64,7 @@ class ProfileForm extends Component {
             name="newPassword"
             type="password"
             placeholder="New password"
-            onChange={this.handleNewPasswordChange}
+            onValueChange={this.handleNewPasswordChange}
             component={InputControl}
           />
         </div>
@@ -79,22 +81,16 @@ class ProfileForm extends Component {
               </div>
               <div>
                 <Field
-                  name="currentPassword"
+                  name="password"
                   type="password"
                   placeholder="Current password"
                   component={InputControl}
-                />
-                <Field
-                  name="samePassword"
-                  type="password"
-                  component={InputControl}
-                  style={{ display: 'none' }}
                 />
               </div>
             </div>
         }
         <div>
-          {error && <div className='profile-form__error'>{error}</div>}
+          {error && <div className="profile-form__error">{error}</div>}
         </div>
         <button
           type="submit"
