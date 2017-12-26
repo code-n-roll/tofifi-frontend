@@ -24,6 +24,11 @@ class InputControl extends Component {
       placeholder,
       errorStyles,
       meta: { touched },
+      inputStyle,
+      placeholderStyle,
+      tooltipIfEmpty,
+      className,
+      inputProps
     } = this.props;
 
     let error = this.props.meta.error;
@@ -43,14 +48,20 @@ class InputControl extends Component {
     style = Object.assign({}, style, this.props.style);
 
     return (
-      <div className="mdl-textfield" style={style}>
-        <input className="mdl-textfield__input" type={type} {...input} onChange={this.handleValueChange} />
-        {!input.value &&
-          <label className="mdl-textfield__label" htmlFor={input.name}>{placeholder}</label>
+      <div className={`mdl-textfield ${className}`} style={style}>
+        <input className="mdl-textfield__input" style={inputStyle} type={type} {...input} {...inputProps} onChange={this.handleValueChange} />
+        {input.value === '' &&
+          <label className="mdl-textfield__label" style={placeholderStyle} htmlFor={input.name}>{placeholder}</label>
         }
         {hasError &&
           <span className="mdl-textfield__error" style={{ visibility: 'visible' }}>
             <FormattedMessage {...error} />
+          </span>
+        }
+        {
+          input.value === '' && tooltipIfEmpty &&
+          <span className="mdl-textfield__error" style={{ visibility: 'visible' }}>
+            {tooltipIfEmpty}
           </span>
         }
       </div>
@@ -67,6 +78,8 @@ InputControl.propTypes = {
   errorStyles: PropTypes.object,
   onValueChange: PropTypes.func,
   style: PropTypes.object,
+  inputStyle: PropTypes.object,
+  placeholderStyle: PropTypes.object,
 };
 
 export default InputControl;

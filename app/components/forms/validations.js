@@ -8,5 +8,5 @@ export const email = (value) =>
     messages.invalidEmailAddress : undefined;
 
 export const password = (value) =>
-  value && (!/[0-9]+/.test(value) || !/[A-Z]+/.test(value) || !/[^A-Za-z0-9]+/.test(value) || value.length < 6) ?
+  value && value.length < 6 ?
     messages.invalidPassword : undefined;

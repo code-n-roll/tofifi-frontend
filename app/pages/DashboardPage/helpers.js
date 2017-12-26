@@ -18,7 +18,9 @@ export function getPageStateFromQuery(query) {
   }
 
   if (query.createPurchase) {
-    return resultFormat(PAGE_STATES.createPurchase);
+    const participantsIds = query.createPurchase.split(',').map((id) => Number.parseInt(id, 10));
+    const name = query.name;
+    return resultFormat(PAGE_STATES.createPurchase, { participants: participantsIds, name });
   }
 
   return resultFormat(PAGE_STATES.welcome);

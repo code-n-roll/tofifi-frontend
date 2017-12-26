@@ -6,10 +6,10 @@ export const axiosInstance = (needAuth = false) => {
   const authToken = needAuth ? localStorage.getItem('auth_token') : null;
 
   return axios.create({
-    baseURL: `${SERVER_URL}/api/`,
+    baseURL: `${SERVER_URL}/`,
     timeout: 15000,
     headers: {
-      Authorization: `${authToken}`,
+      Authorization: `Bearer ${authToken}`,
     },
   });
 };
@@ -60,6 +60,19 @@ export const del = (path, needAuth = false) => {
   const instance = axiosInstance(needAuth);
   return new Promise((resolve, reject) => {
     instance.delete(path)
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((error) => {
+        reject(handleError(error.response));
+      });
+  });
+};
+
+export const patch = (path, needAuth = false, data) => {
+  const instance = axiosInstance(needAuth);
+  return new Promise((resolve, reject) => {
+    instance.patch(path, data)
       .then((response) => {
         resolve(response);
       })

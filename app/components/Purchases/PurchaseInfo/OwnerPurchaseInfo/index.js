@@ -5,7 +5,7 @@ import ParticipantItem from './ParticipantItem';
 const OwnerPurchaseInfo = (props) => (
   <div className="owner-purchase-info-container">
     {props.users.map((user) => (
-      <ParticipantItem {...user} />
+      <ParticipantItem {...user} key={user.userId} />
     ))}
   </div>
 );

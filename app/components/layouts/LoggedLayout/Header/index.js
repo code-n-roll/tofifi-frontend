@@ -37,9 +37,8 @@ class Header extends Component {
     );
   }
 
-
   render() {
-    const { onLogOut } = this.props;
+    const { onLogOut, onSettingsClick } = this.props;
 
     const menuOptions = {
       isOpen: this.state.isMenuOpen,
@@ -50,7 +49,7 @@ class Header extends Component {
 
     return (
       <div className="layout-header mdl-layout__header mdl-layout__header--waterfall" style={headerStyle}>
-        <div className="mdl-layout__header-row" style={{ height: `${headerHeight}px` }}>
+        <div className="mdl-layout__header-row" style={{ height: `${headerHeight}px`, backgroundColor: '#fff' }}>
           <div className="layout-header-spacer mdl-layout-spacer">
             <Link to='/'>
               <Logo />
@@ -59,9 +58,16 @@ class Header extends Component {
 
           <div className="layout-navigation-container">
             <nav className="layout-navigation mdl-navigation">
+              <button
+                className="button-as-block"
+                style={{ fontWeight: 700, color: '#000', marginRight: 20 }}
+                onClick={this.props.onGroupLinkClick}
+              >
+                  Groups
+              </button>
               <DropdownMenu {...menuOptions}>
                 <li>
-                  <button className="button-as-block">
+                  <button className="button-as-block" onClick={onSettingsClick}>
                     <span style={{ paddingRight: 10 }}>Settings</span>
                     <FaCog />
                   </button>
@@ -83,6 +89,8 @@ class Header extends Component {
 
 Header.propTypes = {
   onLogOut: PropTypes.func,
+  onGroupLinkClick: PropTypes.func,
+  onSettingsClick: PropTypes.func,
 };
 
 export default Header;

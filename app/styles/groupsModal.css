@@ -1,0 +1,19 @@
+.groups-modal-list {
+  height: calc(100% - 100px);
+}
+
+.create-group-users-list {
+  height: calc(100% - 180px);
+}
+
+.create-group-button {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}
+
+.create-group-back-button {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+}

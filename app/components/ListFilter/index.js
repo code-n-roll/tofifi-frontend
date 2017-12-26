@@ -19,13 +19,13 @@ class ListFilter extends Component {
       items;
 
     return (
-      <div className="fill-parent">
+      <div className="list-filter-container fill-parent">
         <TextFilter
           onFilter={({ target: { value: filter } }) => this.setState({ filter })}
           placeholder={inputPlaceholder || 'Filter'}
           className="mdl-textfield__input list-filter-input"
         />
-        <div className={listContainerClassName}>
+        <div className={'list-filter-items-container ' + listContainerClassName}>
           {this.props.renderList({ [itemsPropName]: filteredItems, ...listProps })}
         </div>
       </div>

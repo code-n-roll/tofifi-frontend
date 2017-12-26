@@ -16,6 +16,7 @@ import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
 import { useScroll } from 'react-router-scroll';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 // other CSS
 import 'sanitize.css/sanitize.css';
@@ -96,19 +97,21 @@ const render = (messages) => {
       };
 
       ReactDOM.render(
-        <Provider store={store}>
-          <LanguageProvider messages={messages}>
-            <Router
-              history={history}
-              routes={rootRoute}
-              render={
-                // Scroll to top when going to a new page, imitating default browser
-                // behaviour
-                applyRouterMiddleware(useScroll())
-              }
-            />
-          </LanguageProvider>
-        </Provider>,
+        <MuiThemeProvider>
+          <Provider store={store}>
+            <LanguageProvider messages={messages}>
+              <Router
+                history={history}
+                routes={rootRoute}
+                render={
+                  // Scroll to top when going to a new page, imitating default browser
+                  // behaviour
+                  applyRouterMiddleware(useScroll())
+                }
+              />
+            </LanguageProvider>
+          </Provider>
+        </MuiThemeProvider>,
         document.getElementById('app')
       );
     });
