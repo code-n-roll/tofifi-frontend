@@ -5,6 +5,7 @@ import {
   getCurrentUserApi,
   updateProfileApi,
   addBankCardApi,
+  removeBankCardApi,
 } from 'utils/api/requests';
 import { updateProfile as updateProfileAction } from 'components/forms/ProfileForm/actions';
 import { addBankCard as addBankCardAction } from 'components/forms/BankCardForm/actions';
@@ -48,6 +49,8 @@ export function* addBankCard(action) {
   try {
     yield call(addBankCardApi, reqData);
     yield put(addBankCardAction.success());
+    const response = yield call(getCurrentUserApi);
+    yield put(setCurrentUserProfile(response.data));
   } catch (e) {
     // TODO make sensible errors
     const formError = new SubmissionError({
@@ -56,4 +59,12 @@ export function* addBankCard(action) {
 
     yield put(addBankCardAction.failure(formError));
   }
+}
+
+export function* removeBankCard() {
+  try {
+    yield call(removeBankCardApi);
+    const response = yield call(getCurrentUserApi);
+    yield put(setCurrentUserProfile(response.data));
+  } catch (e) {}
 }
