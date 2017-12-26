@@ -1,26 +1,16 @@
 import { fromJS, List } from 'immutable';
 import {
-  SET_LOADER_STATUS,
-  SET_USERS_DATA,
   SET_GROUPS_DATA,
   SET_GROUP_MODAL_STATE,
-} from './constants';
+} from '../constants';
 
 const initialState = fromJS({
-  isLoading: false,
-  users: [],
   groups: [],
   groupModalOpened: false,
 });
 
-function commonReducer(state = initialState, action) {
+function groupsReducer(state = initialState, action) {
   switch (action.type) {
-    case SET_LOADER_STATUS:
-      return state
-        .set('isLoading', action.data);
-    case SET_USERS_DATA:
-      return state
-        .set('users', List(action.data));
     case SET_GROUPS_DATA:
       return state
         .set('groups', List(action.data));
@@ -32,4 +22,4 @@ function commonReducer(state = initialState, action) {
   }
 }
 
-export default commonReducer;
+export default groupsReducer;

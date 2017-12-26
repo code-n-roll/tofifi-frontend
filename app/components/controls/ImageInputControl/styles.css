@@ -1,0 +1,9 @@
+.user-avatar-preview {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  display: block;
+}

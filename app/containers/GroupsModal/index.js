@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import { makeSelectGroupModalState } from 'pages/common/selectors';
 import { setGroupModalState } from 'pages/common/actions';
-import GroupsModalHeader from 'components/Groups/GroupsModalHeader';
+import DefaultModalHeader from 'components/Modals/DefaultModalHeader';
 import ModalGroupsList from './ModalGroupsList';
 import ModalAddEditGroup from './ModalAddEditGroup';
 
@@ -73,7 +73,7 @@ class GroupsModal extends Component {
         style={style}
         contentLabel="Modal"
       >
-        <GroupsModalHeader title="Groups" onCloseClick={this.handleCloseClick} />
+        <DefaultModalHeader title="Groups" onCloseClick={this.handleCloseClick} />
 
         { this.state.modalState === MODAL_STATES.groupsList &&
           <ModalGroupsList onPlusClick={this.handlePlusClick} onEditClick={this.handleEditClick} />

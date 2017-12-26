@@ -1,4 +1,4 @@
-import { put, call, takeEvery, select } from 'redux-saga/effects';
+import { put, call, select } from 'redux-saga/effects';
 import _ from 'lodash';
 import {
   getUsersApi,
@@ -8,38 +8,31 @@ import {
 } from 'utils/api/requests';
 import { makeSelectCurrentUser } from 'containers/App/selectors';
 
-import {
-  GET_USERS_REQUEST,
-  GET_GROUPS_REQUEST,
-  CREATE_GROUP_REQUEST,
-  UPDATE_GROUP_REQUEST,
-} from './constants';
+import { makeSelectGroups, makeSelectUsers } from '../selectors';
 
-import { makeSelectGroups, makeSelectUsers } from './selectors';
-
-import { setUsersData, setGroupsData } from './actions';
+import { setUsersData, setGroupsData } from '../actions';
 import { processGroupsReact } from './helpers';
 
 
-function* getUsersData() {
+export function* getUsersData() {
   const response = yield call(getUsersApi);
   yield put(setUsersData(response.data));
 }
 
-function* getGroupsData() {
+export function* getGroupsData() {
   const response = yield call(getGroupsApi);
   const currentUser = yield select(makeSelectCurrentUser());
   yield put(setGroupsData(processGroupsReact(response.data, currentUser)));
 }
 
-function* createGroup(action) {
+export function* createGroup(action) {
   const response = yield call(createGroupApi, action.data);
   const groups = yield select(makeSelectGroups());
   groups.push({ ...response.data, isOwner: true });
   yield put(setGroupsData(groups));
 }
 
-function* updateGroup(action) {
+export function* updateGroup(action) {
   const groupData = action.data.data;
   const groupId = action.data.groupId;
   yield call(updateGroupApi, groupId, groupData);
@@ -57,12 +50,3 @@ function* updateGroup(action) {
 
   yield put(setGroupsData(groups));
 }
-
-function* commonWatcherSaga() {
-  yield takeEvery(GET_USERS_REQUEST, getUsersData);
-  yield takeEvery(GET_GROUPS_REQUEST, getGroupsData);
-  yield takeEvery(CREATE_GROUP_REQUEST, createGroup);
-  yield takeEvery(UPDATE_GROUP_REQUEST, updateGroup);
-}
-
-export default commonWatcherSaga;
