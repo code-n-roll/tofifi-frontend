@@ -7,15 +7,15 @@
 
 .groupsModalHeader_close {
   float: right;
-  line-height: 30px;
+  line-height: 28px;
   cursor: pointer;
   color: #dadada;
 }
 
 .groupsModalHeader_title {
   font-weight: 700;
-  font-size: 13px;
-  line-height: 30px;
+  font-size: 16px;
+  line-height: 33px;
 }
 
 .groupsModalHeader_close:hover {

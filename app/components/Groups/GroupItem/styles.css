@@ -1,23 +1,25 @@
 .group-item {
-  padding: 10px 5px;
+  padding: 10px 0 0 12px;
   position: relative;
   cursor: pointer;
   border-bottom: 1px solid #dcdcdc;
 }
 
 .group-item_info {
-  margin-left: 60px;
-  padding-top: 10px;
+  margin-left: 63px;
+  padding-top: 7px;
 }
 
 .group-item_info__name {
-  font-size: 14px;
+  font-size: 18px;
   text-overflow: ellipsis;
   max-width: 180px;
+  margin-left: 18px;
 }
 
 .group-item-avatars {
   position: relative;
+  margin: 10px;
 }
 
 .group-item-avatars-dots {
@@ -38,7 +40,7 @@
   position: absolute;
   right: 10px;
   top: 50%;
-  transform: translateY(-50%);  
+  transform: translateY(-50%);
   color: #d1c7be;
   cursor: pointer;
 }

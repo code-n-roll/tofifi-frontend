@@ -58,7 +58,7 @@ class GroupsModal extends Component {
   render() {
     const style = {
       content: {
-        width: 500,
+        width: 410,
         minHeight: 600,
         overflow: 'hidden',
       },
