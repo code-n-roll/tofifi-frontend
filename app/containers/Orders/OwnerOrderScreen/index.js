@@ -5,12 +5,11 @@ import OrderInProgressScreen from './components/OrderInProgressScreen';
 import SubmittedOrderInfo from './components/SubmittedOrderInfo';
 
 class OwnerOrderScreen extends Component {
-  state = {  }
   render() {
-    let { purchase } = this.props;
+    const { purchase } = this.props;
 
     return (
-      purchase.order.isSumbitted
+      purchase.storeOrder.isSumbitted
         ? <SubmittedOrderInfo purchase={purchase} />
         : <OrderInProgressScreen purchase={purchase} />
     );
@@ -18,7 +17,7 @@ class OwnerOrderScreen extends Component {
 }
 
 OwnerOrderScreen.propTypes = {
-  purchase: PropTypes.object.isRequired
+  purchase: PropTypes.object.isRequired,
 };
 
 export default OwnerOrderScreen;

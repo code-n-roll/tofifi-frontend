@@ -20,7 +20,12 @@
 .store-component__items {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   padding: 40px 10px;
+
+  /* FIXME make normal markup */
+  height: 700px;
+  overflow: auto;
 }
 
 .store-component__item {

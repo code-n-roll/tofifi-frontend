@@ -7,9 +7,10 @@ function* dashboardWatcherSaga() {
   yield takeEvery(purchasesSagas.getPurchases.actionType, purchasesSagas.getPurchases.handler);
   yield takeEvery(purchasesSagas.createPurchase.actionType, purchasesSagas.createPurchase.handler);
 
-  Object.keys(storesSaga).forEach(saga => {
-    yield takeEvery(saga.actionType, saga.handler);
-  });
+  yield takeEvery(storesSaga.fetchStores.actionType, storesSaga.fetchStores.handler);
+  yield takeEvery(storesSaga.fetchStoreContent.actionType, storesSaga.fetchStoreContent.handler);
+  yield takeEvery(storesSaga.createStoreOrder.actionType, storesSaga.createStoreOrder.handler);
+  yield takeEvery(storesSaga.updateStoreOrder.actionType, storesSaga.updateStoreOrder.handler);
 }
 
 export default [

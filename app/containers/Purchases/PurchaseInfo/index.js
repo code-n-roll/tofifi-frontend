@@ -8,7 +8,7 @@ import CustomPurchaseInfo from 'containers/Purchases/CustomPurchaseInfo';
 import StoreOrderInfo from 'containers/Orders/StoreOrderInfo';
 
 const PurchaseInfo = (props) => (
-  props.purchase.type === 1
+  props.purchase.type === 'Store'
     ? <StoreOrderInfo purchase={props.purchase} />
     : <CustomPurchaseInfo purchase={props.purchase} />
 );

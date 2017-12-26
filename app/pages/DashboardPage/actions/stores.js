@@ -42,21 +42,21 @@ export const createStoreOrderRequest = (storeId) => ({
   storeId,
 });
 
-export const updateStoreOrderRequest = () => ({
+export const updateStoreOrderRequest = (orderId, data) => ({
   type: ActionTypes.UPDATE_STORE_ORDER_REQUEST,
-});
-
-export const updateStoreOrderSuccess = (orderId, data) => ({
-  type: ActionTypes.UPDATE_STORE_ORDER_SUCCESS,
   orderId,
   data,
 });
 
-export const submitStoreOrderRequest = () => ({
-  type: ActionTypes.SUBMIT_STORE_ORDER_REQUEST,
+export const updateStoreOrderSuccess = () => ({
+  type: ActionTypes.UPDATE_STORE_ORDER_SUCCESS,
 });
 
-export const submitStoreOrderSuccess = (orderId) => ({
+export const submitStoreOrderRequest = (orderId) => ({
   type: ActionTypes.SUBMIT_STORE_ORDER_SUCCESS,
   orderId,
+});
+
+export const submitStoreOrderSuccess = () => ({
+  type: ActionTypes.SUBMIT_STORE_ORDER_REQUEST,
 });

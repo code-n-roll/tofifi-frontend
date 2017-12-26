@@ -11,19 +11,19 @@ class ProfileComponent extends Component {
     const formInitialData = userProfile !== null ? {
       username: userProfile.username,
       email: userProfile.email,
-      newPassword: ''
+      newPassword: '',
     } : null;
 
     return (
       <div className="profile-form-wrapper">
-        <ProfileForm initialValues={formInitialData}/>
+        <ProfileForm initialValues={formInitialData} />
       </div>
     );
   }
 }
 
 ProfileComponent.propTypes = {
-  userProfile: PropTypes.object
+  userProfile: PropTypes.object,
 };
 
 export default ProfileComponent;

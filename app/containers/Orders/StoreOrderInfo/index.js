@@ -7,11 +7,10 @@ import { makeSelectCurrentPurchase } from 'pages/DashboardPage/selectors';
 import OwnerOrderScreen from '../OwnerOrderScreen';
 import ParticipantOrderScreen from '../ParticipantOrderScreen';
 
-const StoreOrderInfo = (props) => {
-  return props.purchase.isOwner ?
+const StoreOrderInfo = (props) =>
+  props.purchase.isOwner ?
     <OwnerOrderScreen purchase={props.purchase} /> :
-    <ParticipantOrderScreen purchase={props.purchase} />
-};
+    <ParticipantOrderScreen purchase={props.purchase} />;
 
 const mapStateToProps = createStructuredSelector({
   purchase: makeSelectCurrentPurchase(),

@@ -1,18 +1,33 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Card, CardTitle, CardHeader, CardActions, CardMedia } from 'material-ui/Card';
+import { Card, CardTitle, CardActions, CardMedia } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
 import './styles.css';
 
 class ItemCard extends Component {
   state = {
-    amount: 0
+    amount: 0,
   };
 
+  handleChangeAmount = (diff) => () => {
+    const { id, price } = this.props;
+
+    const prevAmount = this.state.amount;
+    const nextAmount = prevAmount + diff;
+
+    if (nextAmount >= 0 && nextAmount < 100) {
+      this.setState({
+        amount: nextAmount,
+      });
+
+      this.props.onSelectItem(id, nextAmount, price * nextAmount);
+    }
+  }
+
   render() {
-    let { id, name, description, price, imageUrl } = this.props;
-    let { amount } = this.state;
+    const { name, description, price, imageUrl } = this.props;
+    const { amount } = this.state;
     return (
       <Card>
         <CardMedia
@@ -22,47 +37,40 @@ class ItemCard extends Component {
             <img className="store-item-preview" src={imageUrl} alt={name} />
           </div>
         </CardMedia>
-        <CardActions>
-          <div className="plus-minus-button">
-            <FlatButton label="-"
-              fullWidth={true}
-              onClick={this.handleChangeAmount(-1)}
-            />
+        <CardActions className="store-item-preview__bottom-row">
+          <div>
+            <div className="plus-minus-button">
+              <FlatButton
+                label="-"
+                fullWidth
+                onClick={this.handleChangeAmount(-1)}
+              />
+            </div>
+            <span>{amount}</span>
+            <div className="plus-minus-button">
+              <FlatButton
+                label="+"
+                fullWidth
+                onClick={this.handleChangeAmount(1)}
+              />
+            </div>
           </div>
-          <span>{amount}</span>
-          <div className="plus-minus-button">
-            <FlatButton label="+"
-              fullWidth={true}
-              onClick={this.handleChangeAmount(1)}
-            />
+          <div>
+            <span>{price}</span>
           </div>
         </CardActions>
       </Card>
     );
   }
-
-  handleChangeAmount = diff => e => {
-    let { id, price } = this.props;
-
-    const prevAmount = this.state.amount;
-    const nextAmount = prevAmount + diff;
-
-    if (nextAmount >= 0 && nextAmount < 100) {
-      this.setState({
-        amount: nextAmount
-      });
-    }
-
-    this.props.onSelectItem(id, nextAmount, price * nextAmount);
-  }
 }
 
 ItemCard.propTypes = {
+  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string,
   price: PropTypes.string.isRequired,
   imageUrl: PropTypes.string.isRequired,
-  onSelectItem: PropTypes.func.isRequired
+  onSelectItem: PropTypes.func.isRequired,
 };
 
 export default ItemCard;

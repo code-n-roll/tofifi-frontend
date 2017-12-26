@@ -14,35 +14,63 @@ import './styles.css';
 class StoreComponent extends Component {
   state = {
     selectedCategoryIndex: null,
-    selectedItems: []
+    selectedItems: [],
   }
 
   componentWillMount() {
-    this.props.fetchStoreContentRequest();
+    this.props.fetchStoreContentRequest(this.props.purchase.storeOrder.storeId);
+  }
+
+  handleListClick = (e, index) => {
+    this.setState({
+      selectedCategoryIndex: index,
+    });
+  };
+
+  handleSelectItem = (id, amount, sum) => {
+    const selectedItems = this.state.selectedItems;
+    const existingItemIndex =
+      _.findIndex(selectedItems, (item) => item.id === id);
+
+    const newItem = {
+      id,
+      amount,
+      sum,
+    };
+
+    if (existingItemIndex === -1) {
+      selectedItems.push(newItem);
+    } else {
+      selectedItems[existingItemIndex] = newItem;
+    }
+
+    this.setState({
+      selectedItems,
+    });
   }
 
   render() {
-    let { storeContent } = this.props;
-    let { selectedCategoryIndex } = this.state;
+    const { storeContent } = this.props;
+    const { selectedCategoryIndex } = this.state;
 
     let itemsToShow;
     if (storeContent && storeContent.categories && selectedCategoryIndex !== null) {
       itemsToShow =
-        <div className="store-component__items">
+        (<div className="store-component__items">
           {
-            storeContent.categories[selectedCategoryIndex].items.map(item =>
+            storeContent.categories[selectedCategoryIndex].items.map((item) =>
               <div className="store-component__item">
-                <ItemCard {...item} onSelectItem={this.handleSelectItem}/>
+                <ItemCard {...item} onSelectItem={this.handleSelectItem} />
               </div>
             )
           }
-        </div>
+        </div>);
     } else {
       itemsToShow = (
         <div>
           Select category
         </div>
-      )
+      );
     }
 
     return (
@@ -53,9 +81,11 @@ class StoreComponent extends Component {
             <SelectableList defaultValue={null} onChange={this.handleListClick}>
               {
                 storeContent.categories.map((category, index) =>
-                  <ListItem key={category.id}
+                  <ListItem
+                    key={category.id}
                     value={index}
-                    primaryText={category.name}></ListItem>
+                    primaryText={category.name}
+                  ></ListItem>
                 )
               }
             </SelectableList>
@@ -64,62 +94,32 @@ class StoreComponent extends Component {
         <div className="store-component__main-content">
           {itemsToShow}
           <div className="store-component__bottom-row">
-            <RaisedButton label="Submit order"
-              primary={true}
-              onClick={this.handleSubmitClick}
+            <RaisedButton
+              label="Submit order"
+              primary
+              onClick={this.props.onSubmitOrder}
             />
           </div>
         </div>
       </div>
     );
   }
-
-  handleListClick = (e, index) => {
-    this.setState({
-      selectedCategoryIndex: index,
-    });
-  };
-
-  handleSubmitClick = () => {
-    console.log(this.state.selectedItems);
-  }
-
-  handleSelectItem = (id, amount, sum) => {
-    const selectedItems = this.state.selectedItems;
-    const existingItemIndex =
-      _.findIndex(selectedItems, item => item.id === id);
-
-    const newItem = {
-      id,
-      amount,
-      sum
-    };
-
-    if (existingItemIndex === -1) {
-      selectedItems.push(newItem);
-    } else {
-      selectedItems[existingItemIndex] = newItem
-    }
-
-    this.setState({
-      selectedItems
-    });
-  }
 }
 
 StoreComponent.propTypes = {
   purchase: PropTypes.object.isRequired,
-  storeContent: PropTypes.object
+  storeContent: PropTypes.object,
+  onSubmitOrder: PropTypes.func.isRequired,
+
+  fetchStoreContentRequest: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  storeContent: selectStoreContent(state)
+  storeContent: selectStoreContent(state),
 });
 
 const mapDispatchToProps = {
-  fetchStoreContentRequest
+  fetchStoreContentRequest,
 };
 
-StoreComponent = connect(mapStateToProps, mapDispatchToProps)(StoreComponent);
-
-export default StoreComponent;
+export default connect(mapStateToProps, mapDispatchToProps)(StoreComponent);
