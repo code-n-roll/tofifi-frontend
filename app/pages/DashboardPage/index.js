@@ -7,13 +7,14 @@ import { makeSelectCurrentUser } from 'containers/App/selectors';
 import { logOutRequest } from 'containers/App/actions';
 import SideBar from 'containers/Purchases/SideBar';
 import GroupsModal from 'containers/GroupsModal';
+import SettingsModal from 'containers/SettingsModal';
 import PurchaseInfo from 'containers/Purchases/PurchaseInfo';
 import CreatePurchaseStep2 from 'containers/Purchases/CreatePurchase/CreatePurchaseStep2';
 import DashboardWelcome from 'components/DashboardWelcome';
 import LoggedLayout from 'components/layouts/LoggedLayout';
 
 import OnScreenHeightSection from 'components/sections/OnScreenHeightSection';
-import { getUsersRequest, getGroupsRequest, setGroupModalState } from 'pages/common/actions';
+import { getUsersRequest, getGroupsRequest, setGroupModalState, setSettingsModalState } from 'pages/common/actions';
 
 import {
   setCurrentPurchase,
@@ -36,6 +37,7 @@ class DashboardPage extends Component {
     this.handleLogOut = this.handleLogOut.bind(this);
     this.handleQueryChange = this.handleQueryChange.bind(this);
     this.handleGroupLinkClick = this.handleGroupLinkClick.bind(this);
+    this.handleSettingsClick = this.handleSettingsClick.bind(this);
   }
 
   componentWillMount() {
@@ -52,6 +54,10 @@ class DashboardPage extends Component {
 
   handleGroupLinkClick() {
     this.props.setGroupModalState(true);
+  }
+
+  handleSettingsClick() {
+    this.props.setSettingsModalState(true);
   }
 
   handleQueryChange(query) {
@@ -77,7 +83,11 @@ class DashboardPage extends Component {
 
   render() {
     return (
-      <LoggedLayout onLogOut={this.handleLogOut} onGroupLinkClick={this.handleGroupLinkClick} >
+      <LoggedLayout
+        onLogOut={this.handleLogOut}
+        onGroupLinkClick={this.handleGroupLinkClick}
+        onSettingsClick={this.handleSettingsClick}
+      >
         <OnScreenHeightSection style={{ height: 'calc(100vh - 70px)', borderBottom: '1px solid #dcdcdc' }}>
           <SideBar />
           <div className="purchase-viewer">
@@ -96,6 +106,7 @@ class DashboardPage extends Component {
           </div>
         </OnScreenHeightSection>
         <GroupsModal />
+        <SettingsModal />
       </LoggedLayout>
     );
   }
@@ -112,6 +123,7 @@ DashboardPage.propTypes = {
   setPendingPurchase: PropTypes.func,
   setPendingPurchaseParticipants: PropTypes.func,
   setGroupModalState: PropTypes.func,
+  setSettingsModalState: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -128,6 +140,7 @@ const mapDispatchToProps = {
   setPendingPurchase,
   setPendingPurchaseParticipants,
   setGroupModalState,
+  setSettingsModalState,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);

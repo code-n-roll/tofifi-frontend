@@ -38,7 +38,7 @@ class Header extends Component {
   }
 
   render() {
-    const { onLogOut } = this.props;
+    const { onLogOut, onSettingsClick } = this.props;
 
     const menuOptions = {
       isOpen: this.state.isMenuOpen,
@@ -67,10 +67,10 @@ class Header extends Component {
               </button>
               <DropdownMenu {...menuOptions}>
                 <li>
-                  <Link to="/settings">
-                      <span style={{ paddingRight: 10 }}>Settings</span>
-                      <FaCog />
-                  </Link>
+                  <button className="button-as-block" onClick={onSettingsClick}>
+                    <span style={{ paddingRight: 10 }}>Settings</span>
+                    <FaCog />
+                  </button>
                 </li>
                 <li>
                   <button className="button-as-block" onClick={() => { this.toggleMenu(); onLogOut(); }}>
@@ -90,6 +90,7 @@ class Header extends Component {
 Header.propTypes = {
   onLogOut: PropTypes.func,
   onGroupLinkClick: PropTypes.func,
+  onSettingsClick: PropTypes.func,
 };
 
 export default Header;
