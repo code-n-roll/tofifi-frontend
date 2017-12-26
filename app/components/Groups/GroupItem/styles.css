@@ -13,13 +13,16 @@
 .group-item_info__name {
   font-size: 18px;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display:inline-block;
   max-width: 180px;
   margin-left: 18px;
 }
 
 .group-item-avatars {
   position: relative;
-  margin: 10px;
+  margin: 6px 10px 10px 10px;
 }
 
 .group-item-avatars-dots {

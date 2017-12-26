@@ -52,12 +52,11 @@ class GroupItem extends Component {
         <div className="group-item_info" >
           <span className="group-item_info__name">{props.name}</span>
           <div className="group-item-avatars">
-            {props.users.slice(0, 7).map((user) => (
+            {props.users.slice(0, props.avatarsNumber).map((user) => (
               user.avatarUrl ?
                 <img src={user.avatarUrl} role="presentation" style={{ marginRight: 8 }} /> :
                 <Avatar name={user.username} round size={30} style={{ marginRight: 8 }} />
             ))}
-            {props.users.length > 7 && <span className="group-item-avatars-dots">...</span>}
           </div>
         </div>
         {props.withMenu && props.isOwner && (
@@ -87,6 +86,7 @@ GroupItem.propTypes = {
   onClick: PropTypes.func,
   users: PropTypes.array,
   withMenu: PropTypes.bool,
+  avatarsNumber: PropTypes.number,
   onEditClick: PropTypes.func,
 };
 
