@@ -3,7 +3,7 @@
 // don't forget to add `Api` postfix
 // also a good idea to separate them logically =)
 
-import { get, post, put, del } from './utils';
+import { get, post, put, del, patch } from './utils';
 import * as PATHS from './paths';
 
 // TO BE DELETED
@@ -26,6 +26,8 @@ export const signInApi = (data) => post(PATHS.SIGN_IN_PATH, false, data);
 // purchases
 export const getPurchasesApi = () => get(PATHS.PURCHASES_PATH, true);
 export const createPurchaseApi = (data) => post(PATHS.PURCHASES_PATH, true, data);
+export const payPurchaseApi = (id, data) => post(`${PATHS.PURCHASES_PATH}/${id}/pay`, true, data);
+export const declinePurchaseApi = (id) => post(`${PATHS.PURCHASES_PATH}/${id}/decline`, true);
 
 // users
 export const getUsersApi = () => get(PATHS.USERS_PATH, true);
@@ -38,3 +40,4 @@ export const addBankCardApi = (data) => post(PATHS.ADD_BANK_CARD, true, data);
 // groups
 export const getGroupsApi = () => get(PATHS.GROUPS_PATH, true);
 export const createGroupApi = (data) => post(PATHS.GROUPS_PATH, true, data);
+export const updateGroupApi = (id, data) => patch(`${PATHS.GROUPS_PATH}/${id}`, true, data);

@@ -8,22 +8,22 @@ class ProfileComponent extends Component {
   render() {
     const { userProfile } = this.props;
 
-    const formInitialData = userProfile !== null ? {
+    const formInitialData = (userProfile && {
       username: userProfile.username,
       email: userProfile.email,
-      newPassword: ''
-    } : null;
+      newPassword: '',
+    }) || null;
 
     return (
       <div className="profile-form-wrapper">
-        <ProfileForm initialValues={formInitialData}/>
+        <ProfileForm initialValues={formInitialData} />
       </div>
     );
   }
 }
 
 ProfileComponent.propTypes = {
-  userProfile: PropTypes.object
+  userProfile: PropTypes.object,
 };
 
 export default ProfileComponent;

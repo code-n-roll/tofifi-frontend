@@ -2,18 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router';
 import _ from 'lodash';
+import { List } from 'material-ui/List';
+import Divider from 'material-ui/Divider';
 
+import PurchaseItem from 'components/Purchases/PurchaseItem';
 import { getPurchasesRequest } from 'pages/DashboardPage/actions';
 import {
   makeSelectPurchasesList,
   makeSelectCurrentPurchase,
   makeSelectPendingPurchase,
 } from 'pages/DashboardPage/selectors';
-import PurchaseItem from 'components/Purchases/PurchaseItem';
 import ListFilter from 'components/ListFilter';
 import PlusButton from 'components/PlusButton';
+
 
 class PurchasesList extends Component {
   constructor(props) {
@@ -28,9 +30,8 @@ class PurchasesList extends Component {
 
   getPurchasesList() {
     const { pendingPurchase, purchasesList } = this.props;
-    console.log(pendingPurchase);
     if (pendingPurchase) {
-      return [pendingPurchase, ...purchasesList];
+      return [{ ...pendingPurchase, isPending: true }, ...purchasesList];
     }
 
     return purchasesList;
@@ -38,14 +39,17 @@ class PurchasesList extends Component {
 
   renderPurchasesList(props) {
     return (
-      props.items.map((purchase) => (
-        <Link to={`?purchase=${purchase.id}`} key={purchase.id}>
-          <PurchaseItem
-            {...purchase}
-            active={_.get(props.currentPurchase, 'id') === purchase.id || purchase.isPending}
-          />
-        </Link>
-      ))
+      <List>
+        {props.items.map((purchase) => (
+          <div>
+            <PurchaseItem
+              {...purchase}
+              isActive={_.get(props.currentPurchase, 'id') === purchase.id || purchase.isPending}
+            />
+            <Divider inset />
+          </div>
+        ))}
+      </List>
     );
   }
 
