@@ -86,7 +86,6 @@ GroupItem.propTypes = {
   onClick: PropTypes.func,
   users: PropTypes.array,
   withMenu: PropTypes.bool,
-  avatarsNumber: PropTypes.number,
   onEditClick: PropTypes.func,
 };
 

@@ -15,14 +15,22 @@ class PaymentInfo extends Component {
     return (
       <div className="payment-methods-info">
         {
-          cardDigits
-          ? <AddedPaymentMethod cardDigits={cardDigits}/>
-          : <div className="payment-methods-info_no-cards">
+          cardDigits ?
+          (
+            <AddedPaymentMethod
+              cardDigits={cardDigits}
+              onRemoveCardClick={this.props.onRemoveCardClick}
+            />
+          ) :
+          (
+            <div className="payment-methods-info_no-cards">
               No payment methods
             </div>
+          )
         }
         <div>
-          <button className="mdl-button mdl-js-button mdl-button--raised bg-blue text-white"
+          <button
+            className="mdl-button mdl-js-button mdl-button--raised bg-blue text-white"
             onClick={this.props.onChangeCardClick}
           >
             {buttonText}
@@ -35,7 +43,8 @@ class PaymentInfo extends Component {
 
 PaymentInfo.propTypes = {
   cardDigits: PropTypes.string,
-  onChangeCardClick: PropTypes.func.isRequired
+  onChangeCardClick: PropTypes.func.isRequired,
+  onRemoveCardClick: PropTypes.func.isRequired,
 };
 
 export default PaymentInfo;

@@ -4,6 +4,7 @@ import {
   GET_CURRENT_USER_PROFILE_REQUEST,
   SET_CURRENT_USER_PROFILE,
   SET_SETTINGS_MODAL_STATE,
+  REMOVE_BANK_CARD_REQUEST,
 } from '../constants';
 
 export function getUsersRequest() {
@@ -36,5 +37,11 @@ export function setCurrentUserProfile(data) {
   return {
     type: SET_CURRENT_USER_PROFILE,
     data,
+  };
+}
+
+export function removeBankCardRequest() {
+  return {
+    type: REMOVE_BANK_CARD_REQUEST,
   };
 }

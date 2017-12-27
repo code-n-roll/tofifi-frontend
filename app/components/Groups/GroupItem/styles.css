@@ -52,3 +52,11 @@
   padding: 5px;
   font-size: 14px;
 }
+
+.group-user-avatar-item {
+  margin-right: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  vertical-align: bottom;
+}

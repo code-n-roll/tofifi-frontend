@@ -5,6 +5,7 @@
 
 import { get, post, put, del, patch } from './utils';
 import * as PATHS from './paths';
+import { toFormData } from 'utils/helpers/toFormData';
 
 // TO BE DELETED
 // this is an example to made API call without auth
@@ -34,8 +35,9 @@ export const getUsersApi = () => get(PATHS.USERS_PATH, true);
 export const getCurrentUserApi = () => get(PATHS.CURRENT_USER_PATH, true);
 
 // profile
-export const updateProfileApi = (data) => post(PATHS.UPDATE_PROFILE_PATH, true, data);
+export const updateProfileApi = (data) => post(PATHS.UPDATE_PROFILE_PATH, true, toFormData(data));
 export const addBankCardApi = (data) => post(PATHS.ADD_BANK_CARD, true, data);
+export const removeBankCardApi = () => post(PATHS.REMOVE_BANK_CARD, true);
 
 // groups
 export const getGroupsApi = () => get(PATHS.GROUPS_PATH, true);

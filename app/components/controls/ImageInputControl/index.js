@@ -34,7 +34,7 @@ export default class ImageInputControl extends Component {
 
   render() {
     const { input: { onChange, onBlur, ...inputProps, }, username, avatarUrl } = this.props;
-    const avatar = avatarUrl || this.state.avatarPreviewUrl;
+    const avatar = this.state.avatarPreviewUrl || avatarUrl;
 
     return (
       <div>
