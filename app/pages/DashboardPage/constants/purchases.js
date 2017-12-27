@@ -4,3 +4,6 @@ export const SET_CURRENT_PURCHASE = 'DashboardPage/purchases/SET_CURRENT_PURCHAS
 export const SET_PENDING_PURCHASE = 'DashboardPage/purchases/SET_PENDING_PURCHASE';
 export const SET_PENDING_PURCHASE_PARTICIPANTS = 'DashboardPage/purchases/SET_PENDING_PURCHASE_PARTICIPANTS';
 export const UPDATE_PURCHASE = 'DashboardPage/purchases/UPDATE_PURCHASE';
+
+export const PAY_PURCHASE_REQUEST = 'DashboardPage/purchases/PAY_PURCHASE_REQUEST';
+export const DECLINE_PURCHASE_REQUEST = 'DashboardPage/purchases/DECLINE_PURCHASE_REQUEST';

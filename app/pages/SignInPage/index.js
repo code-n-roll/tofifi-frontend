@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import UnloggedLayout from 'components/layouts/UnloggedLayout';
 import SignInForm from 'components/forms/SignInForm';
 import OnScreenHeightSection from 'components/sections/OnScreenHeightSection';
-import styles from './styles';
 
 class SignInPage extends Component {
   render() {
@@ -13,7 +12,7 @@ class SignInPage extends Component {
           <div className="mdl-typography--text-center" style={{ position: 'relative', zIndex: 2 }}>
             <h1 className="logo-font text-white"> WisePay </h1>
             <h3 className="logo-sub-font text-white">the best way to share payments</h3>
-            <div style={styles.formContainer}>
+            <div className="sign-in-sign-up-form-container">
               <SignInForm />
             </div>
             <h4 className="text-white"> OR </h4>

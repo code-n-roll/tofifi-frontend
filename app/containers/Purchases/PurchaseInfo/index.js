@@ -13,12 +13,12 @@ const PurchaseInfo = (props) => (
     : <CustomPurchaseInfo purchase={props.purchase} />
 );
 
-const mapStateToProps = createStructuredSelector({
-  purchase: makeSelectCurrentPurchase(),
-});
-
 PurchaseInfo.propTypes = {
   purchase: PropTypes.object,
 };
+
+const mapStateToProps = createStructuredSelector({
+  purchase: makeSelectCurrentPurchase(),
+});
 
 export default connect(mapStateToProps)(PurchaseInfo);

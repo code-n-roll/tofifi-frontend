@@ -10,10 +10,10 @@ export default class SettingsComponent extends Component {
     return (
       <Tabs>
         <Tab name="Profile">
-          <ProfileComponent userProfile={this.props.userProfile}/>
+          <ProfileComponent userProfile={this.props.userProfile} />
         </Tab>
         <Tab name="Payments">
-          <PaymentsComponent userProfile={this.props.userProfile}/>
+          <PaymentsComponent userProfile={this.props.userProfile} />
         </Tab>
       </Tabs>
     );

@@ -14,14 +14,27 @@ const NotOwnerPurchaseInfo = (props) => (
       </div>
     </div>
     <div className="purchase-info_buttons">
-      <button className="mdl-button mdl-js-button mdl-button--raised" style={{ marginRight: 40 }}> DECLINE </button>
-      <button className="mdl-button mdl-js-button mdl-button--raised bg-green text-white"> PAY </button>
+      <button
+        className="mdl-button mdl-js-button mdl-button--raised"
+        style={{ marginRight: 40 }}
+        onClick={props.onDeclineClick}
+      >
+        DECLINE
+      </button>
+      <button
+        className="mdl-button mdl-js-button mdl-button--raised bg-green text-white"
+        onClick={props.onPayClick}
+      >
+        PAY
+      </button>
     </div>
   </div>
 );
 
 NotOwnerPurchaseInfo.propTypes = {
   sum: PropTypes.number,
+  onPayClick: PropTypes.func,
+  onDeclineClick: PropTypes.func,
 };
 
 export default NotOwnerPurchaseInfo;

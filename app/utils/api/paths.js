@@ -17,6 +17,7 @@ export const CURRENT_USER_PATH = '/users/me';
 // profile
 export const UPDATE_PROFILE_PATH = '/account/updateProfile';
 export const ADD_BANK_CARD = '/account/addCard';
+export const REMOVE_BANK_CARD = '/account/removeCard';
 
 // groups
 export const GROUPS_PATH = '/teams';

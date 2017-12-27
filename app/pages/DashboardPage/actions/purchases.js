@@ -5,6 +5,9 @@ import {
   SET_PENDING_PURCHASE,
   SET_PENDING_PURCHASE_PARTICIPANTS,
   UPDATE_PURCHASE,
+
+  PAY_PURCHASE_REQUEST,
+  DECLINE_PURCHASE_REQUEST,
 } from '../constants';
 
 export function getPurchasesRequest() {
@@ -45,5 +48,19 @@ export function updatePurchase(newPurchase) {
   return {
     type: UPDATE_PURCHASE,
     newPurchase,
+  };
+}
+
+export function payPurchaseRequest(data) {
+  return {
+    type: PAY_PURCHASE_REQUEST,
+    data,
+  };
+}
+
+export function declinePurchaseRequest(data) {
+  return {
+    type: DECLINE_PURCHASE_REQUEST,
+    data,
   };
 }

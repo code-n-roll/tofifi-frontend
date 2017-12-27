@@ -12,6 +12,9 @@ function* dashboardWatcherSaga() {
   yield takeEvery(storesSaga.createStoreOrder.actionType, storesSaga.createStoreOrder.handler);
   yield takeEvery(storesSaga.updateStoreOrder.actionType, storesSaga.updateStoreOrder.handler);
   yield takeEvery(storesSaga.submitStoreOrder.actionType, storesSaga.submitStoreOrder.handler);
+
+  yield takeEvery(purchasesSagas.payPurchase.actionType, purchasesSagas.payPurchase.handler);
+  yield takeEvery(purchasesSagas.declinePurchase.actionType, purchasesSagas.declinePurchase.handler);
 }
 
 export default [

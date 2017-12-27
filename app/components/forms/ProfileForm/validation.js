@@ -12,11 +12,11 @@ export const validate = values => {
 
   if (values.get('newPassword')) {
     errors.newPassword = password(values.get('newPassword'));
-    errors.currentPassword = required(values.get('currentPassword'));
+    errors.password = required(values.get('password'));
     errors.passwordConfirmation = required(values.get('passwordConfirmation'));
 
     if (values.get('newPassword') !== values.get('passwordConfirmation')) {
-      errors.samePassword = messages.passwordsDontMatch;
+      errors.passwordConfirmation = messages.passwordsDontMatch;
     }
   }
 
