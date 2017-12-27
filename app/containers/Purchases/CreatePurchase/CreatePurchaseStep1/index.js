@@ -73,6 +73,7 @@ class CreatePurchaseStep1 extends Component {
               listContainerClassName="create-purchase_groups-list"
               listProps={{
                 onGroupItemClick: this.handleGroupItemClick,
+                avatarsNumber:5
               }}
             />
             <div className="create-purchase_next-step">

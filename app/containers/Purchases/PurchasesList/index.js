@@ -46,7 +46,6 @@ class PurchasesList extends Component {
               {...purchase}
               isActive={_.get(props.currentPurchase, 'id') === purchase.id || purchase.isPending}
             />
-            <Divider inset />
           </div>
         ))}
       </List>

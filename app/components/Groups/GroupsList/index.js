@@ -10,6 +10,7 @@ const GroupsList = (props) => (
         selected={props.selectedGroup === group.id}
         key={group.id}
         withMenu={props.withMenu}
+        avatarsNumber={props.avatarsNumber}
         onEditClick={() => props.onEditClick(group)}
       />
     ))}

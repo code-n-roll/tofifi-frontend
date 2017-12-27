@@ -18,7 +18,7 @@ class ModalGroupsList extends Component {
           itemsPropName="groups"
           inputPlaceholder="Enter group name"
           listContainerClassName="groups-modal-list"
-          listProps={{ withMenu: true, onEditClick: this.props.onEditClick }}
+          listProps={{ withMenu: true, onEditClick: this.props.onEditClick, avatarsNumber:7 }}
         />
         <div className="go-to-create-purchase-btn">
           <PlusButton onClick={this.props.onPlusClick} />

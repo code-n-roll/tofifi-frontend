@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Avatar from 'react-avatar';
-import FaWrench from 'react-icons/lib/fa/wrench';
+import FaEllipsisV from 'react-icons/lib/fa/ellipsis-v';
 import DropdownMenu from 'react-dd-menu';
 
 import './styles.css';
@@ -47,22 +47,21 @@ class GroupItem extends Component {
         style={props.onClick ? { cursor: 'pointer' } : { cursor: 'auto' }}
       >
         <div style={{ float: 'left' }}>
-          <Avatar name={props.name} round size={50} />
+          <Avatar name={props.name} round size={60} />
         </div>
         <div className="group-item_info" >
           <span className="group-item_info__name">{props.name}</span>
           <div className="group-item-avatars">
-            {props.users.slice(0, 5).map((user) => (
+            {props.users.slice(0, props.avatarsNumber).map((user) => (
               user.avatarUrl ?
-                <img src={user.avatarUrl} role="presentation" className="group-user-avatar-item" /> :
-                <Avatar name={user.username} round size={20} style={{ marginRight: 3 }} />
+                <img src={user.avatarUrl} role="presentation" style={{ marginRight: 8 }} /> :
+                <Avatar name={user.username} round size={30} style={{ marginRight: 8 }} />
             ))}
-            {props.users.length > 5 && <span className="group-item-avatars-dots">...</span>}
           </div>
         </div>
         {props.withMenu && props.isOwner && (
           <div className="group-item-menu-toggler" onClick={this.toggleMenu}>
-            <FaWrench />
+            <FaEllipsisV size={21}/>
           </div>
         )}
         {props.withMenu && props.isOwner && (
