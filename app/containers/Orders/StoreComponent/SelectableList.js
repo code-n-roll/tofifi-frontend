@@ -40,7 +40,7 @@ function wrapState(ComposedComponent) {
 const SelectableList = wrapState(makeSelectable(List));
 
 SelectableList.propTypes = {
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
 };
 
 export default SelectableList;

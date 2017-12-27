@@ -4,6 +4,7 @@ import {
   SET_CURRENT_PURCHASE,
   SET_PENDING_PURCHASE,
   SET_PENDING_PURCHASE_PARTICIPANTS,
+  UPDATE_PURCHASE,
 } from '../constants';
 
 export function getPurchasesRequest() {
@@ -37,5 +38,12 @@ export function setPendingPurchaseParticipants(data) {
   return {
     type: SET_PENDING_PURCHASE_PARTICIPANTS,
     data,
+  };
+}
+
+export function updatePurchase(newPurchase) {
+  return {
+    type: UPDATE_PURCHASE,
+    newPurchase,
   };
 }

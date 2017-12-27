@@ -7,10 +7,9 @@ import SubmittedOrderInfo from './components/SubmittedOrderInfo';
 class OwnerOrderScreen extends Component {
   render() {
     const { purchase } = this.props;
-
     return (
-      purchase.storeOrder.isSumbitted
-        ? <SubmittedOrderInfo purchase={purchase} />
+      purchase.storeOrder.isSubmitted
+        ? <SubmittedOrderInfo users={purchase.users} />
         : <OrderInProgressScreen purchase={purchase} />
     );
   }

@@ -42,9 +42,12 @@ export const createGroupApi = (data) => post(PATHS.GROUPS_PATH, true, data);
 // stores
 export const getStoresApi = () => get(PATHS.STORES_PATH, true);
 export const getStoreCategoriesApi = () => get(PATHS.STORE_CATEGORIES_PATH, true);
-export const getStoreContentApi = id => get(`${PATHS.STORES_PATH}/${id}`, true);
+export const getStoreContentApi = (id) => get(`${PATHS.STORES_PATH}/${id}`, true);
 export const getStoreItemsApi = () => get(PATHS.STORE_ITEMS_PATH, true);
 
 export const createStoreOrderApi = (data) => post(PATHS.STORE_ORDERS_PATH, true, data);
 export const updateStoreOrderApi = (id, data) =>
   put(`${PATHS.STORE_ORDERS_PATH}/${id}`, true, data);
+export const submitStoreOrderApi = (id) =>
+  post(`${PATHS.STORE_ORDERS_PATH}/${id}/submit`, true);
+
