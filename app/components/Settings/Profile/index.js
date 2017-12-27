@@ -8,11 +8,12 @@ class ProfileComponent extends Component {
   render() {
     const { userProfile } = this.props;
 
-    const formInitialData = userProfile !== null ? {
+    const formInitialData = (userProfile && {
       username: userProfile.username,
       email: userProfile.email,
       newPassword: '',
-    } : null;
+      avatarUrl: userProfile.avatarUrl,
+    }) || null;
 
     return (
       <div className="profile-form-wrapper">

@@ -5,23 +5,34 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import SelectUsersList from 'components/Users/SelectUsersList';
 import { makeSelectUsers } from 'pages/common/selectors';
-import { createGroupRequest } from 'pages/common/actions';
+import { createGroupRequest, updateGroupRequest } from 'pages/common/actions';
 import ListFilter from 'components/ListFilter';
 
 
-class ModalAddGroup extends Component {
+class ModalAddEditGroup extends Component {
   constructor(props) {
     super(props);
 
     this.handleGroupNameChange = this.handleGroupNameChange.bind(this);
     this.handleUserStatusChange = this.handleUserStatusChange.bind(this);
     this.processUsers = this.processUsers.bind(this);
-    this.handleCreateGroupClick = this.handleCreateGroupClick.bind(this);
+    this.handleSubmitButtonClick = this.handleSubmitButtonClick.bind(this);
 
     this.state = {
       groupName: '',
       selectedUsers: [],
     };
+  }
+
+  componentDidMount() {
+    const { props } = this;
+
+    if (props.isEditMode) {
+      this.setState({
+        groupName: props.group.name,
+        selectedUsers: props.group.users,
+      });
+    }
   }
 
   handleGroupNameChange(e) {
@@ -39,17 +50,23 @@ class ModalAddGroup extends Component {
     this.setState({ selectedUsers });
   }
 
-  handleCreateGroupClick() {
+  handleSubmitButtonClick() {
     const selectedUsersIds = this.state.selectedUsers.map((user) => user.id);
-    this.props.createGroupRequest({
+    const data = {
       name: this.state.groupName,
       userIds: selectedUsersIds,
-    });
+    };
 
-    this.props.onCreateClick();
+    if (this.props.isEditMode) {
+      this.props.updateGroupRequest({ groupId: this.props.group.id, data });
+    } else {
+      this.props.createGroupRequest(data);
+    }
+
+    this.props.onSubmitClick();
   }
 
-   processUsers(users) {
+  processUsers(users) {
     return users.map((user) => ({
       ...user,
       selected: this.state.selectedUsers && _.findIndex(this.state.selectedUsers, { id: user.id }) !== -1,
@@ -65,6 +82,7 @@ class ModalAddGroup extends Component {
               name="group-name"
               onChange={this.handleGroupNameChange}
               className="mdl-textfield__input"
+              value={this.state.groupName}
             />
             {this.state.groupName === '' &&
               <label
@@ -81,26 +99,38 @@ class ModalAddGroup extends Component {
           itemsPropName="users"
           inputPlaceholder="Enter user name"
           listContainerClassName="users-list create-group-users-list"
+          listItemsPrefix="create-edit-group"
           listProps={{
             onUserStatusChange: this.handleUserStatusChange,
+            listItemsPrefix: 'create-edit-group',
           }}
         />
         <button
           className="mdl-button mdl-js-button mdl-button--raised bg-blue text-white create-group-button "
-          disabled={(!this.state.selectedUsers || this.state.groupName === '')}
-          onClick={this.handleCreateGroupClick}
+          disabled={(!this.state.selectedUsers || this.state.groupName.trim() === '')}
+          onClick={this.handleSubmitButtonClick}
         >
-          Create
+          {this.props.isEditMode ? 'Save changes' : 'Create'}
+        </button>
+        <button
+          className="mdl-button mdl-js-button mdl-button--raised bg-gray create-group-back-button"
+          onClick={this.props.onBackClick}
+        >
+          Back
         </button>
       </div>
     );
   }
 }
 
-ModalAddGroup.propTypes = {
+ModalAddEditGroup.propTypes = {
   users: PropTypes.array,
-  onCreateClick: PropTypes.func,
+  onSubmitClick: PropTypes.func,
   createGroupRequest: PropTypes.func,
+  updateGroupRequest: PropTypes.func,
+  onBackClick: PropTypes.func,
+  isEditMode: PropTypes.bool,
+  group: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -109,6 +139,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = {
   createGroupRequest,
+  updateGroupRequest,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalAddGroup);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalAddEditGroup);

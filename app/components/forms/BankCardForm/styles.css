@@ -1,11 +1,12 @@
 .bank-card-form {
-  display: flex;
-  flex-direction: row;
+  /*display: flex;*/
+  /*flex-direction: row;*/
   align-items: center;
 }
 
 .bank-card-form__preview {
-  padding: 20px;
+  width: 330px;
+  margin: auto;
 }
 
 .bank-card-form__cvc-row  {

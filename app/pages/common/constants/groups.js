@@ -1,0 +1,6 @@
+export const GET_GROUPS_REQUEST = 'common/GET_GROUPS_REQUEST';
+export const SET_GROUPS_DATA = 'common/SET_GROUPS_DATA';
+
+export const SET_GROUP_MODAL_STATE = 'common/SET_GROUP_MODAL_STATE';
+export const CREATE_GROUP_REQUEST = 'common/CREATE_GROUP_REQUEST';
+export const UPDATE_GROUP_REQUEST = 'common/UPDATE_GROUP_REQUEST';

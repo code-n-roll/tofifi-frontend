@@ -13,12 +13,7 @@ function* handleSignIn(action) {
   try {
     const response = yield call(signInApi, formData);
     const token = response.data.access_token;
-
-    const user = {
-      email: response.data.email,
-    };
-
-    yield put(setUserData(user));
+    yield put(setUserData(response.data.user));
     saveAuthToken(token);
 
     yield put(signIn.success());

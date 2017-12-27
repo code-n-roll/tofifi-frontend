@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import BankCardForm from 'components/forms/BankCardForm';
 
 class AddCardComponent extends Component {
-  state = {  }
   render() {
-    let { onSave, onCancel } = this.props;
+    const { onSave, onCancel } = this.props;
 
     return (
       <div>
-        <BankCardForm onCancel={onCancel} onSave={onSave}/>
+        <BankCardForm onCancel={onCancel} onSave={onSave} />
       </div>
     );
   }
@@ -18,6 +17,6 @@ class AddCardComponent extends Component {
 AddCardComponent.propTypes = {
   onSave: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
-}
+};
 
 export default AddCardComponent;

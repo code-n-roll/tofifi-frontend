@@ -1,10 +1,8 @@
 import React from 'react';
 import SignUpForm from 'components/forms/SignUpForm';
-import { Link } from 'react-router';
 import UnloggedLayout from 'components/layouts/UnloggedLayout';
 import GraySection from 'components/sections/GraySection';
 import OnScreenHeightSection from 'components/sections/OnScreenHeightSection';
-import styles from './styles';
 
 class SignUpPage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -14,12 +12,17 @@ class SignUpPage extends React.PureComponent { // eslint-disable-line react/pref
           <OnScreenHeightSection>
             <div className="mdl-typography--text-center">
               <h1 className="logo-font"> Sign Up </h1>
-              <div style={styles.formContainer}>
+              <div className="sign-in-sign-up-form-container">
                 <SignUpForm />
               </div>
-              <Link className="mdl-navigation__link" to="sign_in">
-                Already registered? Click here
-              </Link>
+
+              <h4 className="text-white"> OR </h4>
+
+              <button
+                className="mdl-button mdl-js-button mdl-button--raised bg-blue text-white big-btn"
+              >
+                Go to sign in
+              </button>
             </div>
           </OnScreenHeightSection>
         </GraySection>

@@ -68,3 +68,16 @@ export const del = (path, needAuth = false) => {
       });
   });
 };
+
+export const patch = (path, needAuth = false, data) => {
+  const instance = axiosInstance(needAuth);
+  return new Promise((resolve, reject) => {
+    instance.patch(path, data)
+      .then((response) => {
+        resolve(response);
+      })
+      .catch((error) => {
+        reject(handleError(error.response));
+      });
+  });
+};

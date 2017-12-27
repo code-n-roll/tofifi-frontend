@@ -17,7 +17,7 @@
 body {
   margin: 0;
   overflow-y: hidden;
-  background-color: #f3f3f3;
+  background-color: #fafafa;
 }
 
 /* Disable ugly boxes around images in IE10 */
@@ -80,6 +80,10 @@ a {
   border: 0;
   outline:none;
   cursor: pointer;
+}
+
+.pos-rel {
+  position: relative;
 }
 
 .logo {
@@ -239,13 +243,13 @@ input[type=checkbox]:checked + label {
 .layout-gray-section {
   position: relative;
   width: auto;
-  background-color: #f3f3f3;
-  /*background: url('images/slide01.jpg') center 30% no-repeat;*/
+  opacity: 100%;
   background-size: cover;
 }
 
 .logo-font {
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  color: #ffffff;
   line-height: 1;
   font-weight: 500;
 }
@@ -613,4 +617,21 @@ input[type=checkbox]:checked + label {
 
 textarea:focus, input:focus{
   outline: none;
+}
+
+.sign-in-sign-up-form-container {
+  max-width: 400px;
+  margin: auto auto 30px; 
+  background-color: rgba(243, 243, 243, 1); 
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.sign-up-button {
+  width: 100px;
+  margin: 10px 25px 10px 0px;
+}
+
+.forgot-pass-link {
+  margin: 0px 0px 0px 200px;
 }

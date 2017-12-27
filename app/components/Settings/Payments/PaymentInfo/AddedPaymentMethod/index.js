@@ -9,12 +9,15 @@ class AddedPaymentMethod extends Component {
   render() {
     return (
         <div className="payment-info">
-          <div>
-            <FaVisa className="card-icon"/>
+          <div style={{ marginRight: 5 }}>
+            <FaVisa className="card-icon" />
             <span>****{ this.props.cardDigits }</span>
           </div>
           <div>
-            <button className="mdl-button payment-info__delete">
+            <button
+              className="mdl-button payment-info__delete"
+              onClick={this.props.onRemoveCardClick}
+            >
               Delete
             </button>
           </div>
@@ -24,7 +27,8 @@ class AddedPaymentMethod extends Component {
 }
 
 AddedPaymentMethod.PropTypes = {
-  cardDigits: PropTypes.string
-}
+  cardDigits: PropTypes.string,
+  onRemoveCardClick: PropTypes.func,
+};
 
 export default AddedPaymentMethod;
