@@ -62,7 +62,7 @@ a {
 
 .centered-content {
   margin: 0 auto;
-  width: 1010px;
+  width: 1070px;
 }
 
 .plus-button {
@@ -93,8 +93,6 @@ a {
 }
 
 .list-filter-items-container {
-  overflow-y: scroll;
-  height: calc(100% - 50px);
 }
 
 .input-label {
