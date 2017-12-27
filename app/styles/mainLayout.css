@@ -25,16 +25,6 @@ a img{
   border: 0px;
 }
 
-::-moz-selection {
-  background-color: #6ab344;
-  color: #fff;
-}
-
-::selection {
-  background-color: #6ab344;
-  color: #fff;
-}
-
 .text-green {
  color: #6ab344;
 }
