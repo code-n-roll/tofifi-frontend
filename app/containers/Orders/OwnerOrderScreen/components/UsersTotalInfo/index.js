@@ -6,6 +6,9 @@ import './styles.css';
 
 const UsersTotalInfo = (props) => (
   <div>
+    <div>
+      Need to load data from Roma
+    </div>
     <div className="submitted-order__user-list">
       {
         props.users &&
@@ -13,9 +16,6 @@ const UsersTotalInfo = (props) => (
             <UserOrder key={user.userId} {...user} />
           )
       }
-    </div>
-    <div>
-
     </div>
   </div>
 );
