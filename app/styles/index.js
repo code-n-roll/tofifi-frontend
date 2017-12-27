@@ -4,3 +4,4 @@ import './mainLayout.css';
 import './purchase.css';
 import './modal.css';
 import './groupsModal.css';
+import './customScroll.css';

@@ -72,7 +72,7 @@ a {
 
 .centered-content {
   margin: 0 auto;
-  width: 1010px;
+  width: 1070px;
 }
 
 .plus-button {
@@ -103,8 +103,6 @@ a {
 }
 
 .list-filter-items-container {
-  overflow-y: scroll;
-  height: calc(100% - 50px);
 }
 
 .input-label {
@@ -621,8 +619,8 @@ textarea:focus, input:focus{
 
 .sign-in-sign-up-form-container {
   max-width: 400px;
-  margin: auto auto 30px; 
-  background-color: rgba(243, 243, 243, 1); 
+  margin: auto auto 30px;
+  background-color: rgba(243, 243, 243, 1);
   border-radius: 10px;
   padding: 20px;
 }

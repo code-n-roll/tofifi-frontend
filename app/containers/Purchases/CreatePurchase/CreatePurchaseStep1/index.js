@@ -71,6 +71,7 @@ class CreatePurchaseStep1 extends Component {
               itemsPropName="groups"
               inputPlaceholder="Enter team name"
               listContainerClassName="create-purchase_groups-list"
+              heightRelativeToParent="calc(100% - 110px)"
               listProps={{
                 onGroupItemClick: this.handleGroupItemClick,
                 avatarsNumber:5
@@ -118,6 +119,7 @@ class CreatePurchaseStep1 extends Component {
               itemsPropName="users"
               inputPlaceholder="Enter user name"
               listContainerClassName="create-purchase_users-list"
+              heightRelativeToParent="calc(100% - 180px)"
               listProps={{
                 onUserStatusChange: this.handleUserStatusChange,
               }}

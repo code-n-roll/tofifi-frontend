@@ -1,0 +1,23 @@
+.debtors-container {
+  border-right: 1px solid #d3d3d3;
+  height: 100%;
+  padding: 10px 0;
+}
+
+.debtors-my-statistic {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.debtor-item {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.debtor-item:last-child {
+  margin-bottom: 0;
+}
+
+.debtors-users {
+
+}
