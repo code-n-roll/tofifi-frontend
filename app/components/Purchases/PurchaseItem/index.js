@@ -52,7 +52,7 @@ const PurchaseItem = (props) => (
             }}>
               <ExpandMoreIcon color={ props.isActive ? white : red500 } />
               <span style={{ lineHeight: '24px' }}>
-                {props.sum.toFixed(2)}$
+                {props.sum.toFixed(2)}
               </span>
             </span>
           )}

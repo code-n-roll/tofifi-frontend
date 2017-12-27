@@ -25,16 +25,6 @@ a img{
   border: 0px;
 }
 
-::-moz-selection {
-  background-color: #6ab344;
-  color: #fff;
-}
-
-::selection {
-  background-color: #6ab344;
-  color: #fff;
-}
-
 .text-green {
  color: #6ab344;
 }
@@ -88,7 +78,7 @@ a {
 
 .logo {
   font-size: 20px;
-  color: #7cb342;
+  color: #fff;
   font-weight: bold;
 }
 
