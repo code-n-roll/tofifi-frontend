@@ -55,7 +55,7 @@ class Header extends Component {
           justifyContent: 'center',
           padding: 0
         }}>
-          <div className="mdl-layout__header-row" style={{ width: 1000, padding: 0 }}>
+          <div className="mdl-layout__header-row" style={{ width: 1070, padding: 0 }}>
             <div className="layout-header-spacer mdl-layout-spacer" style={{ marginLeft: 10 }}>
               <Link to='/' style={{ textDecoration: 'none' }}>
                 <Logo />
