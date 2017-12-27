@@ -1,0 +1,33 @@
+.groupsModalHeader_container {
+  height: 50px;
+  background-color: #5580a3;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+.groupsModalHeader_close {
+  float: right;
+  line-height: 30px;
+  cursor: pointer;
+  color: #dadada;
+}
+
+.groupsModalHeader_title {
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 30px;
+}
+
+.groupsModalHeader_close:hover {
+  color: #fff;
+}
+
+.create-group-users-list {
+  height: calc(100% - 180px);
+}
+
+.create-group-button {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}

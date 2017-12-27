@@ -8,6 +8,10 @@ import {
 
   GET_GROUP_USERS_REQUEST,
   SET_GROUP_USERS_DATA,
+
+  SET_GROUP_MODAL_STATE,
+
+  CREATE_GROUP_REQUEST,
 } from './constants';
 
 export function setLoaderStatus(data) {
@@ -57,5 +61,19 @@ export function setGroupUsersData(groupId, users) {
       groupId,
       users,
     },
+  };
+}
+
+export function setGroupModalState(data) {
+  return {
+    type: SET_GROUP_MODAL_STATE,
+    data,
+  };
+}
+
+export function createGroupRequest(data) {
+  return {
+    type: CREATE_GROUP_REQUEST,
+    data,
   };
 }

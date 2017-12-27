@@ -1,0 +1,7 @@
+.submitted-order__user-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  padding: 30px;
+}
