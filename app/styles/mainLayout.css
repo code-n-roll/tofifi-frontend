@@ -25,16 +25,6 @@ a img{
   border: 0px;
 }
 
-::-moz-selection {
-  background-color: #6ab344;
-  color: #fff;
-}
-
-::selection {
-  background-color: #6ab344;
-  color: #fff;
-}
-
 .text-green {
  color: #6ab344;
 }
@@ -72,7 +62,7 @@ a {
 
 .centered-content {
   margin: 0 auto;
-  width: 1010px;
+  width: 1070px;
 }
 
 .plus-button {
@@ -88,7 +78,7 @@ a {
 
 .logo {
   font-size: 20px;
-  color: #7cb342;
+  color: #fff;
   font-weight: bold;
 }
 
@@ -103,8 +93,6 @@ a {
 }
 
 .list-filter-items-container {
-  overflow-y: scroll;
-  height: calc(100% - 50px);
 }
 
 .input-label {
@@ -621,8 +609,8 @@ textarea:focus, input:focus{
 
 .sign-in-sign-up-form-container {
   max-width: 400px;
-  margin: auto auto 30px; 
-  background-color: rgba(243, 243, 243, 1); 
+  margin: auto auto 30px;
+  background-color: rgba(243, 243, 243, 1);
   border-radius: 10px;
   padding: 20px;
 }

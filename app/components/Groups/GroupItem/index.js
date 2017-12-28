@@ -55,7 +55,7 @@ class GroupItem extends Component {
             {props.users.slice(0, props.avatarsNumber).map((user) => (
               user.avatarUrl ?
                 <img src={user.avatarUrl} role="presentation" className="group-user-avatar-item" /> :
-                <Avatar name={user.username} round size={30} style={{ marginRight: 8 }} />
+                <Avatar name={user.username} round size={30} style={{ marginRight: 7 }} />
             ))}
           </div>
         </div>
