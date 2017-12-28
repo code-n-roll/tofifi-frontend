@@ -3,6 +3,8 @@ import Modal from 'react-modal';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Subheader from 'material-ui/Subheader';
+import { grey300 } from 'material-ui/styles/colors';
 import ProfileComponent from 'components/Settings/Profile';
 import PaymentsComponent from 'components/Settings/Payments';
 import DefaultModalHeader from 'components/Modals/DefaultModalHeader';
@@ -15,6 +17,7 @@ import {
 import {
   setSettingsModalState,
   getCurrentUserProfileRequest,
+  removeBankCardRequest,
 } from 'pages/common/actions';
 
 
@@ -23,6 +26,7 @@ class SettingsModal extends Component {
     super(props);
 
     this.handleCloseClick = this.handleCloseClick.bind(this);
+    this.handleRemoveCardClick = this.handleRemoveCardClick.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -35,13 +39,25 @@ class SettingsModal extends Component {
     this.props.setSettingsModalState(false);
   }
 
+  handleRemoveCardClick() {
+    this.props.removeBankCardRequest();
+  }
+
   render() {
     const style = {
       content: {
-        width: 500,
-        minHeight: 600,
+        width: 800,
+        minHeight: 640,
         overflow: 'hidden',
       },
+    };
+
+    const deviderStyle = {
+      position: 'absolute',
+      left: '347px',
+      width: 1,
+      height: '100%',
+      backgroundColor: grey300,
     };
 
     const { props } = this;
@@ -58,8 +74,20 @@ class SettingsModal extends Component {
         <DefaultModalHeader title="Settings" onCloseClick={this.handleCloseClick} />
         {props.userProfile && (
           <div style={{ overflow: 'auto', height: 'calc(100% - 50px)' }}>
-            <ProfileComponent userProfile={props.userProfile} />
-            <PaymentsComponent userProfile={props.userProfile} />
+            <div style={{ width: '335px', float: 'left' }}>
+              <Subheader>Account settings</Subheader>
+              <div style={{ marginLeft: '20px' }}>
+                <ProfileComponent userProfile={props.userProfile} />
+              </div>
+            </div>
+            <div style={deviderStyle} />
+            <div style={{ marginLeft: '350px' }}>
+              <Subheader>Payments settings</Subheader>
+              <PaymentsComponent
+                userProfile={props.userProfile}
+                onRemoveCardClick={this.handleRemoveCardClick}
+              />
+            </div>
           </div>
         )}
       </Modal>
@@ -72,6 +100,7 @@ SettingsModal.propTypes = {
   setSettingsModalState: PropTypes.func,
   getCurrentUserProfileRequest: PropTypes.func,
   userProfile: PropTypes.object,
+  removeBankCardRequest: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -82,6 +111,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = {
   setSettingsModalState,
   getCurrentUserProfileRequest,
+  removeBankCardRequest,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsModal);

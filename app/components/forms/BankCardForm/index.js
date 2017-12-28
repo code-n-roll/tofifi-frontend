@@ -17,6 +17,12 @@ class BankCardForm extends Component {
     flippedPreview: false
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.submitSucceeded) {
+      nextProps.onSave();
+    }
+  }
+
   render() {
     const { handleSubmit, pristine, submitting, invalid, error, card, onCancel } = this.props;
     const { highlightedPreview, flippedPreview } = this.state;
@@ -108,7 +114,8 @@ class BankCardForm extends Component {
             >
               Cancel
             </button>
-            <button type="submit"
+            <button
+              type="submit"
               className="mdl-button mdl-js-button mdl-button--raised bg-blue text-white"
               disabled = { pristine || submitting || invalid }
             >

@@ -12,6 +12,7 @@ class ProfileComponent extends Component {
       username: userProfile.username,
       email: userProfile.email,
       newPassword: '',
+      avatarUrl: userProfile.avatarUrl,
     }) || null;
 
     return (

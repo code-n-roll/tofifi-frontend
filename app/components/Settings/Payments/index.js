@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import PaymentInfo from './PaymentInfo';
 import AddCardComponent from './AddCardComponent';
 
@@ -11,6 +12,7 @@ export default class PaymentsComponent extends Component {
     this.handleCancelSavingCard = this.handleCancelSavingCard.bind(this);
     this.handleSaveCard = this.handleSaveCard.bind(this);
     this.handleCancelSavingCard = this.handleCancelSavingCard.bind(this);
+    this.handleChangeCardClick = this.handleChangeCardClick.bind(this);
 
     this.state = {
       addCard: false,
@@ -53,6 +55,7 @@ export default class PaymentsComponent extends Component {
               <PaymentInfo
                 cardDigits={cardLastFourDigits}
                 onChangeCardClick={this.handleChangeCardClick}
+                onRemoveCardClick={this.props.onRemoveCardClick}
               />
             )
           }

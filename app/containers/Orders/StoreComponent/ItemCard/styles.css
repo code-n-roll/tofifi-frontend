@@ -1,0 +1,16 @@
+.plus-minus-button {
+  display: inline-block;
+  width: 30px;
+}
+
+.store-item-preview {
+  width: 200px;
+  height: 200px;
+}
+
+.store-item-preview__bottom-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

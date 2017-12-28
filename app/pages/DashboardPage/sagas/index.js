@@ -1,6 +1,7 @@
 import { takeEvery } from 'redux-saga/effects';
 
 import purchasesSagas from './purchases';
+import storesSaga from './stores';
 
 function* dashboardWatcherSaga() {
   yield takeEvery(purchasesSagas.getPurchases.actionType, purchasesSagas.getPurchases.handler);

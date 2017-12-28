@@ -15,7 +15,7 @@ class SignUpForm extends Component {
 
     return (
       <form onSubmit={props.handleSubmit(signUp)}>
-        <div style={{ paddingBottom: '50px' }}>
+        <div style={{ paddingBottom: '20px' }}>
           <div>
             <Field
               name="email"
@@ -32,12 +32,12 @@ class SignUpForm extends Component {
               placeholder="Password"
               component={InputControl}
               validate={[required, password]}
-              errorStyles={{ paddingBottom: '70px' }}
+              errorStyles={{ paddingBottom: '50px' }}
             />
           </div>
         </div>
         <button
-          className="mdl-button mdl-js-button mdl-button--raised"
+          className="mdl-button mdl-js-button mdl-button--raised big-btn"
           disabled={props.submitting || props.invalid}
         >
           Sign up

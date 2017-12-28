@@ -81,6 +81,44 @@ export default function createRoutes(store) {
       },
     },
     {
+      path: '/forgot_password',
+      name: 'forgot_password',
+      onEnter: grantedAuth,
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('pages/ForgotPasswordPage'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([component, sagas]) => {
+          renderRoute(component);
+          injectSagas(sagas.default);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    },
+    {
+      path: '/restore_password',
+      name: 'restore_password',
+      onEnter: grantedAuth,
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('pages/RestorePasswordPage'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([component, sagas]) => {
+          renderRoute(component);
+          injectSagas(sagas.default);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    },
+    {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {
