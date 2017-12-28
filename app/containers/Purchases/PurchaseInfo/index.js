@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+
 import { makeSelectCurrentPurchase } from 'pages/DashboardPage/selectors';
 import { payPurchaseRequest, declinePurchaseRequest } from 'pages/DashboardPage/actions';
 
