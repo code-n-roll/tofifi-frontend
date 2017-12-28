@@ -174,7 +174,9 @@
       "express",
       "ip",
       "minimist",
-      "sanitize.css"
+      "sanitize.css",
+      "react-icons",
+      "fs"
     ],
     "include": [
       "core-js",
