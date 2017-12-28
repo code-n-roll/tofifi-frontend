@@ -13,6 +13,7 @@ const sideBarStyles = {
   height: '100%',
   backgroundColor: '#fff',
   display: 'flex',
+  paddingLeft: 90,
 };
 
 
@@ -36,7 +37,7 @@ class SideBar extends Component {
   render() {
     return (
       <div style={sideBarStyles}>
-        <div style={{ width: 90, height: '100%' }}>
+        <div className="debtors-panel">
           <Debtors statistic={data} />
         </div>
         <div style={{ width: 300 }}>

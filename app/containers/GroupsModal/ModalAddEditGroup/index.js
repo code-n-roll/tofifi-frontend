@@ -7,7 +7,7 @@ import SelectUsersList from 'components/Users/SelectUsersList';
 import { makeSelectUsers } from 'pages/common/selectors';
 import { createGroupRequest, updateGroupRequest } from 'pages/common/actions';
 import ListFilter from 'components/ListFilter';
-
+import FlatButton from 'material-ui/FlatButton';
 
 class ModalAddEditGroup extends Component {
   constructor(props) {
@@ -106,19 +106,19 @@ class ModalAddEditGroup extends Component {
             listItemsPrefix: 'create-edit-group',
           }}
         />
-        <button
-          className="mdl-button mdl-js-button mdl-button--raised bg-blue text-white create-group-button "
-          disabled={(!this.state.selectedUsers || this.state.groupName.trim() === '')}
-          onClick={this.handleSubmitButtonClick}
-        >
-          {this.props.isEditMode ? 'Save changes' : 'Create'}
-        </button>
-        <button
-          className="mdl-button mdl-js-button mdl-button--raised bg-gray create-group-back-button"
-          onClick={this.props.onBackClick}
-        >
-          Back
-        </button>
+
+        <div className="create-group-back-button">
+          <FlatButton
+            label="Back"
+            secondary={true}
+            onClick={this.props.onBackClick}/>
+
+          <FlatButton
+            label={this.props.isEditMode ? 'Save changes' : 'Create'}
+            primary={true}
+            disabled={(!this.state.selectedUsers || this.state.groupName.trim() === '')}
+            onClick={this.handleSubmitButtonClick}/>
+        </div>
       </div>
     );
   }
