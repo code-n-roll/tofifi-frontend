@@ -87,6 +87,7 @@ export default function createRoutes(store) {
       getComponent(nextState, cb) {
         const importModules = Promise.all([
           import('pages/ForgotPasswordPage'),
+          import('pages/ForgotPasswordPage/sagas'),
         ]);
 
         const renderRoute = loadModule(cb);
@@ -100,12 +101,13 @@ export default function createRoutes(store) {
       },
     },
     {
-      path: '/restore_password',
+      path: '/restore/confirm',
       name: 'restore_password',
       onEnter: grantedAuth,
       getComponent(nextState, cb) {
         const importModules = Promise.all([
           import('pages/RestorePasswordPage'),
+          import('pages/RestorePasswordPage/sagas'),
         ]);
 
         const renderRoute = loadModule(cb);

@@ -43,3 +43,8 @@ export const removeBankCardApi = () => post(PATHS.REMOVE_BANK_CARD, true);
 export const getGroupsApi = () => get(PATHS.GROUPS_PATH, true);
 export const createGroupApi = (data) => post(PATHS.GROUPS_PATH, true, data);
 export const updateGroupApi = (id, data) => patch(`${PATHS.GROUPS_PATH}/${id}`, true, data);
+
+// reset pass
+export const sendRestorePasswordLinkApi = (data) => post(PATHS.SEND_RESTORE_PASSWORD_LINK, false, data);
+export const restorePasswordApi = (data) => get(PATHS.RESTORE_PASSWORD, false, data);
+export const verifyAccessToRestorePasswordApi = (data) => post(PATHS.VERIFY_ACCESS_TO_RESTORE_PASSWORD, false, data);

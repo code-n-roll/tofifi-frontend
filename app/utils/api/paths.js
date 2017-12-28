@@ -28,3 +28,8 @@ export const STORE_CATEGORIES_PATH = '/orders/categories';
 export const STORE_ITEMS_PATH = '/orders/items';
 
 export const STORE_ORDERS_PATH = '/orders';
+
+// reset pass
+export const SEND_RESTORE_PASSWORD_LINK = '/account/password/reset'
+export const RESTORE_PASSWORD = '/account/password/reset/confirm' 
+export const VERIFY_ACCESS_TO_RESTORE_PASSWORD = '/account/password/reset/verify'

@@ -4,9 +4,10 @@ import InputControl from 'components/controls/InputControl';
 import { required, password } from 'components/forms/validations';
 import { Link } from 'react-router/lib';
 import PropTypes from 'prop-types';
-import { restorePassword } from './actions';
+// import { restorePassword } from './actions';
 
 class RestorePasswordForm extends Component {
+  
   propTypes = {
     clearSubmitErrors: PropTypes.function,
   }
@@ -15,7 +16,8 @@ class RestorePasswordForm extends Component {
     const { props } = this;
 
     return (
-      <form onSubmit={props.handleSubmit(restorePassword)} autoComplete="off">
+      <form>
+        {/* onSubmit={props.handleSubmit(restorePassword)}> */}
         <div>
           <Field
             name="new_password"
