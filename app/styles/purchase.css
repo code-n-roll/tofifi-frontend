@@ -252,16 +252,29 @@
   transition: width 1s;
   background-color: #fff;
   z-index: 10500;
+  border-right: 1px solid #d3d3d3;
+  overflow-y: hidden;
 }
 
-.debtors-panel:hover {
+.debtors-panel-toggler {
+  text-align: center;
+  font-size: 40px;
+  color: #d3d3d3;
+  transition: transform 500ms ease;
+}
+
+.debtors-panel.opened {
   width: 250px;
 }
 
-.debtors-panel:hover .debtors-my-statistic {
+.debtors-panel.opened .debtors-my-statistic {
   opacity: 0;
 }
 
-.debtors-panel:hover .debtors-search {
+.debtors-panel.opened .debtors-search {
   opacity: 1;
+}
+
+.debtors-panel.opened .debtors-panel-toggler {
+  transform: rotate( -180deg );
 }
