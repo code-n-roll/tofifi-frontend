@@ -41,7 +41,6 @@ class RestorePasswordForm extends Component {
         >
           Save
         </button>
-
       </form>
     );
   }
