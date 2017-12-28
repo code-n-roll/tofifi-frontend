@@ -251,7 +251,7 @@
   background-color: #fff;
   z-index: 10500;
   border-right: 1px solid #d3d3d3;
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 .debtors-panel-toggler {
@@ -259,6 +259,7 @@
   font-size: 40px;
   color: #d3d3d3;
   transition: transform 500ms ease;
+  cursor: pointer;
 }
 
 .debtors-panel.opened {
