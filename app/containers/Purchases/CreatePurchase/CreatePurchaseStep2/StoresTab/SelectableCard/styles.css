@@ -1,0 +1,7 @@
+.store-card {
+  max-width: 200px;
+}
+
+.store-card__selected {
+  transform: scale(1.2);
+}

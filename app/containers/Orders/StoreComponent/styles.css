@@ -1,0 +1,39 @@
+.store-component {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.store-component__sidebar {
+  width: 150px;
+  height: 100%;
+}
+
+.store-component__main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 100%;
+}
+
+.store-component__items {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 40px 10px;
+
+  /* FIXME make normal markup */
+  height: 700px;
+  overflow: auto;
+}
+
+.store-component__item {
+  width: 200px;
+  margin: 20px;
+}
+
+.store-component__bottom-row {
+  display: flex;
+  justify-content: flex-end;
+}
