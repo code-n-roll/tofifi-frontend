@@ -9,7 +9,7 @@ const StoreItemsList = (props) => (
     <div>
       { props.items ?
         props.items.map((item) =>
-          <Paper zDepth={1} className="user-order-info__item">
+          <Paper key={item.itemId} zDepth={1} className="user-order-info__item">
             <img src={item.imageUrl} alt={item.name} />
             <div>{item.name}</div>
             <div>
