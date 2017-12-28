@@ -242,3 +242,26 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
+.debtors-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90px;
+  height: 100%;
+  transition: width 1s;
+  background-color: #fff;
+  z-index: 10500;
+}
+
+.debtors-panel:hover {
+  width: 250px;
+}
+
+.debtors-panel:hover .debtors-my-statistic {
+  opacity: 0;
+}
+
+.debtors-panel:hover .debtors-search {
+  opacity: 1;
+}
