@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {Card, CardHeader, CardText} from 'material-ui/Card';
+import { Card, CardHeader, CardText } from 'material-ui/Card';
 
 class UserOrder extends Component {
-  state = {  }
+  state = { }
   render() {
-    let {username, avatarUrl, items, totalSum, isPayedOff } = this.props;
+    const { username, avatarUrl, items, sum, status } = this.props;
     return (
       <Card>
         <CardHeader
@@ -17,26 +17,26 @@ class UserOrder extends Component {
             <ul>
               {
                 items &&
-                  items.map(item =>
-                    <li key={item.name}>{item.name} {item.sum}</li>
+                  items.map((item) =>
+                    <li key={item.itemId}>{item.name} {item.price}</li>
                   )
               }
             </ul>
           </div>
           <div>
-            {totalSum} {isPayedOff}
+            {sum} {status}
           </div>
         </CardText>
-        </Card>
+      </Card>
     );
   }
 }
 
 UserOrder.propTypes = {
-  name: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
   items: PropTypes.array.isRequired,
-  totalSum: PropTypes.number.isRequired,
-  isPayedOff: PropTypes.bool.isRequired
-}
+  sum: PropTypes.oneOfType(Number, null),
+  status: PropTypes.number.isRequired,
+};
 
 export default UserOrder;

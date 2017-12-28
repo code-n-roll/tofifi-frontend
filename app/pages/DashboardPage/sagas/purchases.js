@@ -11,8 +11,12 @@ import { browserHistory } from 'react-router';
 import { makeSelectCurrentUser } from 'containers/App/selectors';
 import { processPurchaseFormDataApi } from './helpers';
 import { setPurchasesData, setPendingPurchase, setPendingPurchaseParticipants } from '../actions';
+import {
+  makeSelectPendingPurchase,
+  makeSelectPurchasesList,
+  makeSelectPendingPurchaseParticipants,
+} from '../selectors';
 import { GET_PURCHASES_REQUEST, PAY_PURCHASE_REQUEST, DECLINE_PURCHASE_REQUEST } from '../constants';
-import { makeSelectPendingPurchase, makeSelectPurchasesList, makeSelectPendingPurchaseParticipants } from '../selectors';
 
 function* getPurchasesData() {
   const response = yield call(getPurchasesApi);

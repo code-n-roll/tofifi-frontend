@@ -112,7 +112,6 @@
 .users {
   background-color: #fff;
   height: 100%;
-  border-right: 1px solid #d3d3d3;
   position: relative;
 }
 
@@ -136,7 +135,6 @@
   right: 0;
   border-top: 1px solid #dcdcdc;
   padding: 10px 20px;
-  display: flex;
   justify-content: space-between;
 }
 

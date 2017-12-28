@@ -8,6 +8,7 @@ import { required } from 'components/forms/validations';
 import { onlyDecimal } from 'components/forms/normalizers';
 import PurchaseParticipantsList from './PurchaseParticipantsList';
 import { createPurchase } from './actions';
+import FlatButton from 'material-ui/FlatButton';
 
 const FORM_NAME = 'PurchaseForm';
 
@@ -80,20 +81,18 @@ class PurchaseForm extends Component {
           />
         </div>
         <div className="create-purchase-buttons-container">
-          <button
-            className="mdl-button mdl-js-button mdl-button--raised"
+          <FlatButton
+            label="Decline"
+            secondary={true}
             onClick={this.props.onCancelClick}
-            style={{ marginRight: 40 }}
-          >
-            Decline
-          </button>
-          <button
-            className="mdl-button mdl-js-button mdl-button--raised bg-green text-white"
+            style={{ marginRight: 20 }}/>
+
+          <FlatButton
+            label="Сreate"
+            primary={true}
             disabled={props.submitting || props.invalid}
-            type="submit"
-          >
-            Сreate
-          </button>
+            onClick={() => this.setState({ step: 2 })}
+            type="submit"/>
         </div>
       </form>
     );

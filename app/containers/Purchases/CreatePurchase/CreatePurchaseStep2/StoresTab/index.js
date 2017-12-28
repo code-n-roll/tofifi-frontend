@@ -11,24 +11,35 @@ import './styles.css';
 
 class StoresTab extends Component {
   state = {
-    selectedId: null
+    selectedId: null,
   };
 
   componentWillMount() {
     this.props.fetchStoresRequest();
   }
 
+  handleStoreCardClick = (id) => () => {
+    this.setState({
+      selectedId: id,
+    });
+  }
+
+  handleSubmitClick = () => {
+    this.props.createStoreOrderRequest(this.state.selectedId);
+  }
+
   render() {
-    let { selectedId } = this.state;
+    const { selectedId } = this.state;
     return (
       <div className="stores-tab">
         <div className="stores-tab__list">
           {
             this.props.stores
-              ? this.props.stores.map(store =>
-                <SelectableCard id={store.id}
+              ? this.props.stores.map((store) =>
+                <SelectableCard
+                  id={store.id}
                   name={store.name}
-                  imageUrl="https://www.underconsideration.com/brandnew/archives/sbarro_logo_detail.png"
+                  imageUrl={store.imageUrl}
                   onClick={this.handleStoreCardClick(store.id)}
                   selected={store.id === selectedId}
                   key={store.id}
@@ -38,45 +49,34 @@ class StoresTab extends Component {
           }
         </div>
         <div className="stores-tab__bottom-row">
-          <FlatButton label="Cancel" secondary={true} onClick={this.props.onCancelClick}/>
+          <FlatButton label="Cancel" secondary onClick={this.props.onCancelClick} />
           <RaisedButton
             onClick={this.handleSubmitClick}
             label="Create order"
-            primary={true}
-            disabled={ selectedId === null }
+            primary
+            disabled={selectedId === null}
           />
         </div>
       </div>
     );
-  }
-
-  handleStoreCardClick = id => e => {
-    this.setState({
-      selectedId: id
-    });
-    console.log(`clicked ${id}`);
-  }
-
-  handleSubmitClick = () => {
-    this.props.createStoreOrderRequest(this.state.selectedId)
   }
 }
 
 StoresTab.propTypes = {
   stores: PropTypes.array,
   fetchStoresRequest: PropTypes.func.isRequired,
-  onCancelClick: PropTypes.func
+  onCancelClick: PropTypes.func,
+
+  createStoreOrderRequest: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  stores: selectStoresList(state)
+  stores: selectStoresList(state),
 });
 
 const mapDispatchToProps = {
   fetchStoresRequest,
-  createStoreOrderRequest
+  createStoreOrderRequest,
 };
 
-StoresTab = connect(mapStateToProps, mapDispatchToProps)(StoresTab);
-
-export default StoresTab;
+export default connect(mapStateToProps, mapDispatchToProps)(StoresTab);
