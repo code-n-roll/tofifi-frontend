@@ -1,54 +1,45 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form/immutable';
 import InputControl from 'components/controls/InputControl';
-import { required, email } from 'components/forms/validations';
+import { required, password } from 'components/forms/validations';
 import { Link } from 'react-router/lib';
 import PropTypes from 'prop-types';
-import { signIn } from './actions';
+import { restorePassword } from './actions';
 
-class SignInForm extends Component {
+class RestorePasswordForm extends Component {
   propTypes = {
     clearSubmitErrors: PropTypes.function,
-  }
-
-  handleEmailValueChange = () => {
-    this.props.clearSubmitErrors();
   }
 
   render() {
     const { props } = this;
 
     return (
-      <form onSubmit={props.handleSubmit(signIn)} autoComplete="off">
+      <form onSubmit={props.handleSubmit(restorePassword)} autoComplete="off">
         <div>
           <Field
-            name="email"
-            type="email"
-            placeholder="Email"
-            onValueChange={this.handleEmailValueChange}
-            component={InputControl}
-            validate={[required, email]}
-          />
-          <Field
-            name="password"
+            name="new_password"
             type="password"
-            placeholder="Password"
+            placeholder="New password"
             component={InputControl}
             validate={[required]}
-            style={{ paddingBottom: '0px' }}
+            style={{ paddingBottom: '20px' }}
           />
-        </div>
-        <div style={{ marginBottom: '20px' }}>
-          <Link to='/forgot_password' className="forgot-pass-link mdl-navigation__link">
-            I&apos;m forgot password
-          </Link>
+          <Field
+            name="new_password_confirmation"
+            type="password"
+            placeholder="New password confirmation"
+            component={InputControl}
+            validate={[required]}
+            style={{ paddingBottom: '40px' }}
+          />
         </div>
         <button
           className="mdl-button mdl-js-button mdl-button--raised bg-blue text-white big-btn big-btn-margin"
           disabled={props.submitting || props.invalid}
           type="submit"
         >
-          Sign in
+          Save
         </button>
 
       </form>
@@ -57,5 +48,5 @@ class SignInForm extends Component {
 }
 
 export default reduxForm({
-  form: 'SignInForm',
-})(SignInForm);
+  form: 'RestorePasswordForm',
+})(RestorePasswordForm);
