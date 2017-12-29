@@ -29,7 +29,7 @@ const ParticipantItem = (props) => (
           <Avatar name={props.username} size={50} round style={avatarStyle} />
         }
       </div>
-      <div style={{ lineHeight: 4.2, marginLeft: 70, fontSize: 18, textAlign: 'left' }}>
+      <div className="owner-purchase-info-item">
         {props.username}
       </div>
     </div>
