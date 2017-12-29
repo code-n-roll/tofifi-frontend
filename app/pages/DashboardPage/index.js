@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import { makeSelectCurrentUser } from 'containers/App/selectors';
 import { logOutRequest } from 'containers/App/actions';
@@ -29,6 +30,17 @@ import { PAGE_STATES } from './constants';
 
 import { getPageStateFromQuery } from './helpers';
 
+const DashboardPageWrapper = styled.div`
+  display: flex;
+  height: 100%;
+`;
+
+const PurchaseViewer = styled.div`
+  flex: 1;
+  height: 100%;
+  border-right: 1px solid #d3d3d3;
+  background: white;
+`;
 
 class DashboardPage extends Component {
   constructor(props) {
@@ -89,21 +101,23 @@ class DashboardPage extends Component {
         onSettingsClick={this.handleSettingsClick}
       >
         <OnScreenHeightSection style={{ height: 'calc(100vh - 70px)', borderBottom: '1px solid #dcdcdc' }}>
-          <SideBar />
-          <div className="purchase-viewer">
-            {
-              this.props.pageState === PAGE_STATES.purchaseInfo &&
-              <PurchaseInfo />
-            }
-            {
-              this.props.pageState === PAGE_STATES.welcome &&
-              <DashboardWelcome />
-            }
-            {
-              this.props.pageState === PAGE_STATES.createPurchase &&
-              <CreatePurchaseStep2 />
-            }
-          </div>
+          <DashboardPageWrapper>
+            <SideBar />
+            <PurchaseViewer>
+              {
+                this.props.pageState === PAGE_STATES.purchaseInfo &&
+                <PurchaseInfo />
+              }
+              {
+                this.props.pageState === PAGE_STATES.welcome &&
+                <DashboardWelcome />
+              }
+              {
+                this.props.pageState === PAGE_STATES.createPurchase &&
+                <CreatePurchaseStep2 />
+              }
+            </PurchaseViewer>
+          </DashboardPageWrapper>
         </OnScreenHeightSection>
         <GroupsModal />
         <SettingsModal />

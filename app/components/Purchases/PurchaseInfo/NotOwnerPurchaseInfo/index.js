@@ -7,7 +7,7 @@ const NotOwnerPurchaseInfo = (props) => (
   <div className="purchase-info-container">
     <div className="purchase-info-centered">
       <div className="purchase-info_credit-card-container">
-        <img src={creditCardImage} role="presentation" />
+        <img src={creditCardImage} role="presentation" style={{ maxWidth: '100%' }} />
         { /* <span className="purchase-info_credit-card__owner">Anton Dacik</span> */ }
       </div>
       <div className="purchase-info_amount">
