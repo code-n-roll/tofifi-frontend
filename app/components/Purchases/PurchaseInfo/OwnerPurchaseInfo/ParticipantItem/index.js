@@ -30,7 +30,7 @@ const ParticipantItem = (props) => (
           <Avatar name={props.username} size={50} round style={avatarStyle} />
         }
       </div>
-      <div className="participant-item__name">
+      <div className="owner-purchase-info-item">
         {props.username}
       </div>
     </div>

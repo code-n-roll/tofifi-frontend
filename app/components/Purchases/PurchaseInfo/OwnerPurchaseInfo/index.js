@@ -4,7 +4,7 @@ import ParticipantItem from './ParticipantItem';
 import CustomScroll from 'react-custom-scroll';
 
 const OwnerPurchaseInfo = (props) => (
-  <CustomScroll heightRelativeToParent="calc(100% - 60px)">
+  <CustomScroll heightRelativeToParent="100%">
     <div className="owner-purchase-info-container">
       {props.users.map((user) => (
         <ParticipantItem {...user} key={user.userId} />
