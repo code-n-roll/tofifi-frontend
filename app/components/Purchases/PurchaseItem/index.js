@@ -30,7 +30,6 @@ const PurchaseItem = (props) => (
           width: 12,
           height: 12
         }} />
-        {/*<RoundIcon size={5} color={ props.isActive ? white : '#6490b1' } />*/}
       </div>
     }
     secondaryText={
