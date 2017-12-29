@@ -52,16 +52,13 @@ class SideBar extends Component {
             onClick={this.toggleDebtorsPanel}
             className={'debtors-panel-toggler'}
           >
-
             <FaAngleDoubleRight />
           </div>
         </div>
-        <div>
-          {this.state.createPurchase ?
-            <CreatePurchaseStep1 onCancelClick={this.handleCreatePurchaseCancelClick} /> :
-            <PurhcasesList onPlusClick={() => this.setState({ createPurchase: true })} />
-          }
-        </div>
+        {this.state.createPurchase ?
+          <CreatePurchaseStep1 onCancelClick={this.handleCreatePurchaseCancelClick} /> :
+          <PurhcasesList onPlusClick={() => this.setState({ createPurchase: true })} />
+        }
       </div>
     );
   }

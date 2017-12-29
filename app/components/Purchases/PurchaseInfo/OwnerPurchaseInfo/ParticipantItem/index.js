@@ -9,6 +9,7 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import FlatButton from 'material-ui/FlatButton';
 import Toggle from 'material-ui/Toggle';
 import Avatar from 'react-avatar';
+import './styles.css';
 
 const avatarStyle = {
   display: 'block',
@@ -23,28 +24,30 @@ const iconStyle = {
 const ParticipantItem = (props) => (
   <Card className="purchase-info_participant-container">
     <div>
-      <div style={{ float: 'left', margin: 15 }}>
+      <div className="participant-item__img">
         {props.avatarUrl ?
-          <img width={50} height={50} src={props.avatarUrl} /> :
+          <img width={50} height={50} src={props.avatarUrl} alt={props.username} /> :
           <Avatar name={props.username} size={50} round style={avatarStyle} />
         }
       </div>
-      <div style={{ lineHeight: 4.2, marginLeft: 70, fontSize: 18, textAlign: 'left' }}>
+      <div className="participant-item__name">
         {props.username}
       </div>
     </div>
-    <CardText style={{ padding: '20px 0 33px 25px', fontSize: 27, textAlign: 'center' }}>
-      {
-        props.sum ? (
-          <span>{props.sum.toFixed(2)} BYN</span>
-        ) : (
-          <span>Own sum</span>
-        )
-      }
-      <div style={{ display: 'inline-block', marginLeft: 25 }}>
-        { props.isPayedOff ?
-          <ActionDoneIcon color='#4caf50' style={iconStyle}/> :
-          <QueryBuilderIcon color='#6490b1' style={iconStyle}/> }
+    <CardText>
+      <div className="participant-item__text">
+        {
+          props.sum ? (
+            <span>{props.sum.toFixed(2)} BYN</span>
+          ) : (
+            <span>Own sum</span>
+          )
+        }
+        <div className="participant-item__action">
+          { props.isPayedOff ?
+            <ActionDoneIcon color='#4caf50' style={iconStyle}/> :
+            <QueryBuilderIcon color='#6490b1' style={iconStyle}/> }
+        </div>
       </div>
     </CardText>
   </Card>
@@ -54,6 +57,7 @@ ParticipantItem.propTypes = {
   sum: PropTypes.number,
   username: PropTypes.string,
   isPayedOff: PropTypes.bool,
+  avatarUrl: PropTypes.string,
 };
 
 export default ParticipantItem;
