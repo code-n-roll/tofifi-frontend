@@ -184,16 +184,22 @@
 
 .owner-purchase-info-container {
   margin: 0;
+  text-align: center;
 }
 
 .purchase-info_participant-container {
-  border: 1px solid #dcdcdc;
   display: inline-block;
-  width: 200px;
-  height: 150px;
+  width: 300px;
   position: relative;
-  margin: 20px 0 0 20px;
   background-color: #fff;
+}
+
+.purchase-info_participant-container:nth-child(even) {
+  margin: 20px 0 0 28px;
+}
+
+.purchase-info_participant-container:nth-child(odd) {
+  margin: 20px 0 0 0;
 }
 
 .purchase-info_participant {
