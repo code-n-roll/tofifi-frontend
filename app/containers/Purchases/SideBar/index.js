@@ -9,13 +9,13 @@ import data from './data';
 import Debtors from './Debtors';
 
 const sideBarStyles = {
-  float: 'left',
-  width: 390,
   borderRight: '1px solid #d3d3d3',
   borderLeft: '1px solid #d3d3d3',
   height: '100%',
   backgroundColor: '#fff',
   display: 'flex',
+  maxWidth: '380px',
+  flex: '1 1 100px',
   paddingLeft: 90,
 };
 
@@ -52,16 +52,13 @@ class SideBar extends Component {
             onClick={this.toggleDebtorsPanel}
             className={'debtors-panel-toggler'}
           >
-
             <FaAngleDoubleRight />
           </div>
         </div>
-        <div style={{ width: 300 }}>
-          {this.state.createPurchase ?
-            <CreatePurchaseStep1 onCancelClick={this.handleCreatePurchaseCancelClick} /> :
-            <PurhcasesList onPlusClick={() => this.setState({ createPurchase: true })} />
-          }
-        </div>
+        {this.state.createPurchase ?
+          <CreatePurchaseStep1 onCancelClick={this.handleCreatePurchaseCancelClick} /> :
+          <PurhcasesList onPlusClick={() => this.setState({ createPurchase: true })} />
+        }
       </div>
     );
   }

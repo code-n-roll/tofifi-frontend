@@ -25,54 +25,29 @@ export default {
       debt: 180,
     },
     {
-      id: 4,
+      id: 5,
       username: 'pqantoha12',
       debt: 180,
     },
     {
-      id: 4,
+      id: 6,
       username: 'pqantoha12',
       debt: 180,
     },
     {
-      id: 4,
+      id: 7,
       username: 'pqantoha12',
       debt: 180,
     },
     {
-      id: 4,
+      id: 8,
       username: 'pqantoha12',
       debt: 180,
     },
     {
-      id: 4,
+      id: 9,
       username: 'pqantoha12',
-      debt: 180,
-    },
-    {
-      id: 4,
-      username: 'pqantoha12',
-      debt: 180,
-    },
-    {
-      id: 4,
-      username: 'pqantoha12',
-      debt: 180,
-    },
-    {
-      id: 4,
-      username: 'pqantoha12',
-      debt: 180,
-    },
-    {
-      id: 4,
-      username: 'pqantoha12',
-      debt: 180,
-    },
-    {
-      id: 4,
-      username: 'pqantoha12',
-      debt: 180,
+      debt: 200,
     },
   ],
 };

@@ -27,7 +27,7 @@ class ListFilter extends Component {
           className="mdl-textfield__input list-filter-input"
         />
         <CustomScroll heightRelativeToParent={heightRelativeToParent || 'calc(100% - 50px)'}>
-          <div className={'list-filter-items-container ' + listContainerClassName}>
+          <div className={`list-filter-items-container ${listContainerClassName}`}>
             {this.props.renderList({ [itemsPropName]: filteredItems, ...listProps })}
           </div>
         </CustomScroll>
@@ -44,6 +44,7 @@ ListFilter.propTypes = {
   renderList: PropTypes.func.isRequired,
   listContainerClassName: PropTypes.string,
   inputPlaceholder: PropTypes.string,
+  heightRelativeToParent: PropTypes.string,
 };
 
 

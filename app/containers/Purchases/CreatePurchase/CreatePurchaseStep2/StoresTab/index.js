@@ -63,7 +63,7 @@ class StoresTab extends Component {
 }
 
 StoresTab.propTypes = {
-  stores: PropTypes.array,
+  stores: PropTypes.object,
   fetchStoresRequest: PropTypes.func.isRequired,
   onCancelClick: PropTypes.func,
 

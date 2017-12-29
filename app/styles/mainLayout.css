@@ -62,7 +62,8 @@ a {
 
 .centered-content {
   margin: 0 auto;
-  width: 1070px;
+  width: 100%;
+  max-width: 1070px;
 }
 
 .plus-button {
@@ -101,6 +102,7 @@ a {
 
 .fill-parent {
   height: 100%;
+  width: 100%;
 }
 
 
@@ -173,32 +175,6 @@ input[type=checkbox]:checked + label {
     color: white;
     font-weight: 700;
     font-size: 14px;
-  }
-
-  .layout-navigation-container {
-    /* Simple hack to make the overflow happen to the left instead... */
-    direction: rtl;
-    -webkit-order: 1;
-        -ms-flex-order: 1;
-            order: 1;
-    width: 500px;
-    transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-        width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .layout-navigation {
-    /* ... and now make sure the content is actually LTR */
-    direction: ltr;
-    -webkit-justify-content: flex-end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
-    width: 800px;
-    max-height: 60px;
-  }
-
-  .layout-search-box.is-focused + .layout-navigation-container {
-    opacity: 0;
-    width: 100px;
   }
 
 
@@ -519,83 +495,8 @@ input[type=checkbox]:checked + label {
     top: 6px;
   }
 
-
 .layout-link-menu:hover {
   cursor: pointer;
-}
-
-
-/**** Mobile layout ****/
-@media (max-width: 900px) {
-  .layout-navigation-container {
-    display: none;
-  }
-
-  .layout-mobile-title {
-    display: block !important;
-    position: absolute;
-    left: calc(50% - 70px);
-    top: 12px;
-    transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  /* WebViews in iOS 9 break the "~" operator, and WebViews in OS X 10.10 break
-     consecutive "+" operators in some cases. Therefore, we need to use both
-     here to cover all the bases. */
-  .layout.layout-search-box.is-focused ~ .layout-mobile-title,
-  .layout-search-box.is-focused + .layout-navigation-container + .layout-mobile-title {
-    opacity: 0;
-  }
-
-  .layout-more-button {
-    display: none;
-  }
-
-  .layout-search-box.is-focused {
-    width: calc(100% - 48px);
-  }
-
-  .layout-search-box .mdl-textfield__expandable-holder {
-    width: 100%;
-  }
-
-  .layout-be-together-section {
-    height: 350px;
-  }
-
-  .layout-slogan {
-    font-size: 26px;
-    margin: 0 16px;
-    padding-top: 24px;
-  }
-
-  .layout-sub-slogan {
-    font-size: 16px;
-    margin: 0 16px;
-    padding-top: 8px;
-  }
-
-  .layout-create-character {
-    padding-top: 200px;
-    font-size: 16px;
-  }
-
-  .layout-create-character img {
-    height: 12px;
-  }
-
-  .layout-fab {
-    display: none;
-  }
-
-  .layout-wear-band-text {
-    margin-left: 0;
-    padding: 16px;
-  }
-
-  .layout-footer .mdl-mega-footer--bottom-section {
-    display: none;
-  }
 }
 
 .mdl-tabs__tab.is-active {

@@ -4,11 +4,12 @@ import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Subheader from 'material-ui/Subheader';
-import { grey300 } from 'material-ui/styles/colors';
+import CustomScroll from 'react-custom-scroll';
+
+
 import ProfileComponent from 'components/Settings/Profile';
 import PaymentsComponent from 'components/Settings/Payments';
 import DefaultModalHeader from 'components/Modals/DefaultModalHeader';
-
 import {
   makeSelectSettingsModalState,
   makeSelectCurrentUserProfile,
@@ -20,6 +21,7 @@ import {
   removeBankCardRequest,
 } from 'pages/common/actions';
 
+import './styles.css';
 
 class SettingsModal extends Component {
   constructor(props) {
@@ -46,18 +48,11 @@ class SettingsModal extends Component {
   render() {
     const style = {
       content: {
-        width: 800,
+        width: '90%',
+        maxWidth: 800,
         minHeight: 640,
         overflow: 'hidden',
       },
-    };
-
-    const deviderStyle = {
-      position: 'absolute',
-      left: '347px',
-      width: 1,
-      height: '100%',
-      backgroundColor: grey300,
     };
 
     const { props } = this;
@@ -73,22 +68,22 @@ class SettingsModal extends Component {
       >
         <DefaultModalHeader title="Settings" onCloseClick={this.handleCloseClick} />
         {props.userProfile && (
-          <div style={{ overflow: 'auto', height: 'calc(100% - 50px)' }}>
-            <div style={{ width: '335px', float: 'left' }}>
-              <Subheader>Account settings</Subheader>
-              <div style={{ marginLeft: '20px' }}>
+          <CustomScroll heightRelativeToParent="calc(100% - 60px)">
+            <div className="settings-modal__body">
+              <div className="settings-modal__section">
+                <Subheader>Account settings</Subheader>
                 <ProfileComponent userProfile={props.userProfile} />
               </div>
+              <div className="settings-modal__divider"></div>
+              <div className="settings-modal__section settings-modal__payments-section">
+                <Subheader>Payments settings</Subheader>
+                <PaymentsComponent
+                  userProfile={props.userProfile}
+                  onRemoveCardClick={this.handleRemoveCardClick}
+                />
+              </div>
             </div>
-            <div style={deviderStyle} />
-            <div style={{ marginLeft: '350px' }}>
-              <Subheader>Payments settings</Subheader>
-              <PaymentsComponent
-                userProfile={props.userProfile}
-                onRemoveCardClick={this.handleRemoveCardClick}
-              />
-            </div>
-          </div>
+          </CustomScroll>
         )}
       </Modal>
     );

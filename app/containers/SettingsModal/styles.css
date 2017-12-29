@@ -1,0 +1,30 @@
+.settings-modal__body {
+  height: calc(100% - 50px);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.settings-modal__section {
+  padding: 0 30px;
+}
+
+.settings-modal__payments-section {
+  min-width: 390px;
+}
+
+.settings-modal__divider {
+  width: 1px;
+  height: 100%;
+  background-color: #e3e3e3;
+}
+
+@media (max-width: 830px) {
+  .settings-modal__divider {
+    display: none;
+  }
+}
+
