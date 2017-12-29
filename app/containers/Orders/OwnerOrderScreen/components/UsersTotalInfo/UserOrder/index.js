@@ -35,7 +35,7 @@ class UserOrder extends Component {
 UserOrder.propTypes = {
   username: PropTypes.string.isRequired,
   items: PropTypes.array.isRequired,
-  sum: PropTypes.oneOfType(Number, null),
+  sum: PropTypes.number,
   status: PropTypes.number.isRequired,
 };
 

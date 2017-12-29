@@ -48,7 +48,7 @@ class Debtors extends Component {
         <CustomScroll heightRelativeToParent="calc(100% - 60px)">
           <div className="debtors-users">
             {users.map((user) => (
-              <div className="debtor-item">
+              <div key={user.id} className="debtor-item">
                 <Avatar name={user.username} round size={50} style={{ opacity: 0.5, position: 'absolute', left: 10 }} />
                 <span className="debtor-username">{user.username}</span>
               </div>

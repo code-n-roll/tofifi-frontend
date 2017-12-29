@@ -41,12 +41,11 @@ class PurchasesList extends Component {
     return (
       <List>
         {props.items.map((purchase) => (
-          <div>
-            <PurchaseItem
-              {...purchase}
-              isActive={_.get(props.currentPurchase, 'id') === purchase.id || purchase.isPending}
-            />
-          </div>
+          <PurchaseItem
+            {...purchase}
+            key={purchase.id || -1}
+            isActive={_.get(props.currentPurchase, 'id') === purchase.id || purchase.isPending}
+          />
         ))}
       </List>
     );

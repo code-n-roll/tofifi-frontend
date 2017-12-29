@@ -34,7 +34,13 @@ const ParticipantItem = (props) => (
       </div>
     </div>
     <CardText style={{ padding: '20px 0 33px 25px', fontSize: 27, textAlign: 'center' }}>
-      {props.sum.toFixed(2)} BYN
+      {
+        props.sum ? (
+          <span>{props.sum.toFixed(2)} BYN</span>
+        ) : (
+          <span>Own sum</span>
+        )
+      }
       <div style={{ display: 'inline-block', marginLeft: 25 }}>
         { props.isPayedOff ?
           <ActionDoneIcon color='#4caf50' style={iconStyle}/> :

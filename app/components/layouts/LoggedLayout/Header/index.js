@@ -95,7 +95,6 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  inverse: false,
   onLogOut: PropTypes.func,
   onGroupLinkClick: PropTypes.func,
   onSettingsClick: PropTypes.func,
