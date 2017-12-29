@@ -182,9 +182,26 @@
   width: 150px;
 }
 
+.owner-purchase-info-container_scroll {
+  overflow: scroll;
+  position: relative;
+  height: 100%;
+}
+
 .owner-purchase-info-container {
-  margin: 0;
   text-align: center;
+  margin: 0 0 20px 0;
+}
+
+.owner-purchase-info-item {
+  line-height: 4.2;
+  margin-left: 70px;
+  margin-right: 18px;
+  font-size: 18px;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .purchase-info_participant-container {
