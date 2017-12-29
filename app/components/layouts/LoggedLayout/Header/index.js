@@ -19,6 +19,9 @@ const HeaderRow = styled.div`
   justify-content: space-between;
   height: ${headerHeight}px;
   background-color: #5682a3;
+  width: 100%;
+  max-width: 1070px;
+  margin: 0 auto;
 `;
 
 class Header extends Component {
@@ -58,7 +61,7 @@ class Header extends Component {
     return (
       <div className="layout-header mdl-layout__header mdl-layout__header--waterfall" style={headerStyle}>
         <HeaderRow className="mdl-layout__header-row layout-header-row">
-          <div className="layout-header-spacer mdl-layout-spacer" style={{ marginLeft: 10 }}>
+          <div className="layout-header-spacer mdl-layout-spacer">
             <Link to="/" style={{ textDecoration: 'none' }}>
               <Logo />
             </Link>

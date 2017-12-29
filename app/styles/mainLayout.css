@@ -159,7 +159,7 @@ input[type=checkbox]:checked + label {
 
 .layout-header {
   overflow: visible;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: #5682a3;
 }
 
   .layout-header .material-icons {
