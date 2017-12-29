@@ -6,6 +6,7 @@ import {
   createStoreOrderApi,
   updateStoreOrderApi,
   getStoreContentApi,
+  submitStoreOrderApi,
 } from 'utils/api/requests';
 import * as ActionTypes from '../constants';
 import {
@@ -14,6 +15,8 @@ import {
   setPurchasesData,
   setPendingPurchase,
   setPendingPurchaseParticipants,
+  updatePurchase,
+  submitStoreOrderSuccess,
 } from '../actions';
 import {
   makeSelectPendingPurchase,
@@ -59,6 +62,7 @@ function* createStoreOrder(action) {
 
 function* updateStoreOrder(action) {
   const { orderId, data } = action;
+
   const reqData = {
     items: data.map((item) => ({
       itemId: item.id,
@@ -67,8 +71,19 @@ function* updateStoreOrder(action) {
     })),
   };
 
-  console.log(orderId, reqData);
-  yield call(updateStoreOrderApi, orderId, reqData);
+  const response = yield call(updateStoreOrderApi, orderId, reqData);
+
+  const purchase = response.data;
+  console.log(purchase);
+  yield put(updatePurchase(purchase));
+}
+
+function* submitStoreOrder(action) {
+  const { orderId } = action;
+  console.log(orderId);
+
+  yield call(submitStoreOrderApi, orderId);
+  yield put(submitStoreOrderSuccess(orderId));
 }
 
 export default {
@@ -76,4 +91,5 @@ export default {
   fetchStoreContent: { actionType: ActionTypes.FETCH_STORE_CONTENT_REQUEST, handler: fetchStoreContent },
   createStoreOrder: { actionType: ActionTypes.CREATE_STORE_ORDER_REQUEST, handler: createStoreOrder },
   updateStoreOrder: { actionType: ActionTypes.UPDATE_STORE_ORDER_REQUEST, handler: updateStoreOrder },
+  submitStoreOrder: { actionType: ActionTypes.SUBMIT_STORE_ORDER_REQUEST, handler: submitStoreOrder },
 };

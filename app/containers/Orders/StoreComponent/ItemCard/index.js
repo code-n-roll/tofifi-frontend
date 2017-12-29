@@ -20,13 +20,13 @@ class ItemCard extends Component {
       this.setState({
         amount: nextAmount,
       });
-
-      this.props.onSelectItem(id, nextAmount, price * nextAmount);
     }
+
+    this.props.onSelectItem(id, nextAmount, price * nextAmount);
   }
 
   render() {
-    const { name, description, price, imageUrl } = this.props;
+    const { name, description, imageUrl } = this.props;
     const { amount } = this.state;
     return (
       <Card>
@@ -37,26 +37,21 @@ class ItemCard extends Component {
             <img className="store-item-preview" src={imageUrl} alt={name} />
           </div>
         </CardMedia>
-        <CardActions className="store-item-preview__bottom-row">
-          <div>
-            <div className="plus-minus-button">
-              <FlatButton
-                label="-"
-                fullWidth
-                onClick={this.handleChangeAmount(-1)}
-              />
-            </div>
-            <span>{amount}</span>
-            <div className="plus-minus-button">
-              <FlatButton
-                label="+"
-                fullWidth
-                onClick={this.handleChangeAmount(1)}
-              />
-            </div>
+        <CardActions>
+          <div className="plus-minus-button">
+            <FlatButton
+              label="-"
+              fullWidth
+              onClick={this.handleChangeAmount(-1)}
+            />
           </div>
-          <div>
-            <span>{price}</span>
+          <span>{amount}</span>
+          <div className="plus-minus-button">
+            <FlatButton
+              label="+"
+              fullWidth
+              onClick={this.handleChangeAmount(1)}
+            />
           </div>
         </CardActions>
       </Card>
@@ -68,7 +63,7 @@ ItemCard.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string,
-  price: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
   imageUrl: PropTypes.string.isRequired,
   onSelectItem: PropTypes.func.isRequired,
 };

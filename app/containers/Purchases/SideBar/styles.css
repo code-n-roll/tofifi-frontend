@@ -1,17 +1,32 @@
 .debtors-container {
-  border-right: 1px solid #d3d3d3;
-  height: 100%;
+  height: calc(100% - 50px);
   padding: 10px 0;
+
 }
 
 .debtors-my-statistic {
   margin-bottom: 20px;
-  text-align: center;
+  margin-left: 20px;
+  transition: opacity 500ms 500ms;
+}
+
+.debtors-search {
+  position: absolute;
+  top: 10px;
+  max-width: 150px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: opacity 300ms 300ms;
+  opacity: 0;
 }
 
 .debtor-item {
   margin-bottom: 20px;
-  text-align: center;
+  margin-left: 10px;
+  overflow: hidden;
+  min-height: 50px;
+  padding-left: 90px;
+  position: relative;
 }
 
 .debtor-item:last-child {

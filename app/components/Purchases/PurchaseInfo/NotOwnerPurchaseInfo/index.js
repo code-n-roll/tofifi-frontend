@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import creditCardImage from './credit-card.png';
+import FlatButton from 'material-ui/FlatButton';
 
 const NotOwnerPurchaseInfo = (props) => (
   <div className="purchase-info-container">
@@ -14,19 +15,16 @@ const NotOwnerPurchaseInfo = (props) => (
       </div>
     </div>
     <div className="purchase-info_buttons">
-      <button
-        className="mdl-button mdl-js-button mdl-button--raised"
-        style={{ marginRight: 40 }}
-        onClick={props.onDeclineClick}
-      >
-        DECLINE
-      </button>
-      <button
-        className="mdl-button mdl-js-button mdl-button--raised bg-green text-white"
-        onClick={props.onPayClick}
-      >
-        PAY
-      </button>
+      <FlatButton
+        label="Decline"
+        secondary={true}
+        style={{ marginRight: 20 }}
+        onClick={props.onDeclineClick}/>
+
+      <FlatButton
+        label="Pay"
+        primary={true}
+        onClick={props.onPayClick}/>
     </div>
   </div>
 );

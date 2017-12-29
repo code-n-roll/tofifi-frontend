@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
 import PurhcasesList from 'containers/Purchases/PurchasesList';
 import CreatePurchaseStep1 from 'containers/Purchases/CreatePurchase/CreatePurchaseStep1';
 import { PAGE_STATES } from 'pages/DashboardPage/constants';
+import FaAngleDoubleRight from 'react-icons/lib/fa/angle-double-right';
+
 import data from './data';
 import Debtors from './Debtors';
 
@@ -13,9 +16,8 @@ const sideBarStyles = {
   height: '100%',
   backgroundColor: '#fff',
   display: 'flex',
+  paddingLeft: 90,
 };
-
-
 
 
 class SideBar extends Component {
@@ -23,9 +25,11 @@ class SideBar extends Component {
     super(props);
 
     this.handleCreatePurchaseCancelClick = this.handleCreatePurchaseCancelClick.bind(this);
+    this.toggleDebtorsPanel = this.toggleDebtorsPanel.bind(this);
 
     this.state = {
       createPurchase: false,
+      debtorsOpened: false,
     };
   }
 
@@ -33,11 +37,24 @@ class SideBar extends Component {
     this.setState({ createPurchase: false });
   }
 
+  toggleDebtorsPanel() {
+    this.setState((state) => ({
+      debtorsOpened: !state.debtorsOpened,
+    }));
+  }
+
   render() {
     return (
       <div style={sideBarStyles}>
-        <div style={{ width: 90, height: '100%' }}>
+        <div className={classNames('debtors-panel', { opened: this.state.debtorsOpened })}>
           <Debtors statistic={data} />
+          <div
+            onClick={this.toggleDebtorsPanel}
+            className={'debtors-panel-toggler'}
+          >
+
+            <FaAngleDoubleRight />
+          </div>
         </div>
         <div style={{ width: 300 }}>
           {this.state.createPurchase ?

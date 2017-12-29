@@ -30,7 +30,6 @@ const PurchaseItem = (props) => (
           width: 12,
           height: 12
         }} />
-        {/*<RoundIcon size={5} color={ props.isActive ? white : '#6490b1' } />*/}
       </div>
     }
     secondaryText={
@@ -42,7 +41,7 @@ const PurchaseItem = (props) => (
               verticalAlign: 'bottom'
             }}>
               <ExpandLessIcon color={ props.isActive ? white : green500 } />
-              {props.totalSum.toFixed(2)}
+              {props.totalSum ? props.totalSum.toFixed(2) : null}
             </span>
           )}
           {!props.isOwner && !props.isPending && (
@@ -52,7 +51,7 @@ const PurchaseItem = (props) => (
             }}>
               <ExpandMoreIcon color={ props.isActive ? white : red500 } />
               <span style={{ lineHeight: '24px' }}>
-                {props.sum.toFixed(2)}
+                {props.sum ? props.sum.toFixed(2) : null}
               </span>
             </span>
           )}

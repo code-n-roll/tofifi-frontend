@@ -5,12 +5,14 @@ import {
   FETCH_CATEGORIES_SUCCESS,
   FETCH_ITEMS_SUCCESS,
   FETCH_STORE_CONTENT_SUCCESS,
+  UPDATE_CHOOSED_ITEMS,
 } from '../constants';
 
 const initialState = fromJS({
   stores: [],
   categories: [],
   items: [],
+  choosedItems: List(),
 });
 
 export default function storesReducer(state = initialState, action) {
@@ -27,6 +29,9 @@ export default function storesReducer(state = initialState, action) {
     case FETCH_ITEMS_SUCCESS:
       return state
         .set('items', new List(action.data));
+    case UPDATE_CHOOSED_ITEMS:
+      return state
+        .set('choosedItems', new List(action.items));
     default:
       return state;
   }

@@ -8,3 +8,6 @@ export const selectStoresList = (state) =>
 
 export const selectStoreContent = (state) =>
   selectStores(state).get('storeContent');
+
+export const selectChoosedItems = (state) =>
+  selectStores(state).get('choosedItems');

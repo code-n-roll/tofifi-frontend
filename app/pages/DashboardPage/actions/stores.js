@@ -53,10 +53,15 @@ export const updateStoreOrderSuccess = () => ({
 });
 
 export const submitStoreOrderRequest = (orderId) => ({
-  type: ActionTypes.SUBMIT_STORE_ORDER_SUCCESS,
+  type: ActionTypes.SUBMIT_STORE_ORDER_REQUEST,
   orderId,
 });
 
 export const submitStoreOrderSuccess = () => ({
-  type: ActionTypes.SUBMIT_STORE_ORDER_REQUEST,
+  type: ActionTypes.SUBMIT_STORE_ORDER_SUCCESS,
+});
+
+export const updateChoosedItems = (items) => ({
+  type: ActionTypes.UPDATE_CHOOSED_ITEMS,
+  items,
 });

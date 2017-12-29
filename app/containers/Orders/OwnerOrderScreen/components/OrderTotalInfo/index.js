@@ -1,26 +1,41 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import RaisedButton from 'material-ui/RaisedButton';
+import { connect } from 'react-redux';
 
-import UserOrder from './UserOrder';
-import './styles.css';
+import { submitStoreOrderRequest } from 'pages/DashboardPage/actions';
+import UsersTotalInfo from '../UsersTotalInfo';
 
 class OrderTotalInfo extends Component {
+  handleSubmitOrder = () => {
+    this.props.submitStoreOrderRequest(this.props.purchaseId);
+  }
+
   render() {
     return (
-      <div className="submitted-order__user-list">
-        {
-          this.props.users &&
-            this.props.users.map(user =>
-              <UserOrder key={user.id} {...user} />
-            )
-        }
+      <div>
+        <UsersTotalInfo users={this.props.users} />
+        <div>
+          <RaisedButton
+            label="Submit order"
+            onClick={this.handleSubmitOrder}
+            primary
+          />
+        </div>
       </div>
     );
   }
 }
 
 OrderTotalInfo.propTypes = {
-  users: PropTypes.array.isRequired
-}
+  users: PropTypes.array.isRequired,
+  purchaseId: PropTypes.number.isRequired,
 
-export default OrderTotalInfo;
+  submitStoreOrderRequest: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = {
+  submitStoreOrderRequest,
+};
+
+export default connect(() => ({}), mapDispatchToProps)(OrderTotalInfo);

@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import OrderTotalInfo from '../OrderTotalInfo';
+import UsersTotalInfo from '../UsersTotalInfo';
 
 class SubmittedOrderInfo extends Component {
   render() {
     return (
       <div>
-        <OrderTotalInfo userOrders={this.props.userOrders} />
+        <UsersTotalInfo users={this.props.users} />
       </div>
     );
   }
 }
 
 SubmittedOrderInfo.propTypes = {
-  userOrders: PropTypes.array.isRequired
-}
+  users: PropTypes.array.isRequired,
+};
 
 export default SubmittedOrderInfo;
