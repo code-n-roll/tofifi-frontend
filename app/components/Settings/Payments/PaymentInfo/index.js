@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import AddedPaymentMethod from './AddedPaymentMethod';
 import './styles.css';
@@ -29,12 +30,11 @@ class PaymentInfo extends Component {
           )
         }
         <div>
-          <button
-            className="mdl-button mdl-js-button mdl-button--raised bg-blue text-white"
+          <RaisedButton
+            label= {buttonText}
+            primary={true}
             onClick={this.props.onChangeCardClick}
-          >
-            {buttonText}
-          </button>
+          />
         </div>
       </div>
     );

@@ -1,5 +1,8 @@
 .payments-wrapper {
-  justify-content: center;
-
+  /*justify-content: center;*/
+  position: relative;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
