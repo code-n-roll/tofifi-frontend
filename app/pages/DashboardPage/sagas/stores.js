@@ -26,7 +26,6 @@ import {
 
 function* fetchStores() {
   const response = yield call(getStoresApi);
-  console.log('fetch stores');
   yield put(fetchStoresSuccess(response.data));
 }
 

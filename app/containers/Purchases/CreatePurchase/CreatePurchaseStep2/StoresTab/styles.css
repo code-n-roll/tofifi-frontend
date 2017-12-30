@@ -9,11 +9,16 @@
 .stores-tab__list {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-around;
 }
 
 .stores-tab__bottom-row {
   display: flex;
   justify-content: flex-end;
-  padding: 0 40px;
+  flex-wrap: wrap;
+}
+
+.stores-tab__button {
+  margin: 10px;
 }
