@@ -1,6 +1,5 @@
 .settings-modal__body {
-  height: calc(100% - 50px);
-
+  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -8,8 +7,8 @@
   align-items: stretch;
 }
 
-.settings-modal__section {
-  padding: 0 30px;
+.settings-modal__profile_section {
+  padding: 0 25px 0 40px;
 }
 
 .settings-modal__payments-section {

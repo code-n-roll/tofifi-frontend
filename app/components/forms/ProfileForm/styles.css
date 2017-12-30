@@ -1,5 +1,6 @@
 .profile-form {
-  max-width: 500px
+  max-width: 500px;
+  margin-top: 10px;
 }
 
 .profile-form__error {

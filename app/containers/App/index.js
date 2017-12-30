@@ -9,6 +9,9 @@ const muiTheme = getMuiTheme({
   },
   flatButton: {
     fontWeight: 600
+  },
+  subheader: {
+    fontWeight: 700
   }
 });
 

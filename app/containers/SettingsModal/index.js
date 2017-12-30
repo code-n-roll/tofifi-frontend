@@ -55,6 +55,11 @@ class SettingsModal extends Component {
       },
     };
 
+    const subheaderStyle = {
+      fontSize:16,
+      marginTop: 10
+    };
+
     const { props } = this;
 
     return (
@@ -68,15 +73,15 @@ class SettingsModal extends Component {
       >
         <DefaultModalHeader title="Settings" onCloseClick={this.handleCloseClick} />
         {props.userProfile && (
-          <CustomScroll heightRelativeToParent="calc(100% - 60px)">
+          <CustomScroll heightRelativeToParent="calc(100% - 50px)">
             <div className="settings-modal__body">
-              <div className="settings-modal__section">
-                <Subheader>Account settings</Subheader>
+              <div className="settings-modal__profile_section">
+                <Subheader style={subheaderStyle}>Account settings</Subheader>
                 <ProfileComponent userProfile={props.userProfile} />
               </div>
               <div className="settings-modal__divider"></div>
               <div className="settings-modal__section settings-modal__payments-section">
-                <Subheader>Payments settings</Subheader>
+                <Subheader style={subheaderStyle}>Payments settings</Subheader>
                 <PaymentsComponent
                   userProfile={props.userProfile}
                   onRemoveCardClick={this.handleRemoveCardClick}

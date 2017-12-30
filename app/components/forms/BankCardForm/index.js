@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Field, reduxForm, formValueSelector } from 'redux-form/immutable';
 import PropTypes from 'prop-types';
 import ReactBankCard from 'react-bank-card';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from 'react-redux';
 import { required } from 'components/forms/validations';
 
@@ -29,6 +31,7 @@ class BankCardForm extends Component {
     return (
       <form onSubmit={handleSubmit(addBankCard)}
         className="bank-card-form"
+        style={{marginTop: 40}}
         autoComplete="off"
       >
         <div className="bank-card-form__preview">
@@ -43,12 +46,12 @@ class BankCardForm extends Component {
           />
         </div>
         <div>
-          <div>
+          <div style={{width: 390, padding: '0 60px 0 40px'}}>
             <div>
-              <Field
+              <TextField
                 name="name"
                 type="text"
-                placeholder="Holder name"
+                floatingLabelText="Holder name"
                 onFocus={this.onFieldFocus}
                 normalize={normalizers.name}
                 validate={[required]}
@@ -56,10 +59,9 @@ class BankCardForm extends Component {
               />
             </div>
             <div>
-              <Field
+              <TextField
                 name="number"
-                type="number"
-                placeholder="Card number"
+                floatingLabelText="Card number"
                 onFocus={this.onFieldFocus}
                 normalize={normalizers.number}
                 validate={[required, validations.cardNumber]}
@@ -68,34 +70,37 @@ class BankCardForm extends Component {
             </div>
             <div className="bank-card-form__cvc-row">
               <div className="bank-card-form__expiry-row">
-                <Field
+                <TextField
                   name="expiryMonth"
                   type="number"
-                  placeholder="MM"
+                  floatingLabelText="MM"
                   className="bank-card-form__small-input"
+                  style={{width: 40}}
                   onFocus={this.onFieldFocus}
                   normalize={normalizers.month}
                   validate={[required]}
                   component={InputControl}
                 />
                 <div className="bank-card-form__expiry-divider">/</div>
-                <Field
+                <TextField
                   name="expiryYear"
                   type="number"
-                  placeholder="YY"
+                  floatingLabelText="YY"
                   className="bank-card-form__small-input"
+                  style={{width: 40}}
                   onFocus={this.onFieldFocus}
                   normalize={normalizers.year}
                   validate={[required]}
                   component={InputControl}
                 />
               </div>
-              <Field
+              <TextField
                 name="cvc"
                 type="number"
                 inputProps={{max: 999}}
-                placeholder="CVC"
+                floatingLabelText="CVC"
                 className="bank-card-form__small-input"
+                style={{width: 40}}
                 onFocus={this.onCvcFocus}
                 onBlur={this.onCvcBlur}
                 normalize={normalizers.cvc}
@@ -108,19 +113,19 @@ class BankCardForm extends Component {
             </div>
           </div>
           <div className="bank-card-form__buttons">
-            <button
-              className="mdl-button mdl-js-button mdl-button--raised bg-blue text-white"
+            <RaisedButton
+              label="Cancel"
+              secondary={true}
+              style={{marginRight: 20}}
               onClick={onCancel}
-            >
-              Cancel
-            </button>
-            <button
+            />
+            <RaisedButton
               type="submit"
-              className="mdl-button mdl-js-button mdl-button--raised bg-blue text-white"
+              label="Save"
+              primary={true}
+              style={{marginRight: 45}}
               disabled = { pristine || submitting || invalid }
-            >
-              Save
-            </button>
+            />
           </div>
         </div>
       </form>
