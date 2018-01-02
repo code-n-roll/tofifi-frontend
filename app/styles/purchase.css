@@ -273,6 +273,9 @@
   color: #d3d3d3;
   transition: transform 500ms ease;
   cursor: pointer;
+  width: 40px;
+  margin-left: 25px;
+  margin-top: 5px;
 }
 
 .debtors-panel.opened {
