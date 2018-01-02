@@ -9,6 +9,7 @@ import { onlyDecimal } from 'components/forms/normalizers';
 import PurchaseParticipantsList from './PurchaseParticipantsList';
 import { createPurchase } from './actions';
 import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 
 const FORM_NAME = 'PurchaseForm';
 
@@ -87,7 +88,7 @@ class PurchaseForm extends Component {
             onClick={this.props.onCancelClick}
             style={{ marginRight: 20 }}/>
 
-          <FlatButton
+          <RaisedButton
             label="Сreate"
             primary={true}
             disabled={props.submitting || props.invalid}

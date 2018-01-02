@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import creditCardImage from './credit-card.png';
 import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 
 const NotOwnerPurchaseInfo = (props) => (
   <div className="purchase-info-container">
@@ -21,7 +22,7 @@ const NotOwnerPurchaseInfo = (props) => (
         style={{ marginRight: 20 }}
         onClick={props.onDeclineClick}/>
 
-      <FlatButton
+      <RaisedButton
         label="Pay"
         primary={true}
         onClick={props.onPayClick}/>

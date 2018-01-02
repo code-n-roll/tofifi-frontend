@@ -9,7 +9,10 @@ import ActionShoppingCartIcon from 'material-ui/svg-icons/action/shopping-cart';
 import { red500, green500, gray400, white } from 'material-ui/styles/colors';
 import Avatar from 'material-ui/Avatar';
 
+const zeroPrice = "0.00";
+
 const PurchaseItem = (props) => (
+
   <ListItem
     leftAvatar={
       <Avatar
@@ -41,7 +44,7 @@ const PurchaseItem = (props) => (
               verticalAlign: 'bottom'
             }}>
               <ExpandLessIcon color={ props.isActive ? white : green500 } />
-              {props.totalSum ? props.totalSum.toFixed(2) : null}
+              {props.totalSum ? props.totalSum.toFixed(2) : zeroPrice}
             </span>
           )}
           {!props.isOwner && !props.isPending && (
@@ -51,7 +54,7 @@ const PurchaseItem = (props) => (
             }}>
               <ExpandMoreIcon color={ props.isActive ? white : red500 } />
               <span style={{ lineHeight: '24px' }}>
-                {props.sum ? props.sum.toFixed(2) : null}
+                {props.sum ? props.sum.toFixed(2) : zeroPrice}
               </span>
             </span>
           )}

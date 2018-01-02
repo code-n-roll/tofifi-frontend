@@ -17,7 +17,9 @@ class PurchaseParticipant extends Component {
 
     return (
       <div className="create-purchase_participant">
-        <div style={{ textAlign: 'center', display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+        <div style={{
+          textAlign: 'center', display: 'flex', alignItems: 'center', flexDirection: 'column'
+        }}>
           {props.avatarUrl ?
             <img width={50} height={50} src={props.avatarUrl} /> :
             <Avatar name={props.username} size={50} round style={avatarStyle} />
