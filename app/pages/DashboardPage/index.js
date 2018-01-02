@@ -22,9 +22,10 @@ import {
   setPageState,
   setPendingPurchase,
   setPendingPurchaseParticipants,
+  getDebtorsStatisticsRequest,
 } from './actions';
 
-import { makeSelectPageState } from './selectors';
+import { makeSelectPageState, makeSelectDebtorsStatistics } from './selectors';
 
 import { PAGE_STATES } from './constants';
 
@@ -56,6 +57,7 @@ class DashboardPage extends Component {
     this.handleQueryChange(this.props.location.query);
     this.props.getUsersRequest();
     this.props.getGroupsRequest();
+    this.props.getDebtorsStatisticsRequest();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -102,7 +104,7 @@ class DashboardPage extends Component {
       >
         <OnScreenHeightSection style={{ height: 'calc(100vh - 70px)', borderBottom: '1px solid #dcdcdc' }}>
           <DashboardPageWrapper>
-            <SideBar />
+            <SideBar debtsStatistic={this.props.debtsStatistic} />
             <PurchaseViewer>
               {
                 this.props.pageState === PAGE_STATES.purchaseInfo &&
@@ -138,11 +140,13 @@ DashboardPage.propTypes = {
   setPendingPurchaseParticipants: PropTypes.func,
   setGroupModalState: PropTypes.func,
   setSettingsModalState: PropTypes.func,
+  getDebtorsStatisticsRequest: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   currentUser: makeSelectCurrentUser(),
   pageState: makeSelectPageState(),
+  debtsStatistic: makeSelectDebtorsStatistics(),
 });
 
 const mapDispatchToProps = {
@@ -155,6 +159,7 @@ const mapDispatchToProps = {
   setPendingPurchaseParticipants,
   setGroupModalState,
   setSettingsModalState,
+  getDebtorsStatisticsRequest,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);

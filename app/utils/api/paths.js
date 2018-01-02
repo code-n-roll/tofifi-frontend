@@ -28,3 +28,6 @@ export const STORE_CATEGORIES_PATH = '/orders/categories';
 export const STORE_ITEMS_PATH = '/orders/items';
 
 export const STORE_ORDERS_PATH = '/orders';
+
+// debtors statistics
+export const DEBTORS_STATISTICS_PATH = '/debts';

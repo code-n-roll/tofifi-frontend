@@ -56,3 +56,5 @@ export const submitStoreOrderApi = (id) =>
   post(`${PATHS.STORE_ORDERS_PATH}/${id}/submit`, true);
 
 export const updateGroupApi = (id, data) => patch(`${PATHS.GROUPS_PATH}/${id}`, true, data);
+
+export const getDebtorsStatisticsApi = () => get(PATHS.DEBTORS_STATISTICS_PATH, true);
