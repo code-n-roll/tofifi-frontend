@@ -28,7 +28,9 @@ class GroupItem extends Component {
 
   renderToggler() {
     return (
-      null
+      <div className="group-item-menu-toggler" onClick={this.toggleMenu}>
+        <FaEllipsisV size={21}/>
+      </div>
     );
   }
 
@@ -38,6 +40,7 @@ class GroupItem extends Component {
       isOpen: this.state.isMenuOpen,
       close: () => this.toggleMenu(),
       align: 'right',
+      toggle: this.renderToggler(),
     };
 
     return (
@@ -53,17 +56,16 @@ class GroupItem extends Component {
           <span className="group-item_info__name">{props.name}</span>
           <div className="group-item-avatars">
             {props.users.slice(0, props.avatarsNumber).map((user) => (
-              user.avatarUrl ?
-                <img src={user.avatarUrl} role="presentation" className="group-user-avatar-item" /> :
-                <Avatar name={user.username} round size={30} style={{ marginRight: 7 }} />
+              <span key={user.id}>
+                {
+                  user.avatarUrl ?
+                    <img src={user.avatarUrl} role="presentation" className="group-user-avatar-item" /> :
+                    <Avatar name={user.username} round size={30} style={{ marginRight: 7 }} />
+                }
+              </span>
             ))}
           </div>
         </div>
-        {props.withMenu && props.isOwner && (
-          <div className="group-item-menu-toggler" onClick={this.toggleMenu}>
-            <FaEllipsisV size={21}/>
-          </div>
-        )}
         {props.withMenu && props.isOwner && (
           <div className="group-item-menu">
             <DropdownMenu {...menuOptions}>

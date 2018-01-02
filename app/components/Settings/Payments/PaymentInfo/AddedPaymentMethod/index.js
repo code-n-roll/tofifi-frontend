@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FaVisa from 'react-icons/lib/fa/cc-visa';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import './styles.css';
 
@@ -14,12 +15,11 @@ class AddedPaymentMethod extends Component {
             <span>****{ this.props.cardDigits }</span>
           </div>
           <div>
-            <button
-              className="mdl-button payment-info__delete"
+            <RaisedButton
+              label="Delete"
+              primary={true}
               onClick={this.props.onRemoveCardClick}
-            >
-              Delete
-            </button>
+            />
           </div>
         </div>
     );

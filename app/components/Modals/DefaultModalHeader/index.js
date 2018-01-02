@@ -7,7 +7,7 @@ const DefaultModalHeader = (props) => (
     <span className="defaultModalHeader_title">{props.title}</span>
 
     <span className="defaultModalHeader_close" onClick={props.onCloseClick}>
-          <FaClose size={19} color='white' />
+      <FaClose size={19} color="white" />
     </span>
   </div>
 );
