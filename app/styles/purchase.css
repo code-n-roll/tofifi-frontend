@@ -30,10 +30,19 @@
 .purchase-info-centered {
   width: 100%;
   padding: 0 20px;
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  padding-top: 10%;
+}
+
+.purchase-info_status {
+  margin-top: 15px;
+}
+
+.purchase-info_status--declined {
+  color: #E53935;
+}
+
+.purchase-info_status--payed {
+  color: #43A047;
 }
 
 .purchase-info-container {

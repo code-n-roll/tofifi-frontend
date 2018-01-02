@@ -8,6 +8,7 @@ import ActionDoneAllIcon from 'material-ui/svg-icons/action/done-all';
 import ActionShoppingCartIcon from 'material-ui/svg-icons/action/shopping-cart';
 import { red500, green500, gray400, white } from 'material-ui/styles/colors';
 import Avatar from 'material-ui/Avatar';
+import { PURHCASE_STATUSES } from 'pages/DashboardPage/constants';
 
 const zeroPrice = "0.00";
 
@@ -24,7 +25,7 @@ const PurchaseItem = (props) => (
     }
     hoverColor="#eff4f9"
     primaryText={props.name}
-    rightIcon={props.isPayedOff ?
+    rightIcon={props.isPayedOff || (props.status && props.status != PURHCASE_STATUSES.NEW) ?
       <ActionDoneAllIcon color={ props.isActive ? white : '#6490b1' } /> :
       <div style={{padding: 4}}>
         <div style={{
@@ -90,6 +91,7 @@ PurchaseItem.propTypes = {
   totalSum: PropTypes.number,
   id: PropTypes.number,
   isPayedOff: PropTypes.bool,
+  status: PropTypes.number,
 };
 
 export default PurchaseItem;
