@@ -258,12 +258,14 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 90px;
+  width: 91px;
   height: 100%;
   transition: width 0.5s;
   background-color: #fff;
   z-index: 10500;
-  border-right: 1px solid #d3d3d3;
+  border-left: 1px solid rgb(211, 211, 211);
+  border-bottom: 1px solid rgb(211, 211, 211);
+  border-right: 1px solid rgb(211, 211, 211);
   overflow: hidden;
 }
 
