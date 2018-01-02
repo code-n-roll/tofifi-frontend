@@ -26,10 +26,15 @@ function* getPurchasesData() {
 
 function* createPurchase(action) {
   const formData = action.payload.toJS();
+  console.log(formData);
 
   const pendingPurchaseParticipants = yield select(makeSelectPendingPurchaseParticipants());
   const pendingPurchase = yield select(makeSelectPendingPurchase());
   const currentUser = yield select(makeSelectCurrentUser());
+
+  if (!formData.users) {
+    formData.users = {};
+  }
 
   pendingPurchaseParticipants.forEach((pId) => {
     if (!formData.users[pId]) {

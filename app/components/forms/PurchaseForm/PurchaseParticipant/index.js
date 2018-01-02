@@ -28,8 +28,9 @@ class PurchaseParticipant extends Component {
         </div>
         <Field
           name={`users.${props.id}.sum`}
-          tooltipIfEmpty="User will enter the amount himself"
           placeholder="Sum"
+          hintText="User will enter the amount himself"
+          hintStyle={{ fontSize: 10, lineHeight: '15px' }}
           component={InputControl}
           style={{ width: 150 }}
           inputStyle={{ textAlign: 'center' }}

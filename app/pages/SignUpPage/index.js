@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import SignUpForm from 'components/forms/SignUpForm';
 import UnloggedLayout from 'components/layouts/UnloggedLayout';
 import GraySection from 'components/sections/GraySection';
@@ -20,6 +21,7 @@ class SignUpPage extends React.PureComponent { // eslint-disable-line react/pref
 
               <button
                 className="mdl-button mdl-js-button mdl-button--raised bg-blue text-white big-btn"
+                onClick={() => this.props.router.push('sign_in')}
               >
                 Go to sign in
               </button>

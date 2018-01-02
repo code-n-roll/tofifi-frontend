@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form/immutable';
 import ImageInputControl from 'components/controls/ImageInputControl';
-import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import InputControl from 'components/controls/InputControl';
@@ -46,28 +45,30 @@ class ProfileForm extends Component {
           />
         </div>
         <div>
-          <TextField
+          <Field
             name="username"
             type="text"
-            floatingLabelText="Username"
+            floatingLabel="Username"
             defaultValue={initialValues.get('username')}
+            validate={[required]}
             component={InputControl}
           />
         </div>
         <div>
-          <TextField
+          <Field
             name="email"
             type="email"
-            floatingLabelText="Email"
+            floatingLabel="Email"
             defaultValue={initialValues.get('email')}
+            validate={[required, email]}
             component={InputControl}
           />
         </div>
         <div>
-          <TextField
+          <Field
             name="newPassword"
             type="password"
-            floatingLabelText="New password"
+            floatingLabel="New password"
             defaultValue={initialValues.get('newPassword')}
             onValueChange={this.handleNewPasswordChange}
             component={InputControl}
@@ -77,18 +78,18 @@ class ProfileForm extends Component {
           this.state.changePassword &&
             <div>
               <div>
-                <TextField
+                <Field
                   name="passwordConfirmation"
                   type="password"
-                  floatingLabelText="Password confirmation"
+                  floatingLabel="Password confirmation"
                   component={InputControl}
                 />
               </div>
               <div>
-                <TextField
+                <Field
                   name="password"
                   type="password"
-                  floatingLabelText="Current password"
+                  floatingLabel="Current password"
                   component={InputControl}
                 />
               </div>
