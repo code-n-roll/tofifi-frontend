@@ -1,1 +1,2 @@
-export * from './password';
+export const VERIFY_ACCESS_REQUEST = 'VERIFY_ACCESS_REQUEST';
+export const SET_IS_VALID_TOKEN = 'SET_IS_VALID_TOKEN';

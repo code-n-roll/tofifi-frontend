@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import { verifyAccessRequest, setIsValidToken } from './actions';
+
+import { verifyAccessToRestorePasswordApi } from 'utils/api/requests';
+
 import UnloggedLayout from 'components/layouts/UnloggedLayout';
 import NotFound from '../NotFoundPage'
 import RestorePasswordForm from 'components/forms/RestorePasswordForm';
 import OnScreenHeightSection from 'components/sections/OnScreenHeightSection';
-import { verifyAccessToRestorePasswordApi } from 'utils/api/requests';
-import { call } from 'redux-saga/effects';
-import { connect } from 'react-redux';
-import { verifyAccessToRestorePasswordRequest } from './actions'
 
 
 class RestorePasswordPage extends Component {
@@ -21,11 +23,15 @@ class RestorePasswordPage extends Component {
   }
 
   componentWillMount() {
-    this.handleRestorePasswordLinkClick(this.props.location.query);
+    debugger;
+    this.props.verifyAccessRequest(this.props.location.query);
+    // this.handleRestorePasswordLinkClick(this.props.location.query);
+    debugger;
   }
 
   handleRestorePasswordLinkClick(query) {
-    this.props.verifyAccessToRestorePasswordRequest(query);
+    // debugger;
+    // this.props.verifyAccessRequest(query);
   }
 
   render() {
@@ -48,12 +54,14 @@ class RestorePasswordPage extends Component {
 }
 
 RestorePasswordPage.propTypes = {
-  router: PropTypes.any,
-  verifyAccessToRestorePasswordRequest: PropTypes.func,
+  verifyAccessRequest: PropTypes.func,
+  isValidToken: PropTypes.bool,
 };
 
 const mapDispatchToProps = {
-  verifyAccessToRestorePasswordRequest,
+  verifyAccessRequest
 };
 
-export default connect(() => {}, mapDispatchToProps)(RestorePasswordPage);
+
+
+export default connect(mapDispatchToProps)(RestorePasswordPage);

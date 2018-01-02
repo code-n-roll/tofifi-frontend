@@ -47,4 +47,4 @@ export const updateGroupApi = (id, data) => patch(`${PATHS.GROUPS_PATH}/${id}`, 
 // reset pass
 export const sendRestorePasswordLinkApi = (data) => post(PATHS.SEND_RESTORE_PASSWORD_LINK, false, data);
 export const restorePasswordApi = (data) => get(PATHS.RESTORE_PASSWORD, false, data);
-export const verifyAccessToRestorePasswordApi = (data) => post(PATHS.VERIFY_ACCESS_TO_RESTORE_PASSWORD, false, data);
+export const verifyAccessApi = (data) => post(PATHS.VERIFY_ACCESS, false, data);
