@@ -9,7 +9,7 @@ class ForgotPasswordPage extends Component {
     return (
       <UnloggedLayout>
         <OnScreenHeightSection>
-          <div className="mdl-typography--text-center" style={{ position: 'relative', zIndex: 2 }}>
+          <div className="mdl-typography--text-center" style={{ position: 'relative', zIndex: 2, marginTop: 160 }}>
             <div className="sign-in-sign-up-form-container">
                 <h5 style={{width:'320px', marginLeft:'20px'}}>
                     Enter your e-mail for a link to restore your password

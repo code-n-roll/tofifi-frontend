@@ -16,7 +16,7 @@ const badgeStyle = {
   minWidth: 22,
   padding: '0 5px',
   width: 'auto',
-  backgroundColor: red500,
+  backgroundColor: green500,
 };
 
 class Debtors extends Component {
@@ -73,7 +73,7 @@ class Debtors extends Component {
                   <Badge
                     badgeContent={Math.round(Math.abs(user.debt))}
                     primary
-                    badgeStyle={user.debt > 0 ? badgeStyle : { ...badgeStyle, backgroundColor: green500 }}
+                    badgeStyle={user.debt > 0 ? badgeStyle : { ...badgeStyle, backgroundColor: red500 }}
                     style={{ padding: 0 }}
                   >
                     <Avatar name={user.username} round size={50} style={{ opacity: 0.5 }} />
