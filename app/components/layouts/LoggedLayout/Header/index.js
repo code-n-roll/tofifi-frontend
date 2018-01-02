@@ -60,7 +60,7 @@ class Header extends Component {
 
     return (
       <div className="layout-header mdl-layout__header mdl-layout__header--waterfall" style={headerStyle}>
-        <HeaderRow className="mdl-layout__header-row layout-header-row">
+        <HeaderRow className="layout-header-padding mdl-layout__header-row layout-header-row">
           <div className="layout-header-spacer mdl-layout-spacer">
             <Link to="/" style={{ textDecoration: 'none' }}>
               <Logo />

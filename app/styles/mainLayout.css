@@ -162,6 +162,15 @@ input[type=checkbox]:checked + label {
   background-color: #5682a3;
 }
 
+.layout-header-padding {
+  padding: 0 40px 0 60px;
+}
+
+.layout-header-unlogged {
+  overflow: visible;
+  background-color: rgba(0, 0, 0, 0);
+}
+
   .layout-header .material-icons {
     color: #767777 !important;
   }
