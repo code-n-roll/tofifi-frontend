@@ -5,8 +5,9 @@ import { ListItem } from 'material-ui/List';
 import RaisedButton from 'material-ui/RaisedButton';
 import _ from 'lodash';
 import { List as ImmutableList } from 'immutable';
+import CustomScroll from 'react-custom-scroll';
 
-import { fetchStoreContentRequest, updateChoosedItems } from 'pages/DashboardPage/actions';
+import { updateChoosedItems } from 'pages/DashboardPage/actions';
 import { selectStoreContent, selectChoosedItems } from 'pages/DashboardPage/selectors';
 import SelectableList from './SelectableList';
 import ItemCard from './ItemCard';
@@ -17,10 +18,6 @@ class StoreComponent extends Component {
     selectedCategoryIndex: null,
   }
 
-  componentWillMount() {
-    this.props.fetchStoreContentRequest(this.props.purchase.storeOrder.storeId);
-  }
-
   handleListClick = (e, index) => {
     this.setState({
       selectedCategoryIndex: index,
@@ -29,7 +26,7 @@ class StoreComponent extends Component {
 
   handleSelectItem = (id, amount, sum) => {
     const choosedItems = this.props.choosedItems.toJS();
-    console.log(choosedItems, this.props.choosedItems);
+    console.log(choosedItems, this.props.choosedItems, this.props.choosedItems.length);
     const existingItemIndex =
       _.findIndex(choosedItems, (item) => item.id === id);
 
@@ -39,11 +36,16 @@ class StoreComponent extends Component {
       sum,
     };
 
-    if (existingItemIndex === -1) {
-      choosedItems.push(newItem);
+    if (amount > 0) {
+      if (existingItemIndex === -1) {
+        choosedItems.push(newItem);
+      } else {
+        choosedItems[existingItemIndex] = newItem;
+      }
     } else {
-      choosedItems[existingItemIndex] = newItem;
+      choosedItems.splice(existingItemIndex, 1);
     }
+
 
     this.props.updateChoosedItems(choosedItems);
   }
@@ -54,16 +56,20 @@ class StoreComponent extends Component {
 
     let itemsToShow;
     if (storeContent && storeContent.categories && selectedCategoryIndex !== null) {
-      itemsToShow =
-        (<div className="store-component__items">
+      itemsToShow = (
+        <div className="store-component__items">
           {
             storeContent.categories[selectedCategoryIndex].items.map((item) =>
-              <div className="store-component__item">
-                <ItemCard key={item.id} {...item} onSelectItem={this.handleSelectItem} />
-              </div>
+              <ItemCard
+                className="store-component__item"
+                key={item.id}
+                {...item}
+                onSelectItem={this.handleSelectItem}
+              />
             )
           }
-        </div>);
+        </div>
+      );
     } else {
       itemsToShow = (
         <div>
@@ -76,7 +82,7 @@ class StoreComponent extends Component {
       <div className="store-component">
         <div className="store-component__sidebar">
           {
-            storeContent &&
+            storeContent && storeContent.categories &&
             <SelectableList defaultValue={null} onChange={this.handleListClick}>
               {
                 storeContent.categories.map((category, index) =>
@@ -91,10 +97,13 @@ class StoreComponent extends Component {
           }
         </div>
         <div className="store-component__main-content">
-          {itemsToShow}
+          <CustomScroll heightRelativeToParent="100%">
+            {itemsToShow}
+          </CustomScroll>
           <div className="store-component__bottom-row">
             <RaisedButton
               label="Submit order"
+              disabled={this.props.choosedItems.size === 0}
               primary
               onClick={this.props.onSubmitOrder}
             />
@@ -106,11 +115,9 @@ class StoreComponent extends Component {
 }
 
 StoreComponent.propTypes = {
-  purchase: PropTypes.object.isRequired,
   onSubmitOrder: PropTypes.func.isRequired,
 
   storeContent: PropTypes.object,
-  fetchStoreContentRequest: PropTypes.func.isRequired,
   choosedItems: PropTypes.instanceOf(ImmutableList),
   updateChoosedItems: PropTypes.func,
 };
@@ -121,7 +128,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  fetchStoreContentRequest,
   updateChoosedItems,
 };
 

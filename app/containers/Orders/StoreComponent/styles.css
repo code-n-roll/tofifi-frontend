@@ -1,7 +1,7 @@
 .store-component {
   display: flex;
   flex-direction: row;
-  align-items: stretch;
+  height: 100%;
 }
 
 .store-component__sidebar {
@@ -12,20 +12,16 @@
 .store-component__main-content {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-
   height: 100%;
+  width: 100%;
 }
 
 .store-component__items {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 40px 10px;
-
-  /* FIXME make normal markup */
-  height: 400px;
-  overflow: auto;
+  justify-content: center;
+  padding: 10px;
 }
 
 .store-component__item {
@@ -36,4 +32,5 @@
 .store-component__bottom-row {
   display: flex;
   justify-content: flex-end;
+  padding: 30px;
 }

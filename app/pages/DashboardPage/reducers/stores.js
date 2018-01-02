@@ -13,6 +13,8 @@ const initialState = fromJS({
   categories: [],
   items: [],
   choosedItems: List(),
+  storeContent: [],
+  storeContentHash: {},
 });
 
 export default function storesReducer(state = initialState, action) {
@@ -20,9 +22,21 @@ export default function storesReducer(state = initialState, action) {
     case FETCH_STORES_SUCCESS:
       return state
         .set('stores', new List(action.data));
-    case FETCH_STORE_CONTENT_SUCCESS:
+    case FETCH_STORE_CONTENT_SUCCESS: {
+      const storeContent = action.data;
+
+      const storeContentHash = {};
+
+      action.data.categories.forEach((category) => {
+        category.items.forEach((item) => {
+          storeContentHash[item.id] = item;
+        });
+      });
+
       return state
-        .set('storeContent', action.data);
+        .set('storeContent', storeContent)
+        .set('storeContentHash', storeContentHash);
+    }
     case FETCH_CATEGORIES_SUCCESS:
       return state
         .set('categories', new List(action.data));
