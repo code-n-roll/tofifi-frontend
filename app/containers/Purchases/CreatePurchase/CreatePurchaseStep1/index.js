@@ -30,7 +30,6 @@ class CreatePurchaseStep1 extends Component {
   }
 
   choosePurchaseStep() {
-    debugger;
     if (this.props.groups.length === 0) {
       return 2;
     } else {
