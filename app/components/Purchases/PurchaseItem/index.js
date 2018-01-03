@@ -6,7 +6,8 @@ import ExpandLessIcon from 'material-ui/svg-icons/navigation/expand-less';
 import ExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-more';
 import ActionDoneAllIcon from 'material-ui/svg-icons/action/done-all';
 import ActionShoppingCartIcon from 'material-ui/svg-icons/action/shopping-cart';
-import { red500, green500, gray400, white } from 'material-ui/styles/colors';
+import { red500, green500, gray400, white, red200 } from 'material-ui/styles/colors';
+import ClearIcon from 'material-ui/svg-icons/content/clear';
 import Avatar from 'material-ui/Avatar';
 import { PURHCASE_STATUSES } from 'pages/DashboardPage/constants';
 
@@ -25,16 +26,18 @@ const PurchaseItem = (props) => (
     }
     hoverColor="#eff4f9"
     primaryText={props.name}
-    rightIcon={props.isPayedOff || (props.status && props.status != PURHCASE_STATUSES.NEW) ?
+    rightIcon={props.isPayedOff || (props.status && props.status == PURHCASE_STATUSES.PAYED) ?
       <ActionDoneAllIcon color={ props.isActive ? white : '#6490b1' } /> :
-      <div style={{padding: 4}}>
-        <div style={{
-          background: props.isActive ? white : '#6490b1',
-          borderRadius: 10,
-          width: 12,
-          height: 12
-        }} />
-      </div>
+      (props.status && props.status == PURHCASE_STATUSES.DECLINED) ?
+        <ClearIcon size={5} color={ props.isActive ? white : red200 } />:
+        <div style={{padding: 4}}>
+          <div style={{
+            background: props.isActive ? white : '#6490b1',
+            borderRadius: 10,
+            width: 12,
+            height: 12
+          }} />
+        </div>
     }
     secondaryText={
       <div>
