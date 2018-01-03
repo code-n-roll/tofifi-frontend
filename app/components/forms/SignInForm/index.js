@@ -16,22 +16,23 @@ class SignInForm extends Component {
 
     return (
       <form onSubmit={props.handleSubmit(signIn)} autoComplete="off">
-        <div>
+        <div style={{ maxHeight: 72 }}>
           <Field
             name="email"
             type="email"
-            placeholder="Email"
+            floatingLabel="Email"
             onValueChange={this.handleEmailValueChange}
             component={InputControl}
             validate={[required, email]}
           />
+        </div>
+        <div style={{ maxHeight: 90 }}>
           <Field
             name="password"
             type="password"
-            placeholder="Password"
+            floatingLabel="Password"
             component={InputControl}
             validate={[required]}
-            style={{ paddingBottom: '0px' }}
           />
         </div>
         <div style={{ marginBottom: '20px' }}>

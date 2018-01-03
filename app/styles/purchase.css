@@ -30,10 +30,19 @@
 .purchase-info-centered {
   width: 100%;
   padding: 0 20px;
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  padding-top: 10%;
+}
+
+.purchase-info_status {
+  margin-top: 15px;
+}
+
+.purchase-info_status--declined {
+  color: #E53935;
+}
+
+.purchase-info_status--payed {
+  color: #43A047;
 }
 
 .purchase-info-container {
@@ -258,12 +267,14 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 90px;
+  width: 91px;
   height: 100%;
   transition: width 0.5s;
   background-color: #fff;
   z-index: 10500;
-  border-right: 1px solid #d3d3d3;
+  border-left: 1px solid rgb(211, 211, 211);
+  border-bottom: 1px solid rgb(211, 211, 211);
+  border-right: 1px solid rgb(211, 211, 211);
   overflow: hidden;
 }
 
@@ -273,6 +284,9 @@
   color: #d3d3d3;
   transition: transform 500ms ease;
   cursor: pointer;
+  width: 40px;
+  margin-left: 25px;
+  margin-top: 5px;
 }
 
 .debtors-panel.opened {

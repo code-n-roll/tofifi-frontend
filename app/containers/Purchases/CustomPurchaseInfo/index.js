@@ -14,8 +14,8 @@ class CustomPurchaseInfo extends Component {
     this.handleDeclineClick = this.handleDeclineClick.bind(this);
   }
 
-  handlePayClick() {
-    this.props.payPurchaseRequest({ purchaseId: this.props.purchase.id, data: { sum: this.props.purchase.sum } });
+  handlePayClick(sum) {
+    this.props.payPurchaseRequest({ purchaseId: this.props.purchase.id, data: { sum: this.props.purchase.sum || sum } });
   }
 
   handleDeclineClick() {

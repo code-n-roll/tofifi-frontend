@@ -4,8 +4,20 @@ import Avatar from 'react-avatar';
 import CustomScroll from 'react-custom-scroll';
 import TextField from 'material-ui/TextField';
 import Badge from 'material-ui/Badge';
+import { red500, green500 } from 'material-ui/styles/colors';
 
 import './styles.css';
+
+const badgeStyle = {
+  top: 35,
+  right: -7,
+  borderRadius: 7,
+  height: 'auto',
+  minWidth: 22,
+  padding: '0 5px',
+  width: 'auto',
+  backgroundColor: green500,
+};
 
 class Debtors extends Component {
   constructor(props) {
@@ -31,11 +43,19 @@ class Debtors extends Component {
 
   render() {
     const { statistic } = this.props;
+
+    if (!statistic) {
+      return null;
+    }
+
     const users = this.filterUsers(statistic.users);
+    const { totalStats } = statistic;
+
     return (
       <div className="debtors-container">
         <div className="debtors-my-statistic">
-          <Avatar name="anton.dacik@gmail.com" size={50} style={{ opacity: 0.5 }} />
+          <div style={{ color: green500 }}>{totalStats.debtToMe.toFixed(2)}</div>
+          <div style={{ color: red500 }}>{totalStats.myDebt.toFixed(2)}</div>
         </div>
         <div className="debtors-search">
           <TextField
@@ -49,7 +69,16 @@ class Debtors extends Component {
           <div className="debtors-users">
             {users.map((user) => (
               <div key={user.id} className="debtor-item">
-                <Avatar name={user.username} round size={50} style={{ opacity: 0.5, position: 'absolute', left: 10 }} />
+                <div style={{ position: 'absolute', left: 10 }}>
+                  <Badge
+                    badgeContent={Math.round(Math.abs(user.debt))}
+                    primary
+                    badgeStyle={user.debt > 0 ? badgeStyle : { ...badgeStyle, backgroundColor: red500 }}
+                    style={{ padding: 0 }}
+                  >
+                    <Avatar name={user.username} round size={50} style={{ opacity: 0.5 }} />
+                  </Badge>
+                </div>
                 <span className="debtor-username">{user.username}</span>
               </div>
             ))}

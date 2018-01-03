@@ -7,3 +7,9 @@ export const UPDATE_PURCHASE = 'DashboardPage/purchases/UPDATE_PURCHASE';
 
 export const PAY_PURCHASE_REQUEST = 'DashboardPage/purchases/PAY_PURCHASE_REQUEST';
 export const DECLINE_PURCHASE_REQUEST = 'DashboardPage/purchases/DECLINE_PURCHASE_REQUEST';
+
+export const PURHCASE_STATUSES = {
+  NEW: 0,
+  PAYED: 1,
+  DECLINED: 2,
+};

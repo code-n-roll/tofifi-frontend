@@ -5,7 +5,6 @@ import CreatePurchaseStep1 from 'containers/Purchases/CreatePurchase/CreatePurch
 import { PAGE_STATES } from 'pages/DashboardPage/constants';
 import FaAngleDoubleRight from 'react-icons/lib/fa/angle-double-right';
 
-import data from './data';
 import Debtors from './Debtors';
 
 const sideBarStyles = {
@@ -47,7 +46,7 @@ class SideBar extends Component {
     return (
       <div style={sideBarStyles}>
         <div className={classNames('debtors-panel', { opened: this.state.debtorsOpened })}>
-          <Debtors statistic={data} />
+          <Debtors statistic={this.props.debtsStatistic} />
           <div
             onClick={this.toggleDebtorsPanel}
             className={'debtors-panel-toggler'}

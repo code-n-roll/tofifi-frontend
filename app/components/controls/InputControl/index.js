@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import TextField from 'material-ui/TextField';
 
 class InputControl extends Component {
   constructor(args) {
@@ -22,11 +23,14 @@ class InputControl extends Component {
       label,
       type,
       placeholder,
-      errorStyles,
+      hintText,
+      hintStyle,
       meta: { touched },
+      style,
       inputStyle,
       placeholderStyle,
       tooltipIfEmpty,
+      floatingLabel,
       className,
       inputProps
     } = this.props;
@@ -35,36 +39,24 @@ class InputControl extends Component {
 
     const hasError = touched && error;
 
-    let style = { paddingBottom: '30px' };
-    if (hasError && errorStyles) {
-      style = Object.assign({}, style, errorStyles);
-    }
-
     // Check for immutable error objects
     if (error && typeof error.toJS === 'function') {
       error = error.toJS();
     }
 
-    style = Object.assign({}, style, this.props.style);
-
     return (
-      <div className={`mdl-textfield ${className}`} style={style}>
-        <input className="mdl-textfield__input" style={inputStyle} type={type} {...input} {...inputProps} onChange={this.handleValueChange} />
-        {input.value === '' &&
-          <label className="mdl-textfield__label" style={placeholderStyle} htmlFor={input.name}>{placeholder}</label>
-        }
-        {hasError &&
-          <span className="mdl-textfield__error" style={{ visibility: 'visible' }}>
-            <FormattedMessage {...error} />
-          </span>
-        }
-        {
-          input.value === '' && tooltipIfEmpty &&
-          <span className="mdl-textfield__error" style={{ visibility: 'visible' }}>
-            {tooltipIfEmpty}
-          </span>
-        }
-      </div>
+      <TextField
+        style={style}
+        inputStyle={inputStyle}
+        type={type}
+        hintText={hintText}
+        hintStyle={hintStyle}
+        floatingLabelText={floatingLabel}
+        {...input}
+        {...inputProps}
+        onChange={this.handleValueChange}
+        errorText={hasError ? <FormattedMessage {...error} /> : null}
+      />
     );
   }
 }

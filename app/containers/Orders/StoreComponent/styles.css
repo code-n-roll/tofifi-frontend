@@ -30,6 +30,7 @@
 
 .store-component__item {
   width: 200px;
+  min-width: 200px;
   margin: 20px;
 }
 
