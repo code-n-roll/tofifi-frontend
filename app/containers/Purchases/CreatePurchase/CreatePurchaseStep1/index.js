@@ -21,11 +21,21 @@ class CreatePurchaseStep1 extends Component {
     this.processUsers = this.processUsers.bind(this);
     this.handlePurchaseNameInputChange = this.handlePurchaseNameInputChange.bind(this);
 
+    debugger;
     this.state = {
       selectedUsers: null,
-      step: 1,
+      step: this.choosePurchaseStep(),
       purchaseName: '',
     };
+  }
+
+  choosePurchaseStep() {
+    debugger;
+    if (this.props.groups.length === 0) {
+      return 2;
+    } else {
+      return 1;
+    }
   }
 
   handleGroupItemClick(group) {
