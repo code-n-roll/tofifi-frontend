@@ -21,7 +21,6 @@ export function setUsersData(data) {
 }
 
 export function setSettingsModalState(data) {
-  debugger;
   return {
     type: SET_SETTINGS_MODAL_STATE,
     data,

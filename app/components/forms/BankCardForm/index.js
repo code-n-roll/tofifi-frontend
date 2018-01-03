@@ -48,10 +48,10 @@ class BankCardForm extends Component {
         <div>
           <div style={{width: 390, padding: '0 60px 0 40px'}}>
             <div>
-              <TextField
+              <Field
                 name="name"
                 type="text"
-                floatingLabelText="Holder name"
+                floatingLabel="Holder name"
                 onFocus={this.onFieldFocus}
                 normalize={normalizers.name}
                 validate={[required]}
@@ -59,9 +59,9 @@ class BankCardForm extends Component {
               />
             </div>
             <div>
-              <TextField
+              <Field
                 name="number"
-                floatingLabelText="Card number"
+                floatingLabel="Card number"
                 onFocus={this.onFieldFocus}
                 normalize={normalizers.number}
                 validate={[required, validations.cardNumber]}
@@ -70,10 +70,10 @@ class BankCardForm extends Component {
             </div>
             <div className="bank-card-form__cvc-row">
               <div className="bank-card-form__expiry-row">
-                <TextField
+                <Field
                   name="expiryMonth"
                   type="number"
-                  floatingLabelText="MM"
+                  floatingLabel="MM"
                   className="bank-card-form__small-input"
                   style={{width: 40}}
                   onFocus={this.onFieldFocus}
@@ -82,10 +82,10 @@ class BankCardForm extends Component {
                   component={InputControl}
                 />
                 <div className="bank-card-form__expiry-divider">/</div>
-                <TextField
+                <Field
                   name="expiryYear"
                   type="number"
-                  floatingLabelText="YY"
+                  floatingLabel="YY"
                   className="bank-card-form__small-input"
                   style={{width: 40}}
                   onFocus={this.onFieldFocus}
@@ -94,11 +94,11 @@ class BankCardForm extends Component {
                   component={InputControl}
                 />
               </div>
-              <TextField
+              <Field
                 name="cvc"
                 type="number"
                 inputProps={{max: 999}}
-                floatingLabelText="CVC"
+                floatingLabel="CVC"
                 className="bank-card-form__small-input"
                 style={{width: 40}}
                 onFocus={this.onCvcFocus}
@@ -124,7 +124,7 @@ class BankCardForm extends Component {
               label="Save"
               primary={true}
               style={{marginRight: 45}}
-              disabled = { pristine || submitting || invalid }
+              disabled = {pristine || submitting || invalid }
             />
           </div>
         </div>
