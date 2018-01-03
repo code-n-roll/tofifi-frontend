@@ -21,7 +21,6 @@ class CreatePurchaseStep1 extends Component {
     this.processUsers = this.processUsers.bind(this);
     this.handlePurchaseNameInputChange = this.handlePurchaseNameInputChange.bind(this);
 
-    debugger;
     this.state = {
       selectedUsers: null,
       step: this.choosePurchaseStep(),
