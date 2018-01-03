@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import { submitStoreOrderRequest } from 'pages/DashboardPage/actions';
 import UsersTotalInfo from '../UsersTotalInfo';
+import './styles.css';
 
 class OrderTotalInfo extends Component {
   handleSubmitOrder = () => {
@@ -13,9 +14,9 @@ class OrderTotalInfo extends Component {
 
   render() {
     return (
-      <div>
+      <div className="order-total-info__wrapper">
         <UsersTotalInfo users={this.props.users} />
-        <div>
+        <div className="order-total-info__bottom-line">
           <RaisedButton
             label="Submit order"
             onClick={this.handleSubmitOrder}
