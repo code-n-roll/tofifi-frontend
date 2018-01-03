@@ -17,7 +17,9 @@ class PurchaseParticipant extends Component {
 
     return (
       <div className="create-purchase_participant">
-        <div style={{ textAlign: 'center', display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+        <div style={{
+          textAlign: 'center', display: 'flex', alignItems: 'center', flexDirection: 'column'
+        }}>
           {props.avatarUrl ?
             <img width={50} height={50} src={props.avatarUrl} /> :
             <Avatar name={props.username} size={50} round style={avatarStyle} />
@@ -26,8 +28,9 @@ class PurchaseParticipant extends Component {
         </div>
         <Field
           name={`users.${props.id}.sum`}
-          tooltipIfEmpty="User will enter the amount himself"
           placeholder="Sum"
+          hintText="User will enter the amount himself"
+          hintStyle={{ fontSize: 10, lineHeight: '15px' }}
           component={InputControl}
           style={{ width: 150 }}
           inputStyle={{ textAlign: 'center' }}

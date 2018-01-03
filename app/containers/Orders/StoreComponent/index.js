@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import { ListItem } from 'material-ui/List';
 import RaisedButton from 'material-ui/RaisedButton';
 import _ from 'lodash';
+import { List as ImmutableList } from 'immutable';
 
-import { fetchStoreContentRequest } from 'pages/DashboardPage/actions';
-import { selectStoreContent } from 'pages/DashboardPage/selectors';
+import { fetchStoreContentRequest, updateChoosedItems } from 'pages/DashboardPage/actions';
+import { selectStoreContent, selectChoosedItems } from 'pages/DashboardPage/selectors';
 import SelectableList from './SelectableList';
 import ItemCard from './ItemCard';
 import './styles.css';
@@ -14,7 +15,6 @@ import './styles.css';
 class StoreComponent extends Component {
   state = {
     selectedCategoryIndex: null,
-    selectedItems: [],
   }
 
   componentWillMount() {
@@ -28,9 +28,10 @@ class StoreComponent extends Component {
   };
 
   handleSelectItem = (id, amount, sum) => {
-    const selectedItems = this.state.selectedItems;
+    const choosedItems = this.props.choosedItems.toJS();
+    console.log(choosedItems, this.props.choosedItems);
     const existingItemIndex =
-      _.findIndex(selectedItems, (item) => item.id === id);
+      _.findIndex(choosedItems, (item) => item.id === id);
 
     const newItem = {
       id,
@@ -39,14 +40,12 @@ class StoreComponent extends Component {
     };
 
     if (existingItemIndex === -1) {
-      selectedItems.push(newItem);
+      choosedItems.push(newItem);
     } else {
-      selectedItems[existingItemIndex] = newItem;
+      choosedItems[existingItemIndex] = newItem;
     }
 
-    this.setState({
-      selectedItems,
-    });
+    this.props.updateChoosedItems(choosedItems);
   }
 
   render() {
@@ -60,7 +59,7 @@ class StoreComponent extends Component {
           {
             storeContent.categories[selectedCategoryIndex].items.map((item) =>
               <div className="store-component__item">
-                <ItemCard {...item} onSelectItem={this.handleSelectItem} />
+                <ItemCard key={item.id} {...item} onSelectItem={this.handleSelectItem} />
               </div>
             )
           }
@@ -108,18 +107,22 @@ class StoreComponent extends Component {
 
 StoreComponent.propTypes = {
   purchase: PropTypes.object.isRequired,
-  storeContent: PropTypes.object,
   onSubmitOrder: PropTypes.func.isRequired,
 
+  storeContent: PropTypes.object,
   fetchStoreContentRequest: PropTypes.func.isRequired,
+  choosedItems: PropTypes.instanceOf(ImmutableList),
+  updateChoosedItems: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
   storeContent: selectStoreContent(state),
+  choosedItems: selectChoosedItems(state),
 });
 
 const mapDispatchToProps = {
   fetchStoreContentRequest,
+  updateChoosedItems,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StoreComponent);

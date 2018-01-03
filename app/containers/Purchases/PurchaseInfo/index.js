@@ -1,66 +1,36 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import { makeSelectCurrentPurchase } from 'pages/DashboardPage/selectors';
-import { payPurchaseRequest, declinePurchaseRequest } from 'pages/DashboardPage/actions';
+import CustomPurchaseInfo from 'containers/Purchases/CustomPurchaseInfo';
+import StoreOrderInfo from 'containers/Orders/StoreOrderInfo';
 
-import PropTypes from 'prop-types';
-import OwnerPurchaseInfo from 'components/Purchases/PurchaseInfo/OwnerPurchaseInfo';
-import NotOwnerPurchaseInfo from 'components/Purchases/PurchaseInfo/NotOwnerPurchaseInfo';
+const PurchaseInfo = (props) => {
+  let purchaseScreen = null;
 
-class PurchaseInfo extends Component {
-  constructor(props) {
-    super(props);
-
-    this.handlePayClick = this.handlePayClick.bind(this);
-    this.handleDeclineClick = this.handleDeclineClick.bind(this);
-  }
-
-  handlePayClick() {
-    this.props.payPurchaseRequest({ purchaseId: this.props.purchase.id, data: { sum: this.props.purchase.sum } });
-  }
-
-  handleDeclineClick() {
-    this.props.payPurchaseRequest({ purchaseId: this.props.purchase.id });
-  }
-
-  render() {
-    const { props } = this;
-
-    return (
-      (
-        props.purchase &&
-        (
-          props.purchase.isOwner ? (
-            <OwnerPurchaseInfo {...props.purchase} />
-          ) :
-          (
-            <NotOwnerPurchaseInfo
-              {...props.purchase}
-              onPayClick={this.handlePayClick}
-              onDeclineClick={this.handleDeclineClick}
-            />
-        )
-      )
-      ) || null
+  if (props.purchase) {
+    purchaseScreen = props.purchase.type === 'Store' ? (
+      <StoreOrderInfo purchase={props.purchase} />
+    ) : (
+      <CustomPurchaseInfo purchase={props.purchase} />
+    );
+  } else {
+    purchaseScreen = (
+      <div><h3>### TODO Make beautiful text here ###</h3>Select purchase</div>
     );
   }
-}
+
+  return purchaseScreen;
+};
 
 PurchaseInfo.propTypes = {
   purchase: PropTypes.object,
-  payPurchaseRequest: PropTypes.func,
-  declinePurchaseRequest: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   purchase: makeSelectCurrentPurchase(),
 });
 
-const mapDispatchToProps = {
-  payPurchaseRequest,
-  declinePurchaseRequest,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(PurchaseInfo);
+export default connect(mapStateToProps)(PurchaseInfo);

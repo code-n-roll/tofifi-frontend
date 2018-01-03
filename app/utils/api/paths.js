@@ -31,5 +31,8 @@ export const STORE_ORDERS_PATH = '/orders';
 
 // reset pass
 export const SEND_RESTORE_PASSWORD_LINK = '/account/password/reset'
-export const RESTORE_PASSWORD = '/account/password/reset/confirm' 
+export const RESTORE_PASSWORD = '/account/password/reset/confirm'
 export const VERIFY_ACCESS = '/account/password/reset/verify'
+
+// debtors statistics
+export const DEBTORS_STATISTICS_PATH = '/debts';

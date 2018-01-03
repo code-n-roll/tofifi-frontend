@@ -8,6 +8,8 @@ import { required } from 'components/forms/validations';
 import { onlyDecimal } from 'components/forms/normalizers';
 import PurchaseParticipantsList from './PurchaseParticipantsList';
 import { createPurchase } from './actions';
+import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 
 const FORM_NAME = 'PurchaseForm';
 
@@ -48,7 +50,7 @@ class PurchaseForm extends Component {
     });
 
     newTotalSum = Math.floor(newTotalSum * 100) / 100;
-    this.props.dispatch(change(FORM_NAME, 'totalSum', newTotalSum));
+    this.props.dispatch(change(FORM_NAME, 'totalSum', newTotalSum || null ));
   }
 
   renderParticipantsList() {
@@ -67,33 +69,29 @@ class PurchaseForm extends Component {
       <form className="fill-parent create-purchase-form" onSubmit={props.handleSubmit(createPurchase)}>
         <FieldArray name={'users'} component={this.renderParticipantsList} />
         <div className="create-purchase-total-sum-container">
-          <span className="create-purchase-total-sum_text input-label">Amount: </span>
           <Field
             name="totalSum"
             style={{ width: 150 }}
+            floatingLabel={'Total sum'}
             component={InputControl}
             onValueChange={(e) => this.handleTotalSumChange(e.target.value)}
-            validate={[required]}
             inputStyle={{ textAlign: 'center' }}
             placeholderStyle={{ textAlign: 'center' }}
             normalize={onlyDecimal}
           />
         </div>
         <div className="create-purchase-buttons-container">
-          <button
-            className="mdl-button mdl-js-button mdl-button--raised"
+          <FlatButton
+            label="Decline"
+            secondary={true}
             onClick={this.props.onCancelClick}
-            style={{ marginRight: 40 }}
-          >
-            Decline
-          </button>
-          <button
-            className="mdl-button mdl-js-button mdl-button--raised bg-green text-white"
+            style={{ marginRight: 20 }}/>
+
+          <RaisedButton
+            label="Сreate"
+            primary={true}
             disabled={props.submitting || props.invalid}
-            type="submit"
-          >
-            Сreate
-          </button>
+            type="submit"/>
         </div>
       </form>
     );

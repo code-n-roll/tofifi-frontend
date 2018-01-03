@@ -20,7 +20,7 @@ class SignUpForm extends Component {
             <Field
               name="email"
               type="text"
-              placeholder="Email"
+              floatingLabel="Email"
               component={InputControl}
               validate={[required, email]}
             />
@@ -29,7 +29,7 @@ class SignUpForm extends Component {
             <Field
               name="password"
               type="password"
-              placeholder="Password"
+              floatingLabel="Password"
               component={InputControl}
               validate={[required, password]}
               errorStyles={{ paddingBottom: '50px' }}

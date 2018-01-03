@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form/immutable';
 import ImageInputControl from 'components/controls/ImageInputControl';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import InputControl from 'components/controls/InputControl';
 import { updateProfile } from './actions';
@@ -47,7 +48,9 @@ class ProfileForm extends Component {
           <Field
             name="username"
             type="text"
-            placeholder="Username"
+            floatingLabel="Username"
+            defaultValue={initialValues.get('username')}
+            validate={[required]}
             component={InputControl}
           />
         </div>
@@ -55,7 +58,9 @@ class ProfileForm extends Component {
           <Field
             name="email"
             type="email"
-            placeholder="Email"
+            floatingLabel="Email"
+            defaultValue={initialValues.get('email')}
+            validate={[required, email]}
             component={InputControl}
           />
         </div>
@@ -63,7 +68,8 @@ class ProfileForm extends Component {
           <Field
             name="newPassword"
             type="password"
-            placeholder="New password"
+            floatingLabel="New password"
+            defaultValue={initialValues.get('newPassword')}
             onValueChange={this.handleNewPasswordChange}
             component={InputControl}
           />
@@ -75,7 +81,7 @@ class ProfileForm extends Component {
                 <Field
                   name="passwordConfirmation"
                   type="password"
-                  placeholder="Password confirmation"
+                  floatingLabel="Password confirmation"
                   component={InputControl}
                 />
               </div>
@@ -83,7 +89,7 @@ class ProfileForm extends Component {
                 <Field
                   name="password"
                   type="password"
-                  placeholder="Current password"
+                  floatingLabel="Current password"
                   component={InputControl}
                 />
               </div>
@@ -92,13 +98,13 @@ class ProfileForm extends Component {
         <div>
           {error && <div className="profile-form__error">{error}</div>}
         </div>
-        <button
+        <RaisedButton
           type="submit"
-          className="mdl-button mdl-js-button mdl-button--raised bg-blue text-white"
+          label="Save"
+          primary={true}
           disabled={pristine || submitting || invalid}
-        >
-          Save
-        </button>
+          style={{float: 'right', marginTop: 59}}
+        />
       </form>
     );
   }

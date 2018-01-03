@@ -7,10 +7,6 @@ import PropTypes from 'prop-types';
 import { signIn } from './actions';
 
 class SignInForm extends Component {
-  propTypes = {
-    clearSubmitErrors: PropTypes.function,
-  }
-
   handleEmailValueChange = () => {
     this.props.clearSubmitErrors();
   }
@@ -20,26 +16,27 @@ class SignInForm extends Component {
 
     return (
       <form onSubmit={props.handleSubmit(signIn)} autoComplete="off">
-        <div>
+        <div style={{ maxHeight: 72 }}>
           <Field
             name="email"
             type="email"
-            placeholder="Email"
+            floatingLabel="Email"
             onValueChange={this.handleEmailValueChange}
             component={InputControl}
             validate={[required, email]}
           />
+        </div>
+        <div style={{ maxHeight: 90 }}>
           <Field
             name="password"
             type="password"
-            placeholder="Password"
+            floatingLabel="Password"
             component={InputControl}
             validate={[required]}
-            style={{ paddingBottom: '0px' }}
           />
         </div>
         <div style={{ marginBottom: '20px' }}>
-          <Link to='/forgot_password' className="forgot-pass-link mdl-navigation__link">
+          <Link to="/forgot_password" className="forgot-pass-link mdl-navigation__link">
             I&apos;m forgot password
           </Link>
         </div>
@@ -55,6 +52,10 @@ class SignInForm extends Component {
     );
   }
 }
+
+SignInForm.propTypes = {
+  clearSubmitErrors: PropTypes.func,
+};
 
 export default reduxForm({
   form: 'SignInForm',

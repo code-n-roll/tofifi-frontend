@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import { makeSelectCurrentUser } from 'containers/App/selectors';
 import { logOutRequest } from 'containers/App/actions';
@@ -21,14 +22,26 @@ import {
   setPageState,
   setPendingPurchase,
   setPendingPurchaseParticipants,
+  getDebtorsStatisticsRequest,
 } from './actions';
 
-import { makeSelectPageState } from './selectors';
+import { makeSelectPageState, makeSelectDebtorsStatistics } from './selectors';
 
 import { PAGE_STATES } from './constants';
 
 import { getPageStateFromQuery } from './helpers';
 
+const DashboardPageWrapper = styled.div`
+  display: flex;
+  height: 100%;
+`;
+
+const PurchaseViewer = styled.div`
+  flex: 1;
+  height: 100%;
+  border-right: 1px solid #d3d3d3;
+  background: white;
+`;
 
 class DashboardPage extends Component {
   constructor(props) {
@@ -44,6 +57,7 @@ class DashboardPage extends Component {
     this.handleQueryChange(this.props.location.query);
     this.props.getUsersRequest();
     this.props.getGroupsRequest();
+    this.props.getDebtorsStatisticsRequest();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -90,21 +104,23 @@ class DashboardPage extends Component {
         onSettingsClick={this.handleSettingsClick}
       >
         <OnScreenHeightSection style={{ height: 'calc(100vh - 70px)', borderBottom: '1px solid #dcdcdc' }}>
-          <SideBar />
-          <div className="purchase-viewer">
-            {
-              this.props.pageState === PAGE_STATES.purchaseInfo &&
-              <PurchaseInfo />
-            }
-            {
-              this.props.pageState === PAGE_STATES.welcome &&
-              <DashboardWelcome />
-            }
-            {
-              this.props.pageState === PAGE_STATES.createPurchase &&
-              <CreatePurchaseStep2 />
-            }
-          </div>
+          <DashboardPageWrapper>
+            <SideBar debtsStatistic={this.props.debtsStatistic} />
+            <PurchaseViewer>
+              {
+                this.props.pageState === PAGE_STATES.purchaseInfo &&
+                <PurchaseInfo />
+              }
+              {
+                this.props.pageState === PAGE_STATES.welcome &&
+                <DashboardWelcome />
+              }
+              {
+                this.props.pageState === PAGE_STATES.createPurchase &&
+                <CreatePurchaseStep2 />
+              }
+            </PurchaseViewer>
+          </DashboardPageWrapper>
         </OnScreenHeightSection>
         <GroupsModal />
         <SettingsModal />
@@ -125,11 +141,13 @@ DashboardPage.propTypes = {
   setPendingPurchaseParticipants: PropTypes.func,
   setGroupModalState: PropTypes.func,
   setSettingsModalState: PropTypes.func,
+  getDebtorsStatisticsRequest: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   currentUser: makeSelectCurrentUser(),
   pageState: makeSelectPageState(),
+  debtsStatistic: makeSelectDebtorsStatistics(),
 });
 
 const mapDispatchToProps = {
@@ -142,6 +160,7 @@ const mapDispatchToProps = {
   setPendingPurchaseParticipants,
   setGroupModalState,
   setSettingsModalState,
+  getDebtorsStatisticsRequest,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);

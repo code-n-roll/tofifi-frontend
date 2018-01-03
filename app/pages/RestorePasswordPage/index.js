@@ -60,7 +60,7 @@ class RestorePasswordPage extends Component {
     return (
       <UnloggedLayout>
         <OnScreenHeightSection>
-          <div className="mdl-typography--text-center" style={{ position: 'relative', zIndex: 2 }}>
+          <div className="mdl-typography--text-center" style={{ position: 'relative', zIndex: 2, marginTop: 160 }}>
             <div className="sign-in-sign-up-form-container">
               {childComponent}
             </div>

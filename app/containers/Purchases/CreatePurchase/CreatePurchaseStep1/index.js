@@ -9,6 +9,7 @@ import SelectUsersList from 'components/Users/SelectUsersList';
 import GroupsList from 'components/Groups/GroupsList';
 import ListFilter from 'components/ListFilter';
 import purchaseImage from './images/purchase.png';
+import FlatButton from 'material-ui/FlatButton';
 
 class CreatePurchaseStep1 extends Component {
   constructor(props) {
@@ -71,25 +72,24 @@ class CreatePurchaseStep1 extends Component {
               itemsPropName="groups"
               inputPlaceholder="Enter team name"
               listContainerClassName="create-purchase_groups-list"
+              heightRelativeToParent="calc(100% - 110px)"
               listProps={{
                 onGroupItemClick: this.handleGroupItemClick,
                 avatarsNumber:5
               }}
             />
             <div className="create-purchase_next-step">
-              <button
-                className="mdl-button mdl-js-button mdl-button--raised bg-gray"
-                onClick={this.props.onCancelClick}
-              >
-                Cancel
-              </button>
+              <div style={{float: 'right'}}>
+                <FlatButton
+                  label="Cancel"
+                  secondary={true}
+                  onClick={this.props.onCancelClick} />
 
-              <button
-                className="mdl-button mdl-js-button mdl-button--raised bg-green text-white"
-                onClick={() => this.setState({ step: 2 })}
-              >
-                Skip
-              </button>
+                <FlatButton
+                  label="Skip"
+                  primary={true}
+                  onClick={() => this.setState({ step: 2 })} />
+              </div>
             </div>
           </div>
         )}
@@ -118,25 +118,25 @@ class CreatePurchaseStep1 extends Component {
               itemsPropName="users"
               inputPlaceholder="Enter user name"
               listContainerClassName="create-purchase_users-list"
+              heightRelativeToParent="calc(100% - 180px)"
               listProps={{
                 onUserStatusChange: this.handleUserStatusChange,
               }}
             />
-            <div className="create-purchase_next-step">
-              <button
-                className="mdl-button mdl-js-button mdl-button--raised bg-gray"
-                onClick={this.props.onCancelClick}
-              >
-                Cancel
-              </button>
 
-              <button
-                className="mdl-button mdl-js-button mdl-button--raised bg-green text-white"
-                disabled={(!this.state.selectedUsers || this.state.selectedUsers.length === 0 || this.state.purchaseName === '')}
-                onClick={this.handleCreatePurchaseButtonClick}
-              >
-                Next
-              </button>
+            <div className="create-purchase_next-step">
+              <div style={{float: 'right'}}>
+                <FlatButton
+                  label="Cancel"
+                  secondary={true}
+                  onClick={this.props.onCancelClick} />
+
+                <FlatButton
+                  label="Next"
+                  primary={true}
+                  disabled={(!this.state.selectedUsers || this.state.selectedUsers.length === 0 || this.state.purchaseName === '')}
+                  onClick={this.handleCreatePurchaseButtonClick} />
+              </div>
             </div>
           </div>
         )}

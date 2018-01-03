@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
+import CustomScroll from 'react-custom-scroll';
 
 import { fetchStoresRequest, createStoreOrderRequest } from 'pages/DashboardPage/actions';
 import { selectStoresList } from 'pages/DashboardPage/selectors';
@@ -11,72 +12,81 @@ import './styles.css';
 
 class StoresTab extends Component {
   state = {
-    selectedId: null
+    selectedId: null,
   };
 
   componentWillMount() {
     this.props.fetchStoresRequest();
   }
 
+  handleStoreCardClick = (id) => () => {
+    this.setState({
+      selectedId: id,
+    });
+  }
+
+  handleSubmitClick = () => {
+    this.props.createStoreOrderRequest(this.state.selectedId);
+  }
+
   render() {
-    let { selectedId } = this.state;
+    const { selectedId } = this.state;
+
     return (
       <div className="stores-tab">
-        <div className="stores-tab__list">
-          {
-            this.props.stores
-              ? this.props.stores.map(store =>
-                <SelectableCard id={store.id}
-                  name={store.name}
-                  imageUrl="https://www.underconsideration.com/brandnew/archives/sbarro_logo_detail.png"
-                  onClick={this.handleStoreCardClick(store.id)}
-                  selected={store.id === selectedId}
-                  key={store.id}
-                />
-              )
-              : <div>No available stores</div>
-          }
-        </div>
+        <CustomScroll heightRelativeToParent="100%">
+          <div className="stores-tab__list">
+            { this.props.stores ?
+                this.props.stores.map((store) =>
+                  <SelectableCard
+                    id={store.id}
+                    name={store.name}
+                    imageUrl={store.imageUrl}
+                    onClick={this.handleStoreCardClick(store.id)}
+                    selected={store.id === selectedId}
+                    key={store.id}
+                  />
+                ) : (
+                  <div>No available stores</div>
+                )}
+          </div>
+        </CustomScroll>
         <div className="stores-tab__bottom-row">
-          <FlatButton label="Cancel" secondary={true} onClick={this.props.onCancelClick}/>
+          <div className="stores-tab__button">
+            <FlatButton
+              label="Cancel"
+              secondary
+              onClick={this.props.onCancelClick}
+            />
+          </div>
           <RaisedButton
+            className="stores-tab__button"
             onClick={this.handleSubmitClick}
             label="Create order"
-            primary={true}
-            disabled={ selectedId === null }
+            primary
+            disabled={selectedId === null}
           />
         </div>
       </div>
     );
   }
-
-  handleStoreCardClick = id => e => {
-    this.setState({
-      selectedId: id
-    });
-    console.log(`clicked ${id}`);
-  }
-
-  handleSubmitClick = () => {
-    this.props.createStoreOrderRequest(this.state.selectedId)
-  }
 }
 
 StoresTab.propTypes = {
-  stores: PropTypes.array,
+  stores: PropTypes.object,
   fetchStoresRequest: PropTypes.func.isRequired,
-  onCancelClick: PropTypes.func
+  onCancelClick: PropTypes.func,
+
+  createStoreOrderRequest: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  stores: selectStoresList(state)
+  stores: selectStoresList(state),
 });
 
 const mapDispatchToProps = {
   fetchStoresRequest,
-  createStoreOrderRequest
+  createStoreOrderRequest,
 };
 
-StoresTab = connect(mapStateToProps, mapDispatchToProps)(StoresTab);
-
-export default StoresTab;
+export default connect(mapStateToProps, mapDispatchToProps)(StoresTab);

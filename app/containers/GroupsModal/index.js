@@ -58,7 +58,8 @@ class GroupsModal extends Component {
   render() {
     const style = {
       content: {
-        width: 410,
+        width: '90%',
+        maxWidth: 410,
         minHeight: 600,
         overflow: 'hidden',
       },
@@ -97,7 +98,7 @@ class GroupsModal extends Component {
   }
 }
 
-ModalGroupsList.propTypes = {
+GroupsModal.propTypes = {
   isOpen: PropTypes.bool,
   setGroupModalState: PropTypes.func,
 };

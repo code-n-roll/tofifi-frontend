@@ -24,12 +24,13 @@
   padding: 40px 10px;
 
   /* FIXME make normal markup */
-  height: 700px;
+  height: 400px;
   overflow: auto;
 }
 
 .store-component__item {
   width: 200px;
+  min-width: 200px;
   margin: 20px;
 }
 

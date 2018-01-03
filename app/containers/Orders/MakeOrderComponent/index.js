@@ -1,27 +1,40 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { List as ImmutableList } from 'immutable';
 
 import { updateStoreOrderRequest } from 'pages/DashboardPage/actions';
+import { selectChoosedItems } from 'pages/DashboardPage/selectors';
 import UserOrderInfo from '../UserOrderInfo';
 import StoreComponent from '../StoreComponent';
 
 class MakeOrderComponent extends Component {
-  handleChangeOrderClick = () => {
+  state = {
+    changeOrderMode: false,
+  }
 
+  handleChangeOrderClick = () => {
+    this.setState({
+      changeOrderMode: true,
+    });
   }
 
   handleSubmitOrder = () => {
-    this.props.updateStoreOrderRequest(this.props.purchase.id, this.state.selectedItems);
+    const { purchase, choosedItems } = this.props;
+    this.props.updateStoreOrderRequest(purchase.id, choosedItems.toJS());
+    this.setState({
+      changeOrderMode: false,
+    });
   }
 
   render() {
-    const { prevOrderItems, isOrderSubmitted } = this.props;
+    const { prevOrderItems, purchase } = this.props;
 
     return (
-      prevOrderItems ? (
+      (prevOrderItems.length > 0 && !this.state.changeOrderMode) ? (
         <UserOrderInfo
           items={prevOrderItems}
-          isOrderSubmitted={isOrderSubmitted}
+          isOrderSubmitted={purchase.storeOrder.isSubmitted}
           onChangeOrderClick={this.handleChangeOrderClick}
         />
       ) : (
@@ -36,13 +49,18 @@ class MakeOrderComponent extends Component {
 
 MakeOrderComponent.propTypes = {
   prevOrderItems: PropTypes.array.isRequired,
-  isOrderSubmitted: PropTypes.bool.isRequired,
   purchase: PropTypes.object.isRequired,
-  updateStoreOrderRequest,
+
+  updateStoreOrderRequest: PropTypes.func.isRequired,
+  choosedItems: PropTypes.instanceOf(ImmutableList).isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  choosedItems: selectChoosedItems(state),
+});
 
 const mapDispatchToProps = {
   updateStoreOrderRequest,
 };
 
-export default connect(() => {}, mapDispatchToProps)(MakeOrderComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(MakeOrderComponent);

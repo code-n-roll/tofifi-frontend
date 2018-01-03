@@ -42,9 +42,25 @@ export const removeBankCardApi = () => post(PATHS.REMOVE_BANK_CARD, true);
 // groups
 export const getGroupsApi = () => get(PATHS.GROUPS_PATH, true);
 export const createGroupApi = (data) => post(PATHS.GROUPS_PATH, true, data);
+
+// stores
+export const getStoresApi = () => get(PATHS.STORES_PATH, true);
+export const getStoreCategoriesApi = () => get(PATHS.STORE_CATEGORIES_PATH, true);
+export const getStoreContentApi = (id) => get(`${PATHS.STORES_PATH}/${id}`, true);
+export const getStoreItemsApi = () => get(PATHS.STORE_ITEMS_PATH, true);
+
+export const createStoreOrderApi = (data) => post(PATHS.STORE_ORDERS_PATH, true, data);
+export const updateStoreOrderApi = (id, data) =>
+  put(`${PATHS.STORE_ORDERS_PATH}/${id}`, true, data);
+export const submitStoreOrderApi = (id) =>
+  post(`${PATHS.STORE_ORDERS_PATH}/${id}/submit`, true);
+
 export const updateGroupApi = (id, data) => patch(`${PATHS.GROUPS_PATH}/${id}`, true, data);
 
 // reset pass
 export const sendRestorePasswordLinkApi = (data) => post(PATHS.SEND_RESTORE_PASSWORD_LINK, false, data);
 export const restorePasswordApi = (data) => post(PATHS.RESTORE_PASSWORD, false, data);
 export const verifyAccessApi = (data) => post(PATHS.VERIFY_ACCESS, false, data);
+
+// debtors statistics
+export const getDebtorsStatisticsApi = () => get(PATHS.DEBTORS_STATISTICS_PATH, true);

@@ -1,6 +1,7 @@
 .submitted-order__user-list {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-around;
 
   padding: 30px;

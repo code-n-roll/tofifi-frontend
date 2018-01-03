@@ -174,7 +174,9 @@
       "express",
       "ip",
       "minimist",
-      "sanitize.css"
+      "sanitize.css",
+      "react-icons",
+      "fs"
     ],
     "include": [
       "core-js",
@@ -229,6 +231,7 @@
     "react": "15.5.4",
     "react-avatar": "^2.5.1",
     "react-bank-card": "^0.1.0",
+    "react-custom-scroll": "^2.0.2",
     "react-dd-menu": "^2.0.2",
     "react-dom": "15.5.4",
     "react-helmet": "5.1.3",
