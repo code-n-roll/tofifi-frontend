@@ -10,7 +10,7 @@ const ParticipantItem = (props) => (
   <Card className="purchase-info_participant-container">
     <div>
       <div className="participant-item__img">
-        <Avatar username={props.username} avatarUrl={props.avatarUrl} />
+        <Avatar username={props.username} avatarUrl={props.avatarUrl} style={{ opacity: 0.5 }} />
       </div>
       <div className="owner-purchase-info-item">
         {props.username}

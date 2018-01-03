@@ -50,7 +50,7 @@ class GroupItem extends Component {
         style={props.onClick ? { cursor: 'pointer' } : { cursor: 'auto' }}
       >
         <div style={{ float: 'left' }}>
-          <Avatar name={props.name} round size={60} />
+          <Avatar name={props.name} round size={60} style={{ opacity: 0.5 }} />
         </div>
         <div className="group-item_info" >
           <span className="group-item_info__name">{props.name}</span>
@@ -60,7 +60,7 @@ class GroupItem extends Component {
                 {
                   user.avatarUrl ?
                     <img src={user.avatarUrl} role="presentation" className="group-user-avatar-item" /> :
-                    <Avatar name={user.username} round size={30} style={{ marginRight: 7 }} />
+                    <Avatar name={user.username} round size={30} style={{ marginRight: 7, opacity: 0.5 }} />
                 }
               </span>
             ))}

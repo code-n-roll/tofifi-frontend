@@ -10,7 +10,7 @@ const UserItemWithCheckbox = (props) => {
   let avatar;
 
   if (!props.avatarUrl) {
-    avatar = <Avatar name={props.username} size={50} round className="user-item-avatar" />;
+    avatar = <Avatar name={props.username} style={{ opacity: 0.5 }} size={50} round className="user-item-avatar" />;
   } else {
     avatar = <img src={props.avatarUrl} alt="Avatar" className="user-item-avatar" />;
   }

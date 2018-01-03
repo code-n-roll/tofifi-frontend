@@ -10,7 +10,9 @@ export const onlyDecimal = (value) => {
   } else {
     sections[0] = '0';
   }
-
+  if (sections[0].length > 3) {
+    sections[0] = sections[0].slice(0, 3);
+  }
   // If numbers exist after first .
   if (sections[1]) {
     // Join first two sections and truncate end section to length 2
