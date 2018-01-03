@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form/immutable';
 import InputControl from 'components/controls/InputControl';
-import { required, password } from 'components/forms/validations';
+import { required, password, equalWith } from 'components/forms/validations';
 import { Link } from 'react-router/lib';
 import PropTypes from 'prop-types';
 import { saveNewPasswordAction } from './actions';
@@ -24,18 +24,16 @@ class RestorePasswordForm extends Component {
           <Field
             name="newPassword"
             type="password"
-            placeholder="New password"
+            floatingLabel="New password"
             component={InputControl}
-            validate={[required]}
-            style={{ paddingBottom: '20px' }}
+            validate={[required, password]}
           />
           <Field
             name="passwordConfirmation"
             type="password"
-            placeholder="New password confirmation"
+            floatingLabel="New password confirmation"
             component={InputControl}
-            validate={[required]}
-            style={{ paddingBottom: '40px' }}
+            validate={[required, password, equalWith('newPassword')]}
           />
         </div>
         <button

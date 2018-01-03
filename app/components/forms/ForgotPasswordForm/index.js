@@ -25,7 +25,7 @@ class ForgotPasswordForm extends Component {
             <Field
               name="email"
               type="text"
-              placeholder="Email"
+              floatingLabel="Email"
               component={InputControl}
               validate={[required, email]}
             />
