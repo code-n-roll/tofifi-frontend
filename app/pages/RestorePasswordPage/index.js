@@ -3,14 +3,13 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { verifyAccessRequest, setIsValidToken } from './actions';
-
 import { verifyAccessToRestorePasswordApi } from 'utils/api/requests';
+import { selectTokenStatus } from 'pages/RestorePasswordPage/selectors';
 
 import UnloggedLayout from 'components/layouts/UnloggedLayout';
 import NotFound from '../NotFoundPage'
 import RestorePasswordForm from 'components/forms/RestorePasswordForm';
 import OnScreenHeightSection from 'components/sections/OnScreenHeightSection';
-
 
 class RestorePasswordPage extends Component {
   constructor(props) {
@@ -24,19 +23,19 @@ class RestorePasswordPage extends Component {
 
   componentWillMount() {
     debugger;
-    this.props.verifyAccessRequest(this.props.location.query);
-    // this.handleRestorePasswordLinkClick(this.props.location.query);
-    debugger;
+    this.handleRestorePasswordLinkClick(this.props.location.query);
   }
 
   handleRestorePasswordLinkClick(query) {
-    // debugger;
-    // this.props.verifyAccessRequest(query);
+    debugger;
+    this.props.verifyAccessRequest(query);
+    debugger;
   }
 
   render() {
+    debugger;
     return (
-      this.state.isValidToken ?
+      this.props.isValidToken.get('isValidToken') == true?
       <UnloggedLayout>
         <OnScreenHeightSection>
           <div className="mdl-typography--text-center" style={{ position: 'relative', zIndex: 2 }}>
@@ -55,13 +54,15 @@ class RestorePasswordPage extends Component {
 
 RestorePasswordPage.propTypes = {
   verifyAccessRequest: PropTypes.func,
-  isValidToken: PropTypes.bool,
+  isValidToken: PropTypes.object,
 };
 
 const mapDispatchToProps = {
   verifyAccessRequest
 };
 
+const mapStateToProps = (state) => ({
+  isValidToken: selectTokenStatus(state)
+});
 
-
-export default connect(mapDispatchToProps)(RestorePasswordPage);
+export default connect(mapStateToProps, mapDispatchToProps)(RestorePasswordPage);

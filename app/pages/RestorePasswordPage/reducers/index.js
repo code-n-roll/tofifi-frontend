@@ -4,19 +4,19 @@ import {
 } from '../constants';
 
 const initialState = fromJS({
-  isTokenValid: false,
+  isValidToken: false,
 });
 
-function passwordReducer(state = initialState, action) {
+function restorePasswordReducer(state = initialState, action) {
   debugger;
 
   switch (action.type) {
     case SET_IS_VALID_TOKEN:
       return state
-        .set('isTokenValid', action.data);
+        .set('isValidToken', action.data);
     default:
       return state;
   }
 }
 
-export default passwordReducer;
+export default restorePasswordReducer;

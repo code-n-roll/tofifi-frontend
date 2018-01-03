@@ -102,21 +102,21 @@ export default function createRoutes(store) {
     },
     {
       path: '/restore/confirm',
-      name: '/restore/confirm',
+      name: 'restore_password',
       onEnter: grantedAuth,
       getComponent(nextState, cb) {
         const importModules = Promise.all([
-          import('pages/RestorePasswordPage'),
           import('pages/RestorePasswordPage/reducers'),
           import('pages/RestorePasswordPage/sagas'),
+          import('pages/RestorePasswordPage'),
         ]);
 
         const renderRoute = loadModule(cb);
 
-        importModules.then(([reducer, component, sagas]) => {
+        importModules.then(([reducer, sagas, component]) => {
           injectReducer('restore_password', reducer.default);
-          renderRoute(component);
           injectSagas(sagas.default);
+          renderRoute(component);
         });
 
         importModules.catch(errorLoading);

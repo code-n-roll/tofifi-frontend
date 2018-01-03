@@ -25,7 +25,6 @@ import 'sanitize.css/sanitize.css';
 import App from 'containers/App';
 import globalSaga from 'containers/App/sagas';
 import commonSaga from 'pages/common/sagas';
-import passwordSaga from 'pages/RestorePasswordPage/sagas'
 import formActionSaga from 'redux-form-saga';
 
 
@@ -87,7 +86,6 @@ const render = (messages) => {
       store.runSaga(globalSaga);
       store.runSaga(formActionSaga);
       store.runSaga(commonSaga);
-      store.runSaga(passwordSaga);
 
       const history = syncHistoryWithStore(browserHistory, store, {
         selectLocationState: makeSelectLocationState(),
