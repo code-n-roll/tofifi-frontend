@@ -17,11 +17,13 @@ class ForgotPasswordForm extends Component {
     return (
       <form onSubmit={props.handleSubmit(forgotPassword)}>
         <div style={{ paddingBottom: '20px' }}>
-          <div>
+          <div style={{ maxHeight: 72 }}>
             <Field
               name="email"
               type="text"
+              className="log-in-log-out-field"
               placeholder="Email"
+              floatingLabel="Email"
               component={InputControl}
               validate={[required, email]}
             />

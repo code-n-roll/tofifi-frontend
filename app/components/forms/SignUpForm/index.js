@@ -16,19 +16,21 @@ class SignUpForm extends Component {
     return (
       <form onSubmit={props.handleSubmit(signUp)}>
         <div style={{ paddingBottom: '20px' }}>
-          <div>
+          <div style={{ maxHeight: 72 }}>
             <Field
               name="email"
               type="text"
+              className="log-in-log-out-field"
               floatingLabel="Email"
               component={InputControl}
               validate={[required, email]}
             />
           </div>
-          <div>
+          <div style={{ maxHeight: 72 }}>
             <Field
               name="password"
               type="password"
+              className="log-in-log-out-field"
               floatingLabel="Password"
               component={InputControl}
               validate={[required, password]}
@@ -39,6 +41,7 @@ class SignUpForm extends Component {
         <button
           className="mdl-button mdl-js-button mdl-button--raised big-btn"
           disabled={props.submitting || props.invalid}
+          style={{ marginTop: 10 }}
         >
           Sign up
         </button>
