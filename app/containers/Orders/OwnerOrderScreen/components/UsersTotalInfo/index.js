@@ -7,8 +7,13 @@ import UserOrder from './UserOrder';
 import './styles.css';
 
 class UsersTotalInfo extends Component {
+  constructor(...args) {
+    super(...args);
+    this.getItemsWithInfo = this.getItemsWithInfo.bind(this);
+  }
+
   getItemsWithInfo = (items) => items.map((item) => {
-    const itemInfo = this.state.storeItems[item.id];
+    const itemInfo = this.props.storeItems[item.itemId];
     if (!itemInfo) {
       return {
         ...item,
@@ -28,11 +33,12 @@ class UsersTotalInfo extends Component {
         <div className="submitted-order__user-list">
           {
             this.props.users &&
+            this.props.storeItems &&
             this.props.users.map((user) =>
               <UserOrder
                 key={user.userId}
                 user={user}
-                items={user.items}
+                items={this.getItemsWithInfo(user.items)}
               />
             )
           }
@@ -44,6 +50,8 @@ class UsersTotalInfo extends Component {
 
 UsersTotalInfo.propTypes = {
   users: PropTypes.array.isRequired,
+
+  storeItems: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({

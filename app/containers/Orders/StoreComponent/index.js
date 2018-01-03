@@ -15,7 +15,7 @@ import './styles.css';
 
 class StoreComponent extends Component {
   state = {
-    selectedCategoryIndex: null,
+    selectedCategoryIndex: 0,
   }
 
   handleListClick = (e, index) => {
@@ -83,7 +83,10 @@ class StoreComponent extends Component {
         <div className="store-component__sidebar">
           {
             storeContent && storeContent.categories &&
-            <SelectableList defaultValue={null} onChange={this.handleListClick}>
+            <SelectableList
+              defaultValue={this.state.selectedCategoryIndex}
+              onChange={this.handleListClick}
+            >
               {
                 storeContent.categories.map((category, index) =>
                   <ListItem
