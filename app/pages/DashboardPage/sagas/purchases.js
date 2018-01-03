@@ -66,6 +66,7 @@ function* createPurchase(action) {
   browserHistory.push(`/?purchase=${response.data.id}`);
   yield put(setPendingPurchase(null));
   yield put(setPendingPurchaseParticipants(null));
+  yield put(getDebtorsStatisticsRequest());
 }
 
 function* payPurchase(action) {
