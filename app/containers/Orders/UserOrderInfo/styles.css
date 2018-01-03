@@ -1,0 +1,22 @@
+.user-order-info {
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
+
+.user-order-info__items-list {
+  flex: 1 1 auto;
+
+  height: 100%;
+  overflow: auto;
+}
+
+.user-order-info__bottom-line {
+  flex: 0 1 auto;
+
+  display: flex;
+  justify-content: flex-end;
+
+  padding: 30px;
+}

@@ -517,6 +517,10 @@ textarea:focus, input:focus{
   outline: none;
 }
 
+.log-in-log-out-field {
+  width: 290px !important;
+}
+
 .sign-in-sign-up-form-container {
   max-width: 400px;
   margin: auto auto 30px;

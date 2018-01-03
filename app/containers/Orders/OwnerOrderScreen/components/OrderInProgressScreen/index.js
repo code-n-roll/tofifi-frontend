@@ -5,14 +5,17 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-
 import { makeSelectCurrentUser } from 'containers/App/selectors';
 import MakeOrderComponent from 'containers/Orders/MakeOrderComponent';
 import OrderTotalInfo from '../OrderTotalInfo';
 
+const fullHeightStyle = {
+  height: '100%',
+};
+
 class OrderInProgressScreen extends Component {
   state = {
-    value: 'myOrder',
+    value: 'my-order',
   };
 
   handleChangeTab = (value) => {
@@ -28,11 +31,14 @@ class OrderInProgressScreen extends Component {
       <Tabs
         value={this.state.value}
         onChange={this.handleChangeTab}
+        contentContainerStyle={fullHeightStyle}
+        tabTemplateStyle={{ height: 'calc(100% - 50px)' }}
+        style={fullHeightStyle}
       >
-        <Tab label="My order" value="myOrder">
+        <Tab label="My order" value="my-order">
           <MakeOrderComponent purchase={purchase} prevOrderItems={userOrder.items} />
         </Tab>
-        <Tab label="Total info" value="totalInfo">
+        <Tab label="Total info" value="total-info">
           <OrderTotalInfo users={purchase.users} purchaseId={purchase.id} />
         </Tab>
       </Tabs>

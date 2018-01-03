@@ -24,6 +24,7 @@ class RestorePasswordForm extends Component {
           <Field
             name="newPassword"
             type="password"
+            className="log-in-log-out-field"
             floatingLabel="New password"
             component={InputControl}
             validate={[required, password]}
@@ -32,12 +33,14 @@ class RestorePasswordForm extends Component {
             name="passwordConfirmation"
             type="password"
             floatingLabel="New password confirmation"
+            className="log-in-log-out-field"
             component={InputControl}
             validate={[required, password, equalWith('newPassword')]}
           />
         </div>
         <button
           className="mdl-button mdl-js-button mdl-button--raised bg-blue text-white big-btn big-btn-margin"
+          style={{marginTop: 30}}
           disabled={props.submitting || props.invalid}
           type="submit"
         >

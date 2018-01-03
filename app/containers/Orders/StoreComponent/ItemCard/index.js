@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Card, CardTitle, CardActions, CardMedia } from 'material-ui/Card';
+import Paper from 'material-ui/Paper';
 import FlatButton from 'material-ui/FlatButton';
 
+import storeImagePlacehoder from 'images/store-placeholder.png';
 import './styles.css';
 
 class ItemCard extends Component {
@@ -26,35 +27,53 @@ class ItemCard extends Component {
   }
 
   render() {
-    const { name, description, imageUrl } = this.props;
+    const { name, currency, price, description, imageUrl } = this.props;
     const { amount } = this.state;
+
+    let displayedSum = amount === 0 ?
+      price :
+      price * amount;
+
+    displayedSum = Math.round(displayedSum * 100) / 100;
+
     return (
-      <Card>
-        <CardMedia
-          overlay={<CardTitle title={name} subtitle={description} />}
+      <Paper className="store-item-preview">
+        <div
+          className="store-item-preview__wrapper"
+          style={{ backgroundImage: `url(${imageUrl}), url(${storeImagePlacehoder})` }}
         >
-          <div className="store-item-preview">
-            <img className="store-item-preview" src={imageUrl} alt={name} />
+          <div className="store-item-preview__name-wrapper">
+            <span className="store-item-preview__name">{name}</span>
           </div>
-        </CardMedia>
-        <CardActions>
-          <div className="plus-minus-button">
-            <FlatButton
-              label="-"
-              fullWidth
-              onClick={this.handleChangeAmount(-1)}
-            />
+        </div>
+        <div className="store-item-preview__bottow-row">
+          <div className="store-item-preview__items-control">
+            <div className="plus-minus-button">
+              <FlatButton
+                label="-"
+                fullWidth
+                onClick={this.handleChangeAmount(-1)}
+              />
+            </div>
+            <div className="store-item-preview__items-count">
+              {amount}
+            </div>
+            <div className="plus-minus-button">
+              <FlatButton
+                label="+"
+                fullWidth
+                onClick={this.handleChangeAmount(1)}
+              />
+            </div>
           </div>
-          <span>{amount}</span>
-          <div className="plus-minus-button">
-            <FlatButton
-              label="+"
-              fullWidth
-              onClick={this.handleChangeAmount(1)}
-            />
+          <div
+            className={`store-item-preview__sum ${this.state.amount > 0 &&
+              'store-item-preview__sum_choosed'}`}
+          >
+            {displayedSum} {currency}
           </div>
-        </CardActions>
-      </Card>
+        </div>
+      </Paper>
     );
   }
 }
@@ -66,6 +85,7 @@ ItemCard.propTypes = {
   price: PropTypes.number.isRequired,
   imageUrl: PropTypes.string.isRequired,
   onSelectItem: PropTypes.func.isRequired,
+  currency: PropTypes.string,
 };
 
 export default ItemCard;

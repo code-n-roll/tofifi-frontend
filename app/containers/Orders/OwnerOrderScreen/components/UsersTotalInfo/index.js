@@ -1,27 +1,60 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
+import { selectStoreItems } from 'pages/DashboardPage/selectors';
 import UserOrder from './UserOrder';
 import './styles.css';
 
-const UsersTotalInfo = (props) => (
-  <div>
-    <div>
-      Need to load data from Roma
-    </div>
-    <div className="submitted-order__user-list">
-      {
-        props.users &&
-          props.users.map((user) =>
-            <UserOrder key={user.userId} {...user} />
+class UsersTotalInfo extends Component {
+  constructor(...args) {
+    super(...args);
+    this.getItemsWithInfo = this.getItemsWithInfo.bind(this);
+  }
+
+  getItemsWithInfo = (items) => items.map((item) => {
+    const itemInfo = this.props.storeItems[item.itemId];
+    if (!itemInfo) {
+      return {
+        ...item,
+        info: {},
+      };
+    }
+
+    return {
+      ...item,
+      info: itemInfo,
+    };
+  })
+
+  render() {
+    return (
+      <div className="submitted-order__user-list">
+        {
+          this.props.users &&
+          this.props.storeItems &&
+          this.props.users.map((user) =>
+            <UserOrder
+              key={user.userId}
+              user={user}
+              items={this.getItemsWithInfo(user.items)}
+            />
           )
-      }
-    </div>
-  </div>
-);
+        }
+      </div>
+    );
+  }
+}
 
 UsersTotalInfo.propTypes = {
   users: PropTypes.array.isRequired,
+
+  storeItems: PropTypes.object,
 };
 
-export default UsersTotalInfo;
+const mapStateToProps = (state) => ({
+  storeItems: selectStoreItems(state),
+});
+
+
+export default connect(mapStateToProps)(UsersTotalInfo);

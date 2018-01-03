@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
+import CustomScroll from 'react-custom-scroll';
 
 import StoreItemsList from '../StoreItemsList';
 import './styles.css';
@@ -10,15 +11,17 @@ class UserOrderInfo extends Component {
     const { items } = this.props;
 
     return (
-      <div>
-        <div>
+      <div className="user-order-info">
+        <div className="user-order-info__items-list">
           {
             items && (
-              <StoreItemsList items={items} />
+              <CustomScroll heightRelativeToParent="100%">
+                <StoreItemsList items={items} />
+              </CustomScroll>
             )
           }
         </div>
-        <div>
+        <div className="user-order-info__bottom-line">
           {
             !this.props.isOrderSubmitted && (
               <RaisedButton
