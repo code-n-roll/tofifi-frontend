@@ -71,6 +71,7 @@ class DashboardPage extends Component {
   }
 
   handleSettingsClick() {
+    debugger;
     this.props.setSettingsModalState(true);
   }
 
