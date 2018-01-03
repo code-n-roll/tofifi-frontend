@@ -17,25 +17,30 @@ class RestorePasswordForm extends Component {
     return (
       <form onSubmit={props.handleSubmit(restorePassword)} autoComplete="off">
         <div>
-          <Field
-            name="new_password"
-            type="password"
-            placeholder="New password"
-            component={InputControl}
-            validate={[required]}
-            style={{ paddingBottom: '20px' }}
-          />
-          <Field
-            name="new_password_confirmation"
-            type="password"
-            placeholder="New password confirmation"
-            component={InputControl}
-            validate={[required]}
-            style={{ paddingBottom: '40px' }}
-          />
+          <div style={{ maxHeight: 72 }}>
+            <Field
+              name="new_password"
+              type="password"
+              className="log-in-log-out-field"
+              floatingLabel="New password"
+              component={InputControl}
+              validate={[required]}
+            />
+          </div>
+          <div style={{ maxHeight: 72 }}>
+            <Field
+              name="new_password_confirmation"
+              type="password"
+              className="log-in-log-out-field"
+              floatingLabel="Confirm password"
+              component={InputControl}
+              validate={[required]}
+            />
+          </div>
         </div>
         <button
           className="mdl-button mdl-js-button mdl-button--raised bg-blue text-white big-btn big-btn-margin"
+          style={{marginTop: 30}}
           disabled={props.submitting || props.invalid}
           type="submit"
         >
