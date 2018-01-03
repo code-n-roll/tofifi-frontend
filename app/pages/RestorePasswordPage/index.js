@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { createStructuredSelector } from 'reselect';
 
-import { verifyAccessRequest, setIsValidToken } from './actions';
-import { verifyAccessToRestorePasswordApi } from 'utils/api/requests';
-import { selectTokenStatus } from 'pages/RestorePasswordPage/selectors';
+import { verifyAccessRequest } from './actions';
+import { makeSelectTokenStatus } from 'pages/RestorePasswordPage/selectors';
 
 import UnloggedLayout from 'components/layouts/UnloggedLayout';
-import NotFound from '../NotFoundPage'
 import RestorePasswordForm from 'components/forms/RestorePasswordForm';
 import OnScreenHeightSection from 'components/sections/OnScreenHeightSection';
 
@@ -15,39 +14,59 @@ class RestorePasswordPage extends Component {
   constructor(props) {
     super(props);
 
-    this.handleRestorePasswordLinkClick = this.handleRestorePasswordLinkClick.bind(this);
+    this.renderRestorePasswordForm = this.renderRestorePasswordForm.bind(this);
+    this.renderExpiredLinkMessage = this.renderExpiredLinkMessage.bind(this);
+
     this.state = {
-      isValidToken: false
-    }
+      isValidToken: false,
+    };
   }
 
   componentWillMount() {
-    debugger;
-    this.handleRestorePasswordLinkClick(this.props.location.query);
+    this.props.verifyAccessRequest(this.props.location.query);
   }
 
-  handleRestorePasswordLinkClick(query) {
-    debugger;
-    this.props.verifyAccessRequest(query);
-    debugger;
+  renderRestorePasswordForm() {
+    return (
+      <div>
+        <h5>Enter your new password</h5>
+        <RestorePasswordForm />
+      </div>
+    );
+  }
+
+  renderExpiredLinkMessage() {
+    return (
+      <div>
+        <h5>Your link is wrong or expired.</h5>
+        <button
+          className="mdl-button mdl-js-button mdl-button--raised big-btn bg-blue text-white"
+          onClick={() => this.props.router.push('forgot_password')}
+        >
+          Get new link
+        </button>
+      </div>
+    );
   }
 
   render() {
-    debugger;
+    let childComponent = null;
+    if (this.props.isValidToken === true) {
+      childComponent = this.renderRestorePasswordForm();
+    } else if (this.props.isValidToken === false) {
+      childComponent = this.renderExpiredLinkMessage();
+    }
+
     return (
-      this.props.isValidToken.get('isValidToken') == true?
       <UnloggedLayout>
         <OnScreenHeightSection>
           <div className="mdl-typography--text-center" style={{ position: 'relative', zIndex: 2 }}>
             <div className="sign-in-sign-up-form-container">
-                <h5>Enter your new password</h5>
-                <RestorePasswordForm/>
+              {childComponent}
             </div>
           </div>
         </OnScreenHeightSection>
       </UnloggedLayout>
-      :
-      <NotFound/>
     );
   }
 }
@@ -58,11 +77,11 @@ RestorePasswordPage.propTypes = {
 };
 
 const mapDispatchToProps = {
-  verifyAccessRequest
+  verifyAccessRequest,
 };
 
-const mapStateToProps = (state) => ({
-  isValidToken: selectTokenStatus(state)
+const mapStateToProps = createStructuredSelector({
+  isValidToken: makeSelectTokenStatus(),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RestorePasswordPage);

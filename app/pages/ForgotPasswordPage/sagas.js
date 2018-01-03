@@ -4,14 +4,12 @@ import { sendRestorePasswordLinkApi } from 'utils/api/requests';
 import { browserHistory } from 'react-router';
 
 function* handleForgotPassword(action) {
-  debugger;
   const formData = action.payload.toJS();
 
   try {
-    yield call(sendRestorePasswordLinkApi, formData.email);
+    yield call(sendRestorePasswordLinkApi, { email: formData.email });
 
     yield put(forgotPassword.success());
-    browserHistory.push('/');
   } catch (error) {
     browserHistory.push('/');
   }

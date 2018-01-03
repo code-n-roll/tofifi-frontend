@@ -7,24 +7,22 @@ import PropTypes from 'prop-types';
 import { saveNewPasswordAction } from './actions';
 
 class RestorePasswordForm extends Component {
-  
+
   propTypes = {
     clearSubmitErrors: PropTypes.function,
   }
 
   handleSubmit(e) {
-    debugger;
     e.preventDefault();
   }
 
   render() {
     const { props } = this;
-    debugger;
     return (
       <form onSubmit={props.handleSubmit(saveNewPasswordAction)}>
         <div>
           <Field
-            name="new_password"
+            name="newPassword"
             type="password"
             placeholder="New password"
             component={InputControl}
@@ -32,7 +30,7 @@ class RestorePasswordForm extends Component {
             style={{ paddingBottom: '20px' }}
           />
           <Field
-            name="new_password_confirmation"
+            name="passwordConfirmation"
             type="password"
             placeholder="New password confirmation"
             component={InputControl}

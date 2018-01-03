@@ -1,40 +1,40 @@
-import { takeEvery, takeLast } from 'redux-saga/effects';
+import { takeEvery, call, put, select } from 'redux-saga/effects';
 
 import { VERIFY_ACCESS_REQUEST } from 'pages/RestorePasswordPage/constants/';
-import { verifyAccessApi } from 'utils/api/requests'
-import { call, put } from 'redux-saga/effects';
-import { setIsValidToken } from 'pages/RestorePasswordPage/actions';
+import { verifyAccessApi, restorePasswordApi } from 'utils/api/requests'
+import { setIsValidToken, setAccessToken, setUserId } from 'pages/RestorePasswordPage/actions';
 import { saveNewPasswordAction } from 'components/forms/RestorePasswordForm/actions';
+import { makeSelectAccessToken, makeSelectUserId } from 'pages/RestorePasswordPage/selectors';
+import { browserHistory } from 'react-router';
 
 function* verifyAccess(action) {
-  // const formData = action.data;
   try {
-    debugger;
-
-    const response = yield call(verifyAccessApi, {id: action.data.id, token: encodeURIComponent(action.data.token)});
-  
-    console.log(response);
-    debugger;
-    yield put(setIsValidToken(response.status === 200 ? true : false));
-    debugger;
+    yield call(verifyAccessApi, { id: action.data.id, token: encodeURIComponent(action.data.token) });
+    yield put(setIsValidToken(true));
+    yield put(setAccessToken(encodeURIComponent(action.data.token)));
+    yield put(setUserId(action.data.id));
   } catch (e) {
     yield put(setIsValidToken(false));
   }
 }
 
 function* saveNewPassword(action) {
-  debugger;
+  const formData = action.payload.toJS();
+  const accessToken = yield select(makeSelectAccessToken());
+  const userId = yield select(makeSelectUserId());
+  yield call(restorePasswordApi, { id: userId, token: accessToken, ...formData });
+  try {
+    browserHistory.push('/');
+  } catch (e) {
+    browserHistory.push('/');
+  }
 }
 
-
 function* restorePasswordWatcherSaga() {
-  debugger;
   yield takeEvery(saveNewPasswordAction.REQUEST, saveNewPassword);
   yield takeEvery(VERIFY_ACCESS_REQUEST, verifyAccess);
-  
-  debugger;
 }
 
 export default [
-  restorePasswordWatcherSaga
+  restorePasswordWatcherSaga,
 ];

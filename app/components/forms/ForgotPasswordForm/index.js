@@ -3,12 +3,16 @@ import { reduxForm, Field } from 'redux-form/immutable';
 import InputControl from 'components/controls/InputControl';
 import { required, email } from 'components/forms/validations';
 import { forgotPassword } from './actions';
-import { submit } from 'redux-form/lib/immutable';
 
 class ForgotPasswordForm extends Component {
-
   handleSubmit(e) {
     e.preventDefault();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.submitSucceeded) {
+      this.props.onSubmitSuccess();
+    }
   }
 
   render() {
@@ -30,9 +34,9 @@ class ForgotPasswordForm extends Component {
         <button
           className="mdl-button mdl-js-button mdl-button--raised bg-blue text-white big-btn big-btn-margin"
           disabled={props.submitting || props.invalid}
-          type='submit'
+          type="submit"
         >
-        Send
+          Send
         </button>
       </form>
     );

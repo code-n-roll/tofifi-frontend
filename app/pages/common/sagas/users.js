@@ -15,20 +15,17 @@ import { formatAddBankCardData } from './helpers';
 
 
 export function* getUsersData() {
-  debugger;
   const response = yield call(getUsersApi);
   yield put(setUsersData(response.data));
 }
 
 export function* getCurrentUser() {
-  debugger;
   const response = yield call(getCurrentUserApi);
 
   yield put(setCurrentUserProfile(response.data));
 }
 
 export function* updateProfile(action) {
-  debugger;
   const formData = action.payload.toJS();
 
   try {
