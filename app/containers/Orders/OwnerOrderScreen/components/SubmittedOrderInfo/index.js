@@ -1,17 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import CustomScroll from 'react-custom-scroll';
 
 import UsersTotalInfo from '../UsersTotalInfo';
 
-class SubmittedOrderInfo extends Component {
-  render() {
-    return (
-      <div>
-        <UsersTotalInfo users={this.props.users} />
-      </div>
-    );
-  }
-}
+
+const SubmittedOrderInfo = (props) => (
+  <CustomScroll heightRelativeToParent="100%">
+    <UsersTotalInfo users={props.users} />
+  </CustomScroll>
+);
 
 SubmittedOrderInfo.propTypes = {
   users: PropTypes.array.isRequired,

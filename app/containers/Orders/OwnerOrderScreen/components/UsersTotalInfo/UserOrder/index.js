@@ -17,22 +17,22 @@ const UserOrder = (props) => (
       props.items && props.items.length > 0 ? (
         <div>
           <CustomScroll heightRelativeToParent="100px">
-              {
-                props.items.map((item) =>
-                  <div key={item.itemId} className="user-order__item">
-                    <div className="user-order__item-name">
-                      {item.info.name}
-                      {
-                        item.number > 1 &&
-                          <span className="user-order__item-amount">x{item.number}</span>
-                      }
-                    </div>
-                    <div className="user-order__item-price">
-                      {item.price} {item.info.currency}
-                    </div>
+            {
+              props.items.map((item) =>
+                <div key={item.itemId} className="user-order__item">
+                  <div className="user-order__item-name">
+                    {item.info.name}
+                    {
+                      item.number > 1 &&
+                        <span className="user-order__item-amount">x{item.number}</span>
+                    }
                   </div>
-                )
-              }
+                  <div className="user-order__item-price">
+                    {item.price} {item.info.currency}
+                  </div>
+                </div>
+              )
+            }
           </CustomScroll>
           <div className="user-order__status-line">
             <div className="user-order__total-sum">

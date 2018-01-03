@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from 'react-redux';
+import CustomScroll from 'react-custom-scroll';
 
 import { submitStoreOrderRequest } from 'pages/DashboardPage/actions';
 import UsersTotalInfo from '../UsersTotalInfo';
@@ -15,7 +16,10 @@ class OrderTotalInfo extends Component {
   render() {
     return (
       <div className="order-total-info__wrapper">
-        <UsersTotalInfo users={this.props.users} />
+        <CustomScroll heightRelativeToParent="calc(100% - 96px)">
+          <UsersTotalInfo users={this.props.users} />
+        </CustomScroll>
+
         <div className="order-total-info__bottom-line">
           <RaisedButton
             label="Submit order"

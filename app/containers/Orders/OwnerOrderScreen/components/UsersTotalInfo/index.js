@@ -29,20 +29,18 @@ class UsersTotalInfo extends Component {
 
   render() {
     return (
-      <div>
-        <div className="submitted-order__user-list">
-          {
-            this.props.users &&
-            this.props.storeItems &&
-            this.props.users.map((user) =>
-              <UserOrder
-                key={user.userId}
-                user={user}
-                items={this.getItemsWithInfo(user.items)}
-              />
-            )
-          }
-        </div>
+      <div className="submitted-order__user-list">
+        {
+          this.props.users &&
+          this.props.storeItems &&
+          this.props.users.map((user) =>
+            <UserOrder
+              key={user.userId}
+              user={user}
+              items={this.getItemsWithInfo(user.items)}
+            />
+          )
+        }
       </div>
     );
   }

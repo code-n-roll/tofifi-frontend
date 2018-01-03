@@ -1,0 +1,30 @@
+.submitted-order-info {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.submitted-order-info__items-list {
+  flex: 1 1 auto;
+
+  height: 100%;
+  overflow: hidden;
+}
+
+.submitted-order-info__bottom-row {
+  flex: 1 0 auto;
+  padding: 30px;
+}
+
+.submitted-order-info__bottom-row__sum {
+  text-align: center;
+  font-size: 20px;
+}
+
+.submitted-order-info__bottom-row__actions {
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: 30px;
+}
