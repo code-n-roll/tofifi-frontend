@@ -46,7 +46,6 @@ class ForgotPasswordPage extends Component {
               !this.state.linkSent && (
                 <div>
                   <h4 className="text-white"> OR </h4>
-
                   <button
                     className="mdl-button mdl-js-button mdl-button--raised bg-blue text-white big-btn"
                     onClick={() => this.props.router.push('sign_in')}

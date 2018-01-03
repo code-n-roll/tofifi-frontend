@@ -26,18 +26,23 @@ class NotOwnerPurchaseInfo extends Component {
             <img src={creditCardImage} role="presentation" style={{ maxWidth: '100%' }} />
             { /* <span className="purchase-info_credit-card__owner">Anton Dacik</span> */ }
           </div>
-          <div className="purchase-info_amount">
-            {props.sum ?
-              `Amount: ${props.sum} BYN` :
-              <TextField
-                type="text"
-                floatingLabelText="Sum for pay"
-                errorText={!props.sum && !this.state.sum ? 'Is required field' : null}
-                value={this.state.sum}
-                onChange={this.handleValueChange.bind(this)}
-              />
-            }
-          </div>
+          {
+            props.status === PURHCASE_STATUSES.NEW && (
+              <div className="purchase-info_amount">
+                {props.sum ?
+                  `Amount: ${props.sum} BYN` :
+                  <TextField
+                    type="text"
+                    floatingLabelText="Sum for pay"
+                    errorText={!props.sum && !this.state.sum ? 'Is required field' : null}
+                    value={this.state.sum}
+                    onChange={this.handleValueChange.bind(this)}
+                  />
+                }
+              </div>
+            )
+          }
+
           {props.status === PURHCASE_STATUSES.DECLINED &&
             <div className="purchase-info_status purchase-info_status--declined">DECLINED</div>
           }

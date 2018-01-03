@@ -7,6 +7,12 @@ const makeSelectLoaderStatus = () => createSelector(
   (commonState) => commonState.get('isLoading')
 );
 
+const makeSelectGlobalError = () => createSelector(
+  selectCommon,
+  (commonState) => commonState.get('error')
+);
+
 export {
   makeSelectLoaderStatus,
+  makeSelectGlobalError,
 };
