@@ -31,3 +31,4 @@ export const STORE_ORDERS_PATH = '/orders';
 
 // debtors statistics
 export const DEBTORS_STATISTICS_PATH = '/debts';
+export const SEND_MONEY_PATH = '/sendMoney';
