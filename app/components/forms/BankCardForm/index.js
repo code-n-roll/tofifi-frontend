@@ -47,7 +47,7 @@ class BankCardForm extends Component {
         </div>
         <div>
           <div style={{width: 390, padding: '0 60px 0 40px'}}>
-            <div>
+            <div className="bank-card__field_wrapper">
               <Field
                 name="name"
                 type="text"
@@ -58,7 +58,7 @@ class BankCardForm extends Component {
                 component={InputControl}
               />
             </div>
-            <div>
+            <div className="bank-card__field_wrapper">
               <Field
                 name="number"
                 floatingLabel="Card number"
