@@ -17,6 +17,7 @@ import {
   setPendingPurchaseParticipants,
   updatePurchase,
   submitStoreOrderSuccess,
+  setOrderJustSubmittedState,
 } from '../actions';
 import {
   makeSelectPendingPurchase,
@@ -31,7 +32,6 @@ function* fetchStores() {
 
 function* fetchStoreContent(action) {
   const response = yield call(getStoreContentApi, action.storeId);
-  console.log(response);
   yield put(fetchStoreContentSuccess(response.data));
 }
 
@@ -46,8 +46,6 @@ function* createStoreOrder(action) {
     storeId,
     users: pendingPurchaseParticipants,
   };
-
-  console.log(reqData);
 
   const response = yield call(createStoreOrderApi, reqData);
   const purchasesList = yield select(makeSelectPurchasesList());
@@ -73,16 +71,16 @@ function* updateStoreOrder(action) {
   const response = yield call(updateStoreOrderApi, orderId, reqData);
 
   const purchase = response.data;
-  console.log(purchase);
   yield put(updatePurchase(purchase));
 }
 
 function* submitStoreOrder(action) {
   const { orderId } = action;
-  console.log(orderId);
 
   yield call(submitStoreOrderApi, orderId);
+  console.log('submitted');
   yield put(submitStoreOrderSuccess(orderId));
+  yield put(setOrderJustSubmittedState(true));
 }
 
 export default {

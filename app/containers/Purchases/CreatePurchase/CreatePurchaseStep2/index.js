@@ -4,13 +4,16 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { browserHistory } from 'react-router';
 import _ from 'lodash';
+import classNames from 'classnames';
+
 import { makeSelectUsers } from 'pages/common/selectors';
 import { setPendingPurchase, setPendingPurchaseParticipants } from 'pages/DashboardPage/actions';
 import { makeSelectPendingPurchaseParticipants } from 'pages/DashboardPage/selectors';
 import PurchaseForm from 'components/forms/PurchaseForm';
 import StoresTab from './StoresTab';
-import classNames from 'classnames';
 
+import Tabs from 'components/Tabs';
+import Tab from 'components/Tabs/Tab';
 
 class CreatePurchaseStep2 extends Component {
   constructor(props) {
@@ -42,8 +45,18 @@ class CreatePurchaseStep2 extends Component {
   render() {
     return (
       <div className="fill-parent">
-        <div className="create-purchase-tabs mdl-tabs mdl-js-tabs  mdl-js-ripple-effect">
-          <div className="mdl-tabs__tab-bar">
+        <Tabs fullHeight>
+          <Tab name="Custom purchase">
+            <PurchaseForm
+              participants={this.getUsersFromIds()}
+              onCancelClick={this.handleCancelClick}
+            />
+          </Tab>
+          <Tab name="Market">
+            <StoresTab onCancelClick={this.handleCancelClick} />
+          </Tab>
+        </Tabs>
+          {/* <div className="mdl-tabs__tab-bar">
             <a
               href="#starks-panel"
               className={classNames('mdl-tabs__tab', { 'is-active': this.state.activeTab === 1 })}
@@ -58,16 +71,15 @@ class CreatePurchaseStep2 extends Component {
             >
               Market
             </a>
-          </div>
-        </div>
-        {this.state.activeTab === 1 && (
+          </div> */}
+        {/* {this.state.activeTab === 1 && (
           <PurchaseForm participants={this.getUsersFromIds()}
             onCancelClick={this.handleCancelClick}
           />
         )}
         {this.state.activeTab === 2 && (
           <StoresTab onCancelClick={this.handleCancelClick} />
-        )}
+        )} */}
       </div>
     );
   }

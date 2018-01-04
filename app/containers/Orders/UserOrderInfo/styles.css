@@ -20,3 +20,9 @@
 
   padding: 30px;
 }
+
+.user-order-info__sum {
+  padding-top: 20px;
+  font-size: 20px;
+  text-align: center;
+}

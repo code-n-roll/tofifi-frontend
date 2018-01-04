@@ -52,6 +52,7 @@ class ItemCard extends Component {
               <FlatButton
                 label="-"
                 fullWidth
+                disabled={amount < 1}
                 onClick={this.handleChangeAmount(-1)}
               />
             </div>

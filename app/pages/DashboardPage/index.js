@@ -134,7 +134,7 @@ class DashboardPage extends Component {
         <SettingsModal />
         <Snackbar
           open={!!this.props.globalError}
-          message={this.props.globalError}
+          message={this.props.globalError || ''}
           autoHideDuration={4000}
           onRequestClose={this.handleSnackbarRequestClose}
         />

@@ -3,13 +3,13 @@ import { reduxForm, Field, FieldArray, change, formValueSelector } from 'redux-f
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
+
 import InputControl from 'components/controls/InputControl';
-import { required } from 'components/forms/validations';
 import { onlyDecimal } from 'components/forms/normalizers';
 import PurchaseParticipantsList from './PurchaseParticipantsList';
 import { createPurchase } from './actions';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
 
 const FORM_NAME = 'PurchaseForm';
 
@@ -35,22 +35,27 @@ class PurchaseForm extends Component {
   }
 
   handleParticipantValueChange(participantId, value) {
-    if (!this.props.usersSums) {
+    if (!this.props.usersSums && !value) {
       return;
     }
 
     const participantValue = value === '' ? 0 : Math.floor(Number.parseFloat(value) * 100) / 100;
-    const usersSums = this.props.usersSums.toJS();
+
     let newTotalSum = participantValue;
 
-    Object.keys(usersSums).forEach((key) => {
-      if (usersSums.hasOwnProperty(key) && key != participantId) {
-        newTotalSum += Number.parseFloat(usersSums[key].sum);
-      }
-    });
+    if (this.props.usersSums) {
+      const usersSums = this.props.usersSums.toJS();
 
+      Object.keys(usersSums).forEach((key) => {
+        if (usersSums.hasOwnProperty(key) && key !== participantId.toString()) {
+          newTotalSum += Number.parseFloat(usersSums[key].sum);
+        }
+      });
+    }
+
+    console.log(newTotalSum);
     newTotalSum = Math.floor(newTotalSum * 100) / 100;
-    this.props.dispatch(change(FORM_NAME, 'totalSum', newTotalSum || null ));
+    this.props.dispatch(change(FORM_NAME, 'totalSum', newTotalSum || null));
   }
 
   renderParticipantsList() {
@@ -83,15 +88,17 @@ class PurchaseForm extends Component {
         <div className="create-purchase-buttons-container">
           <FlatButton
             label="Decline"
-            secondary={true}
+            secondary
             onClick={this.props.onCancelClick}
-            style={{ marginRight: 20 }}/>
+            style={{ marginRight: 20 }}
+          />
 
           <RaisedButton
             label="Сreate"
-            primary={true}
+            primary
             disabled={props.submitting || props.invalid}
-            type="submit"/>
+            type="submit"
+          />
         </div>
       </form>
     );
@@ -100,7 +107,6 @@ class PurchaseForm extends Component {
 
 PurchaseForm.propTypes = {
   participants: PropTypes.array,
-  totalSum: PropTypes.string,
   usersSums: PropTypes.object,
   dispatch: PropTypes.func,
   onCancelClick: PropTypes.func,

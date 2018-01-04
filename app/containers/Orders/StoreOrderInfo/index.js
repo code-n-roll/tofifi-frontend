@@ -13,6 +13,10 @@ class StoreOrderInfo extends Component {
     this.props.fetchStoreContentRequest(this.props.purchase.storeOrder.storeId);
   }
 
+  componentDidUpdate() {
+    this.props.fetchStoreContentRequest(this.props.purchase.storeOrder.storeId);
+  }
+
   render() {
     const { purchase } = this.props;
     return (

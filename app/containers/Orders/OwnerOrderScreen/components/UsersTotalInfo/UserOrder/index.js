@@ -11,7 +11,9 @@ const UserOrder = (props) => (
   <Paper className="user-order">
     <div className="user-order__user-info">
       <Avatar username={props.user.username} avatarUrl={props.user.avatarUrl} />
-      <div className="user-order__user-info__name">{props.user.username}</div>
+      <div className="user-order__user-info__name">
+        {props.isCurrentUser ? 'Me' : props.user.username}
+      </div>
     </div>
     {
       props.items && props.items.length > 0 ? (
@@ -43,9 +45,13 @@ const UserOrder = (props) => (
                   <span>Own sum</span>
                 )
               }
-              <div className="user-order__status">
-                <UserPurchaseStatusIcon status={props.user.status} />
-              </div>
+              {
+                !props.isCurrentUser && (
+                  <div className="user-order__status">
+                    <UserPurchaseStatusIcon status={props.user.status} />
+                  </div>
+                )
+              }
             </div>
           </div>
         </div>
@@ -63,6 +69,7 @@ UserOrder.propTypes = {
     sum: PropTypes.number,
     status: PropTypes.number.isRequired,
   }),
+  isCurrentUser: PropTypes.bool,
   items: PropTypes.array.isRequired,
 };
 

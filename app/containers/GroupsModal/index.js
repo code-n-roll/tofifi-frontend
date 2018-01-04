@@ -8,7 +8,7 @@ import { makeSelectGroupModalState } from 'pages/common/selectors';
 import {
   setGroupModalState,
   deleteGroupRequest,
-  leaveGroupRequest
+  leaveGroupRequest,
 } from 'pages/common/actions';
 import DefaultModalHeader from 'components/Modals/DefaultModalHeader';
 import ModalGroupsList from './ModalGroupsList';
@@ -82,9 +82,6 @@ class GroupsModal extends Component {
     return (
       <Modal
         isOpen={this.props.isOpen}
-        // onAfterOpen={afterOpenFn}
-        // onRequestClose={requestCloseFn}
-        // closeTimeoutMS={n}
         style={style}
         contentLabel="Modal"
       >

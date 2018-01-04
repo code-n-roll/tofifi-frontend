@@ -18,6 +18,10 @@ class StoreComponent extends Component {
     selectedCategoryIndex: 0,
   }
 
+  componentWillMount() {
+    this.props.updateChoosedItems([]);
+  }
+
   handleListClick = (e, index) => {
     this.setState({
       selectedCategoryIndex: index,
@@ -42,7 +46,7 @@ class StoreComponent extends Component {
       } else {
         choosedItems[existingItemIndex] = newItem;
       }
-    } else {
+    } else if (existingItemIndex !== -1) {
       choosedItems.splice(existingItemIndex, 1);
     }
 

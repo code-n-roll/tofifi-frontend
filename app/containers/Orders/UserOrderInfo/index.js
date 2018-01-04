@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import RaisedButton from 'material-ui/RaisedButton';
 import CustomScroll from 'react-custom-scroll';
@@ -6,42 +6,44 @@ import CustomScroll from 'react-custom-scroll';
 import StoreItemsList from '../StoreItemsList';
 import './styles.css';
 
-class UserOrderInfo extends Component {
-  render() {
-    const { items } = this.props;
+const UserOrderInfo = (props) => {
+  const { items, sum, isOrderSubmitted, onChangeOrderClick } = props;
 
-    return (
-      <div className="user-order-info">
-        <div className="user-order-info__items-list">
-          {
-            items && (
-              <CustomScroll heightRelativeToParent="100%">
-                <StoreItemsList items={items} />
-              </CustomScroll>
-            )
-          }
-        </div>
-        <div className="user-order-info__bottom-line">
-          {
-            !this.props.isOrderSubmitted && (
-              <RaisedButton
-                label="Change your order"
-                primary
-                onClick={this.props.onChangeOrderClick}
-              />
-            )
-          }
-        </div>
+  return (
+    <div className="user-order-info">
+      <div className="user-order-info__items-list">
+        {
+          items && (
+            <CustomScroll heightRelativeToParent="100%">
+              <StoreItemsList items={items} />
+            </CustomScroll>
+          )
+        }
       </div>
-    );
-  }
-}
+      <div className="user-order-info__sum">
+        Total sum: {sum} BYN
+      </div>
+      {
+        !isOrderSubmitted && (
+          <div className="user-order-info__bottom-line">
+            <RaisedButton
+              label="Change your order"
+              primary
+              onClick={onChangeOrderClick}
+            />
+          </div>
+        )
+      }
+    </div>
+  );
+};
 
 UserOrderInfo.propTypes = {
   isOrderSubmitted: PropTypes.bool.isRequired,
   items: PropTypes.array.isRequired,
+  sum: PropTypes.number,
 
-  onChangeOrderClick: PropTypes.func.isRequired,
+  onChangeOrderClick: PropTypes.func,
 };
 
 export default UserOrderInfo;

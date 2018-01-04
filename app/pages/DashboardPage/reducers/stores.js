@@ -6,6 +6,7 @@ import {
   FETCH_ITEMS_SUCCESS,
   FETCH_STORE_CONTENT_SUCCESS,
   UPDATE_CHOOSED_ITEMS,
+  SET_ORDER_JUST_SUBMITTED_STATE,
 } from '../constants';
 
 const initialState = fromJS({
@@ -15,6 +16,7 @@ const initialState = fromJS({
   choosedItems: List(),
   storeContent: [],
   storeContentHash: {},
+  orderJustSubmitted: false,
 });
 
 export default function storesReducer(state = initialState, action) {
@@ -46,6 +48,9 @@ export default function storesReducer(state = initialState, action) {
     case UPDATE_CHOOSED_ITEMS:
       return state
         .set('choosedItems', new List(action.items));
+    case SET_ORDER_JUST_SUBMITTED_STATE:
+      return state
+        .set('orderJustSubmitted', action.value);
     default:
       return state;
   }
