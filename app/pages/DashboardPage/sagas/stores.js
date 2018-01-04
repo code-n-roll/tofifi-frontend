@@ -8,6 +8,7 @@ import {
   getStoreContentApi,
   submitStoreOrderApi,
 } from 'utils/api/requests';
+import { setGlobalError } from 'pages/common/actions';
 import * as ActionTypes from '../constants';
 import {
   fetchStoresSuccess,
@@ -80,10 +81,14 @@ function* updateStoreOrder(action) {
 function* submitStoreOrder(action) {
   const { orderId } = action;
 
-  yield call(submitStoreOrderApi, orderId);
-  console.log('submitted');
-  yield put(submitStoreOrderSuccess(orderId));
-  yield put(setOrderJustSubmittedState(true));
+  try {
+    yield call(submitStoreOrderApi, orderId);
+    console.log('submitted');
+    yield put(submitStoreOrderSuccess(orderId));
+    yield put(setOrderJustSubmittedState(true));
+  } catch (e) {
+    yield put(setGlobalError('Error when creating order'));
+  }
 }
 
 export default {

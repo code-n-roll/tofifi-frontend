@@ -87,20 +87,22 @@ class StoreComponent extends Component {
         <div className="store-component__sidebar">
           {
             storeContent && storeContent.categories &&
-            <SelectableList
-              defaultValue={this.state.selectedCategoryIndex}
-              onChange={this.handleListClick}
-            >
-              {
-                storeContent.categories.map((category, index) =>
-                  <ListItem
-                    key={category.id}
-                    value={index}
-                    primaryText={category.name}
-                  ></ListItem>
-                )
-              }
-            </SelectableList>
+            <CustomScroll heightRelativeToParent="100%">
+              <SelectableList
+                defaultValue={this.state.selectedCategoryIndex}
+                onChange={this.handleListClick}
+              >
+                {
+                  storeContent.categories.map((category, index) =>
+                    <ListItem
+                      key={category.id}
+                      value={index}
+                      primaryText={category.name}
+                    ></ListItem>
+                  )
+                }
+              </SelectableList>
+            </CustomScroll>
           }
         </div>
         <div className="store-component__main-content">
