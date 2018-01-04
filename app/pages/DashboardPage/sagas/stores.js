@@ -18,6 +18,7 @@ import {
   updatePurchase,
   submitStoreOrderSuccess,
   setOrderJustSubmittedState,
+  setStoresLoader,
 } from '../actions';
 import {
   makeSelectPendingPurchase,
@@ -31,8 +32,10 @@ function* fetchStores() {
 }
 
 function* fetchStoreContent(action) {
+  yield put(setStoresLoader(true));
   const response = yield call(getStoreContentApi, action.storeId);
   yield put(fetchStoreContentSuccess(response.data));
+  yield put(setStoresLoader(false));
 }
 
 function* createStoreOrder(action) {
