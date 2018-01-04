@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Snackbar from 'material-ui/Snackbar';
 
 import { makeSelectCurrentUser } from 'containers/App/selectors';
 import { logOutRequest } from 'containers/App/actions';
@@ -16,7 +17,8 @@ import LoggedLayout from 'components/layouts/LoggedLayout';
 import PayOffDebtModal from 'containers/PayOffDebtModal';
 
 import OnScreenHeightSection from 'components/sections/OnScreenHeightSection';
-import { getUsersRequest, getGroupsRequest, setGroupModalState, setSettingsModalState } from 'pages/common/actions';
+import { getUsersRequest, getGroupsRequest, setGroupModalState, setSettingsModalState, setGlobalError } from 'pages/common/actions';
+import { makeSelectGlobalError } from 'pages/common/selectors';
 
 import {
   setCurrentPurchase,
@@ -27,6 +29,7 @@ import {
 } from './actions';
 
 import { makeSelectPageState, makeSelectDebtorsStatistics } from './selectors';
+
 
 import { PAGE_STATES } from './constants';
 
@@ -52,6 +55,7 @@ class DashboardPage extends Component {
     this.handleQueryChange = this.handleQueryChange.bind(this);
     this.handleGroupLinkClick = this.handleGroupLinkClick.bind(this);
     this.handleSettingsClick = this.handleSettingsClick.bind(this);
+    this.handleSnackbarRequestClose = this.handleSnackbarRequestClose.bind(this);
   }
 
   componentWillMount() {
@@ -92,12 +96,16 @@ class DashboardPage extends Component {
     }
   }
 
+  handleSnackbarRequestClose() {
+    this.props.setGlobalError(null);
+  }
+
   handleLogOut() {
     this.props.logOutRequest();
   }
 
   render() {
-    return (      
+    return (
       <LoggedLayout
         onLogOut={this.handleLogOut}
         onGroupLinkClick={this.handleGroupLinkClick}
@@ -125,6 +133,12 @@ class DashboardPage extends Component {
         </OnScreenHeightSection>
         <GroupsModal />
         <SettingsModal />
+        <Snackbar
+          open={!!this.props.globalError}
+          message={this.props.globalError || ''}
+          autoHideDuration={4000}
+          onRequestClose={this.handleSnackbarRequestClose}
+        />
       </LoggedLayout>
     );
   }
@@ -143,12 +157,15 @@ DashboardPage.propTypes = {
   setGroupModalState: PropTypes.func,
   setSettingsModalState: PropTypes.func,
   getDebtorsStatisticsRequest: PropTypes.func,
+  globalError: PropTypes.string,
+  setGlobalError: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   currentUser: makeSelectCurrentUser(),
   pageState: makeSelectPageState(),
   debtsStatistic: makeSelectDebtorsStatistics(),
+  globalError: makeSelectGlobalError(),
 });
 
 const mapDispatchToProps = {
@@ -162,6 +179,7 @@ const mapDispatchToProps = {
   setGroupModalState,
   setSettingsModalState,
   getDebtorsStatisticsRequest,
+  setGlobalError,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { List as ImmutableList } from 'immutable';
+import _ from 'lodash';
 
 import { updateStoreOrderRequest } from 'pages/DashboardPage/actions';
 import { selectChoosedItems } from 'pages/DashboardPage/selectors';
@@ -36,6 +37,7 @@ class MakeOrderComponent extends Component {
           items={prevOrderItems}
           isOrderSubmitted={purchase.storeOrder.isSubmitted}
           onChangeOrderClick={this.handleChangeOrderClick}
+          sum={_.sumBy(prevOrderItems, ((item) => item.price))}
         />
       ) : (
         <StoreComponent

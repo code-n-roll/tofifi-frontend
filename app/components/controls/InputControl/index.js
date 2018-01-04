@@ -48,6 +48,7 @@ class InputControl extends Component {
       <TextField
         style={style}
         inputStyle={inputStyle}
+        className={className}
         type={type}
         hintText={hintText}
         hintStyle={hintStyle}

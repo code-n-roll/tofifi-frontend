@@ -1,34 +1,16 @@
-import PropTypes from 'prop-types';
-import FaCheck from 'react-icons/lib/fa/check';
-import FaTimes from 'react-icons/lib/fa/close';
-import ActionDoneIcon from 'material-ui/svg-icons/action/done';
-import QueryBuilderIcon from 'material-ui/svg-icons/action/query-builder';
-
 import React from 'react';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
-import Toggle from 'material-ui/Toggle';
-import Avatar from 'react-avatar';
+import PropTypes from 'prop-types';
+import UserPurchaseStatusIcon from 'components/UserPurchaseStatusIcon';
+import Avatar from 'components/Avatar';
+
+import { Card, CardText } from 'material-ui/Card';
 import './styles.css';
-
-const avatarStyle = {
-  display: 'block',
-  marginBottom: '5px',
-};
-
-const iconStyle = {
-  display: 'block',
-  marginBottom: '-1px'
-};
 
 const ParticipantItem = (props) => (
   <Card className="purchase-info_participant-container">
     <div>
       <div className="participant-item__img">
-        {props.avatarUrl ?
-          <img width={50} height={50} src={props.avatarUrl} alt={props.username} /> :
-          <Avatar name={props.username} size={50} round style={avatarStyle} />
-        }
+        <Avatar username={props.username} avatarUrl={props.avatarUrl} style={{ opacity: 0.5 }} />
       </div>
       <div className="owner-purchase-info-item">
         {props.username}
@@ -44,9 +26,7 @@ const ParticipantItem = (props) => (
           )
         }
         <div className="participant-item__action">
-          { props.isPayedOff ?
-            <ActionDoneIcon color='#4caf50' style={iconStyle}/> :
-            <QueryBuilderIcon color='#6490b1' style={iconStyle}/> }
+          <UserPurchaseStatusIcon status={props.status} />
         </div>
       </div>
     </CardText>
@@ -56,7 +36,7 @@ const ParticipantItem = (props) => (
 ParticipantItem.propTypes = {
   sum: PropTypes.number,
   username: PropTypes.string,
-  isPayedOff: PropTypes.bool,
+  status: PropTypes.number,
   avatarUrl: PropTypes.string,
 };
 

@@ -4,9 +4,9 @@ import Avatar from 'react-avatar';
 import CustomScroll from 'react-custom-scroll';
 import TextField from 'material-ui/TextField';
 import Badge from 'material-ui/Badge';
-import { red500, green500 } from 'material-ui/styles/colors';
 import { connect } from 'react-redux';
 import { setDebtModalState, setUserData } from 'pages/common/actions';
+import { red500, green500, grey500 } from 'material-ui/styles/colors';
 
 import './styles.css';
 
@@ -82,7 +82,12 @@ class Debtors extends Component {
                   <Badge
                     badgeContent={Math.round(Math.abs(user.debt))}
                     primary
-                    badgeStyle={user.debt > 0 ? badgeStyle : { ...badgeStyle, backgroundColor: red500 }}
+                    badgeStyle={
+                      user.debt > 0 ? badgeStyle :
+                        user.debt == 0 ?
+                        { ...badgeStyle, backgroundColor: grey500 } :
+                        { ...badgeStyle, backgroundColor: red500 }
+                    }
                     style={{ padding: 0 }}
                   >
                     <Avatar name={user.username} round size={50} style={{ opacity: 0.5 }} />

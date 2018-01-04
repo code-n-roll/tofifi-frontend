@@ -7,3 +7,7 @@
   padding: 10px 0;
   color: #F44336;
 }
+
+.profile-form__field_wrapper {
+  max-height: 72px;
+}

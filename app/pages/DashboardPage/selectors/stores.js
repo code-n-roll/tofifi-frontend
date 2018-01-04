@@ -11,3 +11,9 @@ export const selectStoreContent = (state) =>
 
 export const selectChoosedItems = (state) =>
   selectStores(state).get('choosedItems');
+
+export const selectStoreItems = (state) =>
+  selectStores(state).get('storeContentHash');
+
+export const selectOrderJustSubmittedState = (state) =>
+  selectStores(state).get('orderJustSubmitted');

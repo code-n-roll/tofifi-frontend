@@ -1,41 +1,46 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form/immutable';
 import InputControl from 'components/controls/InputControl';
-import { required, password } from 'components/forms/validations';
+import { required, password, equalWith } from 'components/forms/validations';
 import { Link } from 'react-router/lib';
 import PropTypes from 'prop-types';
-import { restorePassword } from './actions';
+import { saveNewPasswordAction } from './actions';
 
 class RestorePasswordForm extends Component {
+
   propTypes = {
     clearSubmitErrors: PropTypes.function,
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+  }
+
   render() {
     const { props } = this;
-
     return (
-      <form onSubmit={props.handleSubmit(restorePassword)} autoComplete="off">
+      <form onSubmit={props.handleSubmit(saveNewPasswordAction)}>
         <div>
           <Field
-            name="new_password"
+            name="newPassword"
             type="password"
-            placeholder="New password"
+            className="log-in-log-out-field"
+            floatingLabel="New password"
             component={InputControl}
-            validate={[required]}
-            style={{ paddingBottom: '20px' }}
+            validate={[required, password]}
           />
           <Field
-            name="new_password_confirmation"
+            name="passwordConfirmation"
             type="password"
-            placeholder="New password confirmation"
+            floatingLabel="New password confirmation"
+            className="log-in-log-out-field"
             component={InputControl}
-            validate={[required]}
-            style={{ paddingBottom: '40px' }}
+            validate={[required, password, equalWith('newPassword')]}
           />
         </div>
         <button
           className="mdl-button mdl-js-button mdl-button--raised bg-blue text-white big-btn big-btn-margin"
+          style={{marginTop: 30}}
           disabled={props.submitting || props.invalid}
           type="submit"
         >

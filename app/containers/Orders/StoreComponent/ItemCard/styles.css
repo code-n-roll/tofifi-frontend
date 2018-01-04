@@ -1,9 +1,60 @@
 .plus-minus-button {
   display: inline-block;
-  width: 30px;
 }
 
 .store-item-preview {
-  height: 200px;
-  width: 200px;
+  width: 100%;
+  max-width: 200px;
+  height: 150px;
+  position: relative;
+  margin: 20px;
+}
+
+.store-item-preview__name-wrapper {
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(66, 66, 66, 200);
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.store-item-preview__wrapper {
+  width: 100%;
+  height: calc(100% - 50px);
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+
+.store-item-preview__bottow-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  padding-left: 5px;
+  padding-right: 10px;
+}
+
+.store-item-preview__items-control {
+  display: flex;
+  align-items: center;
+}
+
+.store-item-preview__sum {
+  font-size: 18px;
+  color: #757575;
+}
+
+.store-item-preview__sum_choosed {
+  color: #009688;
+}
+
+.store-item-preview__items-count {
+  padding: 0 5px;
+}
+
+.store-item-preview__name {
+  color: white;
+  font-size: 18px;
 }

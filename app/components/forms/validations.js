@@ -10,3 +10,7 @@ export const email = (value) =>
 export const password = (value) =>
   value && value.length < 6 ?
     messages.invalidPassword : undefined;
+
+export const equalWith = (field) => (value, values) =>
+    values.get(field) !== value ?
+      messages.passwordsDontMatch : undefined;

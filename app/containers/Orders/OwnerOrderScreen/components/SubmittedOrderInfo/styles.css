@@ -1,0 +1,15 @@
+.submitted-preview {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+
+  height: 100%;
+}
+
+.submitted-preview__bottom-line {
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+
+  padding: 30px;
+}

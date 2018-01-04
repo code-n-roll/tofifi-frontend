@@ -10,8 +10,17 @@ import _ from 'lodash';
 import { createPurchase as createPurchaseAction } from 'components/forms/PurchaseForm/actions';
 import { browserHistory } from 'react-router';
 import { makeSelectCurrentUser } from 'containers/App/selectors';
+import { setGlobalError } from 'pages/common/actions';
 import { processPurchaseFormDataApi } from './helpers';
-import { setPurchasesData, setPendingPurchase, setPendingPurchaseParticipants, setCurrentPurchase, getDebtorsStatisticsRequest } from '../actions';
+import {
+  setPurchasesData,
+  setPendingPurchase,
+  setPendingPurchaseParticipants,
+  setCurrentPurchase,
+  getDebtorsStatisticsRequest,
+} from '../actions';
+
+
 import {
   makeSelectPendingPurchase,
   makeSelectPurchasesList,
@@ -57,6 +66,7 @@ function* createPurchase(action) {
   browserHistory.push(`/?purchase=${response.data.id}`);
   yield put(setPendingPurchase(null));
   yield put(setPendingPurchaseParticipants(null));
+  yield put(getDebtorsStatisticsRequest());
 }
 
 function* payPurchase(action) {
@@ -73,8 +83,8 @@ function* payPurchase(action) {
     yield put(setCurrentPurchase(purchasesList[i].id));
 
     yield put(getDebtorsStatisticsRequest());
-  } catch(e) {
-    console.log(e);
+  } catch (e) {
+    yield put(setGlobalError(e.data.message));
   }
 }
 

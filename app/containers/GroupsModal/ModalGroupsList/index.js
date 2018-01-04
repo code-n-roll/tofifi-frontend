@@ -19,7 +19,13 @@ class ModalGroupsList extends Component {
           inputPlaceholder="Enter group name"
           listContainerClassName="groups-modal-list"
           heightRelativeToParent="calc(100% - 100px)"
-          listProps={{ withMenu: true, onEditClick: this.props.onEditClick, avatarsNumber: 7 }}
+          listProps={{
+            withMenu: true,
+            onEditClick: this.props.onEditClick,
+            onDeleteClick: this.props.onDeleteClick,
+            onLeaveClick: this.props.onLeaveClick,
+            avatarsNumber: 7,
+          }}
         />
         <div className="go-to-create-purchase-btn">
           <PlusButton onClick={this.props.onPlusClick} />
@@ -33,6 +39,8 @@ ModalGroupsList.propTypes = {
   groups: PropTypes.array,
   onPlusClick: PropTypes.func,
   onEditClick: PropTypes.func,
+  onDeleteClick: PropTypes.func,
+  onLeaveClick: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({

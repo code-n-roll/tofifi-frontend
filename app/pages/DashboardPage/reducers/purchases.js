@@ -46,11 +46,10 @@ function purchasesReducer(state = initialState, action) {
       if (purchaseIndex === -1) return state;
 
       const purchase = purchases.get(purchaseIndex);
+      const newPurchase = { ...purchase, storeOrder: { isSubmitted: true } };
+      console.log(newPurchase);
       return state
-        .set('purchases', purchases.set(purchaseIndex,
-            purchase.set('storeOrder',
-              purchase.get('storeOrder')
-                .set('isSubmitted', true))));
+        .set('purchases', purchases.set(purchaseIndex, newPurchase));
     }
     default:
       return state;

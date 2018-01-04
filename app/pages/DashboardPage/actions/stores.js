@@ -57,11 +57,17 @@ export const submitStoreOrderRequest = (orderId) => ({
   orderId,
 });
 
-export const submitStoreOrderSuccess = () => ({
+export const submitStoreOrderSuccess = (purchaseId) => ({
   type: ActionTypes.SUBMIT_STORE_ORDER_SUCCESS,
+  purchaseId,
 });
 
 export const updateChoosedItems = (items) => ({
   type: ActionTypes.UPDATE_CHOOSED_ITEMS,
   items,
+});
+
+export const setOrderJustSubmittedState = (value) => ({
+  type: ActionTypes.SET_ORDER_JUST_SUBMITTED_STATE,
+  value,
 });

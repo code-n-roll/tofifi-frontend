@@ -9,8 +9,8 @@ class ParticipantOrderScreen extends Component {
     const { purchase } = this.props;
     return (
       purchase.storeOrder.isSubmitted
-        ? <MakeOrderComponent purchase={purchase} prevOrderItems={purchase.items} />
-        : <SubmittedOrderInfo purchase={purchase} />
+        ? <SubmittedOrderInfo purchase={purchase} />
+        : <MakeOrderComponent purchase={purchase} prevOrderItems={purchase.items} />
     );
   }
 }

@@ -5,7 +5,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { makeSelectGroupModalState } from 'pages/common/selectors';
-import { setGroupModalState } from 'pages/common/actions';
+import {
+  setGroupModalState,
+  deleteGroupRequest,
+  leaveGroupRequest,
+} from 'pages/common/actions';
 import DefaultModalHeader from 'components/Modals/DefaultModalHeader';
 import ModalGroupsList from './ModalGroupsList';
 import ModalAddEditGroup from './ModalAddEditGroup';
@@ -24,6 +28,8 @@ class GroupsModal extends Component {
     this.handleCloseClick = this.handleCloseClick.bind(this);
     this.handleSubmitClick = this.handleSubmitClick.bind(this);
     this.handleEditClick = this.handleEditClick.bind(this);
+    this.handleLeaveClick = this.handleLeaveClick.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
     this.handleBackClick = this.handleBackClick.bind(this);
 
     this.state = {
@@ -51,6 +57,14 @@ class GroupsModal extends Component {
     });
   }
 
+  handleDeleteClick(group) {
+    this.props.deleteGroupRequest(group.id);
+  }
+
+  handleLeaveClick(group) {
+    this.props.leaveGroupRequest(group.id);
+  }
+
   handleBackClick() {
     this.setState({ modalState: MODAL_STATES.groupsList });
   }
@@ -68,24 +82,26 @@ class GroupsModal extends Component {
     return (
       <Modal
         isOpen={this.props.isOpen}
-        // onAfterOpen={afterOpenFn}
-        // onRequestClose={requestCloseFn}
-        // closeTimeoutMS={n}
         style={style}
         contentLabel="Modal"
       >
         <DefaultModalHeader title="Groups" onCloseClick={this.handleCloseClick} />
 
-        { this.state.modalState === MODAL_STATES.groupsList &&
-          <ModalGroupsList onPlusClick={this.handlePlusClick} onEditClick={this.handleEditClick} />
+        {this.state.modalState === MODAL_STATES.groupsList &&
+          <ModalGroupsList
+            onPlusClick={this.handlePlusClick}
+            onEditClick={this.handleEditClick}
+            onDeleteClick={this.handleDeleteClick}
+            onLeaveClick={this.handleLeaveClick}
+          />
         }
-        { this.state.modalState === MODAL_STATES.addGroup &&
+        {this.state.modalState === MODAL_STATES.addGroup &&
           <ModalAddEditGroup
             onSubmitClick={this.handleSubmitClick}
             onBackClick={this.handleBackClick}
           />
         }
-        { this.state.modalState === MODAL_STATES.editGroup &&
+        {this.state.modalState === MODAL_STATES.editGroup &&
           <ModalAddEditGroup
             group={this.state.groupForEditing}
             isEditMode
@@ -101,6 +117,8 @@ class GroupsModal extends Component {
 GroupsModal.propTypes = {
   isOpen: PropTypes.bool,
   setGroupModalState: PropTypes.func,
+  deleteGroupRequest: PropTypes.func,
+  leaveGroupRequest: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -109,6 +127,8 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = {
   setGroupModalState,
+  deleteGroupRequest,
+  leaveGroupRequest,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GroupsModal);

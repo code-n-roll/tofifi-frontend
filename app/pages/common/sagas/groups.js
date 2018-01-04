@@ -5,6 +5,8 @@ import {
   getGroupsApi,
   createGroupApi,
   updateGroupApi,
+  deleteGroupApi,
+  leaveGroupApi,
 } from 'utils/api/requests';
 import { makeSelectCurrentUser } from 'containers/App/selectors';
 
@@ -49,4 +51,22 @@ export function* updateGroup(action) {
   groups[index] = { ...groups[index], ...groupData };
 
   yield put(setGroupsData(groups));
+}
+
+export function* deleteGroup(action) {
+  const groupId = action.groupId;
+  yield call(deleteGroupApi, groupId);
+  const groups = yield select(makeSelectGroups());
+
+  const updatedGroups = groups.filter((group) => group.id !== groupId);
+  yield put(setGroupsData(updatedGroups));
+}
+
+export function* leaveGroup(action) {
+  const groupId = action.groupId;
+  yield call(leaveGroupApi, groupId);
+  const groups = yield select(makeSelectGroups());
+
+  const updatedGroups = groups.filter((group) => group.id !== groupId);
+  yield put(setGroupsData(updatedGroups));
 }

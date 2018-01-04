@@ -20,22 +20,24 @@ class SignInForm extends Component {
           <Field
             name="email"
             type="email"
+            className="log-in-log-out-field"
             floatingLabel="Email"
             onValueChange={this.handleEmailValueChange}
             component={InputControl}
             validate={[required, email]}
           />
         </div>
-        <div style={{ maxHeight: 90 }}>
+        <div style={{ maxHeight: 72 }}>
           <Field
             name="password"
             type="password"
+            className="log-in-log-out-field"
             floatingLabel="Password"
             component={InputControl}
             validate={[required]}
           />
         </div>
-        <div style={{ marginBottom: '20px' }}>
+        <div style={{ margin: '10px 25px 0 0' }}>
           <Link to="/forgot_password" className="forgot-pass-link mdl-navigation__link">
             I&apos;m forgot password
           </Link>

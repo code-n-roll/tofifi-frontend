@@ -12,7 +12,7 @@ class SignUpPage extends React.PureComponent { // eslint-disable-line react/pref
         <GraySection>
           <OnScreenHeightSection>
             <div className="mdl-typography--text-center">
-              <h1 className="logo-font"> Sign Up </h1>
+              <h1 className="logo-font" style={{marginTop: 84}}> Sign Up </h1>
               <div className="sign-in-sign-up-form-container">
                 <SignUpForm />
               </div>

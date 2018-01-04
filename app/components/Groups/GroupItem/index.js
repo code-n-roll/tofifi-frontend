@@ -29,7 +29,7 @@ class GroupItem extends Component {
   renderToggler() {
     return (
       <div className="group-item-menu-toggler" onClick={this.toggleMenu}>
-        <FaEllipsisV size={21}/>
+        <FaEllipsisV size={21} />
       </div>
     );
   }
@@ -43,6 +43,30 @@ class GroupItem extends Component {
       toggle: this.renderToggler(),
     };
 
+    let dropdown = null;
+    if (props.withMenu) {
+      if (props.isOwner) {
+        dropdown = [
+          {
+            text: 'Edit',
+            action: props.onEditClick,
+          },
+          {
+            text: 'Remove',
+            action: props.onDeleteClick,
+          },
+        ];
+      } else {
+        dropdown = [
+          {
+            text: 'Leave',
+            action: props.onLeaveClick,
+          },
+        ];
+      }
+    }
+
+
     return (
       <div
         className="group-item"
@@ -50,7 +74,7 @@ class GroupItem extends Component {
         style={props.onClick ? { cursor: 'pointer' } : { cursor: 'auto' }}
       >
         <div style={{ float: 'left' }}>
-          <Avatar name={props.name} round size={60} />
+          <Avatar name={props.name} round size={60} style={{ opacity: 0.7 }} />
         </div>
         <div className="group-item_info" >
           <span className="group-item_info__name">{props.name}</span>
@@ -60,24 +84,31 @@ class GroupItem extends Component {
                 {
                   user.avatarUrl ?
                     <img src={user.avatarUrl} role="presentation" className="group-user-avatar-item" /> :
-                    <Avatar name={user.username} round size={30} style={{ marginRight: 7 }} />
+                    <Avatar name={user.username} round size={30} style={{ marginRight: 7, opacity: 0.7 }} />
                 }
               </span>
             ))}
           </div>
         </div>
-        {props.withMenu && props.isOwner && (
-          <div className="group-item-menu">
-            <DropdownMenu {...menuOptions}>
-              <li className="group-item-menu-item" onClick={(e) => { e.stopPropagation(); props.onEditClick(); }}>
-                Edit
-              </li>
-              <li className="group-item-menu-item">
-                Remove
-              </li>
-            </DropdownMenu>
-          </div>
-        )}
+        {
+          dropdown && (
+            <div className="group-item-menu">
+              <DropdownMenu {...menuOptions}>
+                {
+                  dropdown.map((menuItem) => (
+                    <li
+                      key={menuItem.text}
+                      className="group-item-menu-item"
+                      onClick={(e) => { e.stopPropagation(); menuItem.action(); }}
+                    >
+                      {menuItem.text}
+                    </li>
+                  ))
+                }
+              </DropdownMenu>
+            </div>
+          )
+        }
       </div>
     );
   }
