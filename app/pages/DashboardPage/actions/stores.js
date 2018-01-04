@@ -1,5 +1,6 @@
 import * as ActionTypes from '../constants';
 
+
 export const fetchStoresRequest = () => ({
   type: ActionTypes.FETCH_STORES_REQUEST,
 });
@@ -70,4 +71,9 @@ export const updateChoosedItems = (items) => ({
 export const setOrderJustSubmittedState = (value) => ({
   type: ActionTypes.SET_ORDER_JUST_SUBMITTED_STATE,
   value,
+});
+
+export const setStoresLoader = (data) => ({
+  type: ActionTypes.SET_STORES_LOADER,
+  data,
 });

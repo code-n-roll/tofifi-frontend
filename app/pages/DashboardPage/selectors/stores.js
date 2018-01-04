@@ -1,3 +1,4 @@
+import { createSelector } from 'reselect';
 import selectDashboard from './dashboard';
 
 const selectStores = (state) =>
@@ -17,3 +18,8 @@ export const selectStoreItems = (state) =>
 
 export const selectOrderJustSubmittedState = (state) =>
   selectStores(state).get('orderJustSubmitted');
+
+export const makeSelectStoresLoading = () => createSelector(
+  selectStores,
+  (state) => state.get('isLoading')
+);

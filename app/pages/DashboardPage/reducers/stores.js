@@ -7,6 +7,7 @@ import {
   FETCH_STORE_CONTENT_SUCCESS,
   UPDATE_CHOOSED_ITEMS,
   SET_ORDER_JUST_SUBMITTED_STATE,
+  SET_STORES_LOADER,
 } from '../constants';
 
 const initialState = fromJS({
@@ -17,6 +18,7 @@ const initialState = fromJS({
   storeContent: [],
   storeContentHash: {},
   orderJustSubmitted: false,
+  isLoading: false,
 });
 
 export default function storesReducer(state = initialState, action) {
@@ -51,6 +53,9 @@ export default function storesReducer(state = initialState, action) {
     case SET_ORDER_JUST_SUBMITTED_STATE:
       return state
         .set('orderJustSubmitted', action.value);
+    case SET_STORES_LOADER:
+      return state
+        .set('isLoading', action.data);
     default:
       return state;
   }
