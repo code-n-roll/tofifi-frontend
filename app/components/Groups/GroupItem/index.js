@@ -29,7 +29,7 @@ class GroupItem extends Component {
   renderToggler() {
     return (
       <div className="group-item-menu-toggler" onClick={this.toggleMenu}>
-        <FaEllipsisV size={21}/>
+        <FaEllipsisV size={21} />
       </div>
     );
   }
@@ -42,6 +42,30 @@ class GroupItem extends Component {
       align: 'right',
       toggle: this.renderToggler(),
     };
+
+    let dropdown = null;
+    if (props.withMenu) {
+      if (props.isOwner) {
+        dropdown = [
+          {
+            text: 'Edit',
+            action: props.onEditClick,
+          },
+          {
+            text: 'Remove',
+            action: props.onDeleteClick,
+          },
+        ];
+      } else {
+        dropdown = [
+          {
+            text: 'Leave',
+            action: props.onLeaveClick,
+          },
+        ];
+      }
+    }
+
 
     return (
       <div
@@ -66,18 +90,25 @@ class GroupItem extends Component {
             ))}
           </div>
         </div>
-        {props.withMenu && props.isOwner && (
-          <div className="group-item-menu">
-            <DropdownMenu {...menuOptions}>
-              <li className="group-item-menu-item" onClick={(e) => { e.stopPropagation(); props.onEditClick(); }}>
-                Edit
-              </li>
-              <li className="group-item-menu-item">
-                Remove
-              </li>
-            </DropdownMenu>
-          </div>
-        )}
+        {
+          dropdown && (
+            <div className="group-item-menu">
+              <DropdownMenu {...menuOptions}>
+                {
+                  dropdown.map((menuItem) => (
+                    <li
+                      key={menuItem.text}
+                      className="group-item-menu-item"
+                      onClick={(e) => { e.stopPropagation(); menuItem.action(); }}
+                    >
+                      {menuItem.text}
+                    </li>
+                  ))
+                }
+              </DropdownMenu>
+            </div>
+          )
+        }
       </div>
     );
   }

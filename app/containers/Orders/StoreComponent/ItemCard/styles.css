@@ -8,8 +8,6 @@
   height: 150px;
   position: relative;
   margin: 20px;
-
-  cursor: pointer;
 }
 
 .store-item-preview__name-wrapper {
