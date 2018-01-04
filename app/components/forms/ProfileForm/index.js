@@ -44,7 +44,7 @@ class ProfileForm extends Component {
             avatarUrl={initialValues.get('avatarUrl')}
           />
         </div>
-        <div>
+        <div className="profile-form__field_wrapper">
           <Field
             name="username"
             type="text"
@@ -54,7 +54,7 @@ class ProfileForm extends Component {
             component={InputControl}
           />
         </div>
-        <div>
+        <div className="profile-form__field_wrapper">
           <Field
             name="email"
             type="email"
@@ -64,7 +64,7 @@ class ProfileForm extends Component {
             component={InputControl}
           />
         </div>
-        <div>
+        <div  className="profile-form__field_wrapper">
           <Field
             name="newPassword"
             type="password"
@@ -77,7 +77,7 @@ class ProfileForm extends Component {
         {
           this.state.changePassword &&
             <div>
-              <div>
+              <div className="profile-form__field_wrapper">
                 <Field
                   name="passwordConfirmation"
                   type="password"
@@ -85,7 +85,7 @@ class ProfileForm extends Component {
                   component={InputControl}
                 />
               </div>
-              <div>
+              <div className="profile-form__field_wrapper">
                 <Field
                   name="password"
                   type="password"

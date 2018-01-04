@@ -24,7 +24,9 @@ class PurchaseParticipant extends Component {
             <img width={50} height={50} src={props.avatarUrl} /> :
             <Avatar name={props.username} size={50} round style={avatarStyle} />
           }
-          <div>{props.username}</div>
+          <div style={{maxWidth: 150, overflowX: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap'}}>
+            {props.username}
+          </div>
         </div>
         <Field
           name={`users.${props.id}.sum`}

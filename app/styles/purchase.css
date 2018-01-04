@@ -30,11 +30,12 @@
 .purchase-info-centered {
   width: 100%;
   padding: 0 20px;
-  padding-top: 10%;
+  padding-top: 15%;
 }
 
 .purchase-info_status {
   margin-top: 15px;
+  font-size: 20px;
 }
 
 .purchase-info_status--declined {
@@ -167,6 +168,7 @@
   display: inline-block;
   width: 30%;
   margin-bottom: 20px;
+  overflow: hidden;
 }
 
 .create-purchase-buttons-container {
