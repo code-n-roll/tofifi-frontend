@@ -24,7 +24,7 @@ class PurchaseForm extends Component {
   }
 
   handleTotalSumChange(value) {
-    const totalSum = Number.parseFloat(value);
+    const totalSum = Number.parseFloat(onlyDecimal(value));
     const participantValue = _.isFinite(totalSum) ?
       Math.floor(((totalSum / this.props.participants.length) * 1000)) / 1000 :
       '';
@@ -39,7 +39,7 @@ class PurchaseForm extends Component {
       return;
     }
 
-    const participantValue = value === '' ? 0 : Math.floor(Number.parseFloat(value) * 100) / 100;
+    const participantValue = value === '' ? 0 : Number.parseFloat(onlyDecimal(value));
 
     let newTotalSum = participantValue;
 
