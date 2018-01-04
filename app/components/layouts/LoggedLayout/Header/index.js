@@ -6,12 +6,23 @@ import FaCog from 'react-icons/lib/fa/cog';
 import FaSignOut from 'react-icons/lib/fa/sign-out';
 import { Link } from 'react-router';
 import Logo from 'components/Logo';
+import styled from 'styled-components';
 
 const headerHeight = 60;
 const headerStyle = {
   minHeight: `${headerHeight}px`,
-  borderBottom: '2px solid #6ab344',
+  borderBottom: '2px solid #437ca7',
 };
+
+const HeaderRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  height: ${headerHeight}px;
+  background-color: #5682a3;
+  width: 100%;
+  max-width: 1070px;
+  margin: 0 auto;
+`;
 
 class Header extends Component {
   constructor(props) {
@@ -32,14 +43,13 @@ class Header extends Component {
   renderToggler() {
     return (
       <button className="button-as-block" onClick={this.toggleMenu}>
-        <FaBar style={{ color: '#000 ' }} />
+        <FaBar size={16} style={{ color: '#fff ' }} />
       </button>
     );
   }
 
-
   render() {
-    const { onLogOut } = this.props;
+    const { onLogOut, onSettingsClick } = this.props;
 
     const menuOptions = {
       isOpen: this.state.isMenuOpen,
@@ -50,18 +60,25 @@ class Header extends Component {
 
     return (
       <div className="layout-header mdl-layout__header mdl-layout__header--waterfall" style={headerStyle}>
-        <div className="mdl-layout__header-row" style={{ height: `${headerHeight}px` }}>
+        <HeaderRow className="layout-header-padding mdl-layout__header-row layout-header-row">
           <div className="layout-header-spacer mdl-layout-spacer">
-            <Link to='/'>
+            <Link to="/" style={{ textDecoration: 'none' }}>
               <Logo />
             </Link>
           </div>
 
           <div className="layout-navigation-container">
             <nav className="layout-navigation mdl-navigation">
-              <DropdownMenu {...menuOptions}>
+              <button
+                className="button-as-block"
+                style={{ fontWeight: 700, color: '#fff', marginRight: 20, fontSize: 16 }}
+                onClick={this.props.onGroupLinkClick}
+              >
+                  Groups
+              </button>
+              <DropdownMenu {...menuOptions} >
                 <li>
-                  <button className="button-as-block">
+                  <button className="button-as-block" onClick={onSettingsClick}>
                     <span style={{ paddingRight: 10 }}>Settings</span>
                     <FaCog />
                   </button>
@@ -75,7 +92,7 @@ class Header extends Component {
               </DropdownMenu>
             </nav>
           </div>
-        </div>
+        </HeaderRow>
       </div>
     );
   }
@@ -83,6 +100,8 @@ class Header extends Component {
 
 Header.propTypes = {
   onLogOut: PropTypes.func,
+  onGroupLinkClick: PropTypes.func,
+  onSettingsClick: PropTypes.func,
 };
 
 export default Header;

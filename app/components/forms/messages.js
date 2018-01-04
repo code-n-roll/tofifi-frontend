@@ -11,8 +11,11 @@ export default defineMessages({
   },
   invalidPassword: {
     id: 'app.components.forms.invalidPassword',
-    defaultMessage: 'Password must be at least 6 characters,' +
-      'have at least one non alphanumeric character, one digit, one uppercase(\'A\'-\'Z\')',
+    defaultMessage: 'Password must be at least 6 characters',
+  },
+  passwordsDontMatch: {
+    id: 'app.components.forms.passwordsDontMatch',
+    defaultMessage: 'Passwords don\'t match',
   },
   emailExists: {
     id: 'app.components.forms.emailExists',

@@ -1,0 +1,82 @@
+.store-items-list {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
+  padding: 20px;
+  padding-bottom: 0;
+}
+
+.store-items-list__item {
+  margin: 10px;
+  padding: 10px;
+
+  width: 100%;
+  max-width: 400px;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.store-items-list__item__content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.store-items-list__item__image {
+  height: 50px;
+
+  /* Don't know why it doesn't work with width */
+  min-width: 50px;
+  max-width: 50px;
+
+  margin-right: 10px;
+
+  background-position: center;
+  background-size: cover;
+}
+
+.store-items-list__item__text {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+
+.store-items-list__item__name {
+  font-size: 18px;
+  padding-bottom: 5px;
+}
+
+.store-items-list__item__description {
+  font-size: 12px;
+  color: #9E9E9E;
+}
+
+.store-items-list__item__prices {
+  flex: 1 0 auto;
+
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  padding-left: 10px;
+}
+
+.store-items-list__item__price-per-one {
+  font-size: 14px;
+  color: #9E9E9E;
+}
+
+.store-items-list__item__total-price {
+  font-size: 24px;
+  color: #616161;
+}
+
+.store-items-list__item__amount {
+  padding-left: 5px;
+  font-size: 18px;
+  color: #4CAF50;
+}

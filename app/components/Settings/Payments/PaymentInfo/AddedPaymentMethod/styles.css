@@ -1,0 +1,23 @@
+.payment-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px;
+  background: white;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+  margin-bottom: 20px;
+}
+
+.card-icon {
+  width: 3em;
+  height: 3em;
+
+  color: #3F51B5;
+  padding-right: 10px;
+}
+
+.payment-info__delete {
+  color: #F44336;
+}

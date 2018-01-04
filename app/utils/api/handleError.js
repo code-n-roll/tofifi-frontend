@@ -1,4 +1,5 @@
 import { browserHistory } from 'react-router';
+import { clearAuthData } from 'utils/helpers/auth';
 
 export const handleError = (error: any) => {
   if (!error) {
@@ -7,6 +8,7 @@ export const handleError = (error: any) => {
 
   switch (error.status) {
     case 401:
+      clearAuthData();
       browserHistory.replace('/sign_in');
       break;
     case 403:

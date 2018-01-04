@@ -11,27 +11,19 @@ function* handleSignIn(action) {
   const formData = action.payload.toJS();
 
   try {
-    // const response = yield call(signInApi, formData);
-    // const token = response.data.access_token;
-
-    const user = {
-      // email: response.data.email,
-      email: formData.email,
-    };
-
-    yield put(setUserData(user));
-    saveAuthToken('asdasdasd');
+    const response = yield call(signInApi, formData);
+    const token = response.data.access_token;
+    yield put(setUserData(response.data.user));
+    saveAuthToken(token);
 
     yield put(signIn.success());
     browserHistory.push('/');
   } catch (error) {
-    // const formError = new SubmissionError({
-    //   password: messages.wrongCredentials,
-    // });
+    const formError = new SubmissionError({
+      password: messages.wrongCredentials,
+    });
 
-    // yield put(signIn.failure(formError));
-    yield put(setUserData({ email: formData.email }));
-    saveAuthToken('asdasdasd');
+    yield put(signIn.failure(formError));
     browserHistory.push('/');
   }
 }

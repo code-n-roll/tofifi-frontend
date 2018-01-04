@@ -1,32 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FaCheck from 'react-icons/lib/fa/check';
-import FaTimes from 'react-icons/lib/fa/close';
-import classNames from 'classnames';
+import UserPurchaseStatusIcon from 'components/UserPurchaseStatusIcon';
+import Avatar from 'components/Avatar';
+
+import { Card, CardText } from 'material-ui/Card';
+import './styles.css';
 
 const ParticipantItem = (props) => (
-  <div className="purchase-info_participant-container">
-    <div className="purchase-info_participant">
-      <div className="purchase-info_participant__sum">
-        {props.sum} $
+  <Card className="purchase-info_participant-container">
+    <div>
+      <div className="participant-item__img">
+        <Avatar username={props.username} avatarUrl={props.avatarUrl} style={{ opacity: 0.5 }} />
       </div>
-      <div className="purchase-info_participant__username">
+      <div className="owner-purchase-info-item">
         {props.username}
       </div>
     </div>
-    <div
-      className={classNames('purchase-info_participant__status',
-      { 'purchase-info_participant__status-paid': props.isPayedOff })}
-    >
-      { props.isPayedOff ? <FaCheck/> : <FaTimes/> }
-    </div>
-  </div>
+    <CardText>
+      <div className="participant-item__text">
+        {
+          props.sum ? (
+            <span>{props.sum.toFixed(2)} BYN</span>
+          ) : (
+            <span>Own sum</span>
+          )
+        }
+        <div className="participant-item__action">
+          <UserPurchaseStatusIcon status={props.status} />
+        </div>
+      </div>
+    </CardText>
+  </Card>
 );
 
 ParticipantItem.propTypes = {
   sum: PropTypes.number,
   username: PropTypes.string,
-  isPayedOff: PropTypes.bool,
+  status: PropTypes.number,
+  avatarUrl: PropTypes.string,
 };
 
 export default ParticipantItem;

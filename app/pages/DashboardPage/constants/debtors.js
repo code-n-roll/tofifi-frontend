@@ -1,0 +1,2 @@
+export const GET_DEBTORS_STATISTICS_REQUEST = 'DashboardPage/debtors/GET_DEBTORS_STATISTICS_REQUEST';
+export const SET_DEBTORS_STATISTICS = 'DashboardPage/debtors/SET_DEBTORS_STATISTICS';
