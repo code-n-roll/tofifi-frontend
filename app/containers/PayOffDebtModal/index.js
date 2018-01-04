@@ -25,7 +25,7 @@ class PayOffDebtModal extends Component {
     debugger;
     const id = this.props.user.id;
     const element = document.getElementById('debt-input');
-    this.props.payOffDebt({userToId: id, amount: Number(element.value)});
+    this.props.payOffDebt({userId: id, sum: Number(element.value)});
   }
 
   render() {

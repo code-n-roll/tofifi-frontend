@@ -6,7 +6,8 @@ import {
 export function* payOffDebt(action) {
   debugger;
   const formData = action.data;
-  const response = yield call(sendMoneyApi, {userToId: formData.userToid, amount: formData.amount});
+  const response = yield call(sendMoneyApi, {userId: formData.userId, sum: formData.sum});
   debugger;
+  
   console.log(response);
 }
