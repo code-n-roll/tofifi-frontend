@@ -42,6 +42,19 @@ const PurchaseItem = (props) => (
     secondaryText={
       <div>
         <div style={{ textAlign: 'right' }}>
+          {!props.isOwner && (
+            <div style={{
+              color: props.isActive ? white : gray400,
+              float: 'left',
+              whiteSpace: 'nowrap',
+              textOverflow: 'ellipsis',
+              maxWidth: 84,
+              overflow: 'hidden',
+              textAlign: 'left'
+            }}>
+              {props.creatorName}
+            </div>
+          )}
           {props.isOwner && !props.isPending && (
             <span style={{
               color: props.isActive ? white : green500,
@@ -87,6 +100,7 @@ const PurchaseItem = (props) => (
 
 PurchaseItem.propTypes = {
   name: PropTypes.string,
+  creatorName: PropTypes.string,
   isActive: PropTypes.bool,
   sum: PropTypes.number,
   isOwner: PropTypes.bool,
