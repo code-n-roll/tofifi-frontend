@@ -5,6 +5,8 @@ import CustomScroll from 'react-custom-scroll';
 import TextField from 'material-ui/TextField';
 import Badge from 'material-ui/Badge';
 import { red500, green500 } from 'material-ui/styles/colors';
+import { connect } from 'react-redux';
+import { setDebtModalState, setUserData } from 'pages/common/actions';
 
 import './styles.css';
 
@@ -25,6 +27,7 @@ class Debtors extends Component {
 
     this.handleFilterChange = this.handleFilterChange.bind(this);
     this.filterUsers = this.filterUsers.bind(this);
+    this.payOffDebt = this.payOffDebt.bind(this);
 
     this.state = {
       filter: '',
@@ -39,6 +42,12 @@ class Debtors extends Component {
     const users = this.props.statistic.users;
 
     return users.filter((user) => user.username.indexOf(this.state.filter.toLowerCase()) !== -1);
+  }
+
+  payOffDebt(user) {
+    debugger;
+    this.props.setDebtModalState(true);
+    this.props.setUserData(user);
   }
 
   render() {
@@ -69,7 +78,7 @@ class Debtors extends Component {
           <div className="debtors-users">
             {users.map((user) => (
               <div key={user.id} className="debtor-item">
-                <div style={{ position: 'absolute', left: 10 }}>
+                <div style={{ position: 'absolute', left: 10 }} onClick={() => this.payOffDebt(user)}>
                   <Badge
                     badgeContent={Math.round(Math.abs(user.debt))}
                     primary
@@ -91,6 +100,13 @@ class Debtors extends Component {
 
 Debtors.propTypes = {
   statistic: PropTypes.object,
+  setDebtModalState: PropTypes.func,  
+  setUserData: PropTypes.func,
 };
 
-export default Debtors;
+const mapDispatchToProps = {
+  setDebtModalState,
+  setUserData,
+};
+
+export default connect(()=>{return {}}, mapDispatchToProps)(Debtors);

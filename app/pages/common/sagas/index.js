@@ -9,6 +9,7 @@ import {
   CREATE_GROUP_REQUEST,
   UPDATE_GROUP_REQUEST,
   REMOVE_BANK_CARD_REQUEST,
+  PAY_OFF_DEBT_REQUEST,
 } from '../constants';
 
 import {
@@ -25,6 +26,10 @@ import {
   updateGroup,
 } from './groups';
 
+import {
+  payOffDebt
+} from './debt';
+
 function* commonWatcherSaga() {
   yield takeEvery(GET_USERS_REQUEST, getUsersData);
   yield takeEvery(GET_CURRENT_USER_PROFILE_REQUEST, getCurrentUser);
@@ -34,6 +39,7 @@ function* commonWatcherSaga() {
   yield takeEvery(GET_GROUPS_REQUEST, getGroupsData);
   yield takeEvery(CREATE_GROUP_REQUEST, createGroup);
   yield takeEvery(UPDATE_GROUP_REQUEST, updateGroup);
+  yield takeEvery(PAY_OFF_DEBT_REQUEST, payOffDebt);
 }
 
 export default commonWatcherSaga;
