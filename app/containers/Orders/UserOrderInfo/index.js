@@ -21,7 +21,7 @@ const UserOrderInfo = (props) => {
         }
       </div>
       <div className="user-order-info__sum">
-        Total sum: {sum} BYN
+        Total sum: {sum.toFixed(2)} BYN
       </div>
       {
         !isOrderSubmitted && (
