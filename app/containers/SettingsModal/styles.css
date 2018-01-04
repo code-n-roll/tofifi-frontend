@@ -9,6 +9,7 @@
 
 .settings-modal__profile_section {
   padding: 0 25px 0 40px;
+  max-width: 290px;
 }
 
 .settings-modal__payments-section {
