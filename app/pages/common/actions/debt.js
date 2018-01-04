@@ -2,8 +2,10 @@ import {
     SET_DEBT_MODAL_STATE,
     SET_USER_DATA,
     PAY_OFF_DEBT_REQUEST,
+    CLEAR_DEBTS,
+    SET_DEBT_ERROR,
 } from '../constants';
-  
+
 export function setDebtModalState(data) {
     return {
         type: SET_DEBT_MODAL_STATE,
@@ -24,4 +26,17 @@ export function payOffDebt(data) {
         data
     }
 }
-  
+
+export function clearDebts(data) {
+  return {
+    type: CLEAR_DEBTS,
+    data,
+  };
+}
+
+export function setDebtError(data) {
+  return {
+    type: SET_DEBT_ERROR,
+    data,
+  };
+}

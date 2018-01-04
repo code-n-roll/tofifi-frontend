@@ -105,6 +105,7 @@ class DashboardPage extends Component {
   }
 
   render() {
+    console.log(this.props.globalError);
     return (
       <LoggedLayout
         onLogOut={this.handleLogOut}

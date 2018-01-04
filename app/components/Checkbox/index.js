@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Checkbox = (props) => (
-  <div style={{ display: 'inline-block' }}>
+  <div style={{ display: 'inline-block', ...props.style }}>
     <input
       id={`checkbox-${props.id}`}
       type="checkbox"

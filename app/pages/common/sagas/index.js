@@ -12,6 +12,7 @@ import {
   LEAVE_GROUP_REQUEST,
   REMOVE_BANK_CARD_REQUEST,
   PAY_OFF_DEBT_REQUEST,
+  CLEAR_DEBTS,
 } from '../constants';
 
 import {
@@ -31,7 +32,8 @@ import {
 } from './groups';
 
 import {
-  payOffDebt
+  payOffDebt,
+  clearDebts,
 } from './debt';
 
 function* commonWatcherSaga() {
@@ -46,6 +48,7 @@ function* commonWatcherSaga() {
   yield takeEvery(PAY_OFF_DEBT_REQUEST, payOffDebt);
   yield takeEvery(DELETE_GROUP_REQUEST, deleteGroup);
   yield takeEvery(LEAVE_GROUP_REQUEST, leaveGroup);
+  yield takeEvery(CLEAR_DEBTS, clearDebts);
 }
 
 export default commonWatcherSaga;

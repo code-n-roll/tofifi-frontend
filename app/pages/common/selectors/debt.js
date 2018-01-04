@@ -10,9 +10,15 @@ const makeSelectDebtModalState = () => createSelector(
 const makeSelectUser = () => createSelector(
   selectDebt,
   (commonState) => commonState.get('user'),
-)
+);
+
+const makeSelectDebtError = () => createSelector(
+  selectDebt,
+  (commonState) => commonState.get('error'),
+);
 
 export {
   makeSelectDebtModalState,
   makeSelectUser,
+  makeSelectDebtError,
 };

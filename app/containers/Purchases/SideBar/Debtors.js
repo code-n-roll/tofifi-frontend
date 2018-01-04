@@ -45,7 +45,6 @@ class Debtors extends Component {
   }
 
   payOffDebt(user) {
-    debugger;
     this.props.setDebtModalState(true);
     this.props.setUserData(user);
   }
@@ -105,7 +104,7 @@ class Debtors extends Component {
 
 Debtors.propTypes = {
   statistic: PropTypes.object,
-  setDebtModalState: PropTypes.func,  
+  setDebtModalState: PropTypes.func,
   setUserData: PropTypes.func,
 };
 

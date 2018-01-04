@@ -66,3 +66,4 @@ export const verifyAccessApi = (data) => post(PATHS.VERIFY_ACCESS, false, data);
 // debtors statistics
 export const getDebtorsStatisticsApi = () => get(PATHS.DEBTORS_STATISTICS_PATH, true);
 export const sendMoneyApi = (data) => post(PATHS.SEND_MONEY_PATH, true, data);
+export const clearDebtsApi = (data) => post(PATHS.CLEAR_DEBTS, true, data);
