@@ -30,9 +30,11 @@ export const STORE_ITEMS_PATH = '/orders/items';
 export const STORE_ORDERS_PATH = '/orders';
 
 // reset pass
-export const SEND_RESTORE_PASSWORD_LINK = '/account/password/reset'
-export const RESTORE_PASSWORD = '/account/password/reset/confirm'
-export const VERIFY_ACCESS = '/account/password/reset/verify'
+export const SEND_RESTORE_PASSWORD_LINK = '/account/password/reset';
+export const RESTORE_PASSWORD = '/account/password/reset/confirm';
+export const VERIFY_ACCESS = '/account/password/reset/verify';
 
 // debtors statistics
 export const DEBTORS_STATISTICS_PATH = '/debts';
+export const SEND_MONEY_PATH = '/purchases/sendMoney';
+export const CLEAR_DEBTS = '/debts/clear';

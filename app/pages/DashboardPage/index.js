@@ -14,6 +14,7 @@ import PurchaseInfo from 'containers/Purchases/PurchaseInfo';
 import CreatePurchaseStep2 from 'containers/Purchases/CreatePurchase/CreatePurchaseStep2';
 import DashboardWelcome from 'components/DashboardWelcome';
 import LoggedLayout from 'components/layouts/LoggedLayout';
+import PayOffDebtModal from 'containers/PayOffDebtModal';
 
 import OnScreenHeightSection from 'components/sections/OnScreenHeightSection';
 import { getUsersRequest, getGroupsRequest, setGroupModalState, setSettingsModalState, setGlobalError } from 'pages/common/actions';
@@ -111,6 +112,7 @@ class DashboardPage extends Component {
         onGroupLinkClick={this.handleGroupLinkClick}
         onSettingsClick={this.handleSettingsClick}
       >
+        <PayOffDebtModal/>
         <OnScreenHeightSection style={{ height: 'calc(100vh - 70px)', borderBottom: '1px solid #dcdcdc' }}>
           <DashboardPageWrapper>
             <SideBar debtsStatistic={this.props.debtsStatistic} />

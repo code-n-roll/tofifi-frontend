@@ -35,6 +35,10 @@
   position: relative;
 }
 
+.debtor-item:hover {
+  cursor: pointer;
+}
+
 .debtor-item:last-child {
   margin-bottom: 0;
 }
