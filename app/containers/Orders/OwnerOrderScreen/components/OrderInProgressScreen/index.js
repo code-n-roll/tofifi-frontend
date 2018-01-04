@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Tabs, Tab } from 'material-ui/Tabs';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import Tabs from 'components/Tabs';
+import Tab from 'components/Tabs/Tab';
 
 import { makeSelectCurrentUser } from 'containers/App/selectors';
 import MakeOrderComponent from 'containers/Orders/MakeOrderComponent';
 import OrderTotalInfo from '../OrderTotalInfo';
-
-const fullHeightStyle = {
-  height: '100%',
-};
 
 class OrderInProgressScreen extends Component {
   state = {
@@ -28,17 +25,11 @@ class OrderInProgressScreen extends Component {
     const { purchase, currentUser } = this.props;
     const userOrder = _.find(purchase.users, (u) => u.userId === currentUser.id);
     return (
-      <Tabs
-        value={this.state.value}
-        onChange={this.handleChangeTab}
-        contentContainerStyle={fullHeightStyle}
-        tabTemplateStyle={{ height: 'calc(100% - 50px)' }}
-        style={fullHeightStyle}
-      >
-        <Tab label="My order" value="my-order">
+      <Tabs fullHeight>
+        <Tab name="My order">
           <MakeOrderComponent purchase={purchase} prevOrderItems={userOrder.items} />
         </Tab>
-        <Tab label="Total info" value="total-info">
+        <Tab name="Total info">
           <OrderTotalInfo users={purchase.users} purchaseId={purchase.id} />
         </Tab>
       </Tabs>
