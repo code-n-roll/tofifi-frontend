@@ -109,6 +109,7 @@ class CreatePurchaseStep1 extends Component {
                 <input
                   name="purchase-name"
                   onChange={this.handlePurchaseNameInputChange}
+                  maxLength="18"
                   className="mdl-textfield__input"
                 />
                 {this.state.purchaseName === '' &&

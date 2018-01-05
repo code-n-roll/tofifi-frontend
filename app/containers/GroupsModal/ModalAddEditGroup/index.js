@@ -83,6 +83,7 @@ class ModalAddEditGroup extends Component {
               onChange={this.handleGroupNameChange}
               className="mdl-textfield__input"
               value={this.state.groupName}
+              maxLength="18"
             />
             {this.state.groupName === '' &&
               <label
