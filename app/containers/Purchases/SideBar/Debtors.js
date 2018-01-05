@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Avatar from 'react-avatar';
 import CustomScroll from 'react-custom-scroll';
 import TextField from 'material-ui/TextField';
 import Badge from 'material-ui/Badge';
@@ -8,6 +7,7 @@ import { connect } from 'react-redux';
 import { setDebtModalState, setUserData } from 'pages/common/actions';
 import { red500, green500, grey500 } from 'material-ui/styles/colors';
 
+import Avatar from 'components/Avatar';
 import './styles.css';
 
 const badgeStyle = {
@@ -89,7 +89,7 @@ class Debtors extends Component {
                     }
                     style={{ padding: 0 }}
                   >
-                    <Avatar name={user.username} round size={50} style={{ opacity: 0.5 }} />
+                    <Avatar username={user.username} avatarUrl={user.avatarUrl} />
                   </Badge>
                 </div>
                 <span className="debtor-username">{user.username}</span>

@@ -83,11 +83,10 @@ function* submitStoreOrder(action) {
 
   try {
     yield call(submitStoreOrderApi, orderId);
-    console.log('submitted');
     yield put(submitStoreOrderSuccess(orderId));
     yield put(setOrderJustSubmittedState(true));
   } catch (e) {
-    yield put(setGlobalError('Error when creating order'));
+    yield put(setGlobalError('Order can\'t be empty'));
   }
 }
 

@@ -16,10 +16,6 @@ const PurchaseInfo = (props) => {
     ) : (
       <CustomPurchaseInfo purchase={props.purchase} />
     );
-  } else {
-    purchaseScreen = (
-      <div><h3>### TODO Make beautiful text here ###</h3>Select purchase</div>
-    );
   }
 
   return purchaseScreen;

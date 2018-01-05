@@ -1,0 +1,19 @@
+.payoff-modal {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+
+  height: calc(100% - 50px);
+  min-height: 200px;
+}
+
+.payoff-modal__bottom-row {
+  width: 100%;
+  padding: 30px;
+  text-align: center;
+}
+
+.payoff-modal__error {
+  padding: 10px;
+  color: #F44336;
+}

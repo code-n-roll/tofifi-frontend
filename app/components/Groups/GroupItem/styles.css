@@ -54,6 +54,7 @@
 }
 
 .group-user-avatar-item {
+  display: inline-block;
   margin-right: 7px;
   width: 30px;
   height: 30px;

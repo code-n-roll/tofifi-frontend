@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import { browserHistory } from 'react-router';
 import _ from 'lodash';
 import { createStructuredSelector } from 'reselect';
+import FlatButton from 'material-ui/FlatButton';
+import TextField from 'material-ui/TextField';
+
 import { makeSelectUsers, makeSelectGroups } from 'pages/common/selectors';
 import SelectUsersList from 'components/Users/SelectUsersList';
 import GroupsList from 'components/Groups/GroupsList';
 import ListFilter from 'components/ListFilter';
 import purchaseImage from './images/purchase.png';
-import FlatButton from 'material-ui/FlatButton';
 
 class CreatePurchaseStep1 extends Component {
   constructor(props) {
@@ -105,19 +107,14 @@ class CreatePurchaseStep1 extends Component {
           <div className="users">
             <div className="create-purchase__name" style={{ position: 'relative', height: 70 }}>
               <img src={purchaseImage} style={{ width: 50, height: 50, position: 'absolute', left: 10, top: 10 }} />
-              <div className="mdl-textfield" style={{ width: 170, marginLeft: 80, float: 'left' }}>
-                <input
-                  name="purchase-name"
+
+              <div style={{ width: 170, marginLeft: 80, float: 'left', height: 70, display: 'flex', alignItems: 'center' }}>
+                <TextField
                   onChange={this.handlePurchaseNameInputChange}
+                  hintText="Enter purchase name"
+                  fullWidth
                   maxLength="18"
-                  className="mdl-textfield__input"
                 />
-                {this.state.purchaseName === '' &&
-                  <label
-                    className="mdl-textfield__label"
-                    htmlFor="purchase-name"
-                  >Enter purchase name</label>
-                }
               </div>
             </div>
             <ListFilter

@@ -4,12 +4,14 @@ import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import DefaultModalHeader from 'components/Modals/DefaultModalHeader';
 import Checkbox from 'components/Checkbox';
 import { onlyDecimal } from 'components/forms/normalizers';
 import { makeSelectDebtModalState, makeSelectUser, makeSelectDebtError } from 'pages/common/selectors';
 import { setDebtModalState, setUserData, payOffDebt, clearDebts, setDebtError } from 'pages/common/actions';
+import './styles.css';
 
 const TYPES = {
   payAll: 'pay-all',
@@ -27,9 +29,21 @@ class PayOffDebtModal extends Component {
     this.handleSumValueChange = this.handleSumValueChange.bind(this);
 
     this.state = {
-      selectedType: TYPES.payAll,
+      selectedType: TYPES.sendMoney,
       sum: '',
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      selectedType: nextProps.user.debt < 0 ? TYPES.payAll : TYPES.sendMoney,
+      sum: '',
+    });
+  }
+
+  onStatusChange(type) {
+    this.props.setDebtError(null);
+    this.setState({ selectedType: type });
   }
 
   handleCloseClick() {
@@ -51,19 +65,14 @@ class PayOffDebtModal extends Component {
     this.setState({ sum });
   }
 
-  onStatusChange(type) {
-    this.props.setDebtError(null);
-    this.setState({ selectedType: type });
-  }
-
   render() {
     const { props } = this;
 
     const style = {
       content: {
         width: '90%',
-        maxWidth: 410,
-        minHeight: 300,
+        maxWidth: 300,
+        height: 350,
         overflow: 'hidden',
       },
     };
@@ -74,44 +83,51 @@ class PayOffDebtModal extends Component {
         style={style}
       >
         <DefaultModalHeader title="Pay off debt" onCloseClick={this.handleCloseClick} />
-          <div style={{ padding: 20 }}>
-            <div style={{ marginBottom: 20 }}>
-              <Checkbox
-                id="pay-all"
-                checked={this.state.selectedType === TYPES.payAll}
-                onChange={() => this.onStatusChange(TYPES.payAll)}
-                style={{ verticalAlign: 'top' }}
-              />
-              <span style={{ cursor: 'pointer', marginLeft: 10 }} onClick={() => this.onStatusChange(TYPES.payAll)}>Clear debt</span>
-            </div>
+          <div className="payoff-modal" style={{ padding: 20 }}>
             <div>
-              <Checkbox
-                id="send-money"
-                checked={this.state.selectedType === TYPES.sendMoney}
-                onChange={() => this.onStatusChange(TYPES.sendMoney)}
-                style={{ verticalAlign: 'top' }}
-              />
-              <span style={{ cursor: 'pointer', marginLeft: 10 }} onClick={() => this.onStatusChange(TYPES.sendMoney)}>Send money</span>
-            </div>
-            <div>
-              {this.state.selectedType === TYPES.sendMoney && (
-                <TextField
-                  style={style}
-                  floatingLabelText="Sum"
-                  onChange={this.handleSumValueChange}
-                  value={this.state.sum}
+              {
+                props.user.debt < 0 &&
+                  <div style={{ marginBottom: 20 }}>
+                    <Checkbox
+                      id="pay-all"
+                      checked={this.state.selectedType === TYPES.payAll}
+                      onChange={() => this.onStatusChange(TYPES.payAll)}
+                      style={{ verticalAlign: 'top' }}
+                    />
+                    <span style={{ cursor: 'pointer', marginLeft: 10 }} onClick={() => this.onStatusChange(TYPES.payAll)}>
+                      Clear debt ({Math.abs(props.user.debt).toFixed(2)} BYN)
+                    </span>
+                  </div>
+              }
+              <div>
+                <Checkbox
+                  id="send-money"
+                  checked={this.state.selectedType === TYPES.sendMoney}
+                  onChange={() => this.onStatusChange(TYPES.sendMoney)}
+                  style={{ verticalAlign: 'top' }}
                 />
-              )}
+                <span style={{ cursor: 'pointer', marginLeft: 10 }} onClick={() => this.onStatusChange(TYPES.sendMoney)}>Send money</span>
+              </div>
+              <div>
+                {this.state.selectedType === TYPES.sendMoney && (
+                  <TextField
+                    style={{width: 110}}
+                    floatingLabelText="Sum"
+                    onChange={this.handleSumValueChange}
+                    value={this.state.sum}
+                  />
+                )}
+              </div>
             </div>
-            <div style={{ textAlign: 'center', position: 'absolute', bottom: 10, left: '50%', transform: 'translateX(-50%)' }}>
-              <div style={{ color: 'red' }}>{props.error}</div>
-              <button
-                className="mdl-button mdl-js-button mdl-button--raised bg-blue text-white big-btn big-btn-margin"
+            <div className="payoff-modal__bottom-row">
+              <div className="payoff-modal__error">{props.error}</div>
+              <RaisedButton
+                fullWidth
+                primary
+                label={this.state.selectedType === TYPES.payAll ? 'Pay' : 'Send money'}
                 disabled={this.state.selectedType === TYPES.sendMoney && this.state.sum === ''}
                 onClick={this.handlePay}
-              >
-                {this.state.selectedType === TYPES.payAll ? 'Pay' : 'Send money'}
-              </button>
+              />
             </div>
           </div>
       </Modal>
@@ -120,6 +136,8 @@ class PayOffDebtModal extends Component {
 }
 
 PayOffDebtModal.propTypes = {
+  user: PropTypes.any,
+
   isOpen: PropTypes.bool,
   setDebtModalState: PropTypes.func,
   setUserData: PropTypes.func,

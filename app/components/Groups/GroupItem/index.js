@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Avatar from 'react-avatar';
+import Avatar from 'components/Avatar';
+import ReactAvatar from 'react-avatar';
 import FaEllipsisV from 'react-icons/lib/fa/ellipsis-v';
 import DropdownMenu from 'react-dd-menu';
 
@@ -74,7 +75,7 @@ class GroupItem extends Component {
         style={props.onClick ? { cursor: 'pointer' } : { cursor: 'auto' }}
       >
         <div style={{ float: 'left' }}>
-          <Avatar name={props.name} round size={60} style={{ opacity: 0.7 }} />
+          <ReactAvatar name={props.name} round size={60} style={{ opacity: 0.7 }} />
         </div>
         <div className="group-item_info" >
           <span className="group-item_info__name">{props.name}</span>
@@ -82,9 +83,9 @@ class GroupItem extends Component {
             {props.users.slice(0, props.avatarsNumber).map((user) => (
               <span key={user.id}>
                 {
-                  user.avatarUrl ?
-                    <img src={user.avatarUrl} role="presentation" className="group-user-avatar-item" /> :
-                    <Avatar name={user.username} round size={30} style={{ marginRight: 7, opacity: 0.7 }} />
+                  <div style={{ marginRight: 7 }} className="group-user-avatar-item">
+                    <Avatar username={user.username} avatarUrl={user.avatarUrl} size={30} />
+                  </div>
                 }
               </span>
             ))}
