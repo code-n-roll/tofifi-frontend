@@ -13,4 +13,8 @@ export default defineMessages({
     id: 'app.components.forms.card.invalidHolderName',
     defaultMessage: 'Invalid holder name',
   },
+  invalidYear: {
+    id: 'app.components.forms.card.invalidYear',
+    defaultMessage: 'Year is invalid',
+  }
 });

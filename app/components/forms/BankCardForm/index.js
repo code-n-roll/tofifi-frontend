@@ -91,7 +91,7 @@ class BankCardForm extends Component {
                   style={{width: 40}}
                   onFocus={this.onFieldFocus}
                   normalize={normalizers.year}
-                  validate={[required]}
+                  validate={[required, validations.year]}
                   component={InputControl}
                 />
               </div>

@@ -55,7 +55,7 @@ export function* addBankCard(action) {
 
   try {
     yield call(addBankCardApi, reqData);
-    // yield put(addBankCardAction.success());
+    yield put(addBankCardAction.success());
     const response = yield call(getCurrentUserApi);
     yield put(setCurrentUserProfile(response.data));
   } catch (e) {

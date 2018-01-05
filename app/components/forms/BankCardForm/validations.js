@@ -12,3 +12,7 @@ export const holderName = value => {
     return messages.invalidHolderName;
   }
 }
+
+export const year = value =>
+  18 > value ? messages.invalidYear : undefined;
+
