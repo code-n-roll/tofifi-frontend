@@ -3,12 +3,16 @@ import {
   SET_USERS_DATA,
   SET_CURRENT_USER_PROFILE,
   SET_SETTINGS_MODAL_STATE,
+  SET_USER_UPDATE_SUCCESS_MSG,
+  SET_CARD_ADDING_ERROR_MSG,
 } from '../constants';
 
 const initialState = fromJS({
   users: [],
   userProfile: null,
   settingsModalState: false,
+  userUpdateSuccessMsg: null,
+  cardAddingErrorMsg: null,
 });
 
 function usersReducer(state = initialState, action) {
@@ -22,6 +26,12 @@ function usersReducer(state = initialState, action) {
     case SET_SETTINGS_MODAL_STATE:
       return state
         .set('settingsModalState', action.data);
+    case SET_USER_UPDATE_SUCCESS_MSG:
+      return state
+        .set('userUpdateSuccessMsg', action.data);
+    case SET_CARD_ADDING_ERROR_MSG:
+      return state
+        .set('cardAddingErrorMsg', action.data);
     default:
       return state;
   }

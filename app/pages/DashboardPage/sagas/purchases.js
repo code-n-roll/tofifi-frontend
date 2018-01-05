@@ -89,16 +89,20 @@ function* payPurchase(action) {
 }
 
 function* declinePurchase(action) {
-  const purchaseId = action.data.purchaseId;
-  yield call(declinePurchaseApi, purchaseId);
-  const purchasesList = yield select(makeSelectPurchasesList());
-  const i = _.findIndex(purchasesList, (p) => p.id == purchaseId);
-  purchasesList[i].status = PURHCASE_STATUSES.DECLINED;
-  yield put(setPurchasesData(purchasesList));
-  yield put(setCurrentPurchase(null));
-  yield put(setCurrentPurchase(purchasesList[i].id));
+  try {
+    const purchaseId = action.data.purchaseId;
+    yield call(declinePurchaseApi, purchaseId);
+    const purchasesList = yield select(makeSelectPurchasesList());
+    const i = _.findIndex(purchasesList, (p) => p.id == purchaseId);
+    purchasesList[i].status = PURHCASE_STATUSES.DECLINED;
+    yield put(setPurchasesData(purchasesList));
+    yield put(setCurrentPurchase(null));
+    yield put(setCurrentPurchase(purchasesList[i].id));
 
-  yield put(getDebtorsStatisticsRequest());
+    yield put(getDebtorsStatisticsRequest());
+  } catch (e) {
+    yield put(setGlobalError(e.data.message));
+  }
 }
 
 export default {

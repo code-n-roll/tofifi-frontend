@@ -17,8 +17,20 @@ const makeSelectCurrentUserProfile = () => createSelector(
   (usersState) => usersState.get('userProfile')
 );
 
+const makeSelectUserUpdateSuccessMsg = () => createSelector(
+  selectUsers,
+  (usersState) => usersState.get('userUpdateSuccessMsg')
+);
+
+const makeSelectAddingCardErrorMsg = () => createSelector(
+  selectUsers,
+  (usersState) => usersState.get('cardAddingErrorMsg')
+);
+
 export {
   makeSelectUsers,
   makeSelectSettingsModalState,
   makeSelectCurrentUserProfile,
+  makeSelectUserUpdateSuccessMsg,
+  makeSelectAddingCardErrorMsg,
 };

@@ -5,6 +5,8 @@ import {
   SET_CURRENT_USER_PROFILE,
   SET_SETTINGS_MODAL_STATE,
   REMOVE_BANK_CARD_REQUEST,
+  SET_USER_UPDATE_SUCCESS_MSG,
+  SET_CARD_ADDING_ERROR_MSG,
 } from '../constants';
 
 export function getUsersRequest() {
@@ -43,5 +45,19 @@ export function setCurrentUserProfile(data) {
 export function removeBankCardRequest() {
   return {
     type: REMOVE_BANK_CARD_REQUEST,
+  };
+}
+
+export function setUserUpdatingSuccessMsg(data) {
+  return {
+    type: SET_USER_UPDATE_SUCCESS_MSG,
+    data,
+  };
+}
+
+export function setCardAddingErrorMsg(data) {
+  return {
+    type: SET_CARD_ADDING_ERROR_MSG,
+    data,
   };
 }

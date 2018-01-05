@@ -20,6 +20,7 @@ class BankCardForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
     if (nextProps.submitSucceeded) {
       nextProps.onSave();
     }
@@ -109,7 +110,7 @@ class BankCardForm extends Component {
               />
             </div>
             <div>
-              {error && <div className="bank-card-form__error">{error}</div>}
+              {/*error && <div className="bank-card-form__error">{error}</div>*/}
             </div>
           </div>
           <div className="bank-card-form__buttons">

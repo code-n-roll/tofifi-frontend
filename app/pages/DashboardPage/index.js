@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Snackbar from 'material-ui/Snackbar';
+import AlertContainer from 'react-alert';
 
 import { makeSelectCurrentUser } from 'containers/App/selectors';
 import { logOutRequest } from 'containers/App/actions';
@@ -17,8 +17,8 @@ import LoggedLayout from 'components/layouts/LoggedLayout';
 import PayOffDebtModal from 'containers/PayOffDebtModal';
 
 import OnScreenHeightSection from 'components/sections/OnScreenHeightSection';
-import { getUsersRequest, getGroupsRequest, setGroupModalState, setSettingsModalState, setGlobalError } from 'pages/common/actions';
-import { makeSelectGlobalError } from 'pages/common/selectors';
+import { getUsersRequest, getGroupsRequest, setGroupModalState, setSettingsModalState, setGlobalError, setGlobalSuccessMsg } from 'pages/common/actions';
+import { makeSelectGlobalError, makeSelectGlobalSuccessMsg } from 'pages/common/selectors';
 
 import {
   setCurrentPurchase,
@@ -47,6 +47,14 @@ const PurchaseViewer = styled.div`
   background: white;
 `;
 
+const alertOptions = {
+  offset: 14,
+  position: 'bottom right',
+  theme: 'dark',
+  time: 5000,
+  transition: 'scale',
+};
+
 class DashboardPage extends Component {
   constructor(props) {
     super(props);
@@ -68,6 +76,21 @@ class DashboardPage extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.location.query !== this.props.location.query) {
       this.handleQueryChange(nextProps.location.query);
+    }
+
+    if (nextProps.globalError) {
+      this.msg.show(nextProps.globalError, {
+        time: 2000,
+        type: 'error',
+      });
+      this.props.setGlobalError(null);
+    }
+
+    if (nextProps.globalSuccessMsg) {
+      this.msg.success(nextProps.globalSuccessMsg, {
+        time: 2000,
+      });
+      this.props.setGlobalSuccessMsg(null);
     }
   }
 
@@ -105,14 +128,12 @@ class DashboardPage extends Component {
   }
 
   render() {
-    console.log(this.props.globalError);
     return (
       <LoggedLayout
         onLogOut={this.handleLogOut}
         onGroupLinkClick={this.handleGroupLinkClick}
         onSettingsClick={this.handleSettingsClick}
       >
-        <PayOffDebtModal/>
         <OnScreenHeightSection style={{ height: 'calc(100vh - 70px)', borderBottom: '1px solid #dcdcdc' }}>
           <DashboardPageWrapper>
             <SideBar debtsStatistic={this.props.debtsStatistic} />
@@ -134,12 +155,8 @@ class DashboardPage extends Component {
         </OnScreenHeightSection>
         <GroupsModal />
         <SettingsModal />
-        <Snackbar
-          open={!!this.props.globalError}
-          message={this.props.globalError || ''}
-          autoHideDuration={4000}
-          onRequestClose={this.handleSnackbarRequestClose}
-        />
+        <PayOffDebtModal />
+        <AlertContainer ref={(a) => { this.msg = a; }} {...alertOptions} />
       </LoggedLayout>
     );
   }
@@ -160,6 +177,7 @@ DashboardPage.propTypes = {
   getDebtorsStatisticsRequest: PropTypes.func,
   globalError: PropTypes.string,
   setGlobalError: PropTypes.func,
+  setGlobalSuccessMsg: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -167,6 +185,7 @@ const mapStateToProps = createStructuredSelector({
   pageState: makeSelectPageState(),
   debtsStatistic: makeSelectDebtorsStatistics(),
   globalError: makeSelectGlobalError(),
+  globalSuccessMsg: makeSelectGlobalSuccessMsg(),
 });
 
 const mapDispatchToProps = {
@@ -181,6 +200,7 @@ const mapDispatchToProps = {
   setSettingsModalState,
   getDebtorsStatisticsRequest,
   setGlobalError,
+  setGlobalSuccessMsg,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);

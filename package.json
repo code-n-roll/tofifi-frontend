@@ -229,6 +229,7 @@
     "minimist": "1.2.0",
     "prop-types": "^15.6.0",
     "react": "15.5.4",
+    "react-alert": "^2.4.0",
     "react-avatar": "^2.5.1",
     "react-bank-card": "^0.1.0",
     "react-custom-scroll": "^2.0.2",

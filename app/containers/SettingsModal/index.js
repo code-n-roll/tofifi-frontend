@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Subheader from 'material-ui/Subheader';
 import CustomScroll from 'react-custom-scroll';
-
+import AlertContainer from 'react-alert';
 
 import ProfileComponent from 'components/Settings/Profile';
 import PaymentsComponent from 'components/Settings/Payments';
@@ -13,15 +13,28 @@ import DefaultModalHeader from 'components/Modals/DefaultModalHeader';
 import {
   makeSelectSettingsModalState,
   makeSelectCurrentUserProfile,
+  makeSelectUserUpdateSuccessMsg,
+  makeSelectAddingCardErrorMsg,
 } from 'pages/common/selectors';
 
 import {
   setSettingsModalState,
   getCurrentUserProfileRequest,
   removeBankCardRequest,
+  setUserUpdatingSuccessMsg,
+  setCardAddingErrorMsg,
 } from 'pages/common/actions';
 
 import './styles.css';
+
+
+const alertOptions = {
+  offset: 14,
+  position: 'bottom right',
+  theme: 'dark',
+  time: 5000,
+  transition: 'scale',
+};
 
 class SettingsModal extends Component {
   constructor(props) {
@@ -34,6 +47,20 @@ class SettingsModal extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.isOpen === false && nextProps.isOpen === true) {
       this.props.getCurrentUserProfileRequest();
+    }
+
+    if (nextProps.userUpdateSuccessMsg) {
+      this.msg.success(nextProps.userUpdateSuccessMsg, {
+        time: 2000,
+      });
+      this.props.setUserUpdatingSuccessMsg(null);
+    }
+
+    if (nextProps.addingCardErrorMsg) {
+      this.msg.error(nextProps.addingCardErrorMsg, {
+        time: 2000,
+      });
+      this.props.setCardAddingErrorMsg(null);
     }
   }
 
@@ -90,6 +117,7 @@ class SettingsModal extends Component {
             </div>
           </CustomScroll>
         )}
+        <AlertContainer ref={(a) => { this.msg = a; }} {...alertOptions} />
       </Modal>
     );
   }
@@ -101,17 +129,24 @@ SettingsModal.propTypes = {
   getCurrentUserProfileRequest: PropTypes.func,
   userProfile: PropTypes.object,
   removeBankCardRequest: PropTypes.func,
+  setUserUpdatingSuccessMsg: PropTypes.func,
+  addingCardErrorMsg: PropTypes.string,
+  setCardAddingErrorMsg: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   isOpen: makeSelectSettingsModalState(),
   userProfile: makeSelectCurrentUserProfile(),
+  userUpdateSuccessMsg: makeSelectUserUpdateSuccessMsg(),
+  addingCardErrorMsg: makeSelectAddingCardErrorMsg(),
 });
 
 const mapDispatchToProps = {
   setSettingsModalState,
   getCurrentUserProfileRequest,
   removeBankCardRequest,
+  setUserUpdatingSuccessMsg,
+  setCardAddingErrorMsg,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsModal);

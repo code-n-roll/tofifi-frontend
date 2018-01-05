@@ -12,7 +12,13 @@ const makeSelectGlobalError = () => createSelector(
   (commonState) => commonState.get('error')
 );
 
+const makeSelectGlobalSuccessMsg = () => createSelector(
+  selectCommon,
+  (commonState) => commonState.get('successMsg')
+);
+
 export {
   makeSelectLoaderStatus,
   makeSelectGlobalError,
+  makeSelectGlobalSuccessMsg,
 };

@@ -11,7 +11,7 @@ import {
 import { setUserData } from 'containers/App/actions';
 import { updateProfile as updateProfileAction } from 'components/forms/ProfileForm/actions';
 import { addBankCard as addBankCardAction } from 'components/forms/BankCardForm/actions';
-import { setUsersData, setCurrentUserProfile, getGroupsRequest } from '../actions';
+import { setUsersData, setCurrentUserProfile, getGroupsRequest, setUserUpdatingSuccessMsg, setCardAddingErrorMsg } from '../actions';
 import { formatAddBankCardData } from './helpers';
 
 
@@ -38,6 +38,7 @@ export function* updateProfile(action) {
     yield put(getGroupsRequest());
 
     yield put(updateProfileAction.success());
+    yield put(setUserUpdatingSuccessMsg('Successfully updated'));
   } catch (e) {
     // TODO make sensible errors
     const formError = new SubmissionError({
@@ -54,11 +55,11 @@ export function* addBankCard(action) {
 
   try {
     yield call(addBankCardApi, reqData);
-    yield put(addBankCardAction.success());
+    // yield put(addBankCardAction.success());
     const response = yield call(getCurrentUserApi);
     yield put(setCurrentUserProfile(response.data));
   } catch (e) {
-    // TODO make sensible errors
+    yield put(setCardAddingErrorMsg(_.get(e, 'data.message')));
     const formError = new SubmissionError({
       _error: _.get(e, 'data.message'),
     });
