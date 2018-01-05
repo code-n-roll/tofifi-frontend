@@ -1,5 +1,6 @@
 import { put, call } from 'redux-saga/effects';
 import { SubmissionError } from 'redux-form/immutable';
+import _ from 'lodash';
 import {
   getUsersApi,
   getCurrentUserApi,
@@ -59,7 +60,7 @@ export function* addBankCard(action) {
   } catch (e) {
     // TODO make sensible errors
     const formError = new SubmissionError({
-      _error: e.data.message,
+      _error: _.get(e, 'data.message'),
     });
 
     yield put(addBankCardAction.failure(formError));

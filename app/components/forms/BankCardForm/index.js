@@ -109,7 +109,7 @@ class BankCardForm extends Component {
               />
             </div>
             <div>
-              {error && <div className="">{error}</div>}
+              {error && <div className="bank-card-form__error">{error}</div>}
             </div>
           </div>
           <div className="bank-card-form__buttons">

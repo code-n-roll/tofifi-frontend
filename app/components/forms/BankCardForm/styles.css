@@ -38,6 +38,10 @@
   margin-top: 13px;
 }
 
+.bank-card-form__error {
+  color: red;
+}
+
 .bank-card__field_wrapper {
   max-height: 72px;
 }

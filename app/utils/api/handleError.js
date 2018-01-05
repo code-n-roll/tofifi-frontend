@@ -11,15 +11,15 @@ export const handleError = (error: any) => {
       clearAuthData();
       browserHistory.replace('/sign_in');
       break;
-    case 403:
-      browserHistory.replace('/denied');
-      break;
-    case 404:
-      browserHistory.replace('/not_found');
-      break;
-    case 500:
-      browserHistory.replace('/internal_error');
-      break;
+    // case 403:
+    //   browserHistory.replace('/denied');
+    //   break;
+    // case 404:
+    //   browserHistory.replace('/not_found');
+    //   break;
+    // case 500:
+    //   browserHistory.replace('/internal_error');
+    //   break;
     default:
       return error;
   }
