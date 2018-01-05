@@ -111,6 +111,12 @@ class StoreComponent extends Component {
           </CustomScroll>
           <div className="store-component__bottom-row">
             <RaisedButton
+              label="Cancel"
+              secondary
+              onClick={this.props.onCancelOrder}
+            />
+            <RaisedButton
+              style={{marginLeft: 20}}
               label="Submit order"
               disabled={this.props.choosedItems.size === 0}
               primary

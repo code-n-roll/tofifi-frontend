@@ -28,6 +28,12 @@ class MakeOrderComponent extends Component {
     });
   }
 
+  handleCancelOrder = () => {
+    this.setState({
+      changeOrderMode: false,
+    });
+  }
+
   render() {
     const { prevOrderItems, purchase } = this.props;
 
@@ -43,6 +49,7 @@ class MakeOrderComponent extends Component {
         <StoreComponent
           purchase={this.props.purchase}
           onSubmitOrder={this.handleSubmitOrder}
+          onCancelOrder={this.handleCancelOrder}
         />
       )
     );
