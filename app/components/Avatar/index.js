@@ -24,7 +24,7 @@ class Avatar extends Component {
     return (
       this.state.useBackupAvatar ?
         <ReactAvatar name={username} size={size || 50} round style={avatarStyle} /> :
-        <img onError={this.handleImageLoadingError} width={size || 50} height={size || 50} src={avatarUrl} alt={username} />
+        <img style={{borderRadius: '50%'}} onError={this.handleImageLoadingError} width={size || 50} height={size || 50} src={avatarUrl} alt={username} />
     );
   }
 }
