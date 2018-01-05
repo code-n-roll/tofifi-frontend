@@ -18,8 +18,16 @@
 }
 
 .submitted-order-info__bottom-row__sum {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row nowrap;
+
   font-size: 20px;
+}
+
+.submitted-order-info__bottom-row__status {
+  padding: 5px;
 }
 
 .submitted-order-info__bottom-row__actions {
