@@ -1,9 +1,13 @@
 /**
- * app.js
- *
- * This is the entry file for the application, only setup and boilerplate
- * code.
- */
+ _____________________
+< Good boys made this >
+ ---------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+*/
 
 // Needed for redux-saga es6 generator support
 import 'babel-polyfill';
