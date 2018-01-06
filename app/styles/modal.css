@@ -1,0 +1,37 @@
+.ReactModal__Overlay {
+  z-index: 100;
+  background-color: rgba(26,26,26,.7) !important;
+}
+
+.ReactModal__Content {
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  border: 0 !important;
+}
+
+.defaultModalHeader_container {
+  height: 50px;
+  background-color: #5580a3;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+.defaultModalHeader_close {
+  float: right;
+  line-height: 28px;
+  cursor: pointer;
+  color: #dadada;
+}
+
+.defaultModalHeader_title {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 33px;
+}
+
+.defaultModalHeader_close:hover {
+  color: #fff;
+}

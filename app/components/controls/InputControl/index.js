@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import TextField from 'material-ui/TextField';
 
 class InputControl extends Component {
   constructor(args) {
@@ -22,38 +23,41 @@ class InputControl extends Component {
       label,
       type,
       placeholder,
-      errorStyles,
+      hintText,
+      hintStyle,
       meta: { touched },
+      style,
+      inputStyle,
+      placeholderStyle,
+      tooltipIfEmpty,
+      floatingLabel,
+      className,
+      inputProps
     } = this.props;
 
     let error = this.props.meta.error;
 
     const hasError = touched && error;
 
-    let style = { paddingBottom: '30px' };
-    if (hasError && errorStyles) {
-      style = Object.assign({}, style, errorStyles);
-    }
-
     // Check for immutable error objects
     if (error && typeof error.toJS === 'function') {
       error = error.toJS();
     }
 
-    style = Object.assign({}, style, this.props.style);
-
     return (
-      <div className="mdl-textfield" style={style}>
-        <input className="mdl-textfield__input" type={type} {...input} onChange={this.handleValueChange} />
-        {!input.value &&
-          <label className="mdl-textfield__label" htmlFor={input.name}>{placeholder}</label>
-        }
-        {hasError &&
-          <span className="mdl-textfield__error" style={{ visibility: 'visible' }}>
-            <FormattedMessage {...error} />
-          </span>
-        }
-      </div>
+      <TextField
+        style={style}
+        inputStyle={inputStyle}
+        className={className}
+        type={type}
+        hintText={hintText}
+        hintStyle={hintStyle}
+        floatingLabelText={floatingLabel}
+        {...input}
+        {...inputProps}
+        onChange={this.handleValueChange}
+        errorText={hasError ? <FormattedMessage {...error} /> : null}
+      />
     );
   }
 }
@@ -67,6 +71,8 @@ InputControl.propTypes = {
   errorStyles: PropTypes.object,
   onValueChange: PropTypes.func,
   style: PropTypes.object,
+  inputStyle: PropTypes.object,
+  placeholderStyle: PropTypes.object,
 };
 
 export default InputControl;

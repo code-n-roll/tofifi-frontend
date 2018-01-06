@@ -1,3 +1,15 @@
+.go-to-create-purchase-btn {
+  position: absolute;
+  top: 11px;
+  right: 10px;
+  font-size: 30px;
+  color: #d1c7be;
+}
+
+.purchases-list {
+  position: relative;
+}
+
 .purchase-item {
   padding: 10px;
   background-color: #fff;
@@ -15,23 +27,29 @@
   background-color: #6ab344;
 }
 
-.purchase-viewer {
-  margin-left: 200px;
-  height: 100%;
+.purchase-info-centered {
+  width: 100%;
+  padding: 0 20px;
+  padding-top: 15%;
 }
 
-.purchase-info-centered {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.purchase-info_status {
+  margin-top: 15px;
+  font-size: 20px;
+}
+
+.purchase-info_status--declined {
+  color: #E53935;
+}
+
+.purchase-info_status--payed {
+  color: #43A047;
 }
 
 .purchase-info-container {
   background-color: #fff;
   height: 100%;
   margin: auto;
-  border-right: 1px solid #d3d3d3;
   position: relative;
   text-align: center;
 }
@@ -39,6 +57,8 @@
 .purchase-info_credit-card-container {
   position: relative;
   display: inline-block;
+  max-width: 268px; /* img size */
+  width: 100%;
 }
 
 .purchase-info_credit-card__owner {
@@ -70,60 +90,36 @@
   line-height: 50px;
   min-width: 0;
   bottom: 50px;
-  left: 130px;
+  left: 200px;
 }
 
 .create-purchase_groups {
   background-color: #fff;
-  width: 45%;
   height: 100%;
-  border-right: 1px solid #d3d3d3;
   position: relative;
-  float: left;
-  text-align: center;
 }
 
 .create-purchase_group-item {
-  width: 100px;
-  display: inline-block;
-  margin: 10px;
+  padding: 10px 5px;
   position: relative;
   cursor: pointer;
-}
-
-.create-purchase_group-item__check {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  top: 0;
-  background-color: rgba(255, 255, 255, 0.8);
-  color: #6ab344;
-  font-size: 40px;
-  line-height: 100px;
-  text-align: center;
-}
-
-.fill-parent {
-  height: 100%;
+  border-bottom: 1px solid #dcdcdc;
 }
 
 .create-purchase_groups-list {
-  overflow-y: scroll;
-  height: calc(100% - 50px);
+  height: calc(100% - 110px);
 }
 
 
 .create-purchase_group-item__name {
-  font-size: 20px;
+  font-size: 14px;
+  margin-left: 10px;
 }
 
-.create-purchase_users {
+.users {
   background-color: #fff;
-  width: 55%;
   height: 100%;
-  border-right: 1px solid #d3d3d3;
   position: relative;
-  float: right;
 }
 
 .create-purchase-button-container {
@@ -135,66 +131,99 @@
 }
 
 .create-purchase_users-list {
-  overflow-y: scroll;
-  height: calc(100% - (50px + 76px));
+  height: calc(100% - (50px + 60px + 70px));
 }
 
-.create-purchase_user-item {
-  position: relative;
-  padding: 10px;
-  border-top: 1px solid #dcdcdc;
-  text-align: left;
-  padding-right: 30px;
-}
-
-.create-purchase_user-item:first-child {
-  border-top: 0px;
-}
-
-.create-purchase_group-item__name {
-  font-size: 20px;
-}
-
-.create-purchase_user-item__checkbox {
+.create-purchase_next-step {
   position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: 0px;
+  height: 60px;
+  left: 0;
+  right: 0;
+  border-top: 1px solid #dcdcdc;
+  padding: 10px 20px;
+  justify-content: space-between;
+}
+
+.create-purchase_next-step > button{
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.create-purchase_next-step > button:last-child {
+  margin-right: 0;
 }
 
 .create-purchase-participants-container {
-  max-height: 400px;
-  width: 60%;
-  margin: auto;
-  overflow-y: scroll;
-  background-color: #fff;
-  border: 2px solid #dcdcdc;
-  padding: 20px;
+  height: calc(100% - (48px + 160px));
   text-align: center;
+  padding-top: 20px;
+}
+
+.create-purchase-form {
+  background-color: #fff;
 }
 
 .create-purchase_participant {
   display: inline-block;
   width: 30%;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.create-purchase-buttons-container {
+  position: absolute;
+  bottom: 40px;
+  right: 50px;
+}
+
+.create-purchase-total-sum-container {
+  margin-left: 100px;
+  margin-top: 15px;
+}
+
+.create-purchase-total-sum_text {
+  font-size: 18px;
+}
+
+.create-purchase-total-sum_input {
+  width: 150px;
+}
+
+.owner-purchase-info-container_scroll {
+  overflow: scroll;
+  position: relative;
+  height: 100%;
 }
 
 .owner-purchase-info-container {
-  margin: 0;
+  text-align: center;
+  margin: 0 0 20px 0;
+}
+
+.owner-purchase-info-item {
+  line-height: 4.2;
+  margin-left: 70px;
+  margin-right: 18px;
+  font-size: 18px;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .purchase-info_participant-container {
-  border: 1px solid #dcdcdc;
   display: inline-block;
-  width: 200px;
-  height: 150px;
+  margin: 10px;
+  width: 300px;
   position: relative;
-  margin: 20px 0 0 20px;
   background-color: #fff;
 }
 
 .purchase-info_participant {
   position: absolute;
-  left: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: 30px;
 }
 
@@ -217,13 +246,63 @@
 }
 
 .purchase-info_participant__sum {
-  font-size: 30px;
+  font-size: 25px;
   margin-bottom: 20px;
+  text-overflow: ellipsis;
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
   text-align: center;
 }
 
 .purchase-info_participant__username {
-  font-size: 20px;
-  text-align: left;
+  font-size: 14px;
+  text-align: center;
   margin-bottom: 10px;
+  text-overflow: ellipsis;
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.debtors-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 91px;
+  height: 100%;
+  transition: width 0.5s;
+  background-color: #fff;
+  z-index: 10500;
+  border-left: 1px solid rgb(211, 211, 211);
+  border-bottom: 1px solid rgb(211, 211, 211);
+  border-right: 1px solid rgb(211, 211, 211);
+  overflow: hidden;
+}
+
+.debtors-panel-toggler {
+  text-align: center;
+  font-size: 40px;
+  color: #d3d3d3;
+  transition: transform 500ms ease;
+  cursor: pointer;
+  width: 40px;
+  margin-left: 25px;
+  margin-top: 5px;
+}
+
+.debtors-panel.opened {
+  width: 250px;
+}
+
+.debtors-panel.opened .debtors-my-statistic {
+  opacity: 0;
+}
+
+.debtors-panel.opened .debtors-search {
+  opacity: 1;
+}
+
+.debtors-panel.opened .debtors-panel-toggler {
+  transform: rotate( -180deg );
 }

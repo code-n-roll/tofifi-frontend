@@ -4,14 +4,37 @@
 // also a good idea to separate paths logically
 
 // auth
-export const SIGN_UP_PATH = 'account/register';
-export const SIGN_IN_PATH = 'sign_in';
+export const SIGN_UP_PATH = '/register';
+export const SIGN_IN_PATH = '/sign_in';
 
 // purchases
-export const PURCHASES_PATH = 'users/me/purchases';
+export const PURCHASES_PATH = '/purchases';
 
 // users
 export const USERS_PATH = '/users';
+export const CURRENT_USER_PATH = '/users/me';
+
+// profile
+export const UPDATE_PROFILE_PATH = '/account/updateProfile';
+export const ADD_BANK_CARD = '/account/addCard';
+export const REMOVE_BANK_CARD = '/account/removeCard';
 
 // groups
-export const GROUPS_PATH = '/groups';
+export const GROUPS_PATH = '/teams';
+
+// stores
+export const STORES_PATH = '/orders/stores';
+export const STORE_CATEGORIES_PATH = '/orders/categories';
+export const STORE_ITEMS_PATH = '/orders/items';
+
+export const STORE_ORDERS_PATH = '/orders';
+
+// reset pass
+export const SEND_RESTORE_PASSWORD_LINK = '/account/password/reset';
+export const RESTORE_PASSWORD = '/account/password/reset/confirm';
+export const VERIFY_ACCESS = '/account/password/reset/verify';
+
+// debtors statistics
+export const DEBTORS_STATISTICS_PATH = '/debts';
+export const SEND_MONEY_PATH = '/purchases/sendMoney';
+export const CLEAR_DEBTS = '/debts/clear';

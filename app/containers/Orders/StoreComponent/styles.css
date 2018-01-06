@@ -1,0 +1,37 @@
+.store-component {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.store-component__sidebar {
+  width: 200px;
+  height: 100%;
+}
+
+.store-component__main-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.store-component__items {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10px;
+}
+
+.store-component__item {
+  width: 200px;
+  min-width: 200px;
+  margin: 20px;
+}
+
+.store-component__bottom-row {
+  display: flex;
+  justify-content: flex-end;
+  padding: 30px;
+}

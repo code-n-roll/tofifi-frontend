@@ -1,26 +1,32 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+
 import { makeSelectCurrentPurchase } from 'pages/DashboardPage/selectors';
-import PropTypes from 'prop-types';
-import OwnerPurchaseInfo from 'components/Purchases/PurchaseInfo/OwnerPurchaseInfo';
-import NotOwnerPurchaseInfo from 'components/Purchases/PurchaseInfo/NotOwnerPurchaseInfo';
+import CustomPurchaseInfo from 'containers/Purchases/CustomPurchaseInfo';
+import StoreOrderInfo from 'containers/Orders/StoreOrderInfo';
 
-const PurchaseInfo = (props) => (
-  props.purchase.isMy ? (
-    <OwnerPurchaseInfo {...props.purchase} />
-  ) :
-  (
-    <NotOwnerPurchaseInfo {...props.purchase} />
-  )
-);
+const PurchaseInfo = (props) => {
+  let purchaseScreen = null;
 
-const mapStateToProps = createStructuredSelector({
-  purchase: makeSelectCurrentPurchase(),
-});
+  if (props.purchase) {
+    purchaseScreen = props.purchase.type === 'Store' ? (
+      <StoreOrderInfo purchase={props.purchase} />
+    ) : (
+      <CustomPurchaseInfo purchase={props.purchase} />
+    );
+  }
+
+  return purchaseScreen;
+};
 
 PurchaseInfo.propTypes = {
   purchase: PropTypes.object,
 };
+
+const mapStateToProps = createStructuredSelector({
+  purchase: makeSelectCurrentPurchase(),
+});
 
 export default connect(mapStateToProps)(PurchaseInfo);

@@ -1,0 +1,47 @@
+.bank-card-form {
+  /*display: flex;*/
+  /*flex-direction: row;*/
+  align-items: center;
+}
+
+.bank-card-form__preview {
+  width: 330px;
+  margin: auto;
+}
+
+.bank-card-form__cvc-row  {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.bank-card-form__expiry-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.bank-card-form__expiry-divider {
+  padding: 0 5px;
+  font-size: 32px;
+  margin-top: 25px;
+  color: rgba(0,0,0,.2);
+}
+
+.bank-card-form__small-input {
+  width: 40px;
+}
+
+.bank-card-form__buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 13px;
+}
+
+.bank-card-form__error {
+  color: red;
+}
+
+.bank-card__field_wrapper {
+  max-height: 72px;
+}

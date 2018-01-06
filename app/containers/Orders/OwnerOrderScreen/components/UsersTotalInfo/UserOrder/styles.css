@@ -1,0 +1,73 @@
+.user-order {
+  margin: 10px;
+  width: 100%;
+  max-width: 280px;
+  padding: 20px;
+}
+
+.user-order__user-info {
+  display: flex;
+  padding-bottom: 0;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.user-order__user-info__name {
+  padding-left: 20px;
+  padding-bottom: 7px;
+
+  font-size: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.user-order__no-order {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: #9E9E9E;
+}
+
+.user-order__item {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-order__item-name {
+  flex-shrink: 1;
+}
+
+.user-order__item-price {
+  flex-shrink: 0;
+  font-size: 18px;
+  color: #9E9E9E;
+  padding-left: 5px;
+}
+
+.user-order__item-amount {
+  padding-left: 5px;
+  font-size: 18px;
+  color: #4CAF50;
+}
+
+.user-order__status-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.user-order__total-sum {
+  font-size: 27px;
+}
+
+.user-order__status {
+  margin-left: 20px;
+  display: inline-block;
+}

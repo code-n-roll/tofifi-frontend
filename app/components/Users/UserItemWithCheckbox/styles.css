@@ -1,0 +1,23 @@
+.user-item-avatar {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.user-item {
+  position: relative;
+  padding: 10px;
+  border-top: 1px solid #dcdcdc;
+  text-align: left;
+  padding-right: 30px;
+}
+
+.user-item:first-child {
+  border-top: 0px;
+}
+
+.user-item__checkbox {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}

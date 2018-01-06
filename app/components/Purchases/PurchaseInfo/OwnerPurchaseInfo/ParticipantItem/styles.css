@@ -1,0 +1,15 @@
+.participant-item__text {
+  padding: 20px 0 33px 25px;
+  font-size: 27px;
+  text-align: center;
+}
+
+.participant-item__action {
+  display: inline-block;
+  margin-left: 25px;
+}
+
+.participant-item__img {
+  float: left;
+  margin: 15px;
+}
