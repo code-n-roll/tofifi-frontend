@@ -256,7 +256,8 @@
     "sanitize.css": "5.0.0",
     "styled-components": "2.0.1",
     "warning": "3.0.0",
-    "whatwg-fetch": "2.0.3"
+    "whatwg-fetch": "2.0.3",
+    "credit-card-regex": "https://github.com/AntonDatsik/credit-card-regex.git"
   },
   "devDependencies": {
     "babel-cli": "6.18.0",
